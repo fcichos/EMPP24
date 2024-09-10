@@ -354,92 +354,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="quarto-ojs-syntax-error">
-<div class="sourceCode" id="cb2" data-startfrom="9" data-syntax-error-position="8" data-source-offset="9"><pre class="sourceCode numberSource numberLines java code-with-copy"><code class="sourceCode java" style="counter-reset: source-line 8;"><span id="cb2-9"><a href="#cb2-9"></a>```<span class="op">{</span>ojs<span class="op">}</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">//| echo: false</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>test<span class="op">={</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a></span>
-<span id="cb2-13"><a href="#cb2-13"></a>viewof interactionRadius <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span><span class="op">([</span><span class="dv">5</span><span class="op">,</span> <span class="dv">50</span><span class="op">],</span> <span class="op">{</span>step<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> value<span class="op">:</span> <span class="dv">20</span><span class="op">,</span> label<span class="op">:</span> <span class="st">"Interaction Radius"</span><span class="op">})</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>viewof noiseLevel <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span><span class="op">([</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">],</span> <span class="op">{</span>step<span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> value<span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> label<span class="op">:</span> <span class="st">"Noise Level"</span><span class="op">})</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>viewof fps <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span><span class="op">([</span><span class="dv">1</span><span class="op">,</span> <span class="dv">60</span><span class="op">],</span> <span class="op">{</span>step<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> value<span class="op">:</span> <span class="dv">30</span><span class="op">,</span> label<span class="op">:</span> <span class="st">"Frames Per Second"</span><span class="op">})</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a></span>
-<span id="cb2-17"><a href="#cb2-17"></a>width <span class="op">=</span> <span class="dv">600</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>height <span class="op">=</span> <span class="dv">400</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>numParticles <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>radius <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>speed <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a>svg <span class="op">=</span> d3<span class="op">.</span><span class="fu">create</span><span class="op">(</span><span class="st">"svg"</span><span class="op">)</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>  <span class="op">.</span><span class="fu">attr</span><span class="op">(</span><span class="st">"width"</span><span class="op">,</span> width<span class="op">)</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="op">.</span><span class="fu">attr</span><span class="op">(</span><span class="st">"height"</span><span class="op">,</span> height<span class="op">)</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a></span>
-<span id="cb2-27"><a href="#cb2-27"></a>particles <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span><span class="op">(</span>numParticles<span class="op">).</span><span class="fu">map</span><span class="op">(()</span> <span class="op">=&gt;</span> <span class="op">({</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>  x<span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span><span class="op">()</span> <span class="op">*</span> width<span class="op">,</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a>  y<span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span><span class="op">()</span> <span class="op">*</span> height<span class="op">,</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>  angle<span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span><span class="op">()</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">PI</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="op">}))</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a></span>
-<span id="cb2-33"><a href="#cb2-33"></a>function <span class="fu">updateParticles</span><span class="op">(</span>radius<span class="op">,</span> noise<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a>  particles<span class="op">.</span><span class="fu">forEach</span><span class="op">(</span>particle <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a>    <span class="dt">const</span> neighbors <span class="op">=</span> particles<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>p <span class="op">=&gt;</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a>      p <span class="op">!==</span> particle <span class="op">&amp;&amp;</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a>      <span class="bu">Math</span><span class="op">.</span><span class="fu">hypot</span><span class="op">(</span>p<span class="op">.</span><span class="fu">x</span> <span class="op">-</span> particle<span class="op">.</span><span class="fu">x</span><span class="op">,</span> p<span class="op">.</span><span class="fu">y</span> <span class="op">-</span> particle<span class="op">.</span><span class="fu">y</span><span class="op">)</span> <span class="op">&lt;</span> radius</span>
-<span id="cb2-38"><a href="#cb2-38"></a>    <span class="op">)</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a></span>
-<span id="cb2-40"><a href="#cb2-40"></a>    <span class="cf">if</span> <span class="op">(</span>neighbors<span class="op">.</span><span class="fu">length</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-41"><a href="#cb2-41"></a>      <span class="dt">const</span> avgAngle <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span><span class="op">(</span>neighbors<span class="op">,</span> n <span class="op">=&gt;</span> n<span class="op">.</span><span class="fu">angle</span><span class="op">)</span></span>
-<span id="cb2-42"><a href="#cb2-42"></a>      particle<span class="op">.</span><span class="fu">angle</span> <span class="op">=</span> avgAngle <span class="op">+</span> <span class="op">(</span><span class="bu">Math</span><span class="op">.</span><span class="fu">random</span><span class="op">()</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">*</span> noise <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">PI</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a>    <span class="op">}</span></span>
-<span id="cb2-44"><a href="#cb2-44"></a></span>
-<span id="cb2-45"><a href="#cb2-45"></a>    particle<span class="op">.</span><span class="fu">x</span> <span class="op">+=</span> speed <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span><span class="op">(</span>particle<span class="op">.</span><span class="fu">angle</span><span class="op">)</span></span>
-<span id="cb2-46"><a href="#cb2-46"></a>    particle<span class="op">.</span><span class="fu">y</span> <span class="op">+=</span> speed <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span><span class="op">(</span>particle<span class="op">.</span><span class="fu">angle</span><span class="op">)</span></span>
-<span id="cb2-47"><a href="#cb2-47"></a></span>
-<span id="cb2-48"><a href="#cb2-48"></a>    particle<span class="op">.</span><span class="fu">x</span> <span class="op">=</span> <span class="op">(</span>particle<span class="op">.</span><span class="fu">x</span> <span class="op">+</span> width<span class="op">)</span> <span class="op">%</span> width</span>
-<span id="cb2-49"><a href="#cb2-49"></a>    particle<span class="op">.</span><span class="fu">y</span> <span class="op">=</span> <span class="op">(</span>particle<span class="op">.</span><span class="fu">y</span> <span class="op">+</span> height<span class="op">)</span> <span class="op">%</span> height</span>
-<span id="cb2-50"><a href="#cb2-50"></a>  <span class="op">})</span></span>
-<span id="cb2-51"><a href="#cb2-51"></a><span class="op">}</span></span>
-<span id="cb2-52"><a href="#cb2-52"></a></span>
-<span id="cb2-53"><a href="#cb2-53"></a>function <span class="fu">drawParticles</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-54"><a href="#cb2-54"></a>  svg<span class="op">.</span><span class="fu">selectAll</span><span class="op">(</span><span class="er">'</span>circle<span class="er">'</span><span class="op">)</span></span>
-<span id="cb2-55"><a href="#cb2-55"></a>    <span class="op">.</span><span class="fu">data</span><span class="op">(</span>particles<span class="op">)</span></span>
-<span id="cb2-56"><a href="#cb2-56"></a>    <span class="op">.</span><span class="fu">join</span><span class="op">(</span><span class="er">'</span>circle<span class="er">'</span><span class="op">)</span></span>
-<span id="cb2-57"><a href="#cb2-57"></a>    <span class="op">.</span><span class="fu">attr</span><span class="op">(</span><span class="er">'</span>cx<span class="er">'</span><span class="op">,</span> d <span class="op">=&gt;</span> d<span class="op">.</span><span class="fu">x</span><span class="op">)</span></span>
-<span id="cb2-58"><a href="#cb2-58"></a>    <span class="op">.</span><span class="fu">attr</span><span class="op">(</span><span class="er">'</span>cy<span class="er">'</span><span class="op">,</span> d <span class="op">=&gt;</span> d<span class="op">.</span><span class="fu">y</span><span class="op">)</span></span>
-<span id="cb2-59"><a href="#cb2-59"></a>    <span class="op">.</span><span class="fu">attr</span><span class="op">(</span><span class="ch">'r'</span><span class="op">,</span> radius<span class="op">)</span></span>
-<span id="cb2-60"><a href="#cb2-60"></a>    <span class="op">.</span><span class="fu">attr</span><span class="op">(</span><span class="er">'</span>fill<span class="er">'</span><span class="op">,</span> <span class="er">'</span>blue<span class="er">'</span><span class="op">)</span></span>
-<span id="cb2-61"><a href="#cb2-61"></a><span class="op">}</span></span>
-<span id="cb2-62"><a href="#cb2-62"></a></span>
-<span id="cb2-63"><a href="#cb2-63"></a><span class="co">// Animation loop</span></span>
-<span id="cb2-64"><a href="#cb2-64"></a>function <span class="fu">animate</span><span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-65"><a href="#cb2-65"></a>  <span class="dt">const</span> currentRadius <span class="op">=</span> interactionRadius</span>
-<span id="cb2-66"><a href="#cb2-66"></a>  <span class="dt">const</span> currentNoise <span class="op">=</span> noiseLevel</span>
-<span id="cb2-67"><a href="#cb2-67"></a>  <span class="dt">const</span> interval <span class="op">=</span> <span class="dv">1000</span> <span class="op">/</span> fps</span>
-<span id="cb2-68"><a href="#cb2-68"></a></span>
-<span id="cb2-69"><a href="#cb2-69"></a>  let lastTime <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-70"><a href="#cb2-70"></a>  <span class="cf">return</span> d3<span class="op">.</span><span class="fu">timer</span><span class="op">((</span>elapsed<span class="op">)</span> <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb2-71"><a href="#cb2-71"></a>    <span class="cf">if</span> <span class="op">(</span>elapsed <span class="op">-</span> lastTime <span class="op">&lt;</span> interval<span class="op">)</span> <span class="cf">return</span></span>
-<span id="cb2-72"><a href="#cb2-72"></a>    <span class="fu">updateParticles</span><span class="op">(</span>currentRadius<span class="op">,</span> currentNoise<span class="op">)</span></span>
-<span id="cb2-73"><a href="#cb2-73"></a>    <span class="fu">drawParticles</span><span class="op">()</span></span>
-<span id="cb2-74"><a href="#cb2-74"></a>    lastTime <span class="op">=</span> elapsed</span>
-<span id="cb2-75"><a href="#cb2-75"></a>  <span class="op">})</span></span>
-<span id="cb2-76"><a href="#cb2-76"></a><span class="op">}</span></span>
-<span id="cb2-77"><a href="#cb2-77"></a></span>
-<span id="cb2-78"><a href="#cb2-78"></a><span class="fu">animate</span><span class="op">()</span></span>
-<span id="cb2-79"><a href="#cb2-79"></a></span>
-<span id="cb2-80"><a href="#cb2-80"></a>svg<span class="op">.</span><span class="fu">node</span><span class="op">()</span></span>
-<span id="cb2-81"><a href="#cb2-81"></a><span class="op">}</span></span>
-<span id="cb2-82"><a href="#cb2-82"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-OJS Syntax Error (line 13, column 1)Assigning to rvalue
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-startfrom="14" data-source-offset="-27"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 13;"><span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Create SVG container</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>svg <span class="op">=</span> d3<span class="op">.</span><span class="fu">create</span>(<span class="st">"svg"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">attr</span>(<span class="st">"width"</span><span class="op">,</span> width)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">attr</span>(<span class="st">"height"</span><span class="op">,</span> height)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">attr</span>(<span class="st">"background-color"</span><span class="op">,</span> <span class="st">"darkgrey"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Initial circle position</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  initialX <span class="op">=</span> width <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  initialY <span class="op">=</span> height <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  radius <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Draw a circle</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  circle <span class="op">=</span> svg<span class="op">.</span><span class="fu">append</span>(<span class="st">"circle"</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">"cx"</span><span class="op">,</span> initialX)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">"cy"</span><span class="op">,</span> initialY)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">"r"</span><span class="op">,</span> radius)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">"fill"</span><span class="op">,</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Oscillation parameters</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Slider to control amplitude</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  viewof amplitude <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Amplitude"</span>})</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  frequency <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Animation loop</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  d3<span class="op">.</span><span class="fu">timer</span>((elapsed) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> newY <span class="op">=</span> initialY <span class="op">+</span> amplitude <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(frequency <span class="op">*</span> elapsed)<span class="op">;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">.</span><span class="fu">attr</span>(<span class="st">"cy"</span><span class="op">,</span> newY)<span class="op">;</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
 </div>
 </div>
-<div class="callout-body-container callout-body">
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-10" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb3" data-startfrom="51" data-source-offset="-783"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>svg<span class="op">.</span><span class="fu">node</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-11" data-nodetype="expression">
 
 </div>
 </div>
@@ -464,7 +487,7 @@ W10=
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImQzID0gcmVxdWlyZShcImQzQDdcIilcbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuZDMgPSByZXF1aXJlKFwiZDNAN1wiKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG5cbi8vIFNldCB1cCBTVkcgZGltZW5zaW9uc1xud2lkdGggPSA2MDBcbmhlaWdodCA9IDQwMFxuXG4vLyBDcmVhdGUgU1ZHIGNvbnRhaW5lclxuc3ZnID0gZDMuY3JlYXRlKFwic3ZnXCIpXG4gIC5hdHRyKFwid2lkdGhcIiwgd2lkdGgpXG4gIC5hdHRyKFwiaGVpZ2h0XCIsIGhlaWdodClcbiAgLmF0dHIoXCJiYWNrZ3JvdW5kLWNvbG9yXCIsIFwiZGFya2dyZXlcIilcblxuXG4gIC8vIEluaXRpYWwgY2lyY2xlIHBvc2l0aW9uXG4gIGluaXRpYWxYID0gd2lkdGggLyAyXG4gIGluaXRpYWxZID0gaGVpZ2h0IC8gMlxuICByYWRpdXMgPSA1MFxuXG4gIC8vIERyYXcgYSBjaXJjbGVcbiAgY2lyY2xlID0gc3ZnLmFwcGVuZChcImNpcmNsZVwiKVxuICAgIC5hdHRyKFwiY3hcIiwgaW5pdGlhbFgpXG4gICAgLmF0dHIoXCJjeVwiLCBpbml0aWFsWSlcbiAgICAuYXR0cihcInJcIiwgcmFkaXVzKVxuICAgIC5hdHRyKFwiZmlsbFwiLCBcInN0ZWVsYmx1ZVwiKVxuXG4gIC8vIE9zY2lsbGF0aW9uIHBhcmFtZXRlcnNcbiAgLy8gU2xpZGVyIHRvIGNvbnRyb2wgYW1wbGl0dWRlXG4gIHZpZXdvZiBhbXBsaXR1ZGUgPSBJbnB1dHMucmFuZ2UoWzAsIDIwMF0sIHtzdGVwOiAxLCB2YWx1ZTogMTAwLCBsYWJlbDogXCJBbXBsaXR1ZGVcIn0pXG5cblxuICBmcmVxdWVuY3kgPSAwLjAxXG5cbiAgLy8gQW5pbWF0aW9uIGxvb3BcbiAgZDMudGltZXIoKGVsYXBzZWQpID0+IHtcbiAgICBjb25zdCBuZXdZID0gaW5pdGlhbFkgKyBhbXBsaXR1ZGUgKiBNYXRoLnNpbihmcmVxdWVuY3kgKiBlbGFwc2VkKTtcbiAgICBjaXJjbGUuYXR0cihcImN5XCIsIG5ld1kpO1xuICB9KVxuXG5cbi8vIERpc3BsYXkgdGhlIFNWR1xuc3ZnLm5vZGUoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdhbXBsaXR1ZGUnKSJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
