@@ -451,36 +451,14 @@
     ]
   },
   {
-    "objectID": "lectures/lecture12/01-lecture12.html",
-    "href": "lectures/lecture12/01-lecture12.html",
-    "title": "14  Lecture 12",
-    "section": "",
-    "text": "14.1 Advanced Waves and Final Project Introduction",
-    "crumbs": [
-      "Lecture 3",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Lecture 12</span>"
-    ]
-  },
-  {
-    "objectID": "lectures/lecture12/01-lecture12.html#advanced-waves-and-final-project-introduction",
-    "href": "lectures/lecture12/01-lecture12.html#advanced-waves-and-final-project-introduction",
-    "title": "14  Lecture 12",
-    "section": "",
-    "text": "14.1.1 Python Concepts\n\nIntroduction to more advanced simulation techniques (e.g., finite difference methods).\nStructuring a Python project (modules, documentation, testing).\n\n\n\n14.1.2 Application\n\nSimulating wave propagation, reflection, and transmission in different media.\nVisualization: Animating wave motion and energy transfer.\n\n\n14.1.2.1 Final Project Overview\n- Introduction to the final project, where students choose a physics problem to model and solve using Python.\n- Discussion of project expectations, timelines, and resources.\n- Homework: Start working on the final project by selecting a topic and outlining the approach.\n\n\n\n## Ideal Gas Simulation with Pressure, Gravity, and Collisions\n\nUse the sliders below to adjust the speed of the gas particles and the gravitational force acting on them. The pressure exerted by the particles on the container walls will be displayed.\n\n  Adjust Particle Speed:\n  \n\n\n  Adjust Gravity:\n  \n\nPressure: 0 Pa",
-    "crumbs": [
-      "Lecture 3",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Lecture 12</span>"
-    ]
-  },
-  {
     "objectID": "seminars/seminar01/01-seminar01.html",
     "href": "seminars/seminar01/01-seminar01.html",
-    "title": "15  Seminar 1",
+    "title": "14  Seminar 1",
     "section": "",
     "text": "Calculate the average of all of the integers from 1 to 10.\n\n\n\n\n\n\n\nuse the sum() and len() functions\nn = range(1, 11)\n\n\n1n = range(1, 11)\n2sum(n)/len(n)\n\n1\n\ncreate the range of numbers from 1 to 10.\n\n2\n\ncalculate the sum of the numbers and divide by the number of elements in the list.",
     "crumbs": [
       "Seminar Contents",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Seminar 1</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Seminar 1</span>"
     ]
   }
 ]
