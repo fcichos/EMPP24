@@ -28,7 +28,7 @@
 }
 
 body {
-    font-weight: 350; /* Normal weight */
+    font-weight: 390; /* Normal weight */
 }
 
 h1,
@@ -39,3 +39,9 @@ h5,
 h6 {
     font-weight: 600; /* Bold weight for headings */
 }
+
+/*
+.cell-output.cell-output-pyodide {
+    background-color: white;
+}
+*/
