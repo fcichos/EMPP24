@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Jupyter Notebooks – Introduction to Computer-based Physical Modeling</title>
+<title>Jupyter Notebooks – Einführung in die Modellierung Physikalischer Prozesse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../lectures/lecture01/02-lecture01.html" rel="next">
-<link href="../../exam/exam.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -104,6 +103,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -141,9 +146,6 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jupyterquiz/1.0.0/jupyterquiz.min.css">
-<meta property="og:title" content="Title for Open Graph">
-<meta property="og:site_name" content="Introduction to Computer-based Physical Modeling">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -154,7 +156,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Introduction to Computer-based Physical Modeling</span>
+    <span class="navbar-title">Einführung in die Modellierung Physikalischer Prozesse</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,15 +165,9 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/fastai/course22"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="../../Introduction-to-Computer-based-Physical-Modeling.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -180,7 +176,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Lecture 1</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Jupyter Notebooks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Lecture 1</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Jupyter Notebooks</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -190,7 +186,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
       <img src="../../mona_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
@@ -200,68 +196,56 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">This Book</span></span></a>
+ <span class="menu-text">Home</span></a>
   </div>
 </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Course Info</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courseinfo/course_info.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Course Information</span></span></a>
+  <a href="../../course-info/intructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courseinfo/website.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Diese Webseiten</span></span></a>
+  <a href="../../course-info/resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courseinfo/schedule.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Zeitplan für den Kurs</span></span></a>
+  <a href="../../course-info/assignments.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courseinfo/resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ressourcen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../courseinfo/how_to_quiz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Anleitung für das Quiz</span></span></a>
+  <a href="../../course-info/exam.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Exam</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../exam/exam.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exam</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Lecture 1</span></a>
@@ -269,82 +253,84 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture01/01-lecture01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Jupyter Notebooks</span></span></a>
+ <span class="menu-text">Jupyter Notebooks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture01/02-lecture01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python Overview</span></span></a>
+ <span class="menu-text">Python Overview I</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Lecture 2</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/01-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python Overview</span></span></a>
+ <span class="menu-text">Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/02-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Modules</span></span></a>
+ <span class="menu-text">Modules</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture02/04-lecture02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Plotting</span></span></a>
+ <span class="menu-text">Plotting</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Lecture 3</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lectures/lecture03/01-lecture03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Lecture 3</span></span></a>
+ <span class="menu-text">Numpy Module</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Seminar Contents</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../seminars/seminar01/01-seminar01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seminar 1</span></span></a>
+  <a href="../../lectures/lecture04/2_particle_in_a_box.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quantum Stuff</span></a>
   </div>
 </li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -357,50 +343,38 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#jupyter-notebooks" id="toc-jupyter-notebooks" class="nav-link active" data-scroll-target="#jupyter-notebooks"><span class="header-section-number">9</span> Jupyter Notebooks</a>
-  <ul>
-  <li><a href="#what-is-jupyter-notebook" id="toc-what-is-jupyter-notebook" class="nav-link" data-scroll-target="#what-is-jupyter-notebook"><span class="header-section-number">9.1</span> What is Jupyter Notebook?</a>
+  <li><a href="#what-is-jupyter-notebook" id="toc-what-is-jupyter-notebook" class="nav-link active" data-scroll-target="#what-is-jupyter-notebook">What is Jupyter Notebook?</a>
   <ul class="collapse">
-  <li><a href="#key-components-of-a-notebook" id="toc-key-components-of-a-notebook" class="nav-link" data-scroll-target="#key-components-of-a-notebook"><span class="header-section-number">9.1.1</span> Key Components of a Notebook</a>
+  <li><a href="#key-components-of-a-notebook" id="toc-key-components-of-a-notebook" class="nav-link" data-scroll-target="#key-components-of-a-notebook">Key Components of a Notebook</a></li>
+  <li><a href="#kernels" id="toc-kernels" class="nav-link" data-scroll-target="#kernels">Kernels</a></li>
+  <li><a href="#notebook-documents" id="toc-notebook-documents" class="nav-link" data-scroll-target="#notebook-documents">Notebook Documents</a></li>
+  </ul></li>
+  <li><a href="#using-the-notebook-editor" id="toc-using-the-notebook-editor" class="nav-link" data-scroll-target="#using-the-notebook-editor">Using the Notebook Editor</a>
   <ul class="collapse">
-  <li><a href="#notebook-editor" id="toc-notebook-editor" class="nav-link" data-scroll-target="#notebook-editor"><span class="header-section-number">9.1.1.1</span> Notebook Editor</a></li>
+  <li><a href="#edit-mode" id="toc-edit-mode" class="nav-link" data-scroll-target="#edit-mode">Edit mode</a></li>
+  <li><a href="#command-mode" id="toc-command-mode" class="nav-link" data-scroll-target="#command-mode">Command mode</a></li>
+  <li><a href="#keyboard-navigation" id="toc-keyboard-navigation" class="nav-link" data-scroll-target="#keyboard-navigation">Keyboard navigation</a></li>
+  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running code</a></li>
   </ul></li>
-  <li><a href="#kernels" id="toc-kernels" class="nav-link" data-scroll-target="#kernels"><span class="header-section-number">9.1.2</span> Kernels</a></li>
-  <li><a href="#notebook-documents" id="toc-notebook-documents" class="nav-link" data-scroll-target="#notebook-documents"><span class="header-section-number">9.1.3</span> Notebook Documents</a></li>
-  </ul></li>
-  <li><a href="#using-the-notebook-editor" id="toc-using-the-notebook-editor" class="nav-link" data-scroll-target="#using-the-notebook-editor"><span class="header-section-number">9.2</span> Using the Notebook Editor</a>
+  <li><a href="#managing-the-kernel" id="toc-managing-the-kernel" class="nav-link" data-scroll-target="#managing-the-kernel">Managing the kernel</a></li>
+  <li><a href="#markdown-in-notebooks" id="toc-markdown-in-notebooks" class="nav-link" data-scroll-target="#markdown-in-notebooks">Markdown in Notebooks</a>
   <ul class="collapse">
-  <li><a href="#edit-mode" id="toc-edit-mode" class="nav-link" data-scroll-target="#edit-mode"><span class="header-section-number">9.2.1</span> Edit mode</a></li>
-  <li><a href="#command-mode" id="toc-command-mode" class="nav-link" data-scroll-target="#command-mode"><span class="header-section-number">9.2.2</span> Command mode</a></li>
-  <li><a href="#keyboard-navigation" id="toc-keyboard-navigation" class="nav-link" data-scroll-target="#keyboard-navigation"><span class="header-section-number">9.2.3</span> Keyboard navigation</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code"><span class="header-section-number">9.2.4</span> Running code</a></li>
-  </ul></li>
-  <li><a href="#managing-the-kernel" id="toc-managing-the-kernel" class="nav-link" data-scroll-target="#managing-the-kernel"><span class="header-section-number">9.3</span> Managing the kernel</a></li>
-  <li><a href="#markdown-in-notebooks" id="toc-markdown-in-notebooks" class="nav-link" data-scroll-target="#markdown-in-notebooks"><span class="header-section-number">9.4</span> Markdown in Notebooks</a>
-  <ul class="collapse">
-  <li><a href="#markdown-basics" id="toc-markdown-basics" class="nav-link" data-scroll-target="#markdown-basics"><span class="header-section-number">9.4.1</span> Markdown basics</a></li>
-  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings"><span class="header-section-number">9.4.2</span> Headings</a></li>
-  <li><a href="#embedded-code" id="toc-embedded-code" class="nav-link" data-scroll-target="#embedded-code"><span class="header-section-number">9.4.3</span> Embedded code</a></li>
-  <li><a href="#latex-equations" id="toc-latex-equations" class="nav-link" data-scroll-target="#latex-equations"><span class="header-section-number">9.4.4</span> LaTeX equations</a></li>
-  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images"><span class="header-section-number">9.4.5</span> Images</a></li>
-  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">9.4.6</span> Videos</a></li>
-  </ul></li>
+  <li><a href="#markdown-basics" id="toc-markdown-basics" class="nav-link" data-scroll-target="#markdown-basics">Markdown basics</a></li>
+  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings">Headings</a></li>
+  <li><a href="#embedded-code" id="toc-embedded-code" class="nav-link" data-scroll-target="#embedded-code">Embedded code</a></li>
+  <li><a href="#latex-equations" id="toc-latex-equations" class="nav-link" data-scroll-target="#latex-equations">LaTeX equations</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images">Images</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos">Videos</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<div>
-    <p>
-        <a href="https://github.com/yourusername/yourrepository/blob/main/notebooks/my-document.ipynb">
-                <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" ,="" width="100/"></a>
-    </p>
-</div>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Lecture 1</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Jupyter Notebooks</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Lecture 1</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture01/01-lecture01.html">Jupyter Notebooks</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Jupyter Notebooks</span></h1>
+<h1 class="title">Jupyter Notebooks</h1>
 </div>
 
 
@@ -417,14 +391,12 @@ window.Quarto = {
 </header>
 
 
-<section id="jupyter-notebooks" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Jupyter Notebooks</h1>
-<section id="what-is-jupyter-notebook" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="what-is-jupyter-notebook"><span class="header-section-number">9.1</span> What is Jupyter Notebook?</h2>
+<section id="what-is-jupyter-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-jupyter-notebook">What is Jupyter Notebook?</h2>
 <p>A Jupyter Notebook is a web browser based <strong>interactive computing environment</strong> that enables users to create documents that include code to be executed, results from the executed code such as plots and images,and finally also an additional documentation in form of markdown text including equations in LaTeX.</p>
 <p>These documents provide a <strong>complete and self-contained record of a computation</strong> that can be converted to various formats and shared with others using email, version control systems (like git/<a href="https://github.com">GitHub</a>) or <a href="http://nbviewer.jupyter.org">nbviewer.jupyter.org</a>.</p>
-<section id="key-components-of-a-notebook" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="key-components-of-a-notebook"><span class="header-section-number">9.1.1</span> Key Components of a Notebook</h3>
+<section id="key-components-of-a-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="key-components-of-a-notebook">Key Components of a Notebook</h3>
 <p>The Jupyter Notebook ecosystem consists of three main components:</p>
 <ol type="1">
 <li>Notebook Editor</li>
@@ -432,8 +404,8 @@ window.Quarto = {
 <li>Notebook Documents</li>
 </ol>
 <p>Let’s explore each of these components in detail:</p>
-<section id="notebook-editor" class="level4" data-number="9.1.1.1">
-<h4 data-number="9.1.1.1" class="anchored" data-anchor-id="notebook-editor"><span class="header-section-number">9.1.1.1</span> Notebook Editor</h4>
+<section id="notebook-editor" class="level4">
+<h4 class="anchored" data-anchor-id="notebook-editor">Notebook Editor</h4>
 <p>The Notebook editor is an interactive web-based application for creating and editing notebook documents. It enables users to write and run code, add rich text, and multimedia content. When running Jupyter on a server, users typically use either the classic Jupyter Notebook interface or JupyterLab, an advanced version with more features.</p>
 <p>Key features of the Notebook editor include:</p>
 <ul>
@@ -470,8 +442,8 @@ Advance Notebook Editor Info
 </div>
 </section>
 </section>
-<section id="kernels" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="kernels"><span class="header-section-number">9.1.2</span> Kernels</h3>
+<section id="kernels" class="level3">
+<h3 class="anchored" data-anchor-id="kernels">Kernels</h3>
 <p>Kernels are the computational engines that execute the code contained in a notebook. They are separate processes that run independently of the notebook editor.</p>
 <p>Key responsibilities of kernels include: * Executing user code * Returning computation results to the notebook editor * Handling computations for interactive widgets * Providing features like tab completion and introspection</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Advanced Kernel Info">
@@ -508,8 +480,8 @@ Advanced Kernel Info
 </div>
 </div>
 </section>
-<section id="notebook-documents" class="level3" data-number="9.1.3">
-<h3 data-number="9.1.3" class="anchored" data-anchor-id="notebook-documents"><span class="header-section-number">9.1.3</span> Notebook Documents</h3>
+<section id="notebook-documents" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-documents">Notebook Documents</h3>
 <p>Notebook documents are self-contained files that encapsulate all content created in the notebook editor. They include code inputs/outputs, Markdown text, equations, images, and other media. Each document is associated with a specific kernel and serves as both a human-readable record of analysis and an executable script to reproduce the work.</p>
 <p>Characteristics of notebook documents:</p>
 <ul>
@@ -556,8 +528,8 @@ Advanced Notebook Documents Info
 <p>This integrated system of editor, kernels, and documents makes Jupyter Notebooks a powerful tool for interactive computing, data analysis, and sharing of computational narratives.</p>
 </section>
 </section>
-<section id="using-the-notebook-editor" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="using-the-notebook-editor"><span class="header-section-number">9.2</span> Using the Notebook Editor</h2>
+<section id="using-the-notebook-editor" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-notebook-editor">Using the Notebook Editor</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/notebook.png" class="img-fluid figure-img"></p>
@@ -570,8 +542,8 @@ Advanced Notebook Documents Info
 <li><strong>command mode</strong> the mode where you execute the cells content.</li>
 </ul>
 <p>In the more advanced version of JupyterLab you can also have a <strong>presentation mode</strong> where you can present your notebook as a slideshow.</p>
-<section id="edit-mode" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="edit-mode"><span class="header-section-number">9.2.1</span> Edit mode</h3>
+<section id="edit-mode" class="level3">
+<h3 class="anchored" data-anchor-id="edit-mode">Edit mode</h3>
 <p>Edit mode is indicated by a blue cell border and a prompt showing in the editor area when a cell is selected. You can enter edit mode by pressing <code>Enter</code> or using the mouse to click on a cell’s editor area.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -581,8 +553,8 @@ Advanced Notebook Documents Info
 </div>
 <p>When a cell is in edit mode, you can type into the cell, like a normal text editor</p>
 </section>
-<section id="command-mode" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="command-mode"><span class="header-section-number">9.2.2</span> Command mode</h3>
+<section id="command-mode" class="level3">
+<h3 class="anchored" data-anchor-id="command-mode">Command mode</h3>
 <p>Command mode is indicated by a grey cell border with a blue left margin. When you are in command mode, you are able to edit the notebook as a whole, but not type into individual cells. Most importantly, in command mode, the keyboard is mapped to a set of shortcuts that let you perform notebook and cell actions efficiently.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -592,8 +564,8 @@ Advanced Notebook Documents Info
 </div>
 <p>If you have a hardware keyboard connected to your iOS device, you can use Jupyter keyboard shortcuts. The modal user interface of the Jupyter Notebook has been optimized for efficient keyboard usage. This is made possible by having two different sets of keyboard shortcuts: one set that is active in edit mode and another in command mode.</p>
 </section>
-<section id="keyboard-navigation" class="level3" data-number="9.2.3">
-<h3 data-number="9.2.3" class="anchored" data-anchor-id="keyboard-navigation"><span class="header-section-number">9.2.3</span> Keyboard navigation</h3>
+<section id="keyboard-navigation" class="level3">
+<h3 class="anchored" data-anchor-id="keyboard-navigation">Keyboard navigation</h3>
 <p>In edit mode, most of the keyboard is dedicated to typing into the cell’s editor area. Thus, in edit mode there are relatively few shortcuts available. In command mode, the entire keyboard is available for shortcuts, so there are many more. Most important ones are:</p>
 <ol type="1">
 <li>Switch command and edit mods: <code>Enter</code> for edit mode, and <code>Esc</code> or <code>Control</code> for command mode.</li>
@@ -606,10 +578,10 @@ Advanced Notebook Documents Info
 <li>Kernel operations: <code>i</code> to <strong>interrupt</strong> and <code>0</code> to <strong>restart</strong></li>
 </ol>
 </section>
-<section id="running-code" class="level3" data-number="9.2.4">
-<h3 data-number="9.2.4" class="anchored" data-anchor-id="running-code"><span class="header-section-number">9.2.4</span> Running code</h3>
+<section id="running-code" class="level3">
+<h3 class="anchored" data-anchor-id="running-code">Running code</h3>
 <p>Code cells allow you to enter and run code. Run a code cell by pressing the <code>▶︎</code> button in the bottom-right panel, or <code>Control</code>+<code>Enter</code> on your hardware keyboard.</p>
-<div id="ce0afcc8" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="1">
+<div id="99f28017" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="dv">23752636</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -624,20 +596,20 @@ Advanced Notebook Documents Info
 </ul>
 </section>
 </section>
-<section id="managing-the-kernel" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="managing-the-kernel"><span class="header-section-number">9.3</span> Managing the kernel</h2>
+<section id="managing-the-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="managing-the-kernel">Managing the kernel</h2>
 <p>Code is run in a separate process called the <strong>kernel</strong>, which can be interrupted or restarted. You can see kernel indicator in the top-right corner reporting current kernel state: <code>⚪︎</code> means kernel is <strong>ready</strong> to execute code, and <code>⚫︎</code> means kernel is currently <strong>busy</strong>. Tapping kernel indicator will open <strong>kernel menu</strong>, where you can reconnect, interrupt or restart kernel.</p>
 <p>Try running the following cell — kernel indicator will switch from <code>⚪︎</code> to <code>⚫︎</code>, i.e.&nbsp;reporting kernel as “busy”. This means that you won’t be able to run any new cells until current execution finishes, or until kernel is interrupted. You can then go to kernel menu by tapping the kernel indicator and select “Interrupt”.</p>
 </section>
-<section id="markdown-in-notebooks" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="markdown-in-notebooks"><span class="header-section-number">9.4</span> Markdown in Notebooks</h2>
+<section id="markdown-in-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="markdown-in-notebooks">Markdown in Notebooks</h2>
 <p>Text can be added to Jupyter Notebooks using Markdown cells. This is extremely useful providing a complete documentation of your calculations or simulations. In this way, everything really becomes an notebook. You can change the cell type to Markdown by using the “Cell Actions” menu, or with a hardware keyboard shortcut <code>m</code>. Markdown is a popular markup language that is a superset of HTML. Its specification can be found here:</p>
 <p><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" class="uri">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></p>
 <p>Markdown cells can either be <strong>rendered</strong> or <strong>unrendered</strong>.</p>
 <p>When they are rendered, you will see a nice formatted representation of the cell’s contents.</p>
 <p>When they are unrendered, you will see the raw text source of the cell. To render the selected cell, click the <code>▶︎</code> button or <code>shift</code>+ <code>enter</code>. To unrender, select the markdown cell, and press <code>enter</code> or just double click.</p>
-<section id="markdown-basics" class="level3" data-number="9.4.1">
-<h3 data-number="9.4.1" class="anchored" data-anchor-id="markdown-basics"><span class="header-section-number">9.4.1</span> Markdown basics</h3>
+<section id="markdown-basics" class="level3">
+<h3 class="anchored" data-anchor-id="markdown-basics">Markdown basics</h3>
 <p>Below are some basic markdown examples, in its rendered form. If you which to access how to create specific appearances, double click the individual cells to put the into an unrendered edit mode.</p>
 <p>You can make text <em>italic</em> or <strong>bold</strong>. You can build nested itemized or enumerated lists:</p>
 <ul>
@@ -681,8 +653,8 @@ Advanced Notebook Documents Info
 <p>And Web links:</p>
 <p><a href="http://jupyter.org">Jupyter’s website</a></p>
 </section>
-<section id="headings" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="headings"><span class="header-section-number">9.4.2</span> Headings</h3>
+<section id="headings" class="level3">
+<h3 class="anchored" data-anchor-id="headings">Headings</h3>
 <p>You can add headings by starting a line with one (or multiple) <code>#</code> followed by a space and the title of your section. The number of <code>#</code> you use will determine the size of the heading</p>
 <pre><code># Heading 1
 # Heading 2
@@ -690,15 +662,15 @@ Advanced Notebook Documents Info
 ## Heading 2.2
 ### Heading 2.2.1</code></pre>
 </section>
-<section id="embedded-code" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="embedded-code"><span class="header-section-number">9.4.3</span> Embedded code</h3>
+<section id="embedded-code" class="level3">
+<h3 class="anchored" data-anchor-id="embedded-code">Embedded code</h3>
 <p>You can embed code meant for illustration instead of execution in Python:</p>
 <pre><code>def f(x):
     """a docstring"""
     return x**2</code></pre>
 </section>
-<section id="latex-equations" class="level3" data-number="9.4.4">
-<h3 data-number="9.4.4" class="anchored" data-anchor-id="latex-equations"><span class="header-section-number">9.4.4</span> LaTeX equations</h3>
+<section id="latex-equations" class="level3">
+<h3 class="anchored" data-anchor-id="latex-equations">LaTeX equations</h3>
 <p>Courtesy of MathJax, you can include mathematical expressions both inline: <span class="math inline">\(e^{i\pi} + 1 = 0\)</span> and displayed:</p>
 <p><span class="math display">\[e^x=\sum_{i=0}^\infty \frac{1}{i!}x^i\]</span></p>
 <p>Inline expressions can be added by surrounding the latex code with <code>$</code>:</p>
@@ -706,8 +678,8 @@ Advanced Notebook Documents Info
 <p>Expressions on their own line are surrounded by <code>$$</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$e^x=</span><span class="sc">\sum</span><span class="ss">_{i=0}^</span><span class="sc">\infty</span><span class="ss"> </span><span class="sc">\frac</span><span class="ss">{1}{i!}x^i$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="images" class="level3" data-number="9.4.5">
-<h3 data-number="9.4.5" class="anchored" data-anchor-id="images"><span class="header-section-number">9.4.5</span> Images</h3>
+<section id="images" class="level3">
+<h3 class="anchored" data-anchor-id="images">Images</h3>
 <p>Images may be also directly integrated into a Markdown block.</p>
 <p>To include images use</p>
 <pre><code>![alternative text](url)</code></pre>
@@ -719,18 +691,18 @@ Advanced Notebook Documents Info
 </figure>
 </div>
 </section>
-<section id="videos" class="level3" data-number="9.4.6">
-<h3 data-number="9.4.6" class="anchored" data-anchor-id="videos"><span class="header-section-number">9.4.6</span> Videos</h3>
+<section id="videos" class="level3">
+<h3 class="anchored" data-anchor-id="videos">Videos</h3>
 <p>To include videos, we use HTML code like</p>
 <pre><code>&lt;video src="mov/movie.mp4" width="320" height="200" controls preload&gt;&lt;/video&gt;</code></pre>
 <p>in the Markdown cell. This works with videos stored locally.</p>
 <video src="mov/movie.mp4" width="320" height="200" controls="">
 </video>
 <p>You can embed YouTube Videos as well by using the <code>IPython</code> module.</p>
-<div id="cf4a5e09" class="cell" data-execution_count="2">
+<div id="5849c4dd" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> YouTubeVideo</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>YouTubeVideo(<span class="st">'QlLx32juGzI'</span>,width<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
         <iframe width="600" height="300" src="https://www.youtube.com/embed/QlLx32juGzI" frameborder="0" allowfullscreen=""></iframe>
         
@@ -752,7 +724,6 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-</section>
 </section>
 </section>
 
@@ -860,7 +831,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/EMPP24\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1190,13 +1161,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../exam/exam.html" class="pagination-link" aria-label="Exam">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exam</span></span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lectures/lecture01/02-lecture01.html" class="pagination-link" aria-label="Python Overview">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python Overview</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../lectures/lecture01/02-lecture01.html" class="pagination-link" aria-label="Python Overview I">
+        <span class="nav-page-text">Python Overview I</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
