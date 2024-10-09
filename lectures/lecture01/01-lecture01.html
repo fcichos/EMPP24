@@ -353,6 +353,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#key-components-of-a-notebook" id="toc-key-components-of-a-notebook" class="nav-link" data-scroll-target="#key-components-of-a-notebook">Key Components of a Notebook</a></li>
   <li><a href="#kernels" id="toc-kernels" class="nav-link" data-scroll-target="#kernels">Kernels</a></li>
+  <li><a href="#jupyterlab-example" id="toc-jupyterlab-example" class="nav-link" data-scroll-target="#jupyterlab-example">JupyterLab Example</a></li>
   <li><a href="#notebook-documents" id="toc-notebook-documents" class="nav-link" data-scroll-target="#notebook-documents">Notebook Documents</a></li>
   </ul></li>
   <li><a href="#using-the-notebook-editor" id="toc-using-the-notebook-editor" class="nav-link" data-scroll-target="#using-the-notebook-editor">Using the Notebook Editor</a>
@@ -486,6 +487,12 @@ Advanced Kernel Info
 </div>
 </div>
 </section>
+<section id="jupyterlab-example" class="level3">
+<h3 class="anchored" data-anchor-id="jupyterlab-example">JupyterLab Example</h3>
+<p>The following is an example of a JupyterLab interface with a notebook editor, code cells, markdown cells, and a kernel selector:</p>
+<iframe src="https://jupyterlite.github.io/demo/" width="100%" height="600px">
+</iframe>
+</section>
 <section id="notebook-documents" class="level3">
 <h3 class="anchored" data-anchor-id="notebook-documents">Notebook Documents</h3>
 <p>Notebook documents are self-contained files that encapsulate all content created in the notebook editor. They include code inputs/outputs, Markdown text, equations, images, and other media. Each document is associated with a specific kernel and serves as both a human-readable record of analysis and an executable script to reproduce the work.</p>
@@ -587,7 +594,7 @@ Advanced Notebook Documents Info
 <section id="running-code" class="level3">
 <h3 class="anchored" data-anchor-id="running-code">Running code</h3>
 <p>Code cells allow you to enter and run code. Run a code cell by pressing the <code>▶︎</code> button in the bottom-right panel, or <code>Control</code>+<code>Enter</code> on your hardware keyboard.</p>
-<div id="0b193416" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="1">
+<div id="c7d91af7" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="dv">23752636</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -705,7 +712,7 @@ Advanced Notebook Documents Info
 <video src="mov/movie.mp4" width="320" height="200" controls="">
 </video>
 <p>You can embed YouTube Videos as well by using the <code>IPython</code> module.</p>
-<div id="6ff99962" class="cell" data-execution_count="2">
+<div id="5658e490" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> YouTubeVideo</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>YouTubeVideo(<span class="st">'QlLx32juGzI'</span>,width<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
