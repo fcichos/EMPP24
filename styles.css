@@ -40,6 +40,11 @@ h6 {
     font-weight: 600; /* Bold weight for headings */
 }
 
+.quarto-container {
+    max-width: 1400px; /* Adjust this value as needed */
+    margin: 0 auto;
+}
+
 /*
 .cell-output.cell-output-pyodide {
     background-color: white;
