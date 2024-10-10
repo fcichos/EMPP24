@@ -547,78 +547,78 @@
   {
     "objectID": "course-info/resources.html",
     "href": "course-info/resources.html",
-    "title": "Resources",
+    "title": "Ressourcen",
     "section": "",
     "text": "Es gibt eine Menge weiterer gut strukturierter Ressourcen zu Python im Netz. Nachfolgend finden Sie nur eine sehr kleine Auswahl.",
     "crumbs": [
       "Course Info",
-      "Resources"
+      "Ressourcen"
     ]
   },
   {
     "objectID": "course-info/resources.html#molecular-nanophotonics-group",
     "href": "course-info/resources.html#molecular-nanophotonics-group",
-    "title": "Resources",
+    "title": "Ressourcen",
     "section": "Molecular Nanophotonics Group",
     "text": "Molecular Nanophotonics Group\n\nMolecular Nanophotonics Group Website\nHypothesis Annotation Tool Invite",
     "crumbs": [
       "Course Info",
-      "Resources"
+      "Ressourcen"
     ]
   },
   {
     "objectID": "course-info/resources.html#additional-advanced-courses",
     "href": "course-info/resources.html#additional-advanced-courses",
-    "title": "Resources",
+    "title": "Ressourcen",
     "section": "Additional Advanced Courses",
     "text": "Additional Advanced Courses\n\nRosenow Group (Theory), Master Course on Statistical Mechanics of Deep Learning",
     "crumbs": [
       "Course Info",
-      "Resources"
+      "Ressourcen"
     ]
   },
   {
     "objectID": "course-info/resources.html#python-documentation",
     "href": "course-info/resources.html#python-documentation",
-    "title": "Resources",
+    "title": "Ressourcen",
     "section": "Python Documentation",
     "text": "Python Documentation\n\nPython\nMatplotlib\nPandas",
     "crumbs": [
       "Course Info",
-      "Resources"
+      "Ressourcen"
     ]
   },
   {
     "objectID": "course-info/resources.html#python-tutorials",
     "href": "course-info/resources.html#python-tutorials",
-    "title": "Resources",
+    "title": "Ressourcen",
     "section": "Python Tutorials",
     "text": "Python Tutorials\n\nIntroduction to Python for Science\nNice MatPlotLib tutorial",
     "crumbs": [
       "Course Info",
-      "Resources"
+      "Ressourcen"
     ]
   },
   {
     "objectID": "course-info/resources.html#julia-tutorial",
     "href": "course-info/resources.html#julia-tutorial",
-    "title": "Resources",
+    "title": "Ressourcen",
     "section": "Julia Tutorial",
     "text": "Julia Tutorial\n\nJulia Programming Language",
     "crumbs": [
       "Course Info",
-      "Resources"
+      "Ressourcen"
     ]
   },
   {
     "objectID": "course-info/resources.html#pluto-notebook",
     "href": "course-info/resources.html#pluto-notebook",
-    "title": "Resources",
+    "title": "Ressourcen",
     "section": "Pluto NoteBook",
     "text": "Pluto NoteBook\n\nPluto GitHub Webpage",
     "crumbs": [
       "Course Info",
-      "Resources"
+      "Ressourcen"
     ]
   },
   {
@@ -643,7 +643,7 @@
     "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
     "crumbs": [
       "Course Info",
-      "Instructors"
+      "Vorlesender"
     ]
   },
   {
@@ -654,7 +654,7 @@
     "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
     "crumbs": [
       "Course Info",
-      "Instructors"
+      "Vorlesender"
     ]
   },
   {
@@ -663,6 +663,39 @@
     "title": "Diese Webseiten",
     "section": "",
     "text": "Diese Webseiten\nDiese Website enthält alle Informationen, die für unseren Kurs Einführung in die Modellierung Physikalischer Prozesse erforderlich sind. Sie werden hier jede Woche eine neue Vorlesung und eine neue Aufgabe finden. Die Vorlesungshefte werden von Videos begleitet, die den Inhalt der Vorlesung auf Englisch erklären, aber Sie können auch mit dem Lesen auskommen. Die Vorlesungen in Person, werden auf Deutsch stattfinden. Von diesen Webseiten aus werden Sie zu verschiedenen Ressourcen geführt, die Sie nutzen können, um das Programmieren in Python zu lernen. Dabei werden wir einige großartige Tools aus dem Internet nutzen, wie\n\nGoogle Colab Dienst, um auch Jupyter Notebooks (https://colab.research.google.com) zu hosten. Das Google Colab-Projekt bietet eine nützliche Umgebung zur gemeinsamen Nutzung von Notebooks.\n\n\n\ngoogle colab screen\n\n\nWenn Sie die folgende Website besuchen, werden Sie an mehreren Stellen das folgende Symbol sehen.\n![Substitution Name1]\nDieses Symbol zeigt an, dass diese Webseite auf einem Jupyter Notebook basiert. Anstatt nur die Website zu betrachten, können Sie auf das Symbol klicken und der Google Colab-Dienst wird geöffnet, damit Sie das Notizbuch interaktiv nutzen können. Google Colab öffnet sich viel schneller als myBinder, aber die Notizbücher sind für die Arbeit mit myBinder gemacht und nicht alle Funktionen funktionieren mit Colab. Ich arbeite jedoch an der Kompatibilität.\nGitHub and GitHub Pages Dienst zum Hosting von Websites (https://github.com). GitHub ist ein großartiger Ort, um Ihre kollaborativen Coding-Projekte einschließlich Versionskontrolle zu hosten. In der oberen rechten Ecke finden Sie auch einen Link zum GitHub-Repository, in dem die Notebooks gehostet werden.\n\n\n\ngithub screen\n\n\nAnaconda Jupyter package für Notebooks auf dem eigenen Computer (https://www.anaconda.com/distribution/). Das Paket anaconda stellt Ihnen die Jupyter Notebook-Umgebung einschließlich Python zur Verfügung. Wenn Sie Jupyter zu Hause ohne Online-Zugang verwenden möchten, ist dies ein gutes Paket zur Installation.\n\n\n\nanaconda screen"
+  },
+  {
+    "objectID": "course-info/exam.html",
+    "href": "course-info/exam.html",
+    "title": "Prüfung",
+    "section": "",
+    "text": "Die Prüfungsleistung in diesem Modul ist eine Portfolio-Prüfung und besteht aus zwei Portfolio-Teilen:\n\nÜbungsaufgaben:\n\n6 Serien von Aufgaben, die nicht benotet werden\nMindestens 50% der Gesamtpunktzahl aller Übungsaufgaben muss erreicht werden\n\nZwei Tests:\n\nJeder Test dauert 45 Minuten\nFinden in Person während zwei separater Übungsseminare statt\nDie Tests werden vorher angekündigt\nDie Punkte beider Tests werden addiert und ergeben eine Gesamtnote\n\n\nWichtige Hinweise: - Beide Portfolio-Teile (Übungsaufgaben und Tests) müssen bestanden werden, um das Modul erfolgreich abzuschließen. - Die Gesamtnote der Tests entspricht der Abschlussnote des Moduls.",
+    "crumbs": [
+      "Course Info",
+      "Prüfungen"
+    ]
+  },
+  {
+    "objectID": "course-info/exam.html#erstteilnehmer",
+    "href": "course-info/exam.html#erstteilnehmer",
+    "title": "Prüfung",
+    "section": "",
+    "text": "Die Prüfungsleistung in diesem Modul ist eine Portfolio-Prüfung und besteht aus zwei Portfolio-Teilen:\n\nÜbungsaufgaben:\n\n6 Serien von Aufgaben, die nicht benotet werden\nMindestens 50% der Gesamtpunktzahl aller Übungsaufgaben muss erreicht werden\n\nZwei Tests:\n\nJeder Test dauert 45 Minuten\nFinden in Person während zwei separater Übungsseminare statt\nDie Tests werden vorher angekündigt\nDie Punkte beider Tests werden addiert und ergeben eine Gesamtnote\n\n\nWichtige Hinweise: - Beide Portfolio-Teile (Übungsaufgaben und Tests) müssen bestanden werden, um das Modul erfolgreich abzuschließen. - Die Gesamtnote der Tests entspricht der Abschlussnote des Moduls.",
+    "crumbs": [
+      "Course Info",
+      "Prüfungen"
+    ]
+  },
+  {
+    "objectID": "course-info/exam.html#wiederholer",
+    "href": "course-info/exam.html#wiederholer",
+    "title": "Prüfung",
+    "section": "Wiederholer",
+    "text": "Wiederholer\nHinweis für Studierende, die das Modul bereits im WS 2023/24 belegt haben und nun wiederholen:\n– Wenn Sie im WS 2023/24 50 % in den Übungsaufgaben erreicht haben, müssen Sie in diesem Semester nur noch das Projekt abgeben. Eine Liste zu den erreichten Übungspunkten werden wir nochmals im internen Bereich auf der MONA Webseite veröffentlichen.\n– Wenn Sie im WS 2023/24 nicht 50 % in den Übungsaufgaben erreicht haben, müssen Sie in diesem Semester Übungsaufgaben abgeben und das Projekt abgeben.\n– Eine erneute Einschreibung in das Modul ist nicht notwendig, wenn Sie das Modul wiederholen. Für den Zugang zum Moodle-Kurs kontaktieren Sie bitte Andrea Kramer per email von Ihrer Uni-E-Mail-Adresse aus.\n– Die Abgabefrist für das Projekt der Wiederholer ist der 12.03.2025 um 13:00 Uhr. Abgaben, die nach 13:00 Uhr eingehen, werden nicht berücksichtigt.",
+    "crumbs": [
+      "Course Info",
+      "Prüfungen"
+    ]
   },
   {
     "objectID": "index.html",
