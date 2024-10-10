@@ -547,7 +547,7 @@
   {
     "objectID": "course-info/resources.html",
     "href": "course-info/resources.html",
-    "title": "Ressourcen",
+    "title": "Quellen",
     "section": "",
     "text": "Es gibt eine Menge weiterer gut strukturierter Ressourcen zu Python im Netz. Nachfolgend finden Sie nur eine sehr kleine Auswahl.",
     "crumbs": [
@@ -558,7 +558,7 @@
   {
     "objectID": "course-info/resources.html#molecular-nanophotonics-group",
     "href": "course-info/resources.html#molecular-nanophotonics-group",
-    "title": "Ressourcen",
+    "title": "Quellen",
     "section": "Molecular Nanophotonics Group",
     "text": "Molecular Nanophotonics Group\n\nMolecular Nanophotonics Group Website\nHypothesis Annotation Tool Invite",
     "crumbs": [
@@ -569,7 +569,7 @@
   {
     "objectID": "course-info/resources.html#additional-advanced-courses",
     "href": "course-info/resources.html#additional-advanced-courses",
-    "title": "Ressourcen",
+    "title": "Quellen",
     "section": "Additional Advanced Courses",
     "text": "Additional Advanced Courses\n\nRosenow Group (Theory), Master Course on Statistical Mechanics of Deep Learning",
     "crumbs": [
@@ -580,7 +580,7 @@
   {
     "objectID": "course-info/resources.html#python-documentation",
     "href": "course-info/resources.html#python-documentation",
-    "title": "Ressourcen",
+    "title": "Quellen",
     "section": "Python Documentation",
     "text": "Python Documentation\n\nPython\nMatplotlib\nPandas",
     "crumbs": [
@@ -591,7 +591,7 @@
   {
     "objectID": "course-info/resources.html#python-tutorials",
     "href": "course-info/resources.html#python-tutorials",
-    "title": "Ressourcen",
+    "title": "Quellen",
     "section": "Python Tutorials",
     "text": "Python Tutorials\n\nIntroduction to Python for Science\nNice MatPlotLib tutorial",
     "crumbs": [
@@ -602,7 +602,7 @@
   {
     "objectID": "course-info/resources.html#julia-tutorial",
     "href": "course-info/resources.html#julia-tutorial",
-    "title": "Ressourcen",
+    "title": "Quellen",
     "section": "Julia Tutorial",
     "text": "Julia Tutorial\n\nJulia Programming Language",
     "crumbs": [
@@ -613,7 +613,7 @@
   {
     "objectID": "course-info/resources.html#pluto-notebook",
     "href": "course-info/resources.html#pluto-notebook",
-    "title": "Ressourcen",
+    "title": "Quellen",
     "section": "Pluto NoteBook",
     "text": "Pluto NoteBook\n\nPluto GitHub Webpage",
     "crumbs": [
@@ -691,7 +691,7 @@
     "href": "course-info/exam.html#wiederholer",
     "title": "Prüfung",
     "section": "Wiederholer",
-    "text": "Wiederholer\nHinweis für Studierende, die das Modul bereits im WS 2023/24 belegt haben und nun wiederholen:\n– Wenn Sie im WS 2023/24 50 % in den Übungsaufgaben erreicht haben, müssen Sie in diesem Semester nur noch das Projekt abgeben. Eine Liste zu den erreichten Übungspunkten werden wir nochmals im internen Bereich auf der MONA Webseite veröffentlichen.\n– Wenn Sie im WS 2023/24 nicht 50 % in den Übungsaufgaben erreicht haben, müssen Sie in diesem Semester Übungsaufgaben abgeben und das Projekt abgeben.\n– Eine erneute Einschreibung in das Modul ist nicht notwendig, wenn Sie das Modul wiederholen. Für den Zugang zum Moodle-Kurs kontaktieren Sie bitte Andrea Kramer per email von Ihrer Uni-E-Mail-Adresse aus.\n– Die Abgabefrist für das Projekt der Wiederholer ist der 12.03.2025 um 13:00 Uhr. Abgaben, die nach 13:00 Uhr eingehen, werden nicht berücksichtigt.",
+    "text": "Wiederholer\nFür Studierende, die das Modul bereits im WS 2023/24 belegt haben und nun wiederholen:\n\nÜbungsaufgaben:\n\nWenn Sie im WS 2023/24 ≥50% erreicht haben: Nur Projektabgabe erforderlich\nWenn Sie im WS 2023/24 &lt;50% erreicht haben: Übungsaufgaben und Projektabgabe erforderlich\nEine Liste der erreichten Übungspunkte wird im internen Bereich der MONA Webseite veröffentlicht\n\nEinschreibung:\n\nErneute Moduleinschreibung nicht notwendig\nFür Moodle-Zugang: Kontaktieren Sie Andrea Kramer per Uni-E-Mail\n\nProjektabgabe für Wiederholer:\n\nFrist: 12.03.2025, 13:00 Uhr\nSpätere Abgaben werden nicht berücksichtigt",
     "crumbs": [
       "Course Info",
       "Prüfungen"
