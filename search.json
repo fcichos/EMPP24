@@ -57,14 +57,14 @@
   {
     "objectID": "lectures/lecture01/02-summary01.html",
     "href": "lectures/lecture01/02-summary01.html",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "Click to expand Python Basics Cheat Sheet\n\n\n\n\n\n\n\n\n\nx = 1.0  # Assigns 1.0 to variable x\nmy_variable = \"Hello\"  # Assigns string \"Hello\"\n\n\n\nUse a-z, A-Z, 0-9, and _\nStart with letter or underscore\nCase-sensitive\nAvoid reserved keywords\n\n\n\n\n\n\n\n\nType\nExample\nDescription\n\n\n\n\nint\n5\nWhole numbers\n\n\nfloat\n3.14\nDecimal numbers\n\n\ncomplex\n2 + 3j\nReal + imaginary\n\n\nbool\nTrue\nLogical values\n\n\n\n\n\n\nint_num = int(3.14)    # 3\nfloat_num = float(5)   # 5.0\nstr_num = str(42)      # \"42\"\n\n\n\n\na, b = 10, 3\nsum_result = a + b   # Addition\ndiff_result = a - b  # Subtraction\nprod_result = a * b  # Multiplication\ndiv_result = a / b   # Division (float)\nint_div_result = a // b  # Integer division\nmod_result = a % b   # Modulus\npower_result = a ** b  # Exponentiation\n\n\n\nc = 2 + 4j\nreal_part = c.real     # 2.0\nimag_part = c.imag     # 4.0\nconjugate = c.conjugate()  # 2 - 4j\n\n\n\ntype(variable)  # Returns type\nisinstance(variable, type)  # Checks type\n\n\n\nimport math\n\nsqrt_result = math.sqrt(16)\nlog_result = math.log(100, 10)\nsin_result = math.sin(math.pi/2)"
   },
   {
     "objectID": "lectures/lecture01/02-summary01.html#python-basics-cheat-sheet",
     "href": "lectures/lecture01/02-summary01.html#python-basics-cheat-sheet",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "Click to expand Python Basics Cheat Sheet\n\n\n\n\n\n\n\n\n\nx = 1.0  # Assigns 1.0 to variable x\nmy_variable = \"Hello\"  # Assigns string \"Hello\"\n\n\n\nUse a-z, A-Z, 0-9, and _\nStart with letter or underscore\nCase-sensitive\nAvoid reserved keywords\n\n\n\n\n\n\n\n\nType\nExample\nDescription\n\n\n\n\nint\n5\nWhole numbers\n\n\nfloat\n3.14\nDecimal numbers\n\n\ncomplex\n2 + 3j\nReal + imaginary\n\n\nbool\nTrue\nLogical values\n\n\n\n\n\n\nint_num = int(3.14)    # 3\nfloat_num = float(5)   # 5.0\nstr_num = str(42)      # \"42\"\n\n\n\n\na, b = 10, 3\nsum_result = a + b   # Addition\ndiff_result = a - b  # Subtraction\nprod_result = a * b  # Multiplication\ndiv_result = a / b   # Division (float)\nint_div_result = a // b  # Integer division\nmod_result = a % b   # Modulus\npower_result = a ** b  # Exponentiation\n\n\n\nc = 2 + 4j\nreal_part = c.real     # 2.0\nimag_part = c.imag     # 4.0\nconjugate = c.conjugate()  # 2 - 4j\n\n\n\ntype(variable)  # Returns type\nisinstance(variable, type)  # Checks type\n\n\n\nimport math\n\nsqrt_result = math.sqrt(16)\nlog_result = math.log(100, 10)\nsin_result = math.sin(math.pi/2)"
   },
@@ -264,119 +264,119 @@
   {
     "objectID": "lectures/lecture02/04-summary02.html",
     "href": "lectures/lecture02/04-summary02.html",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "Click to expand Matplotlib Plotting Cheat Sheet\n\n\n\n\n\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.figure(figsize=(width, height))\n\n\n\nplt.plot(x, y, 'bo-')  # Blue line with circle markers\nplt.xlabel('X-axis label')\nplt.ylabel('Y-axis label')\nplt.title('Plot Title')\nplt.legend(['Label'], loc='best')\n\n\n\nplt.scatter(x, y, marker='o')\n\n\n\nplt.hist(data, bins=10, density=True)\n\n\n\nplt.plot(x, y1, 'b-', label='Line 1')\nplt.scatter(x, y2, color='r', label='Scatter')\nplt.legend()\n\n\n\nplt.savefig('filename.pdf')\n\n\n\nplt.errorbar(x, y, yerr=yerror, fmt='ro', ecolor='black')\n\n\n\nplt.xlim(xmin, xmax)\nplt.ylim(ymin, ymax)\n\n\n\nmasked_data = np.ma.masked_where(condition, data)\n\n\n\nplt.semilogx(x, y)  # Log scale on x-axis\nplt.semilogy(x, y)  # Log scale on y-axis\nplt.loglog(x, y)    # Log scale on both axes\n\n\n\nplt.subplot(rows, cols, plot_number)\n\n\n\nplt.contour(X, Y, Z, levels)\nplt.contourf(X, Y, Z, levels)  # Filled contour plot\n\n\n\nplt.imshow(data, extent=[xmin, xmax, ymin, ymax], cmap='colormap')\n\n\n\nfrom mpl_toolkits import mplot3d\nax = plt.axes(projection='3d')\nax.plot3D(x, y, z)\nax.scatter3D(x, y, z)\nax.plot_surface(X, Y, Z)\n\n\n\nplt.rcParams.update({'font.size': 12, 'lines.linewidth': 2})\nplt.tight_layout()\nRemember to always call plt.show() to display your plots!"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#matplotlib-plotting-cheat-sheet",
     "href": "lectures/lecture02/04-summary02.html#matplotlib-plotting-cheat-sheet",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "Click to expand Matplotlib Plotting Cheat Sheet\n\n\n\n\n\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.figure(figsize=(width, height))\n\n\n\nplt.plot(x, y, 'bo-')  # Blue line with circle markers\nplt.xlabel('X-axis label')\nplt.ylabel('Y-axis label')\nplt.title('Plot Title')\nplt.legend(['Label'], loc='best')\n\n\n\nplt.scatter(x, y, marker='o')\n\n\n\nplt.hist(data, bins=10, density=True)\n\n\n\nplt.plot(x, y1, 'b-', label='Line 1')\nplt.scatter(x, y2, color='r', label='Scatter')\nplt.legend()\n\n\n\nplt.savefig('filename.pdf')\n\n\n\nplt.errorbar(x, y, yerr=yerror, fmt='ro', ecolor='black')\n\n\n\nplt.xlim(xmin, xmax)\nplt.ylim(ymin, ymax)\n\n\n\nmasked_data = np.ma.masked_where(condition, data)\n\n\n\nplt.semilogx(x, y)  # Log scale on x-axis\nplt.semilogy(x, y)  # Log scale on y-axis\nplt.loglog(x, y)    # Log scale on both axes\n\n\n\nplt.subplot(rows, cols, plot_number)\n\n\n\nplt.contour(X, Y, Z, levels)\nplt.contourf(X, Y, Z, levels)  # Filled contour plot\n\n\n\nplt.imshow(data, extent=[xmin, xmax, ymin, ymax], cmap='colormap')\n\n\n\nfrom mpl_toolkits import mplot3d\nax = plt.axes(projection='3d')\nax.plot3D(x, y, z)\nax.scatter3D(x, y, z)\nax.plot_surface(X, Y, Z)\n\n\n\nplt.rcParams.update({'font.size': 12, 'lines.linewidth': 2})\nplt.tight_layout()\nRemember to always call plt.show() to display your plots!"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#basic-setup",
     "href": "lectures/lecture02/04-summary02.html#basic-setup",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "import matplotlib.pyplot as plt\nimport numpy as np\n\nplt.figure(figsize=(width, height))"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#line-plots",
     "href": "lectures/lecture02/04-summary02.html#line-plots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.plot(x, y, 'bo-')  # Blue line with circle markers\nplt.xlabel('X-axis label')\nplt.ylabel('Y-axis label')\nplt.title('Plot Title')\nplt.legend(['Label'], loc='best')"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#scatter-plots",
     "href": "lectures/lecture02/04-summary02.html#scatter-plots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.scatter(x, y, marker='o')"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#histograms",
     "href": "lectures/lecture02/04-summary02.html#histograms",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.hist(data, bins=10, density=True)"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#combined-plots",
     "href": "lectures/lecture02/04-summary02.html#combined-plots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.plot(x, y1, 'b-', label='Line 1')\nplt.scatter(x, y2, color='r', label='Scatter')\nplt.legend()"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#saving-figures",
     "href": "lectures/lecture02/04-summary02.html#saving-figures",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.savefig('filename.pdf')"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#error-bars",
     "href": "lectures/lecture02/04-summary02.html#error-bars",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.errorbar(x, y, yerr=yerror, fmt='ro', ecolor='black')"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#setting-plot-limits",
     "href": "lectures/lecture02/04-summary02.html#setting-plot-limits",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.xlim(xmin, xmax)\nplt.ylim(ymin, ymax)"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#masked-arrays",
     "href": "lectures/lecture02/04-summary02.html#masked-arrays",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "masked_data = np.ma.masked_where(condition, data)"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#logarithmic-plots",
     "href": "lectures/lecture02/04-summary02.html#logarithmic-plots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.semilogx(x, y)  # Log scale on x-axis\nplt.semilogy(x, y)  # Log scale on y-axis\nplt.loglog(x, y)    # Log scale on both axes"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#multiple-subplots",
     "href": "lectures/lecture02/04-summary02.html#multiple-subplots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.subplot(rows, cols, plot_number)"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#contour-plots",
     "href": "lectures/lecture02/04-summary02.html#contour-plots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.contour(X, Y, Z, levels)\nplt.contourf(X, Y, Z, levels)  # Filled contour plot"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#image-plots",
     "href": "lectures/lecture02/04-summary02.html#image-plots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.imshow(data, extent=[xmin, xmax, ymin, ymax], cmap='colormap')"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#d-plots",
     "href": "lectures/lecture02/04-summary02.html#d-plots",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "from mpl_toolkits import mplot3d\nax = plt.axes(projection='3d')\nax.plot3D(x, y, z)\nax.scatter3D(x, y, z)\nax.plot_surface(X, Y, Z)"
   },
   {
     "objectID": "lectures/lecture02/04-summary02.html#customization",
     "href": "lectures/lecture02/04-summary02.html#customization",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "plt.rcParams.update({'font.size': 12, 'lines.linewidth': 2})\nplt.tight_layout()\nRemember to always call plt.show() to display your plots!"
   },
@@ -495,7 +495,7 @@
   {
     "objectID": "seminars/seminar02/Report/Figures/Figure2/Figure2.html",
     "href": "seminars/seminar02/Report/Figures/Figure2/Figure2.html",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "import matplotlib as mpl\nimport matplotlib.font_manager as font_manager\nfrom IPython.core.display import HTML\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom directory_tree import display_tree\n\n\nplt.rcParams.update({'font.size': 12,\n                     'lines.linewidth': 1,\n                     'lines.markersize': 10,\n                     'axes.labelsize': 11,\n                     'xtick.labelsize' : 10,\n                     'ytick.labelsize' : 10,\n                     'xtick.top' : True,\n                     'xtick.direction' : 'in',\n                     'ytick.right' : True,\n                     'ytick.direction' : 'in',}) \n\n%config InlineBackend.figure_format = 'retina'\n\n\ndef get_size(w,h):\n    return((w/2.54,h/2.54))\n\n\n# Generate fake experimental data\nx = np.linspace(0, 10, 100)\ny = np.sin(x) + np.random.normal(0, 0.2, size=100)\n\n# Set up the fancy plot\nfig, ax = plt.subplots(figsize=get_size(8, 6),dpi=150)\nax.plot(x, y, color='blue', linewidth=2, label='EXP',alpha=0.5)\n\n# Add some fancy elements to the plot\nax.fill_between(x, y, color='lightgray')\nax.scatter(x, y, color='blue', s=30, label='DATA ',alpha=0.5)\n\nax.set_xlabel('Time')\nax.set_ylabel('Measurement')\n\nax.legend(loc='lower right')\n\nax.tick_params(axis='both', which='major')\n\nax.grid(color='gray', linestyle='--', linewidth=0.5)\n\nax.annotate('Interesting\\nPoint', xy=(4.8, 0), xytext=(4.8, 0.7),\n            arrowprops=dict(facecolor='black', arrowstyle='-&gt;'),\n            fontsize=10, ha='center')\nplt.savefig(\"../figure2.pdf\",bbox_inches = 'tight')\nplt.show()"
   },
@@ -788,7 +788,7 @@
   {
     "objectID": "seminars/seminar02/Report/Figures/Figure1/Figure1.html",
     "href": "seminars/seminar02/Report/Figures/Figure1/Figure1.html",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "import matplotlib as mpl\nimport matplotlib.font_manager as font_manager\nfrom IPython.core.display import HTML\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom directory_tree import display_tree\n\n\nplt.rcParams.update({'font.size': 12,\n                     'lines.linewidth': 1,\n                     'lines.markersize': 10,\n                     'axes.labelsize': 11,\n                     'xtick.labelsize' : 10,\n                     'ytick.labelsize' : 10,\n                     'xtick.top' : True,\n                     'xtick.direction' : 'in',\n                     'ytick.right' : True,\n                     'ytick.direction' : 'in',}) \n\n%config InlineBackend.figure_format = 'retina'\n\n\ndef get_size(w,h):\n    return((w/2.54,h/2.54))\n\n\nplt.figure(figsize=get_size(7,5),dpi=150)\nx=np.linspace(0,np.pi*4,200)\nplt.plot(x,np.sin(x)*np.cos(2*x),color='r')\nplt.xlabel(r\"angle $\\theta$ in [rad]\")\nplt.ylabel(r\"$\\sin(\\theta)$\")\nplt.savefig(\"../figure1.pdf\",bbox_inches = 'tight')\nplt.show()"
   },
@@ -1078,42 +1078,42 @@
   {
     "objectID": "lectures/lecture02/01-summary02.html",
     "href": "lectures/lecture02/01-summary02.html",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "Click to expand Python Basics Cheat Sheet\n\n\n\n\n\n\n\n\n\ndef function_name(parameter1: type, parameter2: type) -&gt; return_type:\n    # function body\n    return value\n\n\n\nresult = function_name(argument1, argument2)\n\n\n\n\n\n\nfor item in sequence:\n    # code to be executed for each item\nExample:\nfor i in range(1, 11):\n    print(i)\n\n\n\nwhile condition:\n    # code to be executed while condition is true\n    # remember to update the condition\nExample:\ni = 1\nwhile i &lt;= 10:\n    print(i)\n    i += 1\n\n\n\n\n\n\nif condition:\n    # code to be executed if condition is true\n\n\n\nif condition:\n    # code to be executed if condition is true\nelse:\n    # code to be executed if condition is false\n\n\n\nif condition1:\n    # code for condition1\nelif condition2:\n    # code for condition2\nelse:\n    # code if no conditions are true\n\n\n\n\n\nUse descriptive function names\nSpecify parameter and return types for clarity\nIndent properly in loops and conditional statements\nRemember to increment counters in while loops\nUse range() for numeric loops in for statements\nConsider multiple conditions with elif for complex logic"
   },
   {
     "objectID": "lectures/lecture02/01-summary02.html#python-basics-cheat-sheet",
     "href": "lectures/lecture02/01-summary02.html#python-basics-cheat-sheet",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "Click to expand Python Basics Cheat Sheet\n\n\n\n\n\n\n\n\n\ndef function_name(parameter1: type, parameter2: type) -&gt; return_type:\n    # function body\n    return value\n\n\n\nresult = function_name(argument1, argument2)\n\n\n\n\n\n\nfor item in sequence:\n    # code to be executed for each item\nExample:\nfor i in range(1, 11):\n    print(i)\n\n\n\nwhile condition:\n    # code to be executed while condition is true\n    # remember to update the condition\nExample:\ni = 1\nwhile i &lt;= 10:\n    print(i)\n    i += 1\n\n\n\n\n\n\nif condition:\n    # code to be executed if condition is true\n\n\n\nif condition:\n    # code to be executed if condition is true\nelse:\n    # code to be executed if condition is false\n\n\n\nif condition1:\n    # code for condition1\nelif condition2:\n    # code for condition2\nelse:\n    # code if no conditions are true\n\n\n\n\n\nUse descriptive function names\nSpecify parameter and return types for clarity\nIndent properly in loops and conditional statements\nRemember to increment counters in while loops\nUse range() for numeric loops in for statements\nConsider multiple conditions with elif for complex logic"
   },
   {
     "objectID": "lectures/lecture02/01-summary02.html#functions",
     "href": "lectures/lecture02/01-summary02.html#functions",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "def function_name(parameter1: type, parameter2: type) -&gt; return_type:\n    # function body\n    return value\n\n\n\nresult = function_name(argument1, argument2)"
   },
   {
     "objectID": "lectures/lecture02/01-summary02.html#loops",
     "href": "lectures/lecture02/01-summary02.html#loops",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "for item in sequence:\n    # code to be executed for each item\nExample:\nfor i in range(1, 11):\n    print(i)\n\n\n\nwhile condition:\n    # code to be executed while condition is true\n    # remember to update the condition\nExample:\ni = 1\nwhile i &lt;= 10:\n    print(i)\n    i += 1"
   },
   {
     "objectID": "lectures/lecture02/01-summary02.html#conditional-statements",
     "href": "lectures/lecture02/01-summary02.html#conditional-statements",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "if condition:\n    # code to be executed if condition is true\n\n\n\nif condition:\n    # code to be executed if condition is true\nelse:\n    # code to be executed if condition is false\n\n\n\nif condition1:\n    # code for condition1\nelif condition2:\n    # code for condition2\nelse:\n    # code if no conditions are true"
   },
   {
     "objectID": "lectures/lecture02/01-summary02.html#tips",
     "href": "lectures/lecture02/01-summary02.html#tips",
-    "title": "Experimental Physics 3 Course on Optics and Quantum Mechanics",
+    "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
     "text": "Use descriptive function names\nSpecify parameter and return types for clarity\nIndent properly in loops and conditional statements\nRemember to increment counters in while loops\nUse range() for numeric loops in for statements\nConsider multiple conditions with elif for complex logic"
   },
