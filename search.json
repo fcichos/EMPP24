@@ -43,18 +43,6 @@
     ]
   },
   {
-    "objectID": "lectures/lecture01/02-lecture01.html#type-conversion",
-    "href": "lectures/lecture01/02-lecture01.html#type-conversion",
-    "title": "Variables & Numbers",
-    "section": "Type Conversion",
-    "text": "Type Conversion\n\nImplicit Type Conversion\nPython automatically converts types during operations involving mixed types. The result is a type that can accommodate all the values involved in the operation. This is known as implicit type conversion. For example, adding an integer and a float results in a float.\n\n\n\n\n\n\n\n\nExplicit Type Conversion\nUse functions like int(), float(), and str() to explicitly convert types from one to another. Explicit type conversion is also known as type casting. For example, converting a string to an integer.\n\n\n\n\n\n\nConverting a float to an integer truncates the decimal part.\n\n\n\n\n\n\n\n\n\n\n\n\nHandling Complex Numbers\n\n\n\nComplex numbers cannot be directly converted to floats or integers; extract the real or imaginary part first.",
-    "crumbs": [
-      "Python Basics",
-      "Lecture 1",
-      "Variables & Numbers"
-    ]
-  },
-  {
     "objectID": "lectures/lecture01/02-summary01.html",
     "href": "lectures/lecture01/02-summary01.html",
     "title": "Einführung in die Modellierung Physikalischer Prozesse",
@@ -579,7 +567,7 @@
     "href": "index.html",
     "title": "EMPP 2024",
     "section": "",
-    "text": "Willkommen zum Kurs Einführung in die Modellierung Physikalischer Prozesse!\nDie Programmiersprache Python ist für alle Arten von wissenschaftlichen und technischen Aufgaben nützlich. Sie können mit ihr Daten analysieren und darstellen. Sie können mit ihr auch wissenschaftliche Probleme numerisch lösen, die analytisch nur schwer oder gar nicht zu lösen sind. Python ist frei verfügbar und wurde aufgrund seines modularen Aufbaus um eine nahezu unendliche Anzahl von Modulen für verschiedene Zwecke erweitert.\nDieser Kurs soll Sie in die Programmierung mit Python einführen. Er richtet sich eher an den Anfänger, wir hoffen aber, dass er auch für Fortgeschrittene interessant ist. Wir beginnen den Kurs mit einer Einführung in die Jupyter Notebook-Umgebung, die wir während des gesamten Kurses verwenden werden. Danach werden wir eine Einführung in Python geben und Ihnen einige grundlegende Funktionen zeigen, wie z.B. das Plotten und Analysieren von Daten durch Kurvenanpassung, das Lesen und Schreiben von Dateien, was einige der Aufgaben sind, die Ihnen während Ihres Physikstudiums begegnen werden. Wir zeigen Ihnen auch einige fortgeschrittene Themen wie die Animation in Jupyter und die Simulation von physikalischen Prozessen in\nMechanik Elektrostatik Wellen Optik Falls am Ende des Kurses Zeit bleibt, werden wir auch einen Blick auf Verfahren des maschinellen Lernens werfen, das mittlerweile auch in der Physik zu einem wichtigen Werkzeug geworden ist.\nWir werden keine umfassende Liste von numerischen Simulationsschemata präsentieren, sondern die Beispiele nutzen, um Ihre Neugierde zu wecken. Da es leichte Unterschiede in der Syntax der verschiedenen Python-Versionen gibt, werden wir uns im Folgenden immer auf den Python 3-Standard beziehen.\nDer Kurs wird auf Deutsch gehalten werden. Die Webseiten, die Sie für den Überblick zu Python zur Verfügung gestellt bekommen, werden allerdings auf Englisch sein. Übungsaufgaben werden werden auf Deutsch gestellt.",
+    "text": "Willkommen zum Kurs Einführung in die Modellierung Physikalischer Prozesse!\nDie Programmiersprache Python ist für alle Arten von wissenschaftlichen und technischen Aufgaben nützlich. Sie können mit ihr Daten analysieren und darstellen. Sie können mit ihr auch wissenschaftliche Probleme numerisch lösen, die analytisch nur schwer oder gar nicht zu lösen sind. Python ist frei verfügbar und wurde aufgrund seines modularen Aufbaus um eine nahezu unendliche Anzahl von Modulen für verschiedene Zwecke erweitert.\nDieser Kurs soll Sie in die Programmierung mit Python einführen. Er richtet sich eher an den Anfänger, wir hoffen aber, dass er auch für Fortgeschrittene interessant ist. Wir beginnen den Kurs mit einer Einführung in die Jupyter Notebook-Umgebung, die wir während des gesamten Kurses verwenden werden. Danach werden wir eine Einführung in Python geben und Ihnen einige grundlegende Funktionen zeigen, wie z.B. das Plotten und Analysieren von Daten durch Kurvenanpassung, das Lesen und Schreiben von Dateien, was einige der Aufgaben sind, die Ihnen während Ihres Physikstudiums begegnen werden. Wir zeigen Ihnen auch einige fortgeschrittene Themen wie die Animation in Jupyter und die Simulation von physikalischen Prozessen in\n\nMechanik\nElektrostatik\nWellen\nOptik\n\nFalls am Ende des Kurses Zeit bleibt, werden wir auch einen Blick auf Verfahren des maschinellen Lernens werfen, das mittlerweile auch in der Physik zu einem wichtigen Werkzeug geworden ist.\nWir werden keine umfassende Liste von numerischen Simulationsschemata präsentieren, sondern die Beispiele nutzen, um Ihre Neugierde zu wecken. Da es leichte Unterschiede in der Syntax der verschiedenen Python-Versionen gibt, werden wir uns im Folgenden immer auf den Python 3-Standard beziehen.\nDer Kurs wird auf Deutsch gehalten werden. Die Webseiten, die Sie für den Überblick zu Python zur Verfügung gestellt bekommen, werden allerdings auf Englisch sein. Übungsaufgaben werden werden auf Deutsch gestellt.",
     "crumbs": [
       "Home"
     ]
