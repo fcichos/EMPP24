@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Frank Cichos">
 
-<title>Quantum Mechanics – Einführung in die Modellierung Physikalischer Prozesse</title>
+<title>Step-by-Step Development of a Molecular Dynamics Simulation – Einführung in die Modellierung Physikalischer Prozesse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,8 +74,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
-<link href="../../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,8 +107,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -141,10 +138,9 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -172,7 +168,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Quantum Mechanics</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Seminars</li><li class="breadcrumb-item"><a href="../../seminars/seminar01/md1.html">Seminar01</a></li><li class="breadcrumb-item"><a href="../../seminars/seminar01/md1.html">MD Simulations Part 1</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -339,7 +335,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../seminars/seminar01/md1.html" class="sidebar-item-text sidebar-link">
+  <a href="../../seminars/seminar01/md1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">MD Simulations Part 1</span></a>
   </div>
 </li>
@@ -352,36 +348,25 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#quantum-mechanics-in-a-nutshell" id="toc-quantum-mechanics-in-a-nutshell" class="nav-link active" data-scroll-target="#quantum-mechanics-in-a-nutshell">Quantum Mechanics in a Nutshell</a>
-  <ul class="collapse">
-  <li><a href="#time-dependent-schrödinger-equation" id="toc-time-dependent-schrödinger-equation" class="nav-link" data-scroll-target="#time-dependent-schrödinger-equation">Time dependent Schrödinger equation</a></li>
-  <li><a href="#stationary-schrödinger-equation" id="toc-stationary-schrödinger-equation" class="nav-link" data-scroll-target="#stationary-schrödinger-equation">Stationary Schrödinger equation</a></li>
-  </ul></li>
-  <li><a href="#recap-implicit-solution" id="toc-recap-implicit-solution" class="nav-link" data-scroll-target="#recap-implicit-solution">Recap: Implicit Solution</a>
-  <ul class="collapse">
-  <li><a href="#kinetic-energy" id="toc-kinetic-energy" class="nav-link" data-scroll-target="#kinetic-energy">Kinetic energy</a></li>
-  <li><a href="#potential-energy" id="toc-potential-energy" class="nav-link" data-scroll-target="#potential-energy">Potential energy</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Seminars</li><li class="breadcrumb-item"><a href="../../seminars/seminar01/md1.html">Seminar01</a></li><li class="breadcrumb-item"><a href="../../seminars/seminar01/md1.html">MD Simulations Part 1</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Quantum Mechanics</h1>
+<h1 class="title">Step-by-Step Development of a Molecular Dynamics Simulation</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Frank Cichos </p>
+          </div>
+  </div>
     
   
     
@@ -392,168 +377,275 @@ window.Quarto = {
 </header>
 
 
-<p>In the last lecture, we have modeled electromagnetic waves not by solving the wave equation, but by taking the solutions of wave equations like a plane wave or a spherical wave. Today we will solve a wave equation, but not for electromagnetic waves, but for matter waves. We will solve the stationary Schrödinger equation with the implicit solution scheme, which we have already applied for the diffusion equation. With the help of that we will tackle the particle in a box, the harmonic oscillator and the periodic potential. All of these problems have also analytical solutions, thus we do not need the numerical solution in principle. But it will give us some practice on how to tackle such problems. As not all of you might be familiar with the physical description of quantum mechanics, we will give a short introduction into this field first.</p>
-<div id="7520d6ad" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2018-07-03T11:07:44.101075Z&quot;,&quot;start_time&quot;:&quot;2018-07-03T11:07:44.085892Z&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> diags</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> eigsh</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># default values for plotting</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.titlesize'</span>: <span class="dv">18</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelsize'</span>: <span class="dv">16</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelpad'</span>: <span class="dv">14</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.linewidth'</span>: <span class="dv">1</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.markersize'</span>: <span class="dv">10</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.labelsize'</span> : <span class="dv">16</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.labelsize'</span> : <span class="dv">16</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.top'</span> : <span class="va">True</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.direction'</span> : <span class="st">'in'</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.right'</span> : <span class="va">True</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.direction'</span> : <span class="st">'in'</span>,}) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="quantum-mechanics-in-a-nutshell" class="level2">
-<h2 class="anchored" data-anchor-id="quantum-mechanics-in-a-nutshell">Quantum Mechanics in a Nutshell</h2>
-<p>Quantum Mechanics assumes that all particles propagate as waves. They are described by a wavefunction <span class="math inline">\(\Psi(x,t)\)</span>. A quantum mechanical object thus posseses an amplitude and a phase which propagate in space and time. One could see the wavefunction in analogy to the electric field <span class="math inline">\(\vec{E}(x)\)</span> of an electromagnetic wave. As the square of the electric field describes the propagation of energy of a wave, the square magnitude of the wavefunction, i.e.&nbsp;<span class="math inline">\(|\Psi(x,t)|^2\)</span>, describes the propagation of probability density of the quantum mechanical wave. The wavefunction itself is thus just the probability amplitude.</p>
-<section id="time-dependent-schrödinger-equation" class="level3">
-<h3 class="anchored" data-anchor-id="time-dependent-schrödinger-equation">Time dependent Schrödinger equation</h3>
-<p>The dynamics of a quantum mechanical wave is described,for example, by the time dependent Schrödinger equation</p>
-<p><span class="math display">\[\begin{equation}
--i\hbar\frac{\partial \Psi(x,t)}{\partial t} = \left ( \frac{-\hbar^2 }{2m}\frac{\partial^2}{\partial x^2}+V(x,t) \right ) \Psi(x,t)
-\end{equation}\]</span></p>
-<p>whis is written here for one dimension only.</p>
-<p>The bracket on the right side of the above equation contains the so-called Hamilton operator <span class="math inline">\(\hat{H}\)</span>. The Hamilton operator <span class="math inline">\(\hat{H}\)</span> contains the energy operators for the kinetic and potential energies and represents the total energy of the system.</p>
-<p><span class="math display">\[\begin{equation}
-\hat{H}=\left ( \frac{-\hbar^2 }{2m}\frac{\partial^2}{\partial x^2}+V(x,t) \right )
-\end{equation}\]</span></p>
+<section id="molecular-dynamics-simulations" class="level2">
+<h2 class="anchored" data-anchor-id="molecular-dynamics-simulations">Molecular Dynamics Simulations</h2>
+<p>Real molecular dynamics (MD) simulations are complex and computationally expensive but very cool, as they give you a glimpse into the world of atoms and molecules. Here, we will develop a simple MD simulation from scratch in Python. The goal is to understand the basic concepts and algorithms behind MD simulations and get something running which can be extended later but also what we are proud of at the end of the course.</p>
+<p>Before we can start with implementing a simulation, we need to understand the basic concepts and algorithms behind MD simulations. The following sections will guide you through the development of a simple MD simulation.</p>
 </section>
-<section id="stationary-schrödinger-equation" class="level3">
-<h3 class="anchored" data-anchor-id="stationary-schrödinger-equation">Stationary Schrödinger equation</h3>
-<p>Our first problems will be stationary problems. We will not ask for the temporal development of the quantum object. We will rather ask, what solutions without time dependence are possible. In general this is much like the question asking what kind of standing waves are possible on a string or in an optical resonator. In quantum mechanics the boundaries, which define the standing waves are formed by the potential energy <span class="math inline">\(V(x)\)</span>.</p>
-<p>We therefore also need the stationary Schrödinger equation, where the left side of the time dependent Schrödinger equation does not depend on time, hence is constant in time. This stationary (time-independent) Schrödinger equation is</p>
-<p><span class="math display">\[\begin{equation}
-\hat{H}\Psi(x)=E\Psi(x)
-\end{equation}\]</span></p>
-<p>The Hamilton operator <span class="math inline">\(\hat{H}\)</span> gives a recipe how to calculate the energies for a given wavefunction <span class="math inline">\(\Psi(x)\)</span> in terms of derivates or multiplications by functions. If this recipe reduces to a multiplication of the wave function with a number <span class="math inline">\(E\)</span>, then these wavefunctions are eigenfunction of the Hamilton operator and the values of <span class="math inline">\(E\)</span> are the eigenvalues of the problem, i.e.&nbsp;the time-independent solutions of this differential equation.</p>
+<section id="basic-physical-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="basic-physical-concepts">Basic Physical Concepts</h2>
+<section id="newtons-equations-of-motion" class="level3">
+<h3 class="anchored" data-anchor-id="newtons-equations-of-motion">Newton’s Equations of Motion</h3>
+<p>The motion of particles in a molecular dynamics simulation is governed by Newton’s equations of motion:</p>
+<p><span class="math display">\[m_i \frac{d^2\vec{r}_i}{dt^2} = \vec{F}_i\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(m_i\)</span> is the mass of particle <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\vec{r}_i\)</span> is the position of particle <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\vec{F}_i\)</span> is the force acting on particle <span class="math inline">\(i\)</span></li>
+</ul>
+<p>The force acting on a particle is the sum of all forces acting on it:</p>
+<p><span class="math display">\[\vec{F}_i = \sum_{j \neq i} \vec{F}_{ij}\]</span></p>
+<p>where <span class="math inline">\(\vec{F}_{ij}\)</span> is the force acting on particle <span class="math inline">\(i\)</span> due to particle <span class="math inline">\(j\)</span>.</p>
 </section>
-</section>
-<section id="recap-implicit-solution" class="level2">
-<h2 class="anchored" data-anchor-id="recap-implicit-solution">Recap: Implicit Solution</h2>
-<p>According to our above description, the Hamilton operator <span class="math inline">\(\hat{H}\)</span> contains two parts, a second derivative in the position, which represents the kinetic energy and the potential energy operator <span class="math inline">\(V(x)\)</span>, which is in the simplest case just a function of <span class="math inline">\(x\)</span>.</p>
-<p><span class="math display">\[\begin{equation}
-\left ( \frac{-\hbar^2 }{2m}\frac{\partial^2}{\partial x^2}+V(x) \right ) \Psi(x)=E\Psi(x)
-\end{equation}\]</span></p>
-<p>Since we want to apply our implicit solution scheme (Cranck Nicolson), we want to represent both parts as matrices.</p>
-<section id="kinetic-energy" class="level3">
-<h3 class="anchored" data-anchor-id="kinetic-energy">Kinetic energy</h3>
-<p>We remember that we can write the second derivative of our wavefunction <span class="math inline">\(\Psi(x)\)</span> in the finite difference approximation as</p>
-<p><span class="math display">\[\begin{equation}
-\Psi^{''}(x)=\frac{\Psi(x+\delta x)-2\Psi(x)+\Psi(x-\delta x)}{\delta x^{2}}
-\end{equation}\]</span></p>
-<p>If we want to evaluate the wavefunction at certain positions <span class="math inline">\(x_{i}\)</span>, then this second derivative translates into</p>
-<p><span class="math inline">\(T\Psi=\frac{d^2}{dx^2}\Psi=\frac{1}{\delta x^2}
-\begin{bmatrix}
--2 &amp; 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 1  &amp; -2 &amp; 1 &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; 1  &amp; -2 &amp; 1 &amp; 0\\
-0 &amp; 0  &amp; 0  &amp;  1 &amp; -2 &amp; 1\\
-0 &amp; 0  &amp; 0  &amp;  0 &amp;  1 &amp; -2\\
-\end{bmatrix}
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}\)</span></p>
-<p>if we just use 6 positions. Please remember, that in the version above, we have imposed already boundary conditions in the first and the last row, which are <span class="math inline">\(\Psi(x_{0})=0\)</span> and <span class="math inline">\(\Psi(x_{7})=0\)</span>. If we multiply this matrix by <span class="math inline">\(-\hbar^{2}/2m\)</span>, we obtain the kinetic energy for an object of mass <span class="math inline">\(m\)</span>.</p>
-</section>
-<section id="potential-energy" class="level3">
-<h3 class="anchored" data-anchor-id="potential-energy">Potential energy</h3>
-<p>The potential energy values are just values at the diagonal of the matrix</p>
-<p><span class="math inline">\(V\Psi=
-\begin{bmatrix}
-V(x_{1}) &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; V(x_{2}) &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; V(x_{3}) &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; 0  &amp; V(x_{4}) &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; 0  &amp;  0 &amp; V(x_{5}) &amp; 0\\
-0 &amp; 0  &amp; 0  &amp;  0 &amp;  0 &amp; V(x_{6})\\
-\end{bmatrix}
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}\)</span></p>
-<p>an you may insert the specific potential energy values for your particular problem here.</p>
-<p>Our final problem <span class="math inline">\(\hat{H}\Psi=E\Psi\)</span> will thus have the following shape</p>
-<p><span class="math display">\[\begin{equation}
-\begin{bmatrix}
--2+V(x_{1}) &amp; 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-1 &amp; -2+V(x_{2}) &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; -2+V(x_{3})  &amp; 1 &amp; 0 &amp; 0 \\
-0 &amp;0 &amp; 1  &amp; -2+V(x_{4})  &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 0  &amp; 1  &amp;  -2+V(x_{5}) &amp; 1 \\
-0 &amp; 0 &amp; 0  &amp; 0  &amp;  1 &amp;  -2+V(x_{6}) \\
-\end{bmatrix}
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}=E
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}
-\end{equation}\]</span></p>
-<p>where I skipped the prefactor <span class="math inline">\(-\hbar^2/2m\)</span>, to fit the matrices on one line. Yet I did not succeed. This is the final system of coupled equations which we can supply to any matrix solver. We will use a solver from the <em>scipy.linalg</em> module. In case we have special boundary conditions, we need to take them into account and replace the first and the last line for example with the particular boundary conditions.</p>
-
-
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
-<div id="exercise-loading-status" class="d-flex gap-2">
-
-</div>
-<div class="spinner-grow spinner-grow-sm">
-
+<section id="potential-energy-functions-and-forces" class="level3">
+<h3 class="anchored" data-anchor-id="potential-energy-functions-and-forces">Potential Energy Functions and Forces</h3>
+<p>The force <span class="math inline">\(\vec{F}_{ij}\)</span> is usually derived from a potential energy function and may result from a variety of interactions, such as:</p>
+<ul>
+<li>Bonded interactions
+<ul>
+<li>bond stretching</li>
+<li>bond angle bending</li>
+<li>torsional interactions</li>
+</ul></li>
+<li>Non-bonded interactions
+<ul>
+<li>electrostatic interactions</li>
+<li>van der Waals interactions</li>
+</ul></li>
+<li>External forces</li>
+</ul>
+<p>We will implement some of them but not all of them.</p>
+<section id="lennard-jones-potential" class="level4">
+<h4 class="anchored" data-anchor-id="lennard-jones-potential">Lennard-Jones Potential</h4>
+<p>The most common potential energy function used in MD simulations is the Lennard-Jones potential. It is belonging to the class of non-bonded interactions. The force and the potential energy of the Lennard-Jones potential are given by:</p>
+<p><span class="math display">\[V_{LJ}(r) = 4\epsilon \left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]\]</span></p>
+<p>and</p>
+<p><span class="math display">\[F_{LJ}(r) = -\frac{dV_{LJ}}{dr} = 24\epsilon \left[2\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]\frac{\vec{r}}{r^2}\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\epsilon\)</span> is the depth of the potential well</li>
+<li><span class="math inline">\(\sigma\)</span> is the distance at which the potential is zero</li>
+<li><span class="math inline">\(r\)</span> is the distance between particles</li>
+</ul>
+<p>The Lenard Jones potential is good for describing the interaction of non-bonded atoms in a molecular system e.g.&nbsp;in a gas or a liquid and is therefore well suited if we first want to simulate a gas or a liquid.</p>
+<div id="54c4356e" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lennard_jones(r, epsilon<span class="op">=</span><span class="dv">1</span>, sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span> <span class="op">*</span> epsilon <span class="op">*</span> ((sigma<span class="op">/</span>r)<span class="op">**</span><span class="dv">12</span> <span class="op">-</span> (sigma<span class="op">/</span>r)<span class="op">**</span><span class="dv">6</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.linspace(<span class="fl">0.8</span>, <span class="dv">3</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> lennard_jones(r)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(r, V, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'r/σ'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'V/ε'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Lennard-Jones Potential'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="md1_files/figure-html/cell-3-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="463" height="389"></p>
+</figure>
 </div>
 </div>
-<script type="vfs-file">
-W10=
-</script>
+</div>
+<p>The figure above shows the Lenard-Jones potential as a function of the distance between particles. The potential energy is zero at the equilibrium distance <span class="math inline">\(r = \sigma\)</span> and has a minimum at <span class="math inline">\(r = 2^{1/6}\sigma\)</span>. The potential energy is positive for <span class="math inline">\(r &lt; \sigma\)</span> and negative for <span class="math inline">\(r &gt; \sigma\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Values for atomic hydrogen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For atomic hydrogen (H), typical Lennard-Jones parameters are:</p>
+<ul>
+<li><span class="math inline">\(\sigma \approx 2.38\)</span> Å = <span class="math inline">\(2.38 \times 10^{-10}\)</span> meters</li>
+<li><span class="math inline">\(\epsilon \approx 0.0167\)</span> kcal/mol = <span class="math inline">\(1.16 \times 10^{-21}\)</span> joules</li>
+</ul>
+</div>
+</div>
+<p>Later, if we manage to advance to some more complicated systems, we may want to introduce:</p>
+<ol type="1">
+<li>force in bonds between two atoms</li>
+<li>force in bond angles between three atoms</li>
+<li>force in dihedral angles between four atoms</li>
+</ol>
+<p>But for now, we will stick to the Lennard-Jones potential.</p>
+</section>
+</section>
+</section>
+<section id="integrating-newtons-euqation-of-motion" class="level2">
+<h2 class="anchored" data-anchor-id="integrating-newtons-euqation-of-motion">Integrating Newtons Euqation of Motion</h2>
+<p>When we have the forces on a particle we have in principle its acceleration. To get the velocity and the position of the particle we need to integrate the equations of motion. There are several methods to do this, but we will start with the simplest one, the Euler method.</p>
+<section id="euler-method" class="level3">
+<h3 class="anchored" data-anchor-id="euler-method">Euler Method</h3>
+<p>To obtain this one first needs to know about the Taylor expansion of a function in general. The Taylor expansion of a function <span class="math inline">\(f(x)\)</span> around a point <span class="math inline">\(x_0\)</span> is providing an approximation of the function in the vicinity of <span class="math inline">\(x_0\)</span>. It is given by:</p>
+<p><span class="math display">\[f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{1}{2}f''(x_0)(x - x_0)^2 + \cdots\]</span></p>
+<p>where <span class="math inline">\(f'(x_0)\)</span> is the first derivative of <span class="math inline">\(f(x)\)</span> at <span class="math inline">\(x_0\)</span>, <span class="math inline">\(f''(x_0)\)</span> is the second derivative of <span class="math inline">\(f(x)\)</span> at <span class="math inline">\(x_0\)</span>, and so on. We can demonstrate that by expanding a sine function around <span class="math inline">\(x_0 = 0\)</span>:</p>
+<p><span class="math display">\[\sin(x) = \sin(0) + \cos(0)x - \frac{1}{2}\sin(0)x^2 + \cdots = x - \frac{1}{6}x^3 + \cdots\]</span></p>
+<p>Plotting this yields:</p>
+<div id="d0792d23" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">1000</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y_taylor <span class="op">=</span> x <span class="op">-</span> <span class="dv">1</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'sin(x)'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_taylor, <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">'Taylor expansion'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Taylor Expansion of sin(x)'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="md1_files/figure-html/cell-4-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="470" height="389"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The expansion is therefore a good approximation in a region close to <span class="math inline">\(x_0\)</span>.</p>
+</section>
+<section id="velocity-verlet-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="velocity-verlet-algorithm">Velocity Verlet Algorithm</h3>
+<p>The velocity Verlet algorithm is a second-order algorithm that is more accurate than the Euler method. It can be derived from the Taylor expansion of the position and velocity vectors</p>
+<p><span class="math display">\[\mathbf{r}(t + \Delta t) = \mathbf{r}(t) + \mathbf{v}(t)\Delta t + \frac{1}{2}\frac{\mathbf{F}(t)}{m}\Delta t^2+ O(\Delta t^3)\]</span></p>
+<p>The higher order terms in the Taylor expansion are neglected, which results in an error of order <span class="math inline">\(\Delta t^3\)</span>. As compared to that the Euler method is obtained by neglecting the higher order terms in the Taylor expansion of the velocity vector:</p>
+<p><span class="math display">\[\mathbf{v}(t + \Delta t) = \mathbf{v}(t) + \frac{\mathbf{F}(t)}{m}\Delta t + O(\Delta t^2)\]</span></p>
+<p>and is therefore only first order accurate with an error of order <span class="math inline">\(\Delta t^2\)</span>.</p>
+<p>The velocity Verlet algorithm consists of three steps:</p>
+<ol type="1">
+<li><p>Update positions: <span class="math inline">\(\mathbf{r}(t + \Delta t) = \mathbf{r}(t) + \mathbf{v}(t)\Delta t + \frac{1}{2}\frac{\mathbf{F}(t)}{m}\Delta t^2\)</span></p></li>
+<li><p>Calculate new forces: <span class="math inline">\(\mathbf{F}(t + \Delta t) = \mathbf{F}(\mathbf{r}(t + \Delta t))\)</span></p></li>
+<li><p>Update velocities: <span class="math inline">\(\mathbf{v}(t + \Delta t) = \mathbf{v}(t) + \frac{1}{2}\frac{\mathbf{F}(t) + \mathbf{F}(t + \Delta t)}{m}\Delta t\)</span></p></li>
+</ol>
+<p>where: - <span class="math inline">\(\mathbf{r}\)</span> is the position vector - <span class="math inline">\(\mathbf{v}\)</span> is the velocity vector - <span class="math inline">\(\mathbf{F}\)</span> is the force vector - <span class="math inline">\(m\)</span> is the mass - <span class="math inline">\(\Delta t\)</span> is the timestep</p>
+</section>
+<section id="simple-integration-example-free-fall" class="level3">
+<h3 class="anchored" data-anchor-id="simple-integration-example-free-fall">Simple Integration Example: Free Fall</h3>
+<p>Let’s start and try to integrate the equation of motion for a particle in free fall with the help of the Velocity Verlet algorithm. The only force acting on the particle is gravity. The equation of motion is:</p>
+<p>Newton’s equation of motion: <span class="math inline">\(\mathbf{F} = m\mathbf{a}\)</span></p>
+<p>For gravity: <span class="math inline">\(\mathbf{F} = -mg\hat{\mathbf{y}}\)</span></p>
+<p>Therefore: <span class="math inline">\(\ddot{y} = -g\)</span></p>
+<p>The analytical solution is:</p>
+<ul>
+<li>Position: <span class="math inline">\(y(t) = y_0 + v_0t - \frac{1}{2}gt^2\)</span></li>
+<li>Velocity: <span class="math inline">\(v(t) = v_0 - gt\)</span></li>
+</ul>
+<div id="ff514119" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="fl">9.81</span>  <span class="co"># m/s^2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># time step</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>t_max <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># total simulation time</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="bu">int</span>(t_max<span class="op">/</span>dt)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial conditions</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> <span class="fl">20.0</span>  <span class="co"># initial height</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> <span class="fl">0.0</span>   <span class="co"># initial velocity</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrays to store results</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.zeros(steps)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.zeros(steps)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.zeros(steps)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.zeros(steps)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial values</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> y0</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>v[<span class="dv">0</span>] <span class="op">=</span> v0</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">0</span>] <span class="op">=</span> <span class="op">-</span>g</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Velocity Verlet integration</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps):</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    t[i] <span class="op">=</span> i <span class="op">*</span> dt</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="op">=</span> y[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> v[i<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> dt <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> a[i<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> dt<span class="op">**</span><span class="dv">2</span>  <span class="co"># update position</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    a_new <span class="op">=</span> <span class="op">-</span>g                                          <span class="co"># new acceleration (assuming constant gravity)</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    v[i] <span class="op">=</span> v[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> (a[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> a_new) <span class="op">*</span> dt         <span class="co"># update velocity</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    a[i] <span class="op">=</span> a_new                                        <span class="co"># store new acceleration</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>y_analytical <span class="op">=</span> y0 <span class="op">+</span> v0<span class="op">*</span>t <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>g<span class="op">*</span>t<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>), dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.plot(t, y)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.plot(t, y_analytical, <span class="st">'r--'</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Height (m)'</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Free Fall Motion'</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="md1_files/figure-html/cell-5-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="460" height="389"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="boundary-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-conditions">Boundary Conditions</h3>
+<p>In the previous example, we have assumed that the particle is in free fall. That means eventually it would bounce against the floor. In a real simulation, we need to consider boundary conditions as well. For example, if the particle hits the ground we could implement a simple reflection rule. This is called <em>reflecting boundary conditions</em> and would introduce some additional effects to the simulation. On the other side, one could make the system “kind of” infinitely large by introducing periodic boundary conditions. This means that if a particle leaves the simulation box on one side, it re-enters on the opposite side. This is a common approach in molecular dynamics simulations.</p>
+</section>
+</section>
+<section id="implementation" class="level2">
+<h2 class="anchored" data-anchor-id="implementation">Implementation</h2>
+<p>The question we have to think about now is how to implement these formulas in a numerical simulation. The goal is to simulate the motion of many atoms in a box. Each atom is different and has its own position, velocity, and force. Consequently we need to store these quantities for each atom, though the structure in which we store them is the same for each atom. All atoms with their properties actually belong to the same class of objects. We can therefore use a very suitable concept of object-oriented programming, the class.</p>
+<section id="classes-in-object-oriented-programming" class="level3">
+<h3 class="anchored" data-anchor-id="classes-in-object-oriented-programming">Classes in Object-Oriented Programming</h3>
+<p>A class in object-oriented programming is a blueprint for creating objects (a particular data structure), providing initial values for state (member variables or attributes), and implementations of behavior (member functions or methods). The class is a template for objects, and an object is an instance of a class. The class defines the properties and behavior common to all objects of the class. The objects are the instances of the class that contain the actual data. :::</p>
+<p>We define a class <code>Atom</code> that contains the properties of an atom. The class <code>Atom</code> has the following attributes:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Atom:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, atom_id, atom_type, position, velocity<span class="op">=</span><span class="va">None</span>, mass<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">id</span> <span class="op">=</span> atom_id</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">type</span> <span class="op">=</span> atom_type</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.position <span class="op">=</span> position</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.velocity <span class="op">=</span> velocity <span class="cf">if</span> velocity <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> np.zeros(<span class="dv">3</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mass <span class="op">=</span> mass</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force <span class="op">=</span> np.zeros(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The class <code>Atom</code> has the following attributes:</p>
+<ul>
+<li><code>id</code>: The unique identifier of the atom</li>
+<li><code>type</code>: The type of the atom (hydrogen or oxygen or …)</li>
+<li><code>position</code>: The position of the atom in 3D space (x, y, z)</li>
+<li><code>velocity</code>: The velocity of the atom in 3D space (vx, vy, vz)</li>
+<li><code>mass</code>: The mass of the atom</li>
+<li><code>force</code>: The force acting on the atom in 3D space (fx, fy, fz)</li>
+</ul>
+<p>In addition, we will need some information on the other atoms that are bound to the atom. We will store this information later in a list of atoms called <code>boundto</code>. Since we start with a monoatomic gas, we will not need this information for now. Note that position, velocity, and force are 3D vectors and we store them in numpy arrays. This is a very convenient way to handle vectors and matrices in Python.</p>
+<p>The class <code>Atom</code> should further implement a number of functions, called methods in object-oriented programming, that allow us to interact with the atom. The following methods are implemented in the <code>Atom</code> class:</p>
+<ul>
+<li><code>update_position(dt)</code>: Updates the position of the atom</li>
+<li><code>update_velocity(dt)</code>: Updates the velocity of the atom</li>
+<li><code>update_force(force)</code>: Updates the force acting on the atom</li>
+<li><code>reset_force()</code>: Resets the force acting on the atom</li>
+</ul>
+
+
 </section>
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lectures/lecture04";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "../..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

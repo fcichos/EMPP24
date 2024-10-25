@@ -332,8 +332,21 @@ window.Quarto = {
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Seminar01</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Seminar01</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../seminars/seminar01/md1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MD Simulations Part 1</span></a>
+  </div>
+</li>
+      </ul>
   </li>
       </ul>
   </li>
@@ -389,7 +402,7 @@ window.Quarto = {
 
 </div>
 <script type="pyodide-1-contents">
-eyJjb2RlIjoiXG5pbXBvcnQgbnVtcHkgYXMgbnBcbmltcG9ydCBpb1xuaW1wb3J0IHBhbmRhcyBhcyBwZGZcbmltcG9ydCBtYXRwbG90bGliLnB5cGxvdCBhcyBwbHRcbmZyb20gc2NpcHkub3B0aW1pemUgaW1wb3J0IGN1cnZlX2ZpdFxucGx0LnJjUGFyYW1zLnVwZGF0ZSh7J2ZvbnQuc2l6ZSc6IDE4fSlcbmZyb20gaXB5d2lkZ2V0cyBpbXBvcnQgaW50ZXJhY3QsIGludGVyYWN0aXZlLCBmaXhlZCwgaW50ZXJhY3RfbWFudWFsXG5pbXBvcnQgaXB5d2lkZ2V0cyBhcyB3aWRnZXRzXG5cbiMgZGVmYXVsdCB2YWx1ZXMgZm9yIHBsb3R0aW5nXG5wbHQucmNQYXJhbXMudXBkYXRlKHsnZm9udC5zaXplJzogMTIsXG4gICAgICAgICAgICAgICAgICAgICAnbGluZXMubGluZXdpZHRoJzogMSxcbiAgICAgICAgICAgICAgICAgICAgICdsaW5lcy5tYXJrZXJzaXplJzogMTAsXG4gICAgICAgICAgICAgICAgICAgICAnYXhlcy5sYWJlbHNpemUnOiAxMSxcbiAgICAgICAgICAgICAgICAgICAgICd4dGljay5sYWJlbHNpemUnIDogMTAsXG4gICAgICAgICAgICAgICAgICAgICAneXRpY2subGFiZWxzaXplJyA6IDEwLFxuICAgICAgICAgICAgICAgICAgICAgJ3h0aWNrLnRvcCcgOiBUcnVlLFxuICAgICAgICAgICAgICAgICAgICAgJ3h0aWNrLmRpcmVjdGlvbicgOiAnaW4nLFxuICAgICAgICAgICAgICAgICAgICAgJ3l0aWNrLnJpZ2h0JyA6IFRydWUsXG4gICAgICAgICAgICAgICAgICAgICAneXRpY2suZGlyZWN0aW9uJyA6ICdpbicsfSkiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOmZhbHNlLCJlY2hvIjpmYWxzZSwiZXhlY3V0ZSI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXhlY3V0ZSI6dHJ1ZX0sImNvZGUiOiJcbmltcG9ydCBudW1weSBhcyBucFxuaW1wb3J0IGlvXG5pbXBvcnQgcGFuZGFzIGFzIHBkZlxuaW1wb3J0IG1hdHBsb3RsaWIucHlwbG90IGFzIHBsdFxuZnJvbSBzY2lweS5vcHRpbWl6ZSBpbXBvcnQgY3VydmVfZml0XG5wbHQucmNQYXJhbXMudXBkYXRlKHsnZm9udC5zaXplJzogMTh9KVxuZnJvbSBpcHl3aWRnZXRzIGltcG9ydCBpbnRlcmFjdCwgaW50ZXJhY3RpdmUsIGZpeGVkLCBpbnRlcmFjdF9tYW51YWxcbmltcG9ydCBpcHl3aWRnZXRzIGFzIHdpZGdldHNcblxuIyBkZWZhdWx0IHZhbHVlcyBmb3IgcGxvdHRpbmdcbnBsdC5yY1BhcmFtcy51cGRhdGUoeydmb250LnNpemUnOiAxMixcbiAgICAgICAgICAgICAgICAgICAgICdsaW5lcy5saW5ld2lkdGgnOiAxLFxuICAgICAgICAgICAgICAgICAgICAgJ2xpbmVzLm1hcmtlcnNpemUnOiAxMCxcbiAgICAgICAgICAgICAgICAgICAgICdheGVzLmxhYmVsc2l6ZSc6IDExLFxuICAgICAgICAgICAgICAgICAgICAgJ3h0aWNrLmxhYmVsc2l6ZScgOiAxMCxcbiAgICAgICAgICAgICAgICAgICAgICd5dGljay5sYWJlbHNpemUnIDogMTAsXG4gICAgICAgICAgICAgICAgICAgICAneHRpY2sudG9wJyA6IFRydWUsXG4gICAgICAgICAgICAgICAgICAgICAneHRpY2suZGlyZWN0aW9uJyA6ICdpbicsXG4gICAgICAgICAgICAgICAgICAgICAneXRpY2sucmlnaHQnIDogVHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgICd5dGljay5kaXJlY3Rpb24nIDogJ2luJyx9KSJ9
 </script>
 </div>
 <p>acceleration vector a</p>
@@ -457,9 +470,9 @@ p(y_{1},\ldots,y_{N})=\prod_{i}^{N}\frac{1}{\sqrt{2\pi}\sigma_{i}}\exp(-(y_{i}-f
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>Lets have a look at the meaning of this equation. Lets assume we measure the trajectory of a ball that has been thrown under and angle <span class="math inline">\(\alpha\)</span> with an initial velocity <span class="math inline">\(v_{0}\)</span>. We have collected data point by measuring the height of the ball above ground at equally spaced distances from the throwing person.</p>
-<div id="7b7b79ea" class="cell" data-execution_count="2">
+<div id="6c8456ae" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<table id="itables_98af2c15_23a9_42fe_b406_471ee08de68d" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
+<table id="itables_5bae1de1_d7f8_4233_b2e8_5242a8b3ae12" class="display nowrap" data-quarto-disable-processing="true" style="table-layout:auto;width:auto;margin:auto;caption-side:bottom">
 <thead>
     <tr style="text-align: right;">
       
@@ -539,7 +552,7 @@ Loading ITables v2.2.2 from the internet...
 <script type="module">
     import {DataTable, jQuery as $} from 'https://www.unpkg.com/dt_for_itables@2.0.13/dt_bundle.js';
 
-    document.querySelectorAll("#itables_98af2c15_23a9_42fe_b406_471ee08de68d:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_5bae1de1_d7f8_4233_b2e8_5242a8b3ae12:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
@@ -715,7 +728,7 @@ y=ax^2+bx+c
 
 </div>
 <script type="pyodide-2-contents">
-eyJjb2RlIjoiZGVmIHBhcmFib2xhKHgsYSxiLGMpOlxuICAgIHJldHVybihhKngqKjIrYip4K2MpXG5cbmRlZiBwbG90KGEsYixjKTpcbiAgICB5PXBhcmFib2xhKHgsYSxiLGMpXG4gICAgcGx0LmZpZ3VyZShmaWdzaXplPSg4LDYpKVxuICAgIGNoaXNxPSgoKHlfZGF0YS1wYXJhYm9sYSh4X2RhdGEsYSxiLGMpKS9lcnIpKioyKS5zdW0oKVxuICAgIHBsdC5wbG90KHgseSxsYWJlbD0nJFxcY2hpXjIkPXswOjYuM2Z9Jy5mb3JtYXQoY2hpc3EpKVxuICAgIHBsdC5lcnJvcmJhcih4X2RhdGEseV9kYXRhLHllcnI9ZXJyLG1hcmtlcj0nbycsZm10PVwibm9uZVwiLGNvbG9yPSdrJylcblxuICAgIHBsdC5zY2F0dGVyKHhfZGF0YSx5X2RhdGEsbWFya2VyPSdvJyxjb2xvcj0naycpXG4gICAgcGx0LmxlZ2VuZCgpXG4gICAgcGx0LnhsYWJlbCgneC0gcG9zaXRpb24nKVxuICAgIHBsdC55bGFiZWwoJ3ktIHBvc2l0aW9uJylcbiAgICBwbHQuc2hvdygpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZGVmIHBhcmFib2xhKHgsYSxiLGMpOlxuICAgIHJldHVybihhKngqKjIrYip4K2MpXG5cbmRlZiBwbG90KGEsYixjKTpcbiAgICB5PXBhcmFib2xhKHgsYSxiLGMpXG4gICAgcGx0LmZpZ3VyZShmaWdzaXplPSg4LDYpKVxuICAgIGNoaXNxPSgoKHlfZGF0YS1wYXJhYm9sYSh4X2RhdGEsYSxiLGMpKS9lcnIpKioyKS5zdW0oKVxuICAgIHBsdC5wbG90KHgseSxsYWJlbD0nJFxcY2hpXjIkPXswOjYuM2Z9Jy5mb3JtYXQoY2hpc3EpKVxuICAgIHBsdC5lcnJvcmJhcih4X2RhdGEseV9kYXRhLHllcnI9ZXJyLG1hcmtlcj0nbycsZm10PVwibm9uZVwiLGNvbG9yPSdrJylcblxuICAgIHBsdC5zY2F0dGVyKHhfZGF0YSx5X2RhdGEsbWFya2VyPSdvJyxjb2xvcj0naycpXG4gICAgcGx0LmxlZ2VuZCgpXG4gICAgcGx0LnhsYWJlbCgneC0gcG9zaXRpb24nKVxuICAgIHBsdC55bGFiZWwoJ3ktIHBvc2l0aW9uJylcbiAgICBwbHQuc2hvdygpIn0=
 </script>
 </div>
 <div>
@@ -723,7 +736,7 @@ eyJjb2RlIjoiZGVmIHBhcmFib2xhKHgsYSxiLGMpOlxuICAgIHJldHVybihhKngqKjIrYip4K2MpXG5c
 
 </div>
 <script type="pyodide-3-contents">
-eyJjb2RlIjoieD1ucC5saW5zcGFjZSgwLDEsMTAwKVxuaW50ZXJhY3QocGxvdCxhPS0xLjcsYj0xLjMsYz0xLjApOyIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoieD1ucC5saW5zcGFjZSgwLDEsMTAwKVxuaW50ZXJhY3QocGxvdCxhPS0xLjcsYj0xLjMsYz0xLjApOyJ9
 </script>
 </div>
 <p>We have that troubeling point at the right edge with a large uncertainty. However, since the value of <span class="math inline">\(\chi^2\)</span> divides the deviation by the uncertainty <span class="math inline">\(\sigma_{i}\)</span> the weight for this point overall in the <span class="math inline">\(\chi^{2}\)</span> is smaller than for the other points.</p>
@@ -745,7 +758,7 @@ eyJjb2RlIjoieD1ucC5saW5zcGFjZSgwLDEsMTAwKVxuaW50ZXJhY3QocGxvdCxhPS0xLjcsYj0xLjMs
 
 </div>
 <script type="pyodide-4-contents">
-eyJjb2RlIjoiZGVmIHBhcmFib2xhKHgsYSxiLGMpOlxuICAgIHJldHVybihhKngqKjIrYip4K2MpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZGVmIHBhcmFib2xhKHgsYSxiLGMpOlxuICAgIHJldHVybihhKngqKjIrYip4K2MpIn0=
 </script>
 </div>
 <p>At second, we should not leave the fitting procedure of <code>SciPy</code> without a clue on where to look for the optimal parameters. Therefore we can provide initial parameters for the search.</p>
@@ -754,7 +767,7 @@ eyJjb2RlIjoiZGVmIHBhcmFib2xhKHgsYSxiLGMpOlxuICAgIHJldHVybihhKngqKjIrYip4K2MpIiwi
 
 </div>
 <script type="pyodide-5-contents">
-eyJjb2RlIjoiaW5pdF9ndWVzcyA9Wy0xLDEsMV0iLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiaW5pdF9ndWVzcyA9Wy0xLDEsMV0ifQ==
 </script>
 </div>
 <p>The fit is then obtained by calling</p>
@@ -763,7 +776,7 @@ eyJjb2RlIjoiaW5pdF9ndWVzcyA9Wy0xLDEsMV0iLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRy
 
 </div>
 <script type="pyodide-6-contents">
-eyJjb2RlIjoiZml0PWN1cnZlX2ZpdChwYXJhYm9sYSx4X2RhdGEseV9kYXRhLHNpZ21hPWVycixwMD1pbml0X2d1ZXNzLGFic29sdXRlX3NpZ21hPVRydWUpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZml0PWN1cnZlX2ZpdChwYXJhYm9sYSx4X2RhdGEseV9kYXRhLHNpZ21hPWVycixwMD1pbml0X2d1ZXNzLGFic29sdXRlX3NpZ21hPVRydWUpIn0=
 </script>
 </div>
 <p>and we obtain all the fit results in the variable <code>fit</code>. This is actually composed of various results. If we split that up, we will find</p>
@@ -772,7 +785,7 @@ eyJjb2RlIjoiZml0PWN1cnZlX2ZpdChwYXJhYm9sYSx4X2RhdGEseV9kYXRhLHNpZ21hPWVycixwMD1p
 
 </div>
 <script type="pyodide-7-contents">
-eyJjb2RlIjoiZml0IiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZml0In0=
 </script>
 </div>
 <div>
@@ -780,7 +793,7 @@ eyJjb2RlIjoiZml0IiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
 
 </div>
 <script type="pyodide-8-contents">
-eyJjb2RlIjoiYW5zLGNvdj1maXRcbmZpdF9hLGZpdF9iLGZpdF9jPWFucyIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiYW5zLGNvdj1maXRcbmZpdF9hLGZpdF9iLGZpdF9jPWFucyJ9
 </script>
 </div>
 <p><code>ans</code> containing the fit parameters <code>fit_a</code>,<code>fit_b</code>,<code>fit_c</code> as well as the so-called covariance matrix <code>cov</code>. Lets have a look at the fit and the <span class="math inline">\(\chi^{2}\)</span> value first.</p>
@@ -789,7 +802,7 @@ eyJjb2RlIjoiYW5zLGNvdj1maXRcbmZpdF9hLGZpdF9iLGZpdF9jPWFucyIsImF0dHIiOnsiZXZhbCI6
 
 </div>
 <script type="pyodide-9-contents">
-eyJjb2RlIjoiZml0X2EsZml0X2IsZml0X2MiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZml0X2EsZml0X2IsZml0X2MifQ==
 </script>
 </div>
 <div>
@@ -797,7 +810,7 @@ eyJjb2RlIjoiZml0X2EsZml0X2IsZml0X2MiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9
 
 </div>
 <script type="pyodide-10-contents">
-eyJjb2RlIjoiXG5wbHQuZmlndXJlKGZpZ3NpemU9KDgsNikpXG5jaGlzcT0oKCh5X2RhdGEtcGFyYWJvbGEoeF9kYXRhLGZpdF9hLGZpdF9iLGZpdF9jKSkvZXJyKSoqMikuc3VtKClcbnBsdC5wbG90KHgscGFyYWJvbGEoeCxmaXRfYSxmaXRfYixmaXRfYyksbGFiZWw9JyRcXGNoaV4yJD17MDo2LjNmfScuZm9ybWF0KGNoaXNxKSlcbnBsdC5lcnJvcmJhcih4X2RhdGEseV9kYXRhLHllcnI9ZXJyLG1hcmtlcj0nbycsZm10PVwibm9uZVwiLGNvbG9yPSdrJywpXG5wbHQuc2NhdHRlcih4X2RhdGEseV9kYXRhLG1hcmtlcj0nbycsY29sb3I9J2snKVxucGx0LnhsYWJlbCgneC0gcG9zaXRpb24nKVxucGx0LnlsYWJlbCgneS0gcG9zaXRpb24nKVxucGx0LmxlZ2VuZCgpXG5wbHQuc2hvdygpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiXG5wbHQuZmlndXJlKGZpZ3NpemU9KDgsNikpXG5jaGlzcT0oKCh5X2RhdGEtcGFyYWJvbGEoeF9kYXRhLGZpdF9hLGZpdF9iLGZpdF9jKSkvZXJyKSoqMikuc3VtKClcbnBsdC5wbG90KHgscGFyYWJvbGEoeCxmaXRfYSxmaXRfYixmaXRfYyksbGFiZWw9JyRcXGNoaV4yJD17MDo2LjNmfScuZm9ybWF0KGNoaXNxKSlcbnBsdC5lcnJvcmJhcih4X2RhdGEseV9kYXRhLHllcnI9ZXJyLG1hcmtlcj0nbycsZm10PVwibm9uZVwiLGNvbG9yPSdrJywpXG5wbHQuc2NhdHRlcih4X2RhdGEseV9kYXRhLG1hcmtlcj0nbycsY29sb3I9J2snKVxucGx0LnhsYWJlbCgneC0gcG9zaXRpb24nKVxucGx0LnlsYWJlbCgneS0gcG9zaXRpb24nKVxucGx0LmxlZ2VuZCgpXG5wbHQuc2hvdygpIn0=
 </script>
 </div>
 <section id="chi-squared-value" class="level3">
@@ -830,7 +843,7 @@ r_i=100\left (\frac{y_i-f(x_{i},a)}{y_i}\right )
 
 </div>
 <script type="pyodide-11-contents">
-eyJjb2RlIjoicGx0LmZpZ3VyZShmaWdzaXplPSg4LDYpKVxuY2hpc3E9KCgoeV9kYXRhLXBhcmFib2xhKHhfZGF0YSxmaXRfYSxmaXRfYixmaXRfYykpL2VycikqKjIpLnN1bSgpXG5wbHQuc2NhdHRlcih4X2RhdGEsMTAwKih5X2RhdGEtcGFyYWJvbGEoeF9kYXRhLGZpdF9hLGZpdF9iLGZpdF9jKSkveV9kYXRhLG1hcmtlcj0nbycsY29sb3I9J2snKVxucGx0LnhsYWJlbCgneC0gcG9zaXRpb24nKVxucGx0LnlsYWJlbCgncmVzaWR1YWxzIFslXScpXG5wbHQuc2hvdygpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicGx0LmZpZ3VyZShmaWdzaXplPSg4LDYpKVxuY2hpc3E9KCgoeV9kYXRhLXBhcmFib2xhKHhfZGF0YSxmaXRfYSxmaXRfYixmaXRfYykpL2VycikqKjIpLnN1bSgpXG5wbHQuc2NhdHRlcih4X2RhdGEsMTAwKih5X2RhdGEtcGFyYWJvbGEoeF9kYXRhLGZpdF9hLGZpdF9iLGZpdF9jKSkveV9kYXRhLG1hcmtlcj0nbycsY29sb3I9J2snKVxucGx0LnhsYWJlbCgneC0gcG9zaXRpb24nKVxucGx0LnlsYWJlbCgncmVzaWR1YWxzIFslXScpXG5wbHQuc2hvdygpIn0=
 </script>
 </div>
 </section>
@@ -843,7 +856,7 @@ eyJjb2RlIjoicGx0LmZpZ3VyZShmaWdzaXplPSg4LDYpKVxuY2hpc3E9KCgoeV9kYXRhLXBhcmFib2xh
 
 </div>
 <script type="pyodide-12-contents">
-eyJjb2RlIjoiZGVmIGRhdGEoeCxhLGIsYyk6XG4gICAgeT1hKngqKjIrYip4K2NcbiAgICBlcnI9W25wLnJhbmRvbS5ub3JtYWwoKSBmb3IgXyBpbiByYW5nZShsZW4oeCkpXVxuICAgIGVycj15KmVyciowLjA1XG4gICAgcmV0dXJuKHkrZXJyKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZGVmIGRhdGEoeCxhLGIsYyk6XG4gICAgeT1hKngqKjIrYip4K2NcbiAgICBlcnI9W25wLnJhbmRvbS5ub3JtYWwoKSBmb3IgXyBpbiByYW5nZShsZW4oeCkpXVxuICAgIGVycj15KmVyciowLjA1XG4gICAgcmV0dXJuKHkrZXJyKSJ9
 </script>
 </div>
 <div>
@@ -851,7 +864,7 @@ eyJjb2RlIjoiZGVmIGRhdGEoeCxhLGIsYyk6XG4gICAgeT1hKngqKjIrYip4K2NcbiAgICBlcnI9W25w
 
 </div>
 <script type="pyodide-13-contents">
-eyJjb2RlIjoieD1ucC5saW5zcGFjZSgwLDEsMTApXG55bT1ucC56ZXJvcygxMClcbnBsdC5maWd1cmUoZmlnc2l6ZT0oOCw2KSlcblxuZm9yIF8gaW4gcmFuZ2UoMTApOlxuICAgIHk9ZGF0YSh4LC0yLjUyLDEuNjk3MTc1NSwxKVxuICAgIHltPXltK3lcbiAgICBwLGNvdj1jdXJ2ZV9maXQocGFyYWJvbGEseCx5LHNpZ21hPWVycixwMD1pbml0X2d1ZXNzLGFic29sdXRlX3NpZ21hPVRydWUpXG4gICAgcGx0LnNjYXR0ZXIoeCx5LGNvbG9yPSdrJyxhbHBoYT0wLjEpXG4gICAgeGY9bnAubGluc3BhY2UoMCwxLDEwMClcbiAgICBwbHQucGxvdCh4ZixwYXJhYm9sYSh4ZixwWzBdLHBbMV0scFsyXSksYWxwaGE9MC4yKVxuXG5wbHQuc2NhdHRlcih4LHltLzEwLGNvbG9yPSdiJylcbnBsdC54bGFiZWwoJ3gtcG9zaXRpb24nKVxucGx0LnlsYWJlbCgneS1wb3NpdGlvbicpXG5wbHQuc2hvdygpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoieD1ucC5saW5zcGFjZSgwLDEsMTApXG55bT1ucC56ZXJvcygxMClcbnBsdC5maWd1cmUoZmlnc2l6ZT0oOCw2KSlcblxuZm9yIF8gaW4gcmFuZ2UoMTApOlxuICAgIHk9ZGF0YSh4LC0yLjUyLDEuNjk3MTc1NSwxKVxuICAgIHltPXltK3lcbiAgICBwLGNvdj1jdXJ2ZV9maXQocGFyYWJvbGEseCx5LHNpZ21hPWVycixwMD1pbml0X2d1ZXNzLGFic29sdXRlX3NpZ21hPVRydWUpXG4gICAgcGx0LnNjYXR0ZXIoeCx5LGNvbG9yPSdrJyxhbHBoYT0wLjEpXG4gICAgeGY9bnAubGluc3BhY2UoMCwxLDEwMClcbiAgICBwbHQucGxvdCh4ZixwYXJhYm9sYSh4ZixwWzBdLHBbMV0scFsyXSksYWxwaGE9MC4yKVxuXG5wbHQuc2NhdHRlcih4LHltLzEwLGNvbG9yPSdiJylcbnBsdC54bGFiZWwoJ3gtcG9zaXRpb24nKVxucGx0LnlsYWJlbCgneS1wb3NpdGlvbicpXG5wbHQuc2hvdygpIn0=
 </script>
 </div>
 <p>We may therefore want to characterize how much the individual parameters vary with each other. In other word, this means that we want to know whether the fit parameters are independent or not, which is a good quality measure of our model. For this pupose we use a generalization of the variance definition</p>
@@ -878,7 +891,7 @@ eyJjb2RlIjoieD1ucC5saW5zcGFjZSgwLDEsMTApXG55bT1ucC56ZXJvcygxMClcbnBsdC5maWd1cmUo
 
 </div>
 <script type="pyodide-14-contents">
-eyJjb2RlIjoicHJpbnQoY292KSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicHJpbnQoY292KSJ9
 </script>
 </div>
 <p>The matrix above is our covariance matrix of the parameters. You see from the off diagonal elements that a number of parameters is highly related to each other. An even better view may be obtained by the so called correlation matrix <span class="math inline">\(R\)</span>, where the matrix elements</p>
@@ -891,7 +904,7 @@ R_{p_{i},p_{j}}=\frac{{\rm cov}(p_{i},p_{j})}{\sqrt{\sigma_{i}^2\sigma_{j}^2}}
 
 </div>
 <script type="pyodide-15-contents">
-eyJjb2RlIjoicz1ucC5kaWFnKGNvdilcblI9bnAuemVyb3MoWzMsM10pXG5mb3IgaSBpbiByYW5nZSgzKTpcbiAgICBmb3IgaiBpbiByYW5nZSgzKTpcbiAgICAgICAgUltpLGpdPWNvdltpLGpdL25wLnNxcnQoc1tpXSpzW2pdKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicz1ucC5kaWFnKGNvdilcblI9bnAuemVyb3MoWzMsM10pXG5mb3IgaSBpbiByYW5nZSgzKTpcbiAgICBmb3IgaiBpbiByYW5nZSgzKTpcbiAgICAgICAgUltpLGpdPWNvdltpLGpdL25wLnNxcnQoc1tpXSpzW2pdKSJ9
 </script>
 </div>
 <div>
@@ -899,7 +912,7 @@ eyJjb2RlIjoicz1ucC5kaWFnKGNvdilcblI9bnAuemVyb3MoWzMsM10pXG5mb3IgaSBpbiByYW5nZSgz
 
 </div>
 <script type="pyodide-16-contents">
-eyJjb2RlIjoicHJpbnQoUikiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicHJpbnQoUikifQ==
 </script>
 </div>
 <p>The correlation matrix thus indeed reveals that the parameters are highly related to each other. <code>curve_fit</code> calculates the corresponding covariance entries using the specified uncertainties. We may access the meaning of them a bit better if we look at our synthetic data.</p>
@@ -908,7 +921,7 @@ eyJjb2RlIjoicHJpbnQoUikiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
 
 </div>
 <script type="pyodide-17-contents">
-eyJjb2RlIjoiZGVmIGRhdGEoeCxhLGIsYyk6XG4gICAgeT1hKngqKjIrYip4K2NcbiAgICBlcnI9W25wLnJhbmRvbS5ub3JtYWwoKSBmb3IgXyBpbiByYW5nZShsZW4oeCkpXVxuICAgIGVycj15KmVyciowLjA1XG4gICAgcmV0dXJuKHkrZXJyKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZGVmIGRhdGEoeCxhLGIsYyk6XG4gICAgeT1hKngqKjIrYip4K2NcbiAgICBlcnI9W25wLnJhbmRvbS5ub3JtYWwoKSBmb3IgXyBpbiByYW5nZShsZW4oeCkpXVxuICAgIGVycj15KmVyciowLjA1XG4gICAgcmV0dXJuKHkrZXJyKSJ9
 </script>
 </div>
 <p>If we generate 100 different measurements and fit the accordingly, we can access a possible correlation of the parameters as sugested by the correlation matrix.</p>
@@ -917,7 +930,7 @@ eyJjb2RlIjoiZGVmIGRhdGEoeCxhLGIsYyk6XG4gICAgeT1hKngqKjIrYip4K2NcbiAgICBlcnI9W25w
 
 </div>
 <script type="pyodide-18-contents">
-eyJjb2RlIjoiYT1bXVxuYj1bXVxuYz1bXVxueD1ucC5saW5zcGFjZSgwLDEsMTApXG5mb3IgXyBpbiByYW5nZSgxMDApOlxuICAgIHk9ZGF0YSh4LC0yLjUyLDEuNjk3MTc1NSwxKVxuICAgIHAsY292PWN1cnZlX2ZpdChwYXJhYm9sYSx4LHksc2lnbWE9ZXJyLHAwPWluaXRfZ3Vlc3MsYWJzb2x1dGVfc2lnbWE9VHJ1ZSlcbiAgICBhLmFwcGVuZChwWzBdKVxuICAgIGIuYXBwZW5kKHBbMV0pXG4gICAgYy5hcHBlbmQocFsyXSkiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiYT1bXVxuYj1bXVxuYz1bXVxueD1ucC5saW5zcGFjZSgwLDEsMTApXG5mb3IgXyBpbiByYW5nZSgxMDApOlxuICAgIHk9ZGF0YSh4LC0yLjUyLDEuNjk3MTc1NSwxKVxuICAgIHAsY292PWN1cnZlX2ZpdChwYXJhYm9sYSx4LHksc2lnbWE9ZXJyLHAwPWluaXRfZ3Vlc3MsYWJzb2x1dGVfc2lnbWE9VHJ1ZSlcbiAgICBhLmFwcGVuZChwWzBdKVxuICAgIGIuYXBwZW5kKHBbMV0pXG4gICAgYy5hcHBlbmQocFsyXSkifQ==
 </script>
 </div>
 <p>If we now plot the parameter <span class="math inline">\(a\)</span> over the parameter <span class="math inline">\(b\)</span>, we indeed obtain a very strong correlation, which has a negative slope as suggested by the correlation matrix.</p>
@@ -926,7 +939,7 @@ eyJjb2RlIjoiYT1bXVxuYj1bXVxuYz1bXVxueD1ucC5saW5zcGFjZSgwLDEsMTApXG5mb3IgXyBpbiBy
 
 </div>
 <script type="pyodide-19-contents">
-eyJjb2RlIjoicGx0LmZpZ3VyZShmaWdzaXplPSg4LDYpKVxucGx0LnNjYXR0ZXIoYixjLGFscGhhPTAuMilcbnBsdC54bGFiZWwoJ3BhcmFtZXRlciBhJylcbnBsdC55bGFiZWwoJ3BhcmFtZXRlciBiJykiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicGx0LmZpZ3VyZShmaWdzaXplPSg4LDYpKVxucGx0LnNjYXR0ZXIoYixjLGFscGhhPTAuMilcbnBsdC54bGFiZWwoJ3BhcmFtZXRlciBhJylcbnBsdC55bGFiZWwoJ3BhcmFtZXRlciBiJykifQ==
 </script>
 </div>
 <p>This correlation of parameters means, that the parameter <code>b</code> is not independent from <code>a</code> but rather strongly linearly dependent on it. We might want to find a better model containing more independent parameters. We may write down a different model</p>
@@ -939,7 +952,7 @@ y=a(x-b)^2 +c
 
 </div>
 <script type="pyodide-20-contents">
-eyJjb2RlIjoiZGVmIG5ld21vZGVsKHgsYSxiLGMpOlxuICAgIHJldHVybihhKih4LWIpKioyK2MpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZGVmIG5ld21vZGVsKHgsYSxiLGMpOlxuICAgIHJldHVybihhKih4LWIpKioyK2MpIn0=
 </script>
 </div>
 <div>
@@ -947,7 +960,7 @@ eyJjb2RlIjoiZGVmIG5ld21vZGVsKHgsYSxiLGMpOlxuICAgIHJldHVybihhKih4LWIpKioyK2MpIiwi
 
 </div>
 <script type="pyodide-21-contents">
-eyJjb2RlIjoiZml0PWN1cnZlX2ZpdChuZXdtb2RlbCx4X2RhdGEseV9kYXRhLHNpZ21hPWVycixwMD1pbml0X2d1ZXNzLGFic29sdXRlX3NpZ21hPVRydWUpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiZml0PWN1cnZlX2ZpdChuZXdtb2RlbCx4X2RhdGEseV9kYXRhLHNpZ21hPWVycixwMD1pbml0X2d1ZXNzLGFic29sdXRlX3NpZ21hPVRydWUpIn0=
 </script>
 </div>
 <div>
@@ -955,7 +968,7 @@ eyJjb2RlIjoiZml0PWN1cnZlX2ZpdChuZXdtb2RlbCx4X2RhdGEseV9kYXRhLHNpZ21hPWVycixwMD1p
 
 </div>
 <script type="pyodide-22-contents">
-eyJjb2RlIjoiYW5zLCBjb3Y9Zml0IiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoiYW5zLCBjb3Y9Zml0In0=
 </script>
 </div>
 <div>
@@ -963,7 +976,7 @@ eyJjb2RlIjoiYW5zLCBjb3Y9Zml0IiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
 
 </div>
 <script type="pyodide-23-contents">
-eyJjb2RlIjoicz1ucC5kaWFnKGNvdilcblI9bnAuemVyb3MoWzMsM10pXG5mb3IgaSBpbiByYW5nZSgzKTpcbiAgICBmb3IgaiBpbiByYW5nZSgzKTpcbiAgICAgICAgUltpLGpdPWNvdltpLGpdL25wLnNxcnQoc1tpXSpzW2pdKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicz1ucC5kaWFnKGNvdilcblI9bnAuemVyb3MoWzMsM10pXG5mb3IgaSBpbiByYW5nZSgzKTpcbiAgICBmb3IgaiBpbiByYW5nZSgzKTpcbiAgICAgICAgUltpLGpdPWNvdltpLGpdL25wLnNxcnQoc1tpXSpzW2pdKSJ9
 </script>
 </div>
 <p>We see from the covariance matrix that the new model has a smaller correlation of the parameters on each other.</p>
@@ -972,7 +985,7 @@ eyJjb2RlIjoicz1ucC5kaWFnKGNvdilcblI9bnAuemVyb3MoWzMsM10pXG5mb3IgaSBpbiByYW5nZSgz
 
 </div>
 <script type="pyodide-24-contents">
-eyJjb2RlIjoicHJpbnQoY292KSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicHJpbnQoY292KSJ9
 </script>
 </div>
 <p>This is also expressed by our correlation matrix.</p>
@@ -981,7 +994,7 @@ eyJjb2RlIjoicHJpbnQoY292KSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
 
 </div>
 <script type="pyodide-25-contents">
-eyJjb2RlIjoicHJpbnQoUikiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+eyJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9LCJjb2RlIjoicHJpbnQoUikifQ==
 </script>
 </div>
 
