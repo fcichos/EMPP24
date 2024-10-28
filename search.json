@@ -151,7 +151,7 @@
     "text": "Most of the functionality in Python is provided by modules. The Python Standard Library is a large collection of modules that provides cross-platform implementations of common facilities such as access to the operating system, file I/O, string management, network communication, math, web-scraping, text manipulation, machine learning and much more.\nTo use a module in a Python module it first has to be imported. A module can be imported using the import statement. For example, to import the module math, which contains many standard mathematical functions, we can do:\n\n\n\n\n\n\nThis includes the whole module and makes it available for use later in the program. Alternatively, we can chose to import all symbols (functions and variables) in a module so that we don’t need to use the prefix “math.” every time we use something from the math module:\n\n\n\n\n\n\nThis pattern can be very convenient, but in large programs that include many modules it is often a good idea to keep the symbols from each module in their own namespaces, by using the import math pattern. This would eliminate potentially confusing problems.\n\nNamespaces\n\n\n\n\n\n\nNamespaces\n\n\n\nA namespace is an identifier used to organize objects, e.g. the methods and variables of a module. The prefix math. we have used in the previous section is such a namespace. You may also create your own namespace for a module. This is done by using the import math as mymath pattern.\n\n\n\n\n\n\n\n\nYou may also only import specific functions of a module.\n\n\n\n\n\n\n\n\nDirectory of a module\nOnce a module is imported, we can list the symbols it provides using the dir function:\n\n\n\n\n\n\nAnd using the function help we can get a description of each function (almost .. not all functions have docstrings, as they are technically called, but the vast majority of functions are documented this way).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe can also use the help function directly on modules: Try\nhelp(math)\nSome very useful modules form the Python standard library are os, sys, math, shutil, re, subprocess, multiprocessing, threading.\nA complete lists of standard modules for Python 3 is available at http://docs.python.org/3/library/ .\n\n\nAdvanced topics\n\n\n\n\n\n\nCreate Your Own Modules\n\n\n\n\n\nCreating your own modules in Python is a great way to organize your code and make it reusable. A module is simply a file containing Python definitions and statements. Here’s how you can create and use your own module:\n\nCreating a Module\nTo create a module, you just need to save your Python code in a file with a .py extension. For example, let’s create a module named mymodule.py with the following content:\n# mymodule.py\n\ndef greet(name: str) -&gt; str:\n    return f\"Hello, {name}!\"\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b\n\n\nUsing Your Module\nOnce you have created your module, you can import it into other Python scripts using the import statement. Here’s an example of how to use the mymodule we just created:\n# main.py\n\nimport mymodule\n\n# Use the functions from mymodule\nprint(mymodule.greet(\"Alice\"))\nprint(mymodule.add(5, 3))\n\n\nImporting Specific Functions\nYou can also import specific functions from a module using the from ... import ... syntax:\n# main.py\n\nfrom mymodule import greet, add\n\n# Use the imported functions directly\nprint(greet(\"Bob\"))\nprint(add(10, 7))\n\n\nModule Search Path\nWhen you import a module, Python searches for the module in the following locations: 1. The directory containing the input script (or the current directory if no script is specified). 2. The directories listed in the PYTHONPATH environment variable. 3. The default directory where Python is installed.\nYou can view the module search path by printing the sys.path variable:\nimport sys\nprint(sys.path)\n\n\nCreating Packages\nA package is a way of organizing related modules into a directory hierarchy. A package is simply a directory that contains a special file named __init__.py, which can be empty. Here’s an example of how to create a package:\nmypackage/\n    __init__.py\n    module1.py\n    module2.py\nYou can then import modules from the package using the dot notation:\n# main.py\n\nfrom mypackage import module1, module2\n\n# Use the functions from the modules\nprint(module1.some_function())\nprint(module2.another_function())\nCreating and using modules and packages in Python helps you organize your code better and makes it easier to maintain and reuse.\n\n\nNamespaces in Packages\nYou can also create sub-packages by adding more directories with __init__.py files. This allows you to create a hierarchical structure for your modules:\nmypackage/\n    __init__.py\n    subpackage/\n        __init__.py\n        submodule.py\nYou can then import submodules using the full package name:\n# main.py\n\nfrom mypackage.subpackage import submodule\n\n# Use the functions from the submodule\nprint(submodule.some_sub_function())",
     "crumbs": [
       "Python Basics",
-      "Lecture 2",
+      "Lecture 3",
       "Modules"
     ]
   },
@@ -163,7 +163,7 @@
     "text": "Functions are reusable blocks of code that can be executed multiple times from different parts of your program. They help in organizing code, making it more readable, and reducing redundancy. Functions can take input arguments and return output values.\n\nDefining a FunctionCalling a Function\n\n\nA function in Python is defined using the def keyword followed by the name of the function, which is usually descriptive and indicates what the function does. The parameters inside the parentheses indicate what data the function expects to receive. The -&gt; symbol is used to specify the return type of the function.\nHere’s an example:\n\n\n\n\n\n\n\n\nFunctions can be called by specifying the name of the function followed by parentheses containing the arguments. The arguments passed to the function should match the number and type of parameters defined in the function. Here’s an example:",
     "crumbs": [
       "Python Basics",
-      "Lecture 2",
+      "Lecture 3",
       "Functions"
     ]
   },
@@ -175,7 +175,7 @@
     "text": "Functions are reusable blocks of code that can be executed multiple times from different parts of your program. They help in organizing code, making it more readable, and reducing redundancy. Functions can take input arguments and return output values.\n\nDefining a FunctionCalling a Function\n\n\nA function in Python is defined using the def keyword followed by the name of the function, which is usually descriptive and indicates what the function does. The parameters inside the parentheses indicate what data the function expects to receive. The -&gt; symbol is used to specify the return type of the function.\nHere’s an example:\n\n\n\n\n\n\n\n\nFunctions can be called by specifying the name of the function followed by parentheses containing the arguments. The arguments passed to the function should match the number and type of parameters defined in the function. Here’s an example:",
     "crumbs": [
       "Python Basics",
-      "Lecture 2",
+      "Lecture 3",
       "Functions"
     ]
   },
@@ -187,7 +187,7 @@
     "text": "Loops\nLoops are used to execute a block of code repeatedly. There are two main types of loops in Python: for loops and while loops.\n\nFor LoopWhile Loop\n\n\nA for loop in Python is used to iterate over a sequence (such as a list or string) and execute a block of code for each item in the sequence. Here’s an example:\n\n\n\n\n\n\n\n\nA while loop in Python is used to execute a block of code while a certain condition is met. The loop continues as long as the condition is true. Here’s an example:",
     "crumbs": [
       "Python Basics",
-      "Lecture 2",
+      "Lecture 3",
       "Functions"
     ]
   },
@@ -199,7 +199,7 @@
     "text": "Conditional Statements\nConditional statements are used to control the flow of your program based on conditions. The main conditional statements in Python are if, else, and elif.\n\nIf StatementElse StatementElif Statement\n\n\nAn if statement in Python is used to execute a block of code if a certain condition is met. Here’s an example:\n\n\n\n\n\n\n\n\nAn else statement in Python is used to execute a block of code if the condition in an if statement is not met. Here’s an example:\n\n\n\n\n\n\n\n\nAn elif statement in Python is used to execute a block of code if the condition in an if statement is not met but under an extra condition. Here’s an example:",
     "crumbs": [
       "Python Basics",
-      "Lecture 2",
+      "Lecture 3",
       "Functions"
     ]
   },
@@ -288,122 +288,122 @@
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html",
-    "href": "lectures/lecture02/04-lecture02.html",
+    "objectID": "lectures/lecture02/04-plotting.html",
+    "href": "lectures/lecture02/04-plotting.html",
     "title": "Plotting",
     "section": "",
     "text": "Data visualization through plotting is a crucial tool for analyzing and interpreting scientific data and theoretical predictions. While plotting capabilities are not built into Python’s core, they are available through various external library modules. Matplotlib is widely recognized as the de facto standard for plotting in Python. However, several other powerful plotting libraries exist, including PlotLy, Seaborn, and Bokeh, each offering unique features and capabilities for data visualization.\nAs Matplotlib is an external library (actually a collection of libraries), it must be imported into any script that uses it. While Matplotlib relies heavily on NumPy, importing NumPy separately is not always necessary for basic plotting. However, for most scientific applications, you’ll likely use both. To create 2D plots, you typically start by importing Matplotlib’s pyplot module:\nThis import introduces the implicit interface of pyplot for creating figures and plots. Matplotlib offers two main interfaces:\nWe will use most of the the the pyplot interface as in the examples below. The section Additional Plotting will refer to the explicit programming of figures.\nWe can set some of the parameters for the appearance of graphs globally. In case you still want to modify a part of it, you can set individual parameters later during plotting. The command used here is the\nfunction, which takes a dictionary with the specific parameters as key.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#simple-plotting",
-    "href": "lectures/lecture02/04-lecture02.html#simple-plotting",
+    "objectID": "lectures/lecture02/04-plotting.html#simple-plotting",
+    "href": "lectures/lecture02/04-plotting.html#simple-plotting",
     "title": "Plotting",
     "section": "Simple Plotting",
     "text": "Simple Plotting\nMatplotlib offers multiple levels of functionality for creating plots. Throughout this section, we’ll primarily focus on using commands that leverage default settings. This approach simplifies the process, as Matplotlib automatically handles much of the graph layout. These high-level commands are ideal for quickly creating effective visualizations without delving into intricate details. At the end of this section, we’ll briefly touch upon more advanced techniques that provide greater control over plot elements and layout.\n\nAnatomy of a Line Plot\nTo create a basic line plot, use the following command:\nplt.plot(x, y)\nBy default, this generates a line plot. However, you can customize the appearance by adjusting various parameters within the plot() function. For instance, you can modify it to resemble a scatter plot by changing certain arguments. The versatility of this command allows for a range of visual representations beyond simple line plots.\nLet’s create a simple line plot of the sine function over the interval [0, 4π]. We’ll use NumPy to generate the x-values and calculate the corresponding y-values. The following code snippet demonstrates this process:\n1x = np.linspace(0, 4.*np.pi, 100)\n2y = np.sin(x)\n\n3plt.figure(figsize=(4,3))\n4plt.plot(x, y)\n5plt.tight_layout()\n6plt.show()\n\n1\n\nCreate an array of 100 values between 0 and 4π.\n\n2\n\nCalculate the sine of each value in the array.\n\n3\n\ncreate a new figure\n\n4\n\nplot the data\n\n5\n\nautomatically adjust the layout\n\n6\n\nshow the figure\n\n\nHere is the code in a Python cell:\n\n\n\n\n\n\nTry to change the values of the x and y arrays and see how the plot changes.\n\n\n\n\n\n\nWhy use plt.tight_layout()\n\n\n\n\n\nplt.tight_layout() is a very useful function in Matplotlib that automatically adjusts the spacing between plot elements to prevent overlapping and ensure that all elements fit within the figure area. Here’s what it does:\n\nPadding Adjustment: It adjusts the padding between and around subplots to prevent overlapping of axis labels, titles, and other elements.\nSubplot Spacing: It optimizes the space between multiple subplots in a figure.\nText Accommodation: It ensures that all text elements (like titles, labels, and legends) fit within the figure without being cut off.\nMargin Adjustment: It adjusts the margins around the entire figure to make sure everything fits neatly.\nAutomatic Resizing: If necessary, it can slightly resize subplot areas to accommodate all elements.\nLegend Positioning: It takes into account the presence and position of legends when adjusting layouts.\n\nKey benefits of using plt.tight_layout():\n\nIt saves time in manual adjustment of plot elements.\nIt helps create more professional-looking and readable plots.\nIt’s particularly useful when creating figures with multiple subplots or when saving figures to files.\n\nYou typically call plt.tight_layout() just before plt.show() or plt.savefig(). For example:\nplt.figure()\n# ... (your plotting code here)\nplt.tight_layout()\nplt.show()\n\n\n\n\nAxis Labels\nTo enhance the clarity and interpretability of our plots, it’s crucial to provide context through proper labeling. Let’s add descriptive axis labels to our diagram, a practice that significantly improves the readability and comprehension of the data being presented.\nplt.xlabel('x-label')\nplt.ylabel('y-label')\n\n\n\n\n\n\n\n\nLegends\nplt.plot(..., label=r'$\\sin(x)$')\nplt.legend(loc='lower left')",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#other-plot-types",
-    "href": "lectures/lecture02/04-lecture02.html#other-plot-types",
+    "objectID": "lectures/lecture02/04-plotting.html#other-plot-types",
+    "href": "lectures/lecture02/04-plotting.html#other-plot-types",
     "title": "Plotting",
     "section": "Other Plot Types",
     "text": "Other Plot Types\n\nScatter plot\nIf you prefer to use symbols for plotting just use the\nplt.scatter(x,y)\ncommand of pylab. Note that the scatter command requires a x and y values and you can set the marker symbol (see an overview of the marker symbols).\n\n\n\n\n\n\n\n\nHistograms\nA very useful plotting command is also the hist command. It generates a histogram of the data provided. A histogram is a graphical representation of the distribution of numerical data. It is an estimate of the probability distribution of a continuous variable. To construct a histogram, the first step is to “bin” the range of values—that is, divide the entire range of values into a series of intervals—and then count how many values fall into each interval. The bins are usually specified as consecutive, non-overlapping intervals of a variable. The bins must be adjacent, and are often (but not required to be) of equal size.\nWhen using the histogram function, you have flexibility in how the data is grouped. If you only provide the dataset, the function will automatically determine appropriate bins. However, you can also specify custom bins by passing an array of intervals using the syntax hist(data, bins=b), where b is your custom array of bin edges. To normalize the histogram so that the total area under it equals 1, you can set the density parameter to True. It’s worth noting that the histogram function doesn’t just create a visual representation; it also returns useful information such as the count of data points in each bin and the bin edges themselves.\n\n\n\n\n\n\nPhysics Interlude- Probability density for finding an oscillating particle\n\n\n\nLet’s integrate histogram plotting with a fundamental physics concept: the simple harmonic oscillator in one dimension. This system is described by a specific equation of motion:\n\\[\\begin{equation}\n\\ddot{x}(t) = -\\omega^2 x(t)\n\\end{equation}\\]\nFor an initial elongation \\(\\Delta x\\) at \\(t=0\\), the solution is:\n\\[\\begin{equation}\nx(t) = \\Delta x \\cos(\\omega t)\n\\end{equation}\\]\nTo calculate the probability of finding the spring at a certain elongation, we need to consider the time spent at different positions. The time \\(dt\\) spent in the interval [\\(x(t)\\), \\(x(t)+dx\\)] depends on the speed:\n\\[\\begin{equation}\nv(t) = \\frac{dx}{dt} = -\\omega \\Delta x \\sin(\\omega t)\n\\end{equation}\\]\nThe probability of finding the oscillator in a certain interval is the fraction of time spent in this interval, normalized by half the oscillation period \\(T/2\\):\n\\[\\begin{equation}\n\\frac{dt}{T/2} = \\frac{1}{T/2}\\frac{dx}{v(t)} = \\frac{1}{T/2}\\frac{-dx}{\\omega \\Delta x \\sin(\\omega t)}\n\\end{equation}\\]\nGiven that \\(\\omega = 2\\pi/T\\), we can derive the probability density:\n\\[\\begin{equation}\np(x)dx = \\frac{1}{\\pi \\Delta x}\\frac{dx}{\\sqrt{1-\\left(\\frac{x(t)}{\\Delta x}\\right)^2}}\n\\end{equation}\\]\nThis probability density reveals that the spring is more likely to be found at elongations where its speed is low. This principle extends to non-equilibrium physics, where entities moving with variable speed are more likely to be found in locations where they move slowly.\nWe can visualize this using the histogram function. By evaluating the position at equidistant times using the equation of motion and creating a histogram of these positions, we can represent the probability of finding the oscillator at certain positions. When properly normalized, this histogram will reflect the theoretical probability density we derived.\n\n\n\n\n\n\n\n\n\n\nCombined plots\nYou can combine multiple data with the same axes by stacking multiple plots.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#saving-figures",
-    "href": "lectures/lecture02/04-lecture02.html#saving-figures",
+    "objectID": "lectures/lecture02/04-plotting.html#saving-figures",
+    "href": "lectures/lecture02/04-plotting.html#saving-figures",
     "title": "Plotting",
     "section": "Saving figures",
     "text": "Saving figures\nTo save a figure to a file we can use the savefig method in the Figure class. Matplotlib can generate high-quality output in a number formats, including PNG, JPG, EPS, SVG, PGF and PDF. For scientific papers, I recommend using PDF whenever possible. (LaTeX documents compiled with pdflatex can include PDFs using the includegraphics command). In some cases, PGF can also be good alternative.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#plots-with-error-bars",
-    "href": "lectures/lecture02/04-lecture02.html#plots-with-error-bars",
+    "objectID": "lectures/lecture02/04-plotting.html#plots-with-error-bars",
+    "href": "lectures/lecture02/04-plotting.html#plots-with-error-bars",
     "title": "Plotting",
     "section": "Plots with error bars",
     "text": "Plots with error bars\nWhen plotting experimental data it is customary to include error bars that indicate graphically the degree of uncertainty that exists in the measurement of each data point. The MatPlotLib function errorbar plots data with error bars attached. It can be used in a way that either replaces or augments the plot function. Both vertical and horizontal error bars can be displayed. The figure below illustrates the use of error bars.\n\n\n\n\n\n\n\nSetting plotting limits and excluding data\nIf you want to zoom in to s specific region of a plot you can set the limits of the individual axes.\n\n\n\n\n\n\n\nMasked arrays\nSometimes you encounter situations, when you wish to mask some of the data of your plot, because they are not showing real data as the vertical lines in the plot above. For this purpose, you can mask the data arrays in various ways to not show up. The example below uses the\nnp.ma.masked_where()\nfunction of NumPy, which takes a condition as the first argument and what should be returned if that condition is fulfilled.\n\n\n\n\n\n\nIf you look at the resulting array, you will find, that the entries have not been removed but replaced by --, so the values are not existent and thefore not plotted.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#logarithmic-plots",
-    "href": "lectures/lecture02/04-lecture02.html#logarithmic-plots",
+    "objectID": "lectures/lecture02/04-plotting.html#logarithmic-plots",
+    "href": "lectures/lecture02/04-plotting.html#logarithmic-plots",
     "title": "Plotting",
     "section": "Logarithmic plots",
     "text": "Logarithmic plots\nData sets can span many orders of magnitude from fractional quantities much smaller than unity to values much larger than unity. In such cases it is often useful to plot the data on logarithmic axes.\n\nSemi-log plots\nFor data sets that vary exponentially in the independent variable, it is often useful to use one or more logarithmic axes. Radioactive decay of unstable nuclei, for example, exhibits an exponential decrease in the number of particles emitted from the nuclei as a function of time.\nMatPlotLib provides two functions for making semi-logarithmic plots, semilogx and semilogy, for creating plots with logarithmic x and y axes, with linear y and x axes, respectively. We illustrate their use in the program below, which made the above plots.\n\n\n\n\n\n\n\n\nLog-log plots\nMatPlotLib can also make log-log or double-logarithmic plots using the function loglog. It is useful when both the \\(x\\) and \\(y\\) data span many orders of magnitude. Data that are described by a power law \\(y=Ax^b\\), where \\(A\\) and \\(b\\) are constants, appear as straight lines when plotted on a log-log plot. Again, the loglog function works just like the plot function but with logarithmic axes.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#arranging-multiple-plots",
-    "href": "lectures/lecture02/04-lecture02.html#arranging-multiple-plots",
+    "objectID": "lectures/lecture02/04-plotting.html#arranging-multiple-plots",
+    "href": "lectures/lecture02/04-plotting.html#arranging-multiple-plots",
     "title": "Plotting",
     "section": "Arranging multiple plots",
-    "text": "Arranging multiple plots\nOften you want to create two or more graphs and place them next to one another, generally because they are related to each other in some way.",
+    "text": "Arranging multiple plots\nOften you want to create two or more graphs and place them next to one another, generally because they are related to each other in some way.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnimations\n\n\n\n\n\nMatplotlib can also be used to create animations. The FuncAnimation class makes it easy to create animations by repeatedly calling a function to update the plot. The following example shows a simple pendulum animation.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#contour-and-density-plots",
-    "href": "lectures/lecture02/04-lecture02.html#contour-and-density-plots",
+    "objectID": "lectures/lecture02/04-plotting.html#contour-and-density-plots",
+    "href": "lectures/lecture02/04-plotting.html#contour-and-density-plots",
     "title": "Plotting",
     "section": "Contour and Density Plots",
     "text": "Contour and Density Plots\nA contour plots are useful tools to study two dimensional data, meaning \\(Z(X,Y)\\). A contour plots isolines of the function \\(Z\\).\n\nSimple contour plot\n\n\n\n\n\n\nPhysics Interlude\n\n\n\nInterference of spherical waves\nWe want to use contour plots to explore the interference of two spherical waves. A spherical wave can be given by a complex spatial amplitude\n\\[\\begin{equation}\nU(r)=U_{0}\\frac{e^{-i\\,k r}}{r}\n\\end{equation}\\]\nwhere \\(U_{0}\\) is the amplitude, \\(k\\) the magnitude of the k-vector, i.e. \\(k=2\\pi/\\lambda\\) and \\(r=\\sqrt{x^2+y^2}\\) the distance, here in 2 dimensions. Note that the total wavefunction also contains a temporal part such that\n\\[\\begin{equation}\nU(r,t)=U_{0}\\frac{e^{-i\\,k r}}{r}e^{i\\omega t}\n\\end{equation}\\]\nWe will however ignore the temporal factor, as we are interested in the spatial interference pattern with a time-averaged intensity.\nTo show interference, we just use two of those monochromatic waves located at \\(\\vec{r}_{1}\\) and \\(\\vec{r}_{2}\\).\n\n\n\ninterference\n\n\nTo obtain the total amplitude we have to sum up the wavefunctions of the two sources.\n\\[\\begin{equation}\nU(\\vec{r})=U_{01}\\frac{e^{-i\\,k |\\vec{r}-\\vec{r}_1|}}{|\\vec{r}-\\vec{r}_1|}+U_{02}\\frac{e^{-i\\,k |\\vec{r}-\\vec{r}_2|}}{|\\vec{r}-\\vec{r}_2|}\n\\end{equation}\\]\nThe intensity of the wave at a position is then related to the magnitude square of the wavefunction\n\\[\\begin{equation}\nI(r)\\propto |U(r)|^2\n\\end{equation}\\]\nTo keep it simple we will skip the \\(1/r\\) amplitude decay.\n\n\n\n\n\n\n\n\n\n\n\n\n\nColor contour plot\n\n\n\n\n\n\n\n\nImage plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdvanced Plotting - Explicit Version\n\n\n\n\n\nAdvanced Plotting - Explicit Version\nWhile we have so far largely relied on the default setting and the automatic arrangement of plots, there is also a way to precisely design your plot. Python provides the tools of object oriented programming and thus modules provide classes which can be instanced into objects. This explicit interfaces allows you to control all details without the automatisms of pyplot.\nThe figure below, which is taken from the matplotlib documentation website shows the sets of commands and the objects in the figure, the commands refer to. It is a nice reference, when creating a figure.\n\n\n\nanatomy of a figure\n\n\n\nPlots with Multiple Spines\nSometimes it is very useful to plot different quantities in the same plot with the same x-axis but with different y-axes. Here is some example, where each line plot has its own y-axis.\n\n\n\n\n\n\n\n\nInsets\nInsets are plots within plots using their own axes. We therefore need to create two axes systems, if we want to have a main plot and and inset.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpine axis\n\n\n\n\n\n\n\n\nPolar plot\n\n\n\n\n\n\n\n\nText annotation\nAnnotating text in matplotlib figures can be done using the text function. It supports LaTeX formatting just like axis label texts and titles:\n\n\n\n\n\n\n\n\n3D Plotting\nMatplotlib was initially designed with only two-dimensional plotting in mind. Around the time of the 1.0 release, some three-dimensional plotting utilities were built on top of Matplotlib’s two-dimensional display, and the result is a convenient (if somewhat limited) set of tools for three-dimensional data visualization. Three-dimensional plots are enabled by importing the mplot3d toolkit, included with the main Matplotlib installation:\n\n\n\n\n\n\nOnce this submodule is imported, a three-dimensional axes can be created by passing the keyword projection=‘3d’ to any of the normal axes creation routines:\n\nProjection Scence\n\n\n\n\n\n\nWith this three-dimensional axes enabled, we can now plot a variety of three-dimensional plot types. Three-dimensional plotting is one of the functionalities that benefits immensely from viewing figures interactively rather than statically in the notebook; recall that to use interactive figures, you can use %matplotlib notebook rather than %matplotlib inline when running this code.\n\n\nLine Plotting in 3D\nfrom sets of (x, y, z) triples. In analogy with the more common two-dimensional plots discussed earlier, these can be created using the ax.plot3D and ax.scatter3D functions. The call signature for these is nearly identical to that of their two-dimensional counterparts, so you can refer to Simple Line Plots and Simple Scatter Plots for more information on controlling the output. Here we’ll plot a trigonometric spiral, along with some points drawn randomly near the line:\n\n\n\n\n\n\nNotice that by default, the scatter points have their transparency adjusted to give a sense of depth on the page. While the three-dimensional effect is sometimes difficult to see within a static image, an interactive view can lead to some nice intuition about the layout of the points. Use the scatter3D or the plot3D method to plot a random walk in 3-dimensions in your exercise.\n\n\nSurface Plotting\nA surface plot is like a wireframe plot, but each face of the wireframe is a filled polygon. Adding a colormap to the filled polygons can aid perception of the topology of the surface being visualized:",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#interference-of-spherical-waves",
-    "href": "lectures/lecture02/04-lecture02.html#interference-of-spherical-waves",
+    "objectID": "lectures/lecture02/04-plotting.html#interference-of-spherical-waves",
+    "href": "lectures/lecture02/04-plotting.html#interference-of-spherical-waves",
     "title": "Plotting",
     "section": "Interference of spherical waves",
     "text": "Interference of spherical waves\nWe want to use contour plots to explore the interference of two spherical waves. A spherical wave can be given by a complex spatial amplitude\n\\[\\begin{equation}\nU(r)=U_{0}\\frac{e^{-i\\,k r}}{r}\n\\end{equation}\\]\nwhere \\(U_{0}\\) is the amplitude, \\(k\\) the magnitude of the k-vector, i.e. \\(k=2\\pi/\\lambda\\) and \\(r=\\sqrt{x^2+y^2}\\) the distance, here in 2 dimensions. Note that the total wavefunction also contains a temporal part such that\n\\[\\begin{equation}\nU(r,t)=U_{0}\\frac{e^{-i\\,k r}}{r}e^{i\\omega t}\n\\end{equation}\\]\nWe will however ignore the temporal factor, as we are interested in the spatial interference pattern with a time-averaged intensity.\nTo show interference, we just use two of those monochromatic waves located at \\(\\vec{r}_{1}\\) and \\(\\vec{r}_{2}\\).\n\n\n\ninterference\n\n\nTo obtain the total amplitude we have to sum up the wavefunctions of the two sources.\n\\[\\begin{equation}\nU(\\vec{r})=U_{01}\\frac{e^{-i\\,k |\\vec{r}-\\vec{r}_1|}}{|\\vec{r}-\\vec{r}_1|}+U_{02}\\frac{e^{-i\\,k |\\vec{r}-\\vec{r}_2|}}{|\\vec{r}-\\vec{r}_2|}\n\\end{equation}\\]\nThe intensity of the wave at a position is then related to the magnitude square of the wavefunction\n\\[\\begin{equation}\nI(r)\\propto |U(r)|^2\n\\end{equation}\\]\nTo keep it simple we will skip the \\(1/r\\) amplitude decay.\n\n\n\n\n\n\n\n\n\n\n\n\n\nColor contour plot\n\n\n\n\n\n\n\n\nImage plot",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
   {
-    "objectID": "lectures/lecture02/04-lecture02.html#advanced-plotting---explicit-version",
-    "href": "lectures/lecture02/04-lecture02.html#advanced-plotting---explicit-version",
+    "objectID": "lectures/lecture02/04-plotting.html#advanced-plotting---explicit-version",
+    "href": "lectures/lecture02/04-plotting.html#advanced-plotting---explicit-version",
     "title": "Plotting",
     "section": "Advanced Plotting - Explicit Version",
     "text": "Advanced Plotting - Explicit Version\nWhile we have so far largely relied on the default setting and the automatic arrangement of plots, there is also a way to precisely design your plot. Python provides the tools of object oriented programming and thus modules provide classes which can be instanced into objects. This explicit interfaces allows you to control all details without the automatisms of pyplot.\nThe figure below, which is taken from the matplotlib documentation website shows the sets of commands and the objects in the figure, the commands refer to. It is a nice reference, when creating a figure.\n\n\n\nanatomy of a figure\n\n\n\nPlots with Multiple Spines\nSometimes it is very useful to plot different quantities in the same plot with the same x-axis but with different y-axes. Here is some example, where each line plot has its own y-axis.\n\n\n\n\n\n\n\n\nInsets\nInsets are plots within plots using their own axes. We therefore need to create two axes systems, if we want to have a main plot and and inset.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpine axis\n\n\n\n\n\n\n\n\nPolar plot\n\n\n\n\n\n\n\n\nText annotation\nAnnotating text in matplotlib figures can be done using the text function. It supports LaTeX formatting just like axis label texts and titles:\n\n\n\n\n\n\n\n\n3D Plotting\nMatplotlib was initially designed with only two-dimensional plotting in mind. Around the time of the 1.0 release, some three-dimensional plotting utilities were built on top of Matplotlib’s two-dimensional display, and the result is a convenient (if somewhat limited) set of tools for three-dimensional data visualization. Three-dimensional plots are enabled by importing the mplot3d toolkit, included with the main Matplotlib installation:\n\n\n\n\n\n\nOnce this submodule is imported, a three-dimensional axes can be created by passing the keyword projection=‘3d’ to any of the normal axes creation routines:\n\nProjection Scence\n\n\n\n\n\n\nWith this three-dimensional axes enabled, we can now plot a variety of three-dimensional plot types. Three-dimensional plotting is one of the functionalities that benefits immensely from viewing figures interactively rather than statically in the notebook; recall that to use interactive figures, you can use %matplotlib notebook rather than %matplotlib inline when running this code.\n\n\nLine Plotting in 3D\nfrom sets of (x, y, z) triples. In analogy with the more common two-dimensional plots discussed earlier, these can be created using the ax.plot3D and ax.scatter3D functions. The call signature for these is nearly identical to that of their two-dimensional counterparts, so you can refer to Simple Line Plots and Simple Scatter Plots for more information on controlling the output. Here we’ll plot a trigonometric spiral, along with some points drawn randomly near the line:\n\n\n\n\n\n\nNotice that by default, the scatter points have their transparency adjusted to give a sense of depth on the page. While the three-dimensional effect is sometimes difficult to see within a static image, an interactive view can lead to some nice intuition about the layout of the points. Use the scatter3D or the plot3D method to plot a random walk in 3-dimensions in your exercise.\n\n\nSurface Plotting\nA surface plot is like a wireframe plot, but each face of the wireframe is a filled polygon. Adding a colormap to the filled polygons can aid perception of the topology of the surface being visualized:",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Plotting"
     ]
   },
@@ -503,7 +503,7 @@
     "href": "lectures/lecture04/2_brownian_motion.html",
     "title": "Brownian Motion",
     "section": "",
-    "text": "File as PDF\nWe will apply our newly acquired knowledge about classes to simulate Brownian motion. This task aligns perfectly with the principles of object-oriented programming, as each Brownian particle (or colloid) can be represented as an object instantiated from the same class, albeit with different properties. For instance, some particles might be larger while others are smaller. We have already touched on some aspects of this in previous lectures."
+    "text": "We will apply our newly acquired knowledge about classes to simulate Brownian motion. This task aligns perfectly with the principles of object-oriented programming, as each Brownian particle (or colloid) can be represented as an object instantiated from the same class, albeit with different properties. For instance, some particles might be larger while others are smaller. We have already touched on some aspects of this in previous lectures."
   },
   {
     "objectID": "lectures/lecture04/2_brownian_motion.html#physics",
@@ -583,67 +583,185 @@
     "text": "5. Example Usage\n# Initialize system\nn_particles = 100\nbox_length = 10.0\npositions = np.random.rand(n_particles, 3) * box_length\nvelocities = np.zeros((n_particles, 3))\nmass = 1.0\ndt = 0.001\n\n# Create simulation\nsim = MolecularMDSimulation(\n    positions, velocities, mass, box_length, dt,\n    bonds=[(0, 1, 1000.0, 1.0)],  # Example bond\n    angles=[(0, 1, 2, 100.0, np.pi)]  # Example angle\n)\n\n# Run simulation\nn_steps = 1000\nfor step in range(n_steps):\n    sim.velocity_verlet_step()\nHere’s a suggested basic structure:\nclass Atom:\n    def __init__(self, atom_id, atom_type, position, velocity=None, mass=None):\n        self.id = atom_id          # unique identifier\n        self.type = atom_type      # e.g., 'H', 'C', 'O'\n        self.position = position   # numpy array [x, y, z]\n        self.velocity = velocity if velocity is not None else np.zeros(3)\n        self.mass = mass\n        self.force = np.zeros(3)   # current force on atom\n\n        # Optional attributes that might be useful later:\n        self.bonded_atoms = []     # list of atoms this atom is bonded to\n        self.charges = 0.0         # for electrostatic interactions\nThen you can later create classes for: 1. Bond (connects two Atom objects)\nclass Bond:\n    def __init__(self, atom1, atom2, k, r0):\n        self.atom1 = atom1\n        self.atom2 = atom2\n        self.k = k      # force constant\n        self.r0 = r0    # equilibrium distance\n\nAngle (three Atom objects)\n\nclass Angle:\n    def __init__(self, atom1, atom2, atom3, k, theta0):\n        self.atoms = [atom1, atom2, atom3]\n        self.k = k          # force constant\n        self.theta0 = theta0  # equilibrium angle\n\nDihedral (four Atom objects)\n\nThis modular approach makes it easier to: - Add features incrementally - Debug each interaction type separately - Keep track of connectivity - Calculate forces systematically\nclass Atom:\n    def __init__(self, atom_id, atom_type, position, velocity=None, mass=None):\n        self.id = atom_id\n        self.type = atom_type\n        self.position = position\n        self.velocity = velocity if velocity is not None else np.zeros(3)\n        self.mass = mass\n        self.force = np.zeros(3)\n\n    def add_force(self, force):\n        \"\"\"Add force contribution to total force on atom\"\"\"\n        self.force += force\n\n    def reset_force(self):\n        \"\"\"Reset force to zero at start of each step\"\"\"\n        self.force = np.zeros(3)\n\n    def update_position(self, dt):\n        \"\"\"First step of velocity Verlet: update position\"\"\"\n        self.position += self.velocity * dt + 0.5 * (self.force/self.mass) * dt**2\n\n    def update_velocity(self, dt, new_force):\n        \"\"\"Second step of velocity Verlet: update velocity using average force\"\"\"\n        self.velocity += 0.5 * (new_force + self.force)/self.mass * dt\n        self.force = new_force\n\nclass ForceField:\n    def __init__(self, sigma, epsilon):\n        self.sigma = sigma\n        self.epsilon = epsilon\n\n    def calculate_lj_force(self, atom1, atom2):\n        \"\"\"Calculate LJ force between two atoms\"\"\"\n        r = atom1.position - atom2.position\n        r_mag = np.linalg.norm(r)\n        # LJ force calculation\n        force = 24 * self.epsilon * (2 * (self.sigma/r_mag)**12\n                                   - (self.sigma/r_mag)**6) * r/r_mag**2\n        return force\n\nclass MDSimulation:\n    def __init__(self, atoms, forcefield):\n        self.atoms = atoms\n        self.forcefield = forcefield\n\n    def calculate_forces(self):\n        # Reset all forces\n        for atom in self.atoms:\n            atom.reset_force()\n\n        # Calculate forces between all pairs\n        for i, atom1 in enumerate(self.atoms):\n            for atom2 in self.atoms[i+1:]:\n                force = self.forcefield.calculate_lj_force(atom1, atom2)\n                atom1.add_force(force)\n                atom2.add_force(-force)  # Newton's third law"
   },
   {
-    "objectID": "seminars/seminar02/Report/Figures/Figure1/Figure1.html",
-    "href": "seminars/seminar02/Report/Figures/Figure1/Figure1.html",
+    "objectID": "seminars/seminar01/01-seminar01.html",
+    "href": "seminars/seminar01/01-seminar01.html",
+    "title": "Seminar 1",
+    "section": "",
+    "text": "Calculate the average of all of the integers from 1 to 10.\n\n\n\n\n\n\n\nuse the sum() and len() functions\nn = range(1, 11)\n\n\n1n = range(1, 11)\n2sum(n)/len(n)\n\n1\n\ncreate the range of numbers from 1 to 10.\n\n2\n\ncalculate the sum of the numbers and divide by the number of elements in the list."
+  },
+  {
+    "objectID": "seminars/seminar02/Report/Figures/Figure2/Figure2.html",
+    "href": "seminars/seminar02/Report/Figures/Figure2/Figure2.html",
     "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
-    "text": "import matplotlib as mpl\nimport matplotlib.font_manager as font_manager\nfrom IPython.core.display import HTML\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom directory_tree import display_tree\n\n\nplt.rcParams.update({'font.size': 12,\n                     'lines.linewidth': 1,\n                     'lines.markersize': 10,\n                     'axes.labelsize': 11,\n                     'xtick.labelsize' : 10,\n                     'ytick.labelsize' : 10,\n                     'xtick.top' : True,\n                     'xtick.direction' : 'in',\n                     'ytick.right' : True,\n                     'ytick.direction' : 'in',}) \n\n%config InlineBackend.figure_format = 'retina'\n\n\ndef get_size(w,h):\n    return((w/2.54,h/2.54))\n\n\nplt.figure(figsize=get_size(7,5),dpi=150)\nx=np.linspace(0,np.pi*4,200)\nplt.plot(x,np.sin(x)*np.cos(2*x),color='r')\nplt.xlabel(r\"angle $\\theta$ in [rad]\")\nplt.ylabel(r\"$\\sin(\\theta)$\")\nplt.savefig(\"../figure1.pdf\",bbox_inches = 'tight')\nplt.show()"
+    "text": "import matplotlib as mpl\nimport matplotlib.font_manager as font_manager\nfrom IPython.core.display import HTML\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom directory_tree import display_tree\n\n\nplt.rcParams.update({'font.size': 12,\n                     'lines.linewidth': 1,\n                     'lines.markersize': 10,\n                     'axes.labelsize': 11,\n                     'xtick.labelsize' : 10,\n                     'ytick.labelsize' : 10,\n                     'xtick.top' : True,\n                     'xtick.direction' : 'in',\n                     'ytick.right' : True,\n                     'ytick.direction' : 'in',}) \n\n%config InlineBackend.figure_format = 'retina'\n\n\ndef get_size(w,h):\n    return((w/2.54,h/2.54))\n\n\n# Generate fake experimental data\nx = np.linspace(0, 10, 100)\ny = np.sin(x) + np.random.normal(0, 0.2, size=100)\n\n# Set up the fancy plot\nfig, ax = plt.subplots(figsize=get_size(8, 6),dpi=150)\nax.plot(x, y, color='blue', linewidth=2, label='EXP',alpha=0.5)\n\n# Add some fancy elements to the plot\nax.fill_between(x, y, color='lightgray')\nax.scatter(x, y, color='blue', s=30, label='DATA ',alpha=0.5)\n\nax.set_xlabel('Time')\nax.set_ylabel('Measurement')\n\nax.legend(loc='lower right')\n\nax.tick_params(axis='both', which='major')\n\nax.grid(color='gray', linestyle='--', linewidth=0.5)\n\nax.annotate('Interesting\\nPoint', xy=(4.8, 0), xytext=(4.8, 0.7),\n            arrowprops=dict(facecolor='black', arrowstyle='-&gt;'),\n            fontsize=10, ha='center')\nplt.savefig(\"../figure2.pdf\",bbox_inches = 'tight')\nplt.show()"
   },
   {
-    "objectID": "seminars/seminar02/25_publication_ready_figures.html",
-    "href": "seminars/seminar02/25_publication_ready_figures.html",
-    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
+    "objectID": "tt.html",
+    "href": "tt.html",
+    "title": "Introduction to Python and Basic Calculations",
     "section": "",
-    "text": "In diesem kurzen Text werde ich versuchen, einige Hinweise zu geben, wie man Plots in einer angemessenen Größe erzeugt, so dass Sie die Beispiele sofort in Ihrem Jupyter-Notebook oder eine Semesterarbeit verwenden können.\nSie möchten Ihre Abbildungen in einem Manuskript aus Plots zusammenstellen, die Sie als PDF-Dateien erzeugen, d.h. sie enthalten Vektorgrafiken. Das hat den Vorteil, dass Sie sie anschließend auf die passende Größe skalieren können, um sie in ein- oder zweispaltige Abbildungen zu quetschen. Das ist zwar verlockend, birgt aber die Gefahr, dass man jedes Diagramm unterschiedlich skaliert und dann alle Diagramme unterschiedliche Achsenbeschriftungsgrößen und Tickgrößen haben, was letztlich ein Durcheinander erzeugt.\nUm das zu verhindern, könnte man die Diagramme in der entsprechenden Größe der einspaltigen oder zweispaltigen Verwendung mit den gleichen Achsen- und Ticklabelgrößen erstellen. Hier sind einige Hacks, mit denen Sie produktionsreife Plots direkt aus Ihren Jupyter-Notizbüchern erstellen und speichern können."
+    "text": "A Jupyter Notebook is a web browser based interactive computing environment that enables users to create documents that include code to be executed, results from the executed code such as plots and imas,and finally also an additional documentation in form of markdown text including equations in LaTeX.\nThese documents provide a complete and self-contained record of a computation that can be converted to various formats and shared with others using email, version control systems (like git/GitHub) or nbviewer.jupyter.org."
   },
   {
-    "objectID": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-größe-des-begrenzungsrahmens",
-    "href": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-größe-des-begrenzungsrahmens",
-    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
-    "section": "Erstellen eines Diagramms mit einer bestimmten Größe des Begrenzungsrahmens",
-    "text": "Erstellen eines Diagramms mit einer bestimmten Größe des Begrenzungsrahmens\nIf you create a plot in matplotlib you can specify a size with the parameter figsize, e.g.\nplt.figure(figsize=(3,2))\nfor a figure of a width of 3 inches or 7.62 cm and a height of 2 inches (5.08 cm). If you do not use this parameter or if you even do not use the plt.figure() command, matplotlib will use the default size, which is often 8 inches times 6 inches. The default size is way to big as the figure would be then just a whole A4 page wide. A proper size of a plot for a single column in a two column paper would be the above 3 inches times 2 inches as a the whole paper width is 21 cm minus a marging of about 3 cm on each side gives a column width of about (21-6)/2=7.5 cm.\nThe Plot shown in Figure ?@fig-1 is created with the following commands\nplt.figure(figsize=(3,2), dpi=150)\nx=np.linspace(0,np.pi*4,200)\nplt.plot(x,np.sin(x),color='k')\nplt.xlabel(r\"angle $\\theta$ in [rad]\")\nplt.ylabel(r\"$\\sin(\\theta)$\")\nplt.savefig(\"figure_example.pdf\",\n    bbox_inches = 'tight')\nplt.show()\nDie daraus resultierende PDF-Datei enthält eine Grafik mit einem Begrenzungsrahmen, der genau 3 Zoll mal 2 Zoll groß ist. Wenn Sie das Diagramm in ein beliebiges Zeichenprogramm wie Adobe Illustrator, Affinity Designer oder sogar in eine Textverarbeitungssoftware wie Word oder Pages einfügen, hat der Begrenzungsrahmen dieses Diagramms genau diese Größe, und Sie können weitere Diagramme anordnen, um eine ganze Abbildung zu erstellen, ohne die Skalierung ändern zu müssen. Wenn Sie das Diagramm in einem zweispaltigen LaTeX-Manuskript verwenden, kann es ohne Skalierung verwendet werden, d.h. durch includegraphics{Figure 1.pdf} wird es in der entsprechenden Größe über eine Spalte angezeigt.\nEs gibt noch ein paar weitere Dinge zu beachten.\n\nWährend der Begrenzungsrahmen dieser Abbildung diese Größe hat, ist der Achsenrahmen kleiner, und oft bleibt auf der linken/unteren Seite ein gewisser Leerraum zwischen den Achsenbeschriftungen und dem Rand des Begrenzungsrahmens. Das hängt sehr stark von Ihrem spezifischen Diagramm ab. Wie Sie eine Abbildung mit einer festen Achsenrahmengröße erstellen, wird im zweiten Abschnitt behandelt.\nDie Schriftgröße auf der Achse beträgt jetzt 10 oder 11 Punkte, was der Schriftgröße der meisten Dokumente entspricht, die Sie mit dieser Abbildung erstellen. Ich habe die folgenden plt.rcParams verwendet: ‘axes.labelsize’: 11, ‘xtick.labelsize’ : 10, ‘ytick.labelsize’ : 10 für die gezeigte Darstellung.\nSie werden auch feststellen, dass die Arbeit mit dieser Abbildungsgröße in einem Jupyter-Notebook nicht gut ist. Das hat damit zu tun, wie Jupyter die Ausgabe in eine PNG-Datei übersetzt, die inline angezeigt wird. Eine Möglichkeit, den Plot im Jupyter-Notebook zu vergrößern, aber die PDF-Größe beizubehalten, besteht darin, den Parameter dpi im Befehl plt.figure(figsize=(3,2), dpi=150) zu erhöhen. Normalerweise ist er auf dpi=75 eingestellt, was jetzt viel zu klein ist. Eine Einstellung von dpi=150 scheint ein vernünftiger Kompromiss zwischen Bildschirm- und Druckgröße zu sein. Wenn Sie völlig unabhängig sein wollen\nDer Befehl plt.savefig verwendet einen zusätzlichen bbox_inches = 'tight' Parameter, der sicherstellt, dass die Boundingbox auch wirklich alle Komponenten des Plots genau umschließt.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWenn Sie dieses Bild in eine beliebige Software laden, erhalten Sie ein Bild mit einer Größe, die der eingestellten Breite entspricht."
-  },
-  {
-    "objectID": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-achsenrahmengröße",
-    "href": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-achsenrahmengröße",
-    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
-    "section": "Erstellen eines Diagramms mit einer bestimmten Achsenrahmengröße",
-    "text": "Erstellen eines Diagramms mit einer bestimmten Achsenrahmengröße\nDer Achsenrahmen ist die Box des Rahmens, der die Achsen bereitstellt. Beim Erstellen einer Figur mit dem Befehl plt.figure() wird der Achsenrahmen von matplotlib so berechnet, dass er innerhalb der durch figsize angegebenen Boundingbox liegt, so dass alle Achsenbeschriftungen ebenfalls hineinpassen. Der Achsenrahmen ist daher kleiner als die angegebene Bounding Box und hängt oft von den Achsenbeschriftungen und weiteren Dingen ab. Wenn Sie einen Plot mit einer festen Größe des Achsenrahmens erstellen wollen, ist es sinnvoll, eine Funktion in Ihrem Code unterzubringen, die die Größe des Achsenrahmens festlegt. Diese Funktion könnte lauten\ndef set_size(w,h, ax=None):\n    \"\"\" w, h: width, height in inches \"\"\"\n    if not ax: ax=plt.gca()\n    l = ax.figure.subplotpars.left\n    r = ax.figure.subplotpars.right\n    t = ax.figure.subplotpars.top\n    b = ax.figure.subplotpars.bottom\n    figw = float(w)/(r-l)\n    figh = float(h)/(t-b)\n    ax.figure.set_size_inches(figw, figh)\nwobei Sie die gewünschte Breite und Höhe (in Zoll) der aktuellen Achse ax angeben müssen. Die Funktion gibt nichts zurück, sondern legt direkt die Größe fest.\n\n\n\n\n\n\nWenn Sie diese Abbildung in ein Grafikprogramm oder eine Textverarbeitungssoftware laden, sollte das Abbildungsfeld eine Größe von 7,62 cm mal 5,08 cm haben, ohne dass eine Neuskalierung erfolgt:"
-  },
-  {
-    "objectID": "seminars/seminar02/25_publication_ready_figures.html#auswahl-der-schriftarten",
-    "href": "seminars/seminar02/25_publication_ready_figures.html#auswahl-der-schriftarten",
-    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
-    "section": "Auswahl der Schriftarten",
-    "text": "Auswahl der Schriftarten\nMatplotlib kann auf eine Reihe von verschiedenen Schriftarten zugreifen. Es kann schwierig sein, die passende Schriftart für den Formelstil Ihres Dokuments oder Ihrer Publikation zu finden. Eine Liste der Schriftarten, die Matplotlib zur Verfügung stehen, kann mit dem folgenden Codeschnipsel abgerufen werden, den ich hier gefunden habe.\n\n\n\n\n\n\nFalls Sie Ihr Dokument in LaTeX schreiben, könnten die cmXXXX-Schriften für Sie von Interesse sein, da sie den in LaTeX-Dokumenten verwendeten Schriften entsprechen. Hier ist ein Beispiel:"
-  },
-  {
-    "objectID": "seminars/seminar02/25_publication_ready_figures.html#ein-dokument-vorbereiten",
-    "href": "seminars/seminar02/25_publication_ready_figures.html#ein-dokument-vorbereiten",
-    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
-    "section": "Ein Dokument vorbereiten",
-    "text": "Ein Dokument vorbereiten\nWenn man ein Dokument (Bachelorarbeit z.B.) erstellt, ist es nützlich, seine Daten und Texte geschickt zur organisieren, um sich Arbeit zu ersparen. Hier ist ein Beipiel,"
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "Summary",
+    "objectID": "tt.html#what-is-jupyter-notebook",
+    "href": "tt.html#what-is-jupyter-notebook",
+    "title": "Introduction to Python and Basic Calculations",
     "section": "",
-    "text": "Summary\nIn summary, this book has no content whatsoever."
+    "text": "A Jupyter Notebook is a web browser based interactive computing environment that enables users to create documents that include code to be executed, results from the executed code such as plots and imas,and finally also an additional documentation in form of markdown text including equations in LaTeX.\nThese documents provide a complete and self-contained record of a computation that can be converted to various formats and shared with others using email, version control systems (like git/GitHub) or nbviewer.jupyter.org."
   },
   {
-    "objectID": "course-info/schedule.html",
-    "href": "course-info/schedule.html",
-    "title": "Zeitplan für den Kurs",
+    "objectID": "tt.html#key-components-of-a-notebook",
+    "href": "tt.html#key-components-of-a-notebook",
+    "title": "Introduction to Python and Basic Calculations",
+    "section": "Key Components of a Notebook",
+    "text": "Key Components of a Notebook\nThe Jupyter Notebook combines three components:\n\n\n\n\n\n\nNotebook editor\n\n\n\nThe Notebook editor is an interactive application for writing and running code interactively and editing notebook documents. If you run Jupyter on a server, you will be using Jupyter’s web application or JupyterLab, which is a more advanced version of the notebook editor.\n\n\nThe Notebook editor enables you to\n\nEdit code in individual cell\nRun code in individuall cells in arbitrary oder and display results of the computation in various formats (HTML, LaTeX, PNG, SVG, PDF)\nCreate and use interactive JavaScript widgets, which bind interactive user interface controls and visualizations to reactive kernel side computations.\nAdd documentation text using Markdown markup language, including LaTeX equations\n\n\n\n\n\n\n\nKernels\n\n\n\nKernels are separate processes started by Jupyter on your server, that runs users’ code in a given language and returns output back to the notebook web application. The kernel also handles things like computations for interactive widgets, tab completion and introspection.\n\n\nThe Jupyter notebook is not bound to any specific programming language, but can be used for almost any type of language. Each Jupyter notebook starts a server application that is connected to a kernel that runs the code in the notebook. This kernel is dedicated to a specific programming language. Thus installing different kernels 100+ languages allows you to execute code in Python, Julia, R, Ruby, Haskell, Scala, and many others.\nYet, the default kernel runs Python code. The notebook provides a simple way for users to pick which of these kernels is used for a given notebook. Each of these kernels communicate with the notebook editor using JSON over ZeroMQ/WebSockets message protocol that is described here. Most users don’t need to know about these details, but it helps to understand that “kernels run code”.\n\n\n\n\n\n\nNotebook documents\n\n\n\nSelf-contained documents that contain a representation of all content visible in the notebook editor, including inputs and outputs of the computations, markdown text, equations, images, and rich media representations of objects. Each notebook document has its own kernel.\n\n\nNotebook documents, or notebooks, contain the inputs and outputs of an interactive session as well as documentation text that accompanies the code but is not meant for execution.\nA notebook is just a file on your server’s filesystem with a .ipynb extension. This allows you to share your notebook easily.\nNotebooks consist of a linear sequence of cells. There are three basic cell types:\n\nCode cells: Input and output of live code that is run in the kernel.\nMarkdown cells: Narrative text with embedded LaTeX equations.\nRaw cells: Unformatted text that is included, without modification, when notebooks are converted to different formats using nbconvert.\n\nInternally, notebook documents are JSON text files with binary data encoded in base64. This allows them to be read and manipulated programmatically by any programming language.\nNotebooks can be exported to different static formats including HTML, reStructeredText, LaTeX, PDF, and slide shows (reveal.js) using Jupyter’s nbconvert utility.\nFurthermore, any notebook document available from a public URL on or GitHub can be shared via nbviewer. This service loads the notebook document from the URL and renders it as a static web page. The resulting web page may thus be shared with others without their needing to install the Jupyter Notebook."
+  },
+  {
+    "objectID": "tt.html#using-the-notebook-editor",
+    "href": "tt.html#using-the-notebook-editor",
+    "title": "Introduction to Python and Basic Calculations",
+    "section": "Using the Notebook Editor",
+    "text": "Using the Notebook Editor\nA Jupyter Notebook provides an interface with essentially two modes\n\nedit mode the mode where you edit a cells content.\ncommand mode the mode where you execute the cells content.\n\nIn the more advanced version of JupyterLab, which we are using on myBinder, this will look like that\n\nEdit mode\nEdit mode is indicated by a blue cell border and a prompt showing in the editor area:\nWhen a cell is in edit mode, you can type into the cell, like a normal text editor.\n\n\nCommand mode\nCommand mode is indicated by a grey cell border:\nIf you have a hardware keyboard connected to your iOS device, you can use Jupyter keyboard shortcuts. The modal user interface of the Jupyter Notebook has been optimized for efficient keyboard usage. This is made possible by having two different sets of keyboard shortcuts: one set that is active in edit mode and another in command mode.\n\n\nKeyboard navigation\nIn edit mode, most of the keyboard is dedicated to typing into the cell’s editor. Thus, in edit mode there are relatively few shortcuts. In command mode, the entire keyboard is available for shortcuts, so there are many more. Most important ones are:\n\nSwitch command and edit mods: Enter for edit mode, and Esc or Control for command mode.\nBasic navigation: ↑/k, ↓/j\nRun or render currently selected cell: Shift+Enter or Control+Enter\nSaving the notebook: s\nChange Cell types: y to make it a code cell, m for markdown and r for raw\nInserting new cells: a to insert above, b to insert below\nManipulating cells using pasteboard: x for cut, c for copy, v for paste, d for delete and z for undo delete\nKernel operations: i to interrupt and 0 to restart\n\n\n\nRunning code in your notebook\nCode cells allow you to enter and run code. Run a code cell by pressing the ▶︎ button in the bottom-right panel, or Control+Enter on your hardware keyboard.\n\nv = 23752636\nprint(v)\n\nThere are a couple of keyboard shortcuts for running code:\n\nControl+Enter run the current cell and enters command mode.\nShift+Enter runs the current cell and moves selection to the one below.\nOption+Enter runs the current cell and inserts a new one below."
+  },
+  {
+    "objectID": "tt.html#managing-the-kernel",
+    "href": "tt.html#managing-the-kernel",
+    "title": "Introduction to Python and Basic Calculations",
+    "section": "Managing the kernel",
+    "text": "Managing the kernel\nCode is run in a separate process called the kernel, which can be interrupted or restarted. You can see kernel indicator in the top-right corner reporting current kernel state: ⚪︎ means kernel is ready to execute code, and ⚫︎ means kernel is currently busy. Tapping kernel indicator will open kernel menu, where you can reconnect, interrupt or restart kernel.\nTry running the following cell — kernel indicator will switch from ⚪︎ to ⚫︎, i.e. reporting kernel as “busy”. This means that you won’t be able to run any new cells until current execution finishes, or until kernel is interrupted. You can then go to kernel menu by tapping the kernel indicator and select “Interrupt”.\nEntering code is pretty easy. You just have to click into a cell and type the commands you want to type. If you have multiple lines of code, just press enter at the end of the line and start a new one.\n\ncode blocks Python identifies blocks of codes belonging together by its identation. This will become important if you write longer code in a cell later. To indent the block, you may use either whitespaces or tabs.\ncomments Comments can be added to annotate the code, such that you or someone else can understand the code.\n\nComments in a single line are started with the # character at in front of the comment.\nComments over multiple lines can be started with '''and end with the same '''. They are used as docstrings to provide a help text.\n\n\n\n# typical function\n\ndef function(x):\n    ''' function to calculate a function\n    arguments:\n        x ... float or integer value\n    returns:\n        y ... two times the integer value\n    '''\n    y=2*x # don't forget the identation of the block\n    return(y)\n\nhelp(function)"
+  },
+  {
+    "objectID": "tt.html#entering-markdown",
+    "href": "tt.html#entering-markdown",
+    "title": "Introduction to Python and Basic Calculations",
+    "section": "Entering Markdown",
+    "text": "Entering Markdown\nText can be added to Jupyter Notebooks using Markdown cells. This is extremely useful providing a complete documentation of your calculations or simulations. In this way, everything really becomes an notebook. You can change the cell type to Markdown by using the “Cell Actions” menu, or with a hardware keyboard shortcut m. Markdown is a popular markup language that is a superset of HTML. Its specification can be found here:\nhttps://daringfireball.net/projects/markdown/\nMarkdown cells can either be rendered or unrendered.\nWhen they are rendered, you will see a nice formatted representation of the cell’s contents.\nWhen they are unrendered, you will see the raw text source of the cell. To render the selected cell, click the ▶︎ button or shift+ enter. To unrender, select the markdown cell, and press enter or just double click.\n\nMarkdown basics\nBelow are some basic markdown examples, in its rendered form. If you which to access how to create specific appearances, double click the individual cells to put the into an unrendered edit mode.\nYou can make text italic or bold.\nYou can build nested itemized or enumerated lists:\n\nfirst item\n\nfirst subitem\n\nfirst subsubitem\n\nsecond subitem - first subitem of second subitem - second subitem of second subitem\n\nsecond item\n\nfirst subitem\n\nthird item\n\nfirst subitem\n\n\nNow another list:\n\nHere we go\n\nSublist\n\nSublist\n\n\nThere we go\nNow this\n\nHere is a blockquote:\n\nBeautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren’t special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess. There should be one– and preferably only one –obvious way to do it. Although that way may not be obvious at first unless you’re Dutch. Now is better than never. Although never is often better than right now. If the implementation is hard to explain, it’s a bad idea. If the implementation is easy to explain, it may be a good idea. Namespaces are one honking great idea – let’s do more of those!\n\nAnd shorthand for links:\nJupyter’s website\n\n\nHeadings\nYou can add headings by starting a line with one (or multiple) # followed by a space, as in the following example:\n# Heading 1\n# Heading 2\n## Heading 2.1\n## Heading 2.2\n### Heading 2.2.1\n\n\nEmbedded code\nYou can embed code meant for illustration instead of execution in Python:\ndef f(x):\n    \"\"\"a docstring\"\"\"\n    return x**2\nor other languages:\nif (i=0; i&lt;n; i++) {\n  printf(\"hello %d\\n\", i);\n  x += 4;\n}\n\n\nLaTeX equations\nCourtesy of MathJax, you can include mathematical expressions both inline: \\(e^{i\\pi} + 1 = 0\\) and displayed:\n\\[e^x=\\sum_{i=0}^\\infty \\frac{1}{i!}x^i\\]\nInline expressions can be added by surrounding the latex code with $:\n$e^{i\\pi} + 1 = 0$\nExpressions on their own line are surrounded by $$:\n$$e^x=\\sum_{i=0}^\\infty \\frac{1}{i!}x^i$$\n\n\nImages\nImages may be also directly integrated into a Markdown block.\nTo include images use\n![alternative text](url)\nfor example\n\n\n\nalternative text\n\n\n\nfrom IPython.display import Image, display;\nimport ssl\nfrom urllib.request import urlopen\n\n# URL of the image\nurl = \"https://github.com/fcichos/CompSoft23/raw/master/source/notebooks/Intro/img/particle.png\"\n\n# Create an SSL context that does not verify certificates\nssl._create_default_https_context = ssl._create_unverified_context\n\n# Open the URL and display the image\nwith urlopen(url) as response:\n    display(Image(response.read()))\n\n\ndisplay(Image(filename='img/particle.png'))\n\n\n\nVideos\nTo include videos, we use HTML code like\n&lt;video src=\"mov/movie.mp4\" width=\"320\" height=\"200\" controls preload&gt;&lt;/video&gt;\nin the Markdown cell. This works with videos stored locally.\n\n\nYou can embed YouTube Videos as well by using the IPython module.\n\nfrom IPython.display import YouTubeVideo\nYouTubeVideo('QlLx32juGzI',width=600)\n\n\n\nPython Basics\n\nVariables and data types (integers, floats, strings).\nBasic arithmetic operations (+, -, *, /, **)."
+  },
+  {
+    "objectID": "tt.html#introduction-to-variables",
+    "href": "tt.html#introduction-to-variables",
+    "title": "Introduction to Python and Basic Calculations",
+    "section": "Introduction to Variables",
+    "text": "Introduction to Variables\n\nSymbol Names\nVariable names in Python can include alphanumerical characters a-z, A-Z, 0-9, and the special character _. Normal variable names must start with a letter.\nBy convention, variable names typically start with a lower-case letter, while Class names start with a capital letter.\n\n\n\n\n\n\nWarning\n\n\n\nNote: Reserved Keywords\nThere are a number of Python keywords that cannot be used as variable names. These keywords are:\nand, as, assert, break, class, continue, def, del, elif, else, except, exec, finally, for, from, global, if, import, in, is, lambda, not, or, pass, print, raise, return, try, while, with, yield\nBe aware of the keyword lambda, which could easily be a natural variable name in a scientific program. However, as a reserved keyword, it cannot be used as a variable name.\n\n\n\n\nVariable Assignment\nThe assignment operator in Python is =. Python is a dynamically typed language, so we do not need to specify the type of a variable when we create one.\nAssigning a value to a new variable creates the variable:\n\n# variable assignments\nx = 1.0\nmy_favorite_variable = 12.2\nx\n\n1.0\n\n\nAlthough not explicitly specified, a variable does have a type associated with it. The type is derived from the value that was assigned to it.\n\ntype(x)\n\nfloat\n\n\nIf we assign a new value to a variable, its type can change.\n\nx = 1\n\n\ntype(x)\n\nint\n\n\nIf we try to use a variable that has not yet been defined, we get a NameError:\n\n#print(g)"
+  },
+  {
+    "objectID": "tt.html#number-types",
+    "href": "tt.html#number-types",
+    "title": "Introduction to Python and Basic Calculations",
+    "section": "Number Types",
+    "text": "Number Types\n\nOverview of Number Types\nPython supports various number types, including integers, floating-point numbers, and complex numbers.\n\n\nIntegers\n\nInteger Representation: Numbers without a decimal point are treated as integers.\n\n\nx = 1\ntype(x)\n\nint\n\n\n\nBinary, Octal, and Hexadecimal: Integers can be represented in different bases:\n\n\n0b1010111110  # Binary\n0x0F          # Hexadecimal\n\n15\n\n\n\n\nFloating Point Numbers\n\nFloating Point Representation: Numbers with a decimal point are treated as floating-point values.\n\n\nx = 3.141\ntype(x)\n\nfloat\n\n\n\nMaximum Float Value: Python handles large floats, converting them to infinity if they exceed the maximum representable value.\n\n\n1.7976931348623157e+308 * 2  # Output: inf\n\ninf\n\n\n\n\nComplex Numbers\n\nComplex Number Representation: Complex numbers have a real and an imaginary part.\n\n\nc = 2 + 4j\ntype(c)\n\ncomplex\n\n\n\nAccessors for Complex Numbers:\n\nc.real: Real part of the complex number.\nc.imag: Imaginary part of the complex number.\n\n\n\nprint(c.real)\nprint(c.imag)\n\n2.0\n4.0\n\n\n\nComplex Conjugate: Use the .conjugate() method to get the complex conjugate.\n\n\nc = c.conjugate()\nprint(c)\n\n(2-4j)"
+  },
+  {
+    "objectID": "tt.html#type-conversion",
+    "href": "tt.html#type-conversion",
+    "title": "Introduction to Python and Basic Calculations",
+    "section": "Type Conversion",
+    "text": "Type Conversion\n\nImplicit Type Conversion\n\nAutomatic Conversion: Python automatically converts types during operations.\n\n\ninteger_number = 123\nfloat_number = 1.23\nnew_number = integer_number + float_number\ntype(new_number)\n\n\n\nExplicit Type Conversion\n\nManual Conversion: Use functions like int(), float(), and str() to explicitly convert types.\n\n\nnum_string = \"12\"\nnum_string = int(num_string)\ntype(num_string)\n\n\nConverting Between Types:\n\n\nx = 5 / 2\nx = int(x)\nz = complex(x)\n\n\nHandling Complex Numbers:\n\nComplex numbers cannot be directly converted to floats or integers; extract the real or imaginary part first.\n\n\n\ny = bool(z.real)\nprint(z.real, \" -&gt; \", y, type(y))\n\n\n\nApplication\n\n# 1. Converting Units of Distance\n# Distance in kilometers\ndistance_km = 5.0\n\n# Conversion factor from kilometers to meters\nconversion_factor = 1000\n\n# Convert distance to meters\ndistance_meters = distance_km * conversion_factor\n\n# 2. Calculating Time from Distance and Speed\n# Given distance in meters\ndistance = 1000.0  # meters\n\n# Given speed in meters per second\nspeed = 5.0  # meters per second\n\n# Calculate time in seconds\ntime = distance / speed\n\n# 3. Energy Calculation Using Kinetic Energy Formula\n# Mass in kilograms\nmass = 70.0  # kg\n\n# Velocity in meters per second\nvelocity = 10.0  # m/s\n\n# Calculate kinetic energy\nkinetic_energy = 0.5 * mass * velocity ** 2\n\n# 4. Temperature Conversion (Celsius to Fahrenheit)\n# Temperature in Celsius\ntemp_celsius = 25.0  # degrees Celsius\n\n# Convert to Fahrenheit\ntemp_fahrenheit = (temp_celsius * 9/5) + 32\n\n# 5. Power Calculation Using Work and Time\n# Work done in joules\nwork_done = 500.0  # joules\n\n# Time taken in seconds\ntime_taken = 20.0  # seconds\n\n# Calculate power\npower_output = work_done / time_taken\n\n# 6. Calculating Force Using Newton's Second Law\n# Mass in kilograms\nmass = 10.0  # kg\n\n# Acceleration in meters per second squared\nacceleration = 9.8  # m/s^2\n\n# Calculate force\nforce = mass * acceleration\n\n# Output Results\nprint(f\"Distance in meters: {distance_meters} m\")\nprint(f\"Time to travel {distance} meters at {speed} m/s: {time} seconds\")\nprint(f\"Kinetic energy: {kinetic_energy} joules\")\nprint(f\"Temperature in Fahrenheit: {temp_fahrenheit} °F\")\nprint(f\"Power output: {power_output} watts\")\nprint(f\"Force: {force} newtons\")\n\n\nSimple calculations relevant to physics, such as converting units or calculating simple quantities (e.g., distance = speed × time).\n\nHomework: Basic practice problems to reinforce Python syntax and operations."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EMPP 2024",
     "section": "",
-    "text": "Der Kurs wird wöchentlich mit dem Zeitplan der Vorlesungen aktualisiert. Erwarten Sie also jeden\nDienstag ab 15. Oktober 2024, jeweils um 11:15\neine neue Vorlesung und eine neue Aufgabe ab 13:00.\nErfahrungsgemäß werden die besten Ergebnisse erzielt, wenn Sie bei den Vorlesungen im Hörsaal anwesend sind. Das gesamte Material wird jedoch auch online zur Verfügung stehen, sodass Sie jederzeit darauf zugreifen können, um zu lernen, wann immer es Ihnen passt."
+    "text": "Willkommen zum Kurs Einführung in die Modellierung Physikalischer Prozesse!\nDie Programmiersprache Python ist für alle Arten von wissenschaftlichen und technischen Aufgaben nützlich. Sie können mit ihr Daten analysieren und darstellen. Sie können mit ihr auch wissenschaftliche Probleme numerisch lösen, die analytisch nur schwer oder gar nicht zu lösen sind. Python ist frei verfügbar und wurde aufgrund seines modularen Aufbaus um eine nahezu unendliche Anzahl von Modulen für verschiedene Zwecke erweitert.\nDieser Kurs soll Sie in die Programmierung mit Python einführen. Er richtet sich eher an den Anfänger, wir hoffen aber, dass er auch für Fortgeschrittene interessant ist. Wir beginnen den Kurs mit einer Einführung in die Jupyter Notebook-Umgebung, die wir während des gesamten Kurses verwenden werden. Danach werden wir eine Einführung in Python geben und Ihnen einige grundlegende Funktionen zeigen, wie z.B. das Plotten und Analysieren von Daten durch Kurvenanpassung, das Lesen und Schreiben von Dateien, was einige der Aufgaben sind, die Ihnen während Ihres Physikstudiums begegnen werden. Wir zeigen Ihnen auch einige fortgeschrittene Themen wie die Animation in Jupyter und die Simulation von physikalischen Prozessen in\n\nMechanik\nElektrostatik\nWellen\nOptik\n\nFalls am Ende des Kurses Zeit bleibt, werden wir auch einen Blick auf Verfahren des maschinellen Lernens werfen, das mittlerweile auch in der Physik zu einem wichtigen Werkzeug geworden ist.\nWir werden keine umfassende Liste von numerischen Simulationsschemata präsentieren, sondern die Beispiele nutzen, um Ihre Neugierde zu wecken. Da es leichte Unterschiede in der Syntax der verschiedenen Python-Versionen gibt, werden wir uns im Folgenden immer auf den Python 3-Standard beziehen.\nDer Kurs wird auf Deutsch gehalten werden. Die Webseiten, die Sie für den Überblick zu Python zur Verfügung gestellt bekommen, werden allerdings auf Englisch sein. Übungsaufgaben werden werden auf Deutsch gestellt.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "course-info/exam.html",
+    "href": "course-info/exam.html",
+    "title": "Prüfung",
+    "section": "",
+    "text": "Die Prüfungsleistung in diesem Modul ist eine Portfolio-Prüfung und besteht aus zwei Portfolio-Teilen:\n\nÜbungsaufgaben:\n\n6 Serien von Aufgaben, die nicht benotet werden\nMindestens 50% der Gesamtpunktzahl aller Übungsaufgaben muss erreicht werden\n\nZwei Tests:\n\nJeder Test dauert 45 Minuten\nFinden in Person während zwei Übungsseminare statt\nDie Tests werden vorher angekündigt\nDie Punkte beider Tests werden addiert und ergeben eine Gesamtnote\n\n\nWichtige Hinweise: - Beide Portfolio-Teile (Übungsaufgaben und Tests) müssen bestanden werden, um das Modul erfolgreich abzuschließen. - Die Gesamtnote der Tests entspricht der Abschlussnote des Moduls.",
+    "crumbs": [
+      "Course Info",
+      "Prüfungen"
+    ]
+  },
+  {
+    "objectID": "course-info/exam.html#erstteilnehmer",
+    "href": "course-info/exam.html#erstteilnehmer",
+    "title": "Prüfung",
+    "section": "",
+    "text": "Die Prüfungsleistung in diesem Modul ist eine Portfolio-Prüfung und besteht aus zwei Portfolio-Teilen:\n\nÜbungsaufgaben:\n\n6 Serien von Aufgaben, die nicht benotet werden\nMindestens 50% der Gesamtpunktzahl aller Übungsaufgaben muss erreicht werden\n\nZwei Tests:\n\nJeder Test dauert 45 Minuten\nFinden in Person während zwei Übungsseminare statt\nDie Tests werden vorher angekündigt\nDie Punkte beider Tests werden addiert und ergeben eine Gesamtnote\n\n\nWichtige Hinweise: - Beide Portfolio-Teile (Übungsaufgaben und Tests) müssen bestanden werden, um das Modul erfolgreich abzuschließen. - Die Gesamtnote der Tests entspricht der Abschlussnote des Moduls.",
+    "crumbs": [
+      "Course Info",
+      "Prüfungen"
+    ]
+  },
+  {
+    "objectID": "course-info/exam.html#wiederholer",
+    "href": "course-info/exam.html#wiederholer",
+    "title": "Prüfung",
+    "section": "Wiederholer",
+    "text": "Wiederholer\nFür Studierende, die das Modul bereits im WS 2023/24 belegt haben und nun wiederholen:\n\nÜbungsaufgaben:\n\nWenn Sie im WS 2023/24 ≥50% erreicht haben: Nur Projektabgabe erforderlich\nWenn Sie im WS 2023/24 &lt;50% erreicht haben: Übungsaufgaben und Projektabgabe erforderlich\nEine Liste der erreichten Übungspunkte wird im internen Bereich der MONA Webseite veröffentlicht\n\nEinschreibung:\n\nErneute Moduleinschreibung nicht notwendig\nFür Moodle-Zugang: Kontaktieren Sie Andrea Kramer per Uni-E-Mail\n\nProjektabgabe für Wiederholer:\n\nFrist: 12.03.2025, 13:00 Uhr\nSpätere Abgaben werden nicht berücksichtigt",
+    "crumbs": [
+      "Course Info",
+      "Prüfungen"
+    ]
+  },
+  {
+    "objectID": "course-info/website.html",
+    "href": "course-info/website.html",
+    "title": "Diese Webseiten",
+    "section": "",
+    "text": "Diese Webseiten\nDiese Website enthält alle Informationen, die für unseren Kurs Einführung in die Modellierung Physikalischer Prozesse erforderlich sind. Sie werden hier jede Woche eine neue Vorlesung und eine neue Aufgabe finden. Die Vorlesungshefte werden von Videos begleitet, die den Inhalt der Vorlesung auf Englisch erklären, aber Sie können auch mit dem Lesen auskommen. Die Vorlesungen in Person, werden auf Deutsch stattfinden. Von diesen Webseiten aus werden Sie zu verschiedenen Ressourcen geführt, die Sie nutzen können, um das Programmieren in Python zu lernen. Dabei werden wir einige großartige Tools aus dem Internet nutzen, wie\n\nGoogle Colab Dienst, um auch Jupyter Notebooks (https://colab.research.google.com) zu hosten. Das Google Colab-Projekt bietet eine nützliche Umgebung zur gemeinsamen Nutzung von Notebooks.\n\n\n\ngoogle colab screen\n\n\nWenn Sie die folgende Website besuchen, werden Sie an mehreren Stellen das folgende Symbol sehen.\n![Substitution Name1]\nDieses Symbol zeigt an, dass diese Webseite auf einem Jupyter Notebook basiert. Anstatt nur die Website zu betrachten, können Sie auf das Symbol klicken und der Google Colab-Dienst wird geöffnet, damit Sie das Notizbuch interaktiv nutzen können. Google Colab öffnet sich viel schneller als myBinder, aber die Notizbücher sind für die Arbeit mit myBinder gemacht und nicht alle Funktionen funktionieren mit Colab. Ich arbeite jedoch an der Kompatibilität.\nGitHub and GitHub Pages Dienst zum Hosting von Websites (https://github.com). GitHub ist ein großartiger Ort, um Ihre kollaborativen Coding-Projekte einschließlich Versionskontrolle zu hosten. In der oberen rechten Ecke finden Sie auch einen Link zum GitHub-Repository, in dem die Notebooks gehostet werden.\n\n\n\ngithub screen\n\n\nAnaconda Jupyter package für Notebooks auf dem eigenen Computer (https://www.anaconda.com/distribution/). Das Paket anaconda stellt Ihnen die Jupyter Notebook-Umgebung einschließlich Python zur Verfügung. Wenn Sie Jupyter zu Hause ohne Online-Zugang verwenden möchten, ist dies ein gutes Paket zur Installation.\n\n\n\nanaconda screen"
+  },
+  {
+    "objectID": "course-info/assignments.html",
+    "href": "course-info/assignments.html",
+    "title": "Übungsaufgaben",
+    "section": "",
+    "text": "Es werden insgesamt 6 Übungsblätter zur Verfügung gestellt. Die Übungsblätter sind Teil der Prüfungsleistung! Die Übungsblätter werden nicht benotet, aber die Bearbeitung ist für den erfolgreichen Abschluss des Moduls erforderlich. Genauere Informationen zur Wertung der Übungsblätter finden sie auf der Seite zur Prüfung.\n\nBereitstellung und Abgabe der Übungsaufgaben\n\nVeröffentlichung: Jeden Dienstag um 13:00 Uhr\nAbgabefrist: Bis zum folgenden Dienstag um 12:00 Uhr\nBearbeitungszeitraum: Eine Woche (minus eine Stunde)\nPlattform: Moodle der Universität\n\nSowohl für die Bearbeitung als auch für die Abgabe\n\nWichtig:\n\nAchten Sie auf die pünktliche Abgabe innerhalb der angegebenen Frist.\nNach Ablauf der Frist ist die Aufgabe nicht mehr verfügbar und kann nicht mehr eingereicht werden.\nAchten sie darauf, dass mehrmaliges Einreichen derselben Aufgabe die Punktzahl mit jeder Einreichung um 10% verringert",
+    "crumbs": [
+      "Course Info",
+      "Übungsaufgaben"
+    ]
+  },
+  {
+    "objectID": "course-info/intructors.html",
+    "href": "course-info/intructors.html",
+    "title": "Instructor",
+    "section": "",
+    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
+    "crumbs": [
+      "Course Info",
+      "Vorlesender"
+    ]
+  },
+  {
+    "objectID": "course-info/intructors.html#prof.-dr.-frank-cichos",
+    "href": "course-info/intructors.html#prof.-dr.-frank-cichos",
+    "title": "Instructor",
+    "section": "",
+    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
+    "crumbs": [
+      "Course Info",
+      "Vorlesender"
+    ]
+  },
+  {
+    "objectID": "course-info/how_to_quiz.html",
+    "href": "course-info/how_to_quiz.html",
+    "title": "Interactive Python Quiz",
+    "section": "",
+    "text": "In this quiz, you can write and execute Python code directly in your browser.\n\n\nWrite a function square(n) that returns the square of a number.\n\n\n\n\n\n# Write your Python code here\ndef square(n):\n    return n * n\n\nprint(square(5))\n\n\nRun Code"
+  },
+  {
+    "objectID": "course-info/how_to_quiz.html#question-1",
+    "href": "course-info/how_to_quiz.html#question-1",
+    "title": "Interactive Python Quiz",
+    "section": "",
+    "text": "Write a function square(n) that returns the square of a number.\n\n\n\n\n\n# Write your Python code here\ndef square(n):\n    return n * n\n\nprint(square(5))\n\n\nRun Code"
   },
   {
     "objectID": "course-info/resources.html",
     "href": "course-info/resources.html",
     "title": "Quellen",
     "section": "",
-    "text": "Es gibt eine Menge weiterer gut strukturierter Ressourcen zu Python im Netz. Nachfolgend finden Sie nur eine sehr kleine Auswahl.",
+    "text": "Vor allen anderen Sachen ist es für diesen Kurs wichtig, dass Sie während der Vorlesung einen Internetzugang haben. Wir werden viele Beispiele und Übungen durchführen, die auf Online-Ressourcen verweisen.\nInnerhalb der Universität können die Eduroam-Netzwerke verwendet werden. Die notwendigen Profildaten können Sie hier finden.\nWeiterhin gibt es eine Menge weiterer gut strukturierter Ressourcen zu Python im Netz. Nachfolgend finden Sie nur eine sehr kleine Auswahl.",
     "crumbs": [
       "Course Info",
       "Ressourcen"
@@ -727,178 +845,95 @@
     ]
   },
   {
-    "objectID": "course-info/how_to_quiz.html",
-    "href": "course-info/how_to_quiz.html",
-    "title": "Interactive Python Quiz",
+    "objectID": "course-info/schedule.html",
+    "href": "course-info/schedule.html",
+    "title": "Zeitplan für den Kurs",
     "section": "",
-    "text": "In this quiz, you can write and execute Python code directly in your browser.\n\n\nWrite a function square(n) that returns the square of a number.\n\n\n\n\n\n# Write your Python code here\ndef square(n):\n    return n * n\n\nprint(square(5))\n\n\nRun Code"
+    "text": "Der Kurs wird wöchentlich mit dem Zeitplan der Vorlesungen aktualisiert. Erwarten Sie also jeden\nDienstag ab 15. Oktober 2024, jeweils um 11:15\neine neue Vorlesung und eine neue Aufgabe ab 13:00.\nErfahrungsgemäß werden die besten Ergebnisse erzielt, wenn Sie bei den Vorlesungen im Hörsaal anwesend sind. Das gesamte Material wird jedoch auch online zur Verfügung stehen, sodass Sie jederzeit darauf zugreifen können, um zu lernen, wann immer es Ihnen passt."
   },
   {
-    "objectID": "course-info/how_to_quiz.html#question-1",
-    "href": "course-info/how_to_quiz.html#question-1",
-    "title": "Interactive Python Quiz",
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Summary",
     "section": "",
-    "text": "Write a function square(n) that returns the square of a number.\n\n\n\n\n\n# Write your Python code here\ndef square(n):\n    return n * n\n\nprint(square(5))\n\n\nRun Code"
+    "text": "Summary\nIn summary, this book has no content whatsoever."
   },
   {
-    "objectID": "course-info/intructors.html",
-    "href": "course-info/intructors.html",
-    "title": "Instructor",
+    "objectID": "seminars/seminar02/25_publication_ready_figures.html",
+    "href": "seminars/seminar02/25_publication_ready_figures.html",
+    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
     "section": "",
-    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
-    "crumbs": [
-      "Course Info",
-      "Vorlesender"
-    ]
+    "text": "In diesem kurzen Text werde ich versuchen, einige Hinweise zu geben, wie man Plots in einer angemessenen Größe erzeugt, so dass Sie die Beispiele sofort in Ihrem Jupyter-Notebook oder eine Semesterarbeit verwenden können.\nSie möchten Ihre Abbildungen in einem Manuskript aus Plots zusammenstellen, die Sie als PDF-Dateien erzeugen, d.h. sie enthalten Vektorgrafiken. Das hat den Vorteil, dass Sie sie anschließend auf die passende Größe skalieren können, um sie in ein- oder zweispaltige Abbildungen zu quetschen. Das ist zwar verlockend, birgt aber die Gefahr, dass man jedes Diagramm unterschiedlich skaliert und dann alle Diagramme unterschiedliche Achsenbeschriftungsgrößen und Tickgrößen haben, was letztlich ein Durcheinander erzeugt.\nUm das zu verhindern, könnte man die Diagramme in der entsprechenden Größe der einspaltigen oder zweispaltigen Verwendung mit den gleichen Achsen- und Ticklabelgrößen erstellen. Hier sind einige Hacks, mit denen Sie produktionsreife Plots direkt aus Ihren Jupyter-Notizbüchern erstellen und speichern können."
   },
   {
-    "objectID": "course-info/intructors.html#prof.-dr.-frank-cichos",
-    "href": "course-info/intructors.html#prof.-dr.-frank-cichos",
-    "title": "Instructor",
-    "section": "",
-    "text": "Linnéstr. 5, 04103 Leipzig\nOffice: 322\nPhone: +49 341 97 32571\nEmail: lastname@physik.uni-leipzig.de",
-    "crumbs": [
-      "Course Info",
-      "Vorlesender"
-    ]
+    "objectID": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-größe-des-begrenzungsrahmens",
+    "href": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-größe-des-begrenzungsrahmens",
+    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
+    "section": "Erstellen eines Diagramms mit einer bestimmten Größe des Begrenzungsrahmens",
+    "text": "Erstellen eines Diagramms mit einer bestimmten Größe des Begrenzungsrahmens\nIf you create a plot in matplotlib you can specify a size with the parameter figsize, e.g.\nplt.figure(figsize=(3,2))\nfor a figure of a width of 3 inches or 7.62 cm and a height of 2 inches (5.08 cm). If you do not use this parameter or if you even do not use the plt.figure() command, matplotlib will use the default size, which is often 8 inches times 6 inches. The default size is way to big as the figure would be then just a whole A4 page wide. A proper size of a plot for a single column in a two column paper would be the above 3 inches times 2 inches as a the whole paper width is 21 cm minus a marging of about 3 cm on each side gives a column width of about (21-6)/2=7.5 cm.\nThe Plot shown in Figure ?@fig-1 is created with the following commands\nplt.figure(figsize=(3,2), dpi=150)\nx=np.linspace(0,np.pi*4,200)\nplt.plot(x,np.sin(x),color='k')\nplt.xlabel(r\"angle $\\theta$ in [rad]\")\nplt.ylabel(r\"$\\sin(\\theta)$\")\nplt.savefig(\"figure_example.pdf\",\n    bbox_inches = 'tight')\nplt.show()\nDie daraus resultierende PDF-Datei enthält eine Grafik mit einem Begrenzungsrahmen, der genau 3 Zoll mal 2 Zoll groß ist. Wenn Sie das Diagramm in ein beliebiges Zeichenprogramm wie Adobe Illustrator, Affinity Designer oder sogar in eine Textverarbeitungssoftware wie Word oder Pages einfügen, hat der Begrenzungsrahmen dieses Diagramms genau diese Größe, und Sie können weitere Diagramme anordnen, um eine ganze Abbildung zu erstellen, ohne die Skalierung ändern zu müssen. Wenn Sie das Diagramm in einem zweispaltigen LaTeX-Manuskript verwenden, kann es ohne Skalierung verwendet werden, d.h. durch includegraphics{Figure 1.pdf} wird es in der entsprechenden Größe über eine Spalte angezeigt.\nEs gibt noch ein paar weitere Dinge zu beachten.\n\nWährend der Begrenzungsrahmen dieser Abbildung diese Größe hat, ist der Achsenrahmen kleiner, und oft bleibt auf der linken/unteren Seite ein gewisser Leerraum zwischen den Achsenbeschriftungen und dem Rand des Begrenzungsrahmens. Das hängt sehr stark von Ihrem spezifischen Diagramm ab. Wie Sie eine Abbildung mit einer festen Achsenrahmengröße erstellen, wird im zweiten Abschnitt behandelt.\nDie Schriftgröße auf der Achse beträgt jetzt 10 oder 11 Punkte, was der Schriftgröße der meisten Dokumente entspricht, die Sie mit dieser Abbildung erstellen. Ich habe die folgenden plt.rcParams verwendet: ‘axes.labelsize’: 11, ‘xtick.labelsize’ : 10, ‘ytick.labelsize’ : 10 für die gezeigte Darstellung.\nSie werden auch feststellen, dass die Arbeit mit dieser Abbildungsgröße in einem Jupyter-Notebook nicht gut ist. Das hat damit zu tun, wie Jupyter die Ausgabe in eine PNG-Datei übersetzt, die inline angezeigt wird. Eine Möglichkeit, den Plot im Jupyter-Notebook zu vergrößern, aber die PDF-Größe beizubehalten, besteht darin, den Parameter dpi im Befehl plt.figure(figsize=(3,2), dpi=150) zu erhöhen. Normalerweise ist er auf dpi=75 eingestellt, was jetzt viel zu klein ist. Eine Einstellung von dpi=150 scheint ein vernünftiger Kompromiss zwischen Bildschirm- und Druckgröße zu sein. Wenn Sie völlig unabhängig sein wollen\nDer Befehl plt.savefig verwendet einen zusätzlichen bbox_inches = 'tight' Parameter, der sicherstellt, dass die Boundingbox auch wirklich alle Komponenten des Plots genau umschließt.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWenn Sie dieses Bild in eine beliebige Software laden, erhalten Sie ein Bild mit einer Größe, die der eingestellten Breite entspricht."
   },
   {
-    "objectID": "course-info/assignments.html",
-    "href": "course-info/assignments.html",
-    "title": "Übungsaufgaben",
-    "section": "",
-    "text": "Es werden insgesamt 6 Übungsblätter zur Verfügung gestellt. Die Übungsblätter sind Teil der Prüfungsleistung! Die Übungsblätter werden nicht benotet, aber die Bearbeitung ist für den erfolgreichen Abschluss des Moduls erforderlich. Genauere Informationen zur Wertung der Übungsblätter finden sie auf der Seite zur Prüfung.\n\nBereitstellung und Abgabe der Übungsaufgaben\n\nVeröffentlichung: Jeden Dienstag um 13:00 Uhr\nAbgabefrist: Bis zum folgenden Dienstag um 12:00 Uhr\nBearbeitungszeitraum: Eine Woche (minus eine Stunde)\nPlattform: Moodle der Universität\n\nSowohl für die Bearbeitung als auch für die Abgabe\n\nWichtig:\n\nAchten Sie auf die pünktliche Abgabe innerhalb der angegebenen Frist.\nNach Ablauf der Frist ist die Aufgabe nicht mehr verfügbar und kann nicht mehr eingereicht werden.\nAchten sie darauf, dass mehrmaliges Einreichen derselben Aufgabe die Punktzahl mit jeder Einreichung um 10% verringert",
-    "crumbs": [
-      "Course Info",
-      "Übungsaufgaben"
-    ]
+    "objectID": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-achsenrahmengröße",
+    "href": "seminars/seminar02/25_publication_ready_figures.html#erstellen-eines-diagramms-mit-einer-bestimmten-achsenrahmengröße",
+    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
+    "section": "Erstellen eines Diagramms mit einer bestimmten Achsenrahmengröße",
+    "text": "Erstellen eines Diagramms mit einer bestimmten Achsenrahmengröße\nDer Achsenrahmen ist die Box des Rahmens, der die Achsen bereitstellt. Beim Erstellen einer Figur mit dem Befehl plt.figure() wird der Achsenrahmen von matplotlib so berechnet, dass er innerhalb der durch figsize angegebenen Boundingbox liegt, so dass alle Achsenbeschriftungen ebenfalls hineinpassen. Der Achsenrahmen ist daher kleiner als die angegebene Bounding Box und hängt oft von den Achsenbeschriftungen und weiteren Dingen ab. Wenn Sie einen Plot mit einer festen Größe des Achsenrahmens erstellen wollen, ist es sinnvoll, eine Funktion in Ihrem Code unterzubringen, die die Größe des Achsenrahmens festlegt. Diese Funktion könnte lauten\ndef set_size(w,h, ax=None):\n    \"\"\" w, h: width, height in inches \"\"\"\n    if not ax: ax=plt.gca()\n    l = ax.figure.subplotpars.left\n    r = ax.figure.subplotpars.right\n    t = ax.figure.subplotpars.top\n    b = ax.figure.subplotpars.bottom\n    figw = float(w)/(r-l)\n    figh = float(h)/(t-b)\n    ax.figure.set_size_inches(figw, figh)\nwobei Sie die gewünschte Breite und Höhe (in Zoll) der aktuellen Achse ax angeben müssen. Die Funktion gibt nichts zurück, sondern legt direkt die Größe fest.\n\n\n\n\n\n\nWenn Sie diese Abbildung in ein Grafikprogramm oder eine Textverarbeitungssoftware laden, sollte das Abbildungsfeld eine Größe von 7,62 cm mal 5,08 cm haben, ohne dass eine Neuskalierung erfolgt:"
   },
   {
-    "objectID": "course-info/website.html",
-    "href": "course-info/website.html",
-    "title": "Diese Webseiten",
-    "section": "",
-    "text": "Diese Webseiten\nDiese Website enthält alle Informationen, die für unseren Kurs Einführung in die Modellierung Physikalischer Prozesse erforderlich sind. Sie werden hier jede Woche eine neue Vorlesung und eine neue Aufgabe finden. Die Vorlesungshefte werden von Videos begleitet, die den Inhalt der Vorlesung auf Englisch erklären, aber Sie können auch mit dem Lesen auskommen. Die Vorlesungen in Person, werden auf Deutsch stattfinden. Von diesen Webseiten aus werden Sie zu verschiedenen Ressourcen geführt, die Sie nutzen können, um das Programmieren in Python zu lernen. Dabei werden wir einige großartige Tools aus dem Internet nutzen, wie\n\nGoogle Colab Dienst, um auch Jupyter Notebooks (https://colab.research.google.com) zu hosten. Das Google Colab-Projekt bietet eine nützliche Umgebung zur gemeinsamen Nutzung von Notebooks.\n\n\n\ngoogle colab screen\n\n\nWenn Sie die folgende Website besuchen, werden Sie an mehreren Stellen das folgende Symbol sehen.\n![Substitution Name1]\nDieses Symbol zeigt an, dass diese Webseite auf einem Jupyter Notebook basiert. Anstatt nur die Website zu betrachten, können Sie auf das Symbol klicken und der Google Colab-Dienst wird geöffnet, damit Sie das Notizbuch interaktiv nutzen können. Google Colab öffnet sich viel schneller als myBinder, aber die Notizbücher sind für die Arbeit mit myBinder gemacht und nicht alle Funktionen funktionieren mit Colab. Ich arbeite jedoch an der Kompatibilität.\nGitHub and GitHub Pages Dienst zum Hosting von Websites (https://github.com). GitHub ist ein großartiger Ort, um Ihre kollaborativen Coding-Projekte einschließlich Versionskontrolle zu hosten. In der oberen rechten Ecke finden Sie auch einen Link zum GitHub-Repository, in dem die Notebooks gehostet werden.\n\n\n\ngithub screen\n\n\nAnaconda Jupyter package für Notebooks auf dem eigenen Computer (https://www.anaconda.com/distribution/). Das Paket anaconda stellt Ihnen die Jupyter Notebook-Umgebung einschließlich Python zur Verfügung. Wenn Sie Jupyter zu Hause ohne Online-Zugang verwenden möchten, ist dies ein gutes Paket zur Installation.\n\n\n\nanaconda screen"
+    "objectID": "seminars/seminar02/25_publication_ready_figures.html#auswahl-der-schriftarten",
+    "href": "seminars/seminar02/25_publication_ready_figures.html#auswahl-der-schriftarten",
+    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
+    "section": "Auswahl der Schriftarten",
+    "text": "Auswahl der Schriftarten\nMatplotlib kann auf eine Reihe von verschiedenen Schriftarten zugreifen. Es kann schwierig sein, die passende Schriftart für den Formelstil Ihres Dokuments oder Ihrer Publikation zu finden. Eine Liste der Schriftarten, die Matplotlib zur Verfügung stehen, kann mit dem folgenden Codeschnipsel abgerufen werden, den ich hier gefunden habe.\n\n\n\n\n\n\nFalls Sie Ihr Dokument in LaTeX schreiben, könnten die cmXXXX-Schriften für Sie von Interesse sein, da sie den in LaTeX-Dokumenten verwendeten Schriften entsprechen. Hier ist ein Beispiel:"
   },
   {
-    "objectID": "course-info/exam.html",
-    "href": "course-info/exam.html",
-    "title": "Prüfung",
-    "section": "",
-    "text": "Die Prüfungsleistung in diesem Modul ist eine Portfolio-Prüfung und besteht aus zwei Portfolio-Teilen:\n\nÜbungsaufgaben:\n\n6 Serien von Aufgaben, die nicht benotet werden\nMindestens 50% der Gesamtpunktzahl aller Übungsaufgaben muss erreicht werden\n\nZwei Tests:\n\nJeder Test dauert 45 Minuten\nFinden in Person während zwei Übungsseminare statt\nDie Tests werden vorher angekündigt\nDie Punkte beider Tests werden addiert und ergeben eine Gesamtnote\n\n\nWichtige Hinweise: - Beide Portfolio-Teile (Übungsaufgaben und Tests) müssen bestanden werden, um das Modul erfolgreich abzuschließen. - Die Gesamtnote der Tests entspricht der Abschlussnote des Moduls.",
-    "crumbs": [
-      "Course Info",
-      "Prüfungen"
-    ]
+    "objectID": "seminars/seminar02/25_publication_ready_figures.html#ein-dokument-vorbereiten",
+    "href": "seminars/seminar02/25_publication_ready_figures.html#ein-dokument-vorbereiten",
+    "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
+    "section": "Ein Dokument vorbereiten",
+    "text": "Ein Dokument vorbereiten\nWenn man ein Dokument (Bachelorarbeit z.B.) erstellt, ist es nützlich, seine Daten und Texte geschickt zur organisieren, um sich Arbeit zu ersparen. Hier ist ein Beipiel,"
   },
   {
-    "objectID": "course-info/exam.html#erstteilnehmer",
-    "href": "course-info/exam.html#erstteilnehmer",
-    "title": "Prüfung",
-    "section": "",
-    "text": "Die Prüfungsleistung in diesem Modul ist eine Portfolio-Prüfung und besteht aus zwei Portfolio-Teilen:\n\nÜbungsaufgaben:\n\n6 Serien von Aufgaben, die nicht benotet werden\nMindestens 50% der Gesamtpunktzahl aller Übungsaufgaben muss erreicht werden\n\nZwei Tests:\n\nJeder Test dauert 45 Minuten\nFinden in Person während zwei Übungsseminare statt\nDie Tests werden vorher angekündigt\nDie Punkte beider Tests werden addiert und ergeben eine Gesamtnote\n\n\nWichtige Hinweise: - Beide Portfolio-Teile (Übungsaufgaben und Tests) müssen bestanden werden, um das Modul erfolgreich abzuschließen. - Die Gesamtnote der Tests entspricht der Abschlussnote des Moduls.",
-    "crumbs": [
-      "Course Info",
-      "Prüfungen"
-    ]
-  },
-  {
-    "objectID": "course-info/exam.html#wiederholer",
-    "href": "course-info/exam.html#wiederholer",
-    "title": "Prüfung",
-    "section": "Wiederholer",
-    "text": "Wiederholer\nFür Studierende, die das Modul bereits im WS 2023/24 belegt haben und nun wiederholen:\n\nÜbungsaufgaben:\n\nWenn Sie im WS 2023/24 ≥50% erreicht haben: Nur Projektabgabe erforderlich\nWenn Sie im WS 2023/24 &lt;50% erreicht haben: Übungsaufgaben und Projektabgabe erforderlich\nEine Liste der erreichten Übungspunkte wird im internen Bereich der MONA Webseite veröffentlicht\n\nEinschreibung:\n\nErneute Moduleinschreibung nicht notwendig\nFür Moodle-Zugang: Kontaktieren Sie Andrea Kramer per Uni-E-Mail\n\nProjektabgabe für Wiederholer:\n\nFrist: 12.03.2025, 13:00 Uhr\nSpätere Abgaben werden nicht berücksichtigt",
-    "crumbs": [
-      "Course Info",
-      "Prüfungen"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EMPP 2024",
-    "section": "",
-    "text": "Willkommen zum Kurs Einführung in die Modellierung Physikalischer Prozesse!\nDie Programmiersprache Python ist für alle Arten von wissenschaftlichen und technischen Aufgaben nützlich. Sie können mit ihr Daten analysieren und darstellen. Sie können mit ihr auch wissenschaftliche Probleme numerisch lösen, die analytisch nur schwer oder gar nicht zu lösen sind. Python ist frei verfügbar und wurde aufgrund seines modularen Aufbaus um eine nahezu unendliche Anzahl von Modulen für verschiedene Zwecke erweitert.\nDieser Kurs soll Sie in die Programmierung mit Python einführen. Er richtet sich eher an den Anfänger, wir hoffen aber, dass er auch für Fortgeschrittene interessant ist. Wir beginnen den Kurs mit einer Einführung in die Jupyter Notebook-Umgebung, die wir während des gesamten Kurses verwenden werden. Danach werden wir eine Einführung in Python geben und Ihnen einige grundlegende Funktionen zeigen, wie z.B. das Plotten und Analysieren von Daten durch Kurvenanpassung, das Lesen und Schreiben von Dateien, was einige der Aufgaben sind, die Ihnen während Ihres Physikstudiums begegnen werden. Wir zeigen Ihnen auch einige fortgeschrittene Themen wie die Animation in Jupyter und die Simulation von physikalischen Prozessen in\n\nMechanik\nElektrostatik\nWellen\nOptik\n\nFalls am Ende des Kurses Zeit bleibt, werden wir auch einen Blick auf Verfahren des maschinellen Lernens werfen, das mittlerweile auch in der Physik zu einem wichtigen Werkzeug geworden ist.\nWir werden keine umfassende Liste von numerischen Simulationsschemata präsentieren, sondern die Beispiele nutzen, um Ihre Neugierde zu wecken. Da es leichte Unterschiede in der Syntax der verschiedenen Python-Versionen gibt, werden wir uns im Folgenden immer auf den Python 3-Standard beziehen.\nDer Kurs wird auf Deutsch gehalten werden. Die Webseiten, die Sie für den Überblick zu Python zur Verfügung gestellt bekommen, werden allerdings auf Englisch sein. Übungsaufgaben werden werden auf Deutsch gestellt.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "tt.html",
-    "href": "tt.html",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "",
-    "text": "A Jupyter Notebook is a web browser based interactive computing environment that enables users to create documents that include code to be executed, results from the executed code such as plots and imas,and finally also an additional documentation in form of markdown text including equations in LaTeX.\nThese documents provide a complete and self-contained record of a computation that can be converted to various formats and shared with others using email, version control systems (like git/GitHub) or nbviewer.jupyter.org."
-  },
-  {
-    "objectID": "tt.html#what-is-jupyter-notebook",
-    "href": "tt.html#what-is-jupyter-notebook",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "",
-    "text": "A Jupyter Notebook is a web browser based interactive computing environment that enables users to create documents that include code to be executed, results from the executed code such as plots and imas,and finally also an additional documentation in form of markdown text including equations in LaTeX.\nThese documents provide a complete and self-contained record of a computation that can be converted to various formats and shared with others using email, version control systems (like git/GitHub) or nbviewer.jupyter.org."
-  },
-  {
-    "objectID": "tt.html#key-components-of-a-notebook",
-    "href": "tt.html#key-components-of-a-notebook",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "Key Components of a Notebook",
-    "text": "Key Components of a Notebook\nThe Jupyter Notebook combines three components:\n\n\n\n\n\n\nNotebook editor\n\n\n\nThe Notebook editor is an interactive application for writing and running code interactively and editing notebook documents. If you run Jupyter on a server, you will be using Jupyter’s web application or JupyterLab, which is a more advanced version of the notebook editor.\n\n\nThe Notebook editor enables you to\n\nEdit code in individual cell\nRun code in individuall cells in arbitrary oder and display results of the computation in various formats (HTML, LaTeX, PNG, SVG, PDF)\nCreate and use interactive JavaScript widgets, which bind interactive user interface controls and visualizations to reactive kernel side computations.\nAdd documentation text using Markdown markup language, including LaTeX equations\n\n\n\n\n\n\n\nKernels\n\n\n\nKernels are separate processes started by Jupyter on your server, that runs users’ code in a given language and returns output back to the notebook web application. The kernel also handles things like computations for interactive widgets, tab completion and introspection.\n\n\nThe Jupyter notebook is not bound to any specific programming language, but can be used for almost any type of language. Each Jupyter notebook starts a server application that is connected to a kernel that runs the code in the notebook. This kernel is dedicated to a specific programming language. Thus installing different kernels 100+ languages allows you to execute code in Python, Julia, R, Ruby, Haskell, Scala, and many others.\nYet, the default kernel runs Python code. The notebook provides a simple way for users to pick which of these kernels is used for a given notebook. Each of these kernels communicate with the notebook editor using JSON over ZeroMQ/WebSockets message protocol that is described here. Most users don’t need to know about these details, but it helps to understand that “kernels run code”.\n\n\n\n\n\n\nNotebook documents\n\n\n\nSelf-contained documents that contain a representation of all content visible in the notebook editor, including inputs and outputs of the computations, markdown text, equations, images, and rich media representations of objects. Each notebook document has its own kernel.\n\n\nNotebook documents, or notebooks, contain the inputs and outputs of an interactive session as well as documentation text that accompanies the code but is not meant for execution.\nA notebook is just a file on your server’s filesystem with a .ipynb extension. This allows you to share your notebook easily.\nNotebooks consist of a linear sequence of cells. There are three basic cell types:\n\nCode cells: Input and output of live code that is run in the kernel.\nMarkdown cells: Narrative text with embedded LaTeX equations.\nRaw cells: Unformatted text that is included, without modification, when notebooks are converted to different formats using nbconvert.\n\nInternally, notebook documents are JSON text files with binary data encoded in base64. This allows them to be read and manipulated programmatically by any programming language.\nNotebooks can be exported to different static formats including HTML, reStructeredText, LaTeX, PDF, and slide shows (reveal.js) using Jupyter’s nbconvert utility.\nFurthermore, any notebook document available from a public URL on or GitHub can be shared via nbviewer. This service loads the notebook document from the URL and renders it as a static web page. The resulting web page may thus be shared with others without their needing to install the Jupyter Notebook."
-  },
-  {
-    "objectID": "tt.html#using-the-notebook-editor",
-    "href": "tt.html#using-the-notebook-editor",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "Using the Notebook Editor",
-    "text": "Using the Notebook Editor\nA Jupyter Notebook provides an interface with essentially two modes\n\nedit mode the mode where you edit a cells content.\ncommand mode the mode where you execute the cells content.\n\nIn the more advanced version of JupyterLab, which we are using on myBinder, this will look like that\n\nEdit mode\nEdit mode is indicated by a blue cell border and a prompt showing in the editor area:\nWhen a cell is in edit mode, you can type into the cell, like a normal text editor.\n\n\nCommand mode\nCommand mode is indicated by a grey cell border:\nIf you have a hardware keyboard connected to your iOS device, you can use Jupyter keyboard shortcuts. The modal user interface of the Jupyter Notebook has been optimized for efficient keyboard usage. This is made possible by having two different sets of keyboard shortcuts: one set that is active in edit mode and another in command mode.\n\n\nKeyboard navigation\nIn edit mode, most of the keyboard is dedicated to typing into the cell’s editor. Thus, in edit mode there are relatively few shortcuts. In command mode, the entire keyboard is available for shortcuts, so there are many more. Most important ones are:\n\nSwitch command and edit mods: Enter for edit mode, and Esc or Control for command mode.\nBasic navigation: ↑/k, ↓/j\nRun or render currently selected cell: Shift+Enter or Control+Enter\nSaving the notebook: s\nChange Cell types: y to make it a code cell, m for markdown and r for raw\nInserting new cells: a to insert above, b to insert below\nManipulating cells using pasteboard: x for cut, c for copy, v for paste, d for delete and z for undo delete\nKernel operations: i to interrupt and 0 to restart\n\n\n\nRunning code in your notebook\nCode cells allow you to enter and run code. Run a code cell by pressing the ▶︎ button in the bottom-right panel, or Control+Enter on your hardware keyboard.\n\nv = 23752636\nprint(v)\n\nThere are a couple of keyboard shortcuts for running code:\n\nControl+Enter run the current cell and enters command mode.\nShift+Enter runs the current cell and moves selection to the one below.\nOption+Enter runs the current cell and inserts a new one below."
-  },
-  {
-    "objectID": "tt.html#managing-the-kernel",
-    "href": "tt.html#managing-the-kernel",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "Managing the kernel",
-    "text": "Managing the kernel\nCode is run in a separate process called the kernel, which can be interrupted or restarted. You can see kernel indicator in the top-right corner reporting current kernel state: ⚪︎ means kernel is ready to execute code, and ⚫︎ means kernel is currently busy. Tapping kernel indicator will open kernel menu, where you can reconnect, interrupt or restart kernel.\nTry running the following cell — kernel indicator will switch from ⚪︎ to ⚫︎, i.e. reporting kernel as “busy”. This means that you won’t be able to run any new cells until current execution finishes, or until kernel is interrupted. You can then go to kernel menu by tapping the kernel indicator and select “Interrupt”.\nEntering code is pretty easy. You just have to click into a cell and type the commands you want to type. If you have multiple lines of code, just press enter at the end of the line and start a new one.\n\ncode blocks Python identifies blocks of codes belonging together by its identation. This will become important if you write longer code in a cell later. To indent the block, you may use either whitespaces or tabs.\ncomments Comments can be added to annotate the code, such that you or someone else can understand the code.\n\nComments in a single line are started with the # character at in front of the comment.\nComments over multiple lines can be started with '''and end with the same '''. They are used as docstrings to provide a help text.\n\n\n\n# typical function\n\ndef function(x):\n    ''' function to calculate a function\n    arguments:\n        x ... float or integer value\n    returns:\n        y ... two times the integer value\n    '''\n    y=2*x # don't forget the identation of the block\n    return(y)\n\nhelp(function)"
-  },
-  {
-    "objectID": "tt.html#entering-markdown",
-    "href": "tt.html#entering-markdown",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "Entering Markdown",
-    "text": "Entering Markdown\nText can be added to Jupyter Notebooks using Markdown cells. This is extremely useful providing a complete documentation of your calculations or simulations. In this way, everything really becomes an notebook. You can change the cell type to Markdown by using the “Cell Actions” menu, or with a hardware keyboard shortcut m. Markdown is a popular markup language that is a superset of HTML. Its specification can be found here:\nhttps://daringfireball.net/projects/markdown/\nMarkdown cells can either be rendered or unrendered.\nWhen they are rendered, you will see a nice formatted representation of the cell’s contents.\nWhen they are unrendered, you will see the raw text source of the cell. To render the selected cell, click the ▶︎ button or shift+ enter. To unrender, select the markdown cell, and press enter or just double click.\n\nMarkdown basics\nBelow are some basic markdown examples, in its rendered form. If you which to access how to create specific appearances, double click the individual cells to put the into an unrendered edit mode.\nYou can make text italic or bold.\nYou can build nested itemized or enumerated lists:\n\nfirst item\n\nfirst subitem\n\nfirst subsubitem\n\nsecond subitem - first subitem of second subitem - second subitem of second subitem\n\nsecond item\n\nfirst subitem\n\nthird item\n\nfirst subitem\n\n\nNow another list:\n\nHere we go\n\nSublist\n\nSublist\n\n\nThere we go\nNow this\n\nHere is a blockquote:\n\nBeautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense. Readability counts. Special cases aren’t special enough to break the rules. Although practicality beats purity. Errors should never pass silently. Unless explicitly silenced. In the face of ambiguity, refuse the temptation to guess. There should be one– and preferably only one –obvious way to do it. Although that way may not be obvious at first unless you’re Dutch. Now is better than never. Although never is often better than right now. If the implementation is hard to explain, it’s a bad idea. If the implementation is easy to explain, it may be a good idea. Namespaces are one honking great idea – let’s do more of those!\n\nAnd shorthand for links:\nJupyter’s website\n\n\nHeadings\nYou can add headings by starting a line with one (or multiple) # followed by a space, as in the following example:\n# Heading 1\n# Heading 2\n## Heading 2.1\n## Heading 2.2\n### Heading 2.2.1\n\n\nEmbedded code\nYou can embed code meant for illustration instead of execution in Python:\ndef f(x):\n    \"\"\"a docstring\"\"\"\n    return x**2\nor other languages:\nif (i=0; i&lt;n; i++) {\n  printf(\"hello %d\\n\", i);\n  x += 4;\n}\n\n\nLaTeX equations\nCourtesy of MathJax, you can include mathematical expressions both inline: \\(e^{i\\pi} + 1 = 0\\) and displayed:\n\\[e^x=\\sum_{i=0}^\\infty \\frac{1}{i!}x^i\\]\nInline expressions can be added by surrounding the latex code with $:\n$e^{i\\pi} + 1 = 0$\nExpressions on their own line are surrounded by $$:\n$$e^x=\\sum_{i=0}^\\infty \\frac{1}{i!}x^i$$\n\n\nImages\nImages may be also directly integrated into a Markdown block.\nTo include images use\n![alternative text](url)\nfor example\n\n\n\nalternative text\n\n\n\nfrom IPython.display import Image, display;\nimport ssl\nfrom urllib.request import urlopen\n\n# URL of the image\nurl = \"https://github.com/fcichos/CompSoft23/raw/master/source/notebooks/Intro/img/particle.png\"\n\n# Create an SSL context that does not verify certificates\nssl._create_default_https_context = ssl._create_unverified_context\n\n# Open the URL and display the image\nwith urlopen(url) as response:\n    display(Image(response.read()))\n\n\ndisplay(Image(filename='img/particle.png'))\n\n\n\nVideos\nTo include videos, we use HTML code like\n&lt;video src=\"mov/movie.mp4\" width=\"320\" height=\"200\" controls preload&gt;&lt;/video&gt;\nin the Markdown cell. This works with videos stored locally.\n\n\nYou can embed YouTube Videos as well by using the IPython module.\n\nfrom IPython.display import YouTubeVideo\nYouTubeVideo('QlLx32juGzI',width=600)\n\n\n\nPython Basics\n\nVariables and data types (integers, floats, strings).\nBasic arithmetic operations (+, -, *, /, **)."
-  },
-  {
-    "objectID": "tt.html#introduction-to-variables",
-    "href": "tt.html#introduction-to-variables",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "Introduction to Variables",
-    "text": "Introduction to Variables\n\nSymbol Names\nVariable names in Python can include alphanumerical characters a-z, A-Z, 0-9, and the special character _. Normal variable names must start with a letter.\nBy convention, variable names typically start with a lower-case letter, while Class names start with a capital letter.\n\n\n\n\n\n\nWarning\n\n\n\nNote: Reserved Keywords\nThere are a number of Python keywords that cannot be used as variable names. These keywords are:\nand, as, assert, break, class, continue, def, del, elif, else, except, exec, finally, for, from, global, if, import, in, is, lambda, not, or, pass, print, raise, return, try, while, with, yield\nBe aware of the keyword lambda, which could easily be a natural variable name in a scientific program. However, as a reserved keyword, it cannot be used as a variable name.\n\n\n\n\nVariable Assignment\nThe assignment operator in Python is =. Python is a dynamically typed language, so we do not need to specify the type of a variable when we create one.\nAssigning a value to a new variable creates the variable:\n\n# variable assignments\nx = 1.0\nmy_favorite_variable = 12.2\nx\n\n1.0\n\n\nAlthough not explicitly specified, a variable does have a type associated with it. The type is derived from the value that was assigned to it.\n\ntype(x)\n\nfloat\n\n\nIf we assign a new value to a variable, its type can change.\n\nx = 1\n\n\ntype(x)\n\nint\n\n\nIf we try to use a variable that has not yet been defined, we get a NameError:\n\n#print(g)"
-  },
-  {
-    "objectID": "tt.html#number-types",
-    "href": "tt.html#number-types",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "Number Types",
-    "text": "Number Types\n\nOverview of Number Types\nPython supports various number types, including integers, floating-point numbers, and complex numbers.\n\n\nIntegers\n\nInteger Representation: Numbers without a decimal point are treated as integers.\n\n\nx = 1\ntype(x)\n\nint\n\n\n\nBinary, Octal, and Hexadecimal: Integers can be represented in different bases:\n\n\n0b1010111110  # Binary\n0x0F          # Hexadecimal\n\n15\n\n\n\n\nFloating Point Numbers\n\nFloating Point Representation: Numbers with a decimal point are treated as floating-point values.\n\n\nx = 3.141\ntype(x)\n\nfloat\n\n\n\nMaximum Float Value: Python handles large floats, converting them to infinity if they exceed the maximum representable value.\n\n\n1.7976931348623157e+308 * 2  # Output: inf\n\ninf\n\n\n\n\nComplex Numbers\n\nComplex Number Representation: Complex numbers have a real and an imaginary part.\n\n\nc = 2 + 4j\ntype(c)\n\ncomplex\n\n\n\nAccessors for Complex Numbers:\n\nc.real: Real part of the complex number.\nc.imag: Imaginary part of the complex number.\n\n\n\nprint(c.real)\nprint(c.imag)\n\n2.0\n4.0\n\n\n\nComplex Conjugate: Use the .conjugate() method to get the complex conjugate.\n\n\nc = c.conjugate()\nprint(c)\n\n(2-4j)"
-  },
-  {
-    "objectID": "tt.html#type-conversion",
-    "href": "tt.html#type-conversion",
-    "title": "Introduction to Python and Basic Calculations",
-    "section": "Type Conversion",
-    "text": "Type Conversion\n\nImplicit Type Conversion\n\nAutomatic Conversion: Python automatically converts types during operations.\n\n\ninteger_number = 123\nfloat_number = 1.23\nnew_number = integer_number + float_number\ntype(new_number)\n\n\n\nExplicit Type Conversion\n\nManual Conversion: Use functions like int(), float(), and str() to explicitly convert types.\n\n\nnum_string = \"12\"\nnum_string = int(num_string)\ntype(num_string)\n\n\nConverting Between Types:\n\n\nx = 5 / 2\nx = int(x)\nz = complex(x)\n\n\nHandling Complex Numbers:\n\nComplex numbers cannot be directly converted to floats or integers; extract the real or imaginary part first.\n\n\n\ny = bool(z.real)\nprint(z.real, \" -&gt; \", y, type(y))\n\n\n\nApplication\n\n# 1. Converting Units of Distance\n# Distance in kilometers\ndistance_km = 5.0\n\n# Conversion factor from kilometers to meters\nconversion_factor = 1000\n\n# Convert distance to meters\ndistance_meters = distance_km * conversion_factor\n\n# 2. Calculating Time from Distance and Speed\n# Given distance in meters\ndistance = 1000.0  # meters\n\n# Given speed in meters per second\nspeed = 5.0  # meters per second\n\n# Calculate time in seconds\ntime = distance / speed\n\n# 3. Energy Calculation Using Kinetic Energy Formula\n# Mass in kilograms\nmass = 70.0  # kg\n\n# Velocity in meters per second\nvelocity = 10.0  # m/s\n\n# Calculate kinetic energy\nkinetic_energy = 0.5 * mass * velocity ** 2\n\n# 4. Temperature Conversion (Celsius to Fahrenheit)\n# Temperature in Celsius\ntemp_celsius = 25.0  # degrees Celsius\n\n# Convert to Fahrenheit\ntemp_fahrenheit = (temp_celsius * 9/5) + 32\n\n# 5. Power Calculation Using Work and Time\n# Work done in joules\nwork_done = 500.0  # joules\n\n# Time taken in seconds\ntime_taken = 20.0  # seconds\n\n# Calculate power\npower_output = work_done / time_taken\n\n# 6. Calculating Force Using Newton's Second Law\n# Mass in kilograms\nmass = 10.0  # kg\n\n# Acceleration in meters per second squared\nacceleration = 9.8  # m/s^2\n\n# Calculate force\nforce = mass * acceleration\n\n# Output Results\nprint(f\"Distance in meters: {distance_meters} m\")\nprint(f\"Time to travel {distance} meters at {speed} m/s: {time} seconds\")\nprint(f\"Kinetic energy: {kinetic_energy} joules\")\nprint(f\"Temperature in Fahrenheit: {temp_fahrenheit} °F\")\nprint(f\"Power output: {power_output} watts\")\nprint(f\"Force: {force} newtons\")\n\n\nSimple calculations relevant to physics, such as converting units or calculating simple quantities (e.g., distance = speed × time).\n\nHomework: Basic practice problems to reinforce Python syntax and operations."
-  },
-  {
-    "objectID": "seminars/seminar02/Report/Figures/Figure2/Figure2.html",
-    "href": "seminars/seminar02/Report/Figures/Figure2/Figure2.html",
+    "objectID": "seminars/seminar02/Report/Figures/Figure1/Figure1.html",
+    "href": "seminars/seminar02/Report/Figures/Figure1/Figure1.html",
     "title": "Einführung in die Modellierung Physikalischer Prozesse",
     "section": "",
-    "text": "import matplotlib as mpl\nimport matplotlib.font_manager as font_manager\nfrom IPython.core.display import HTML\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom directory_tree import display_tree\n\n\nplt.rcParams.update({'font.size': 12,\n                     'lines.linewidth': 1,\n                     'lines.markersize': 10,\n                     'axes.labelsize': 11,\n                     'xtick.labelsize' : 10,\n                     'ytick.labelsize' : 10,\n                     'xtick.top' : True,\n                     'xtick.direction' : 'in',\n                     'ytick.right' : True,\n                     'ytick.direction' : 'in',}) \n\n%config InlineBackend.figure_format = 'retina'\n\n\ndef get_size(w,h):\n    return((w/2.54,h/2.54))\n\n\n# Generate fake experimental data\nx = np.linspace(0, 10, 100)\ny = np.sin(x) + np.random.normal(0, 0.2, size=100)\n\n# Set up the fancy plot\nfig, ax = plt.subplots(figsize=get_size(8, 6),dpi=150)\nax.plot(x, y, color='blue', linewidth=2, label='EXP',alpha=0.5)\n\n# Add some fancy elements to the plot\nax.fill_between(x, y, color='lightgray')\nax.scatter(x, y, color='blue', s=30, label='DATA ',alpha=0.5)\n\nax.set_xlabel('Time')\nax.set_ylabel('Measurement')\n\nax.legend(loc='lower right')\n\nax.tick_params(axis='both', which='major')\n\nax.grid(color='gray', linestyle='--', linewidth=0.5)\n\nax.annotate('Interesting\\nPoint', xy=(4.8, 0), xytext=(4.8, 0.7),\n            arrowprops=dict(facecolor='black', arrowstyle='-&gt;'),\n            fontsize=10, ha='center')\nplt.savefig(\"../figure2.pdf\",bbox_inches = 'tight')\nplt.show()"
+    "text": "import matplotlib as mpl\nimport matplotlib.font_manager as font_manager\nfrom IPython.core.display import HTML\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom directory_tree import display_tree\n\n\nplt.rcParams.update({'font.size': 12,\n                     'lines.linewidth': 1,\n                     'lines.markersize': 10,\n                     'axes.labelsize': 11,\n                     'xtick.labelsize' : 10,\n                     'ytick.labelsize' : 10,\n                     'xtick.top' : True,\n                     'xtick.direction' : 'in',\n                     'ytick.right' : True,\n                     'ytick.direction' : 'in',}) \n\n%config InlineBackend.figure_format = 'retina'\n\n\ndef get_size(w,h):\n    return((w/2.54,h/2.54))\n\n\nplt.figure(figsize=get_size(7,5),dpi=150)\nx=np.linspace(0,np.pi*4,200)\nplt.plot(x,np.sin(x)*np.cos(2*x),color='r')\nplt.xlabel(r\"angle $\\theta$ in [rad]\")\nplt.ylabel(r\"$\\sin(\\theta)$\")\nplt.savefig(\"../figure1.pdf\",bbox_inches = 'tight')\nplt.show()"
   },
   {
-    "objectID": "seminars/seminar01/01-seminar01.html",
-    "href": "seminars/seminar01/01-seminar01.html",
-    "title": "Seminar 1",
+    "objectID": "seminars/seminar01/MDSimulation.html",
+    "href": "seminars/seminar01/MDSimulation.html",
+    "title": "Molecular Dynamics Simulations in EMPP 2024",
     "section": "",
-    "text": "Calculate the average of all of the integers from 1 to 10.\n\n\n\n\n\n\n\nuse the sum() and len() functions\nn = range(1, 11)\n\n\n1n = range(1, 11)\n2sum(n)/len(n)\n\n1\n\ncreate the range of numbers from 1 to 10.\n\n2\n\ncalculate the sum of the numbers and divide by the number of elements in the list."
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nplt.rcParams.update({'font.size': 8,\n                     'lines.linewidth': 1,\n                     'lines.markersize': 10,\n                     'axes.labelsize': 10,\n                     'axes.titlesize': 10,\n                     'xtick.labelsize' : 10,\n                     'ytick.labelsize' : 10,\n                     'xtick.top' : True,\n                     'xtick.direction' : 'in',\n                     'ytick.right' : True,\n                     'ytick.direction' : 'in',})\n\ndef get_size(w,h):\n    return((w/2.54,h/2.54))"
+  },
+  {
+    "objectID": "seminars/seminar01/MDSimulation.html#lenard-jones-potential",
+    "href": "seminars/seminar01/MDSimulation.html#lenard-jones-potential",
+    "title": "Molecular Dynamics Simulations in EMPP 2024",
+    "section": "Lenard-Jones Potential",
+    "text": "Lenard-Jones Potential\n\ndef lennard_jones(r, epsilon=1, sigma=1):\n    return 4 * epsilon * ((sigma/r)**12 - (sigma/r)**6)\n\nr = np.linspace(0.8, 3, 1000)\nV = lennard_jones(r)\n\nplt.figure(figsize=get_size(8, 6),dpi=150)\nplt.plot(r, V, 'b-', linewidth=2)\nplt.grid(True)\nplt.xlabel('r/σ')\nplt.ylabel('V/ε')\nplt.title('Lennard-Jones Potential')\nplt.axhline(y=0, color='k', linestyle='-', alpha=0.3)\nplt.ylim(-1.5, 3)\nplt.show()"
+  },
+  {
+    "objectID": "seminars/seminar01/MDSimulation.html#taylor-expansion",
+    "href": "seminars/seminar01/MDSimulation.html#taylor-expansion",
+    "title": "Molecular Dynamics Simulations in EMPP 2024",
+    "section": "Taylor Expansion",
+    "text": "Taylor Expansion\n\nx = np.linspace(-2*np.pi, 2*np.pi, 1000)\ny = np.sin(x)\ny_taylor = x - 1/6*x**3\ny_taylor1 = x - 1/6*x**3+x**5/120\n\n\nplt.figure(figsize=get_size(8, 6),dpi=150)\nplt.plot(x, y, 'b-', label='sin(x)', linewidth=2)\nplt.plot(x, y_taylor, 'r--', label='O(5)', linewidth=2)\nplt.plot(x, y_taylor1, 'g--', label='O(7)', linewidth=2)\nplt.grid(True)\nplt.xlabel('x')\nplt.ylabel('f(x)')\nplt.xlim(-2,2)\nplt.ylim(-1.3,1.3)\nplt.title('Taylor Expansion of sin(x)')\nplt.legend()\nplt.show()"
+  },
+  {
+    "objectID": "seminars/seminar01/MDSimulation.html#velocity-verlet",
+    "href": "seminars/seminar01/MDSimulation.html#velocity-verlet",
+    "title": "Molecular Dynamics Simulations in EMPP 2024",
+    "section": "Velocity Verlet",
+    "text": "Velocity Verlet\n\ng = 9.81  # m/s^2\ndt = 0.01  # time step\nt_max = 2.0  # total simulation time\nsteps = int(t_max/dt)\n\n# Initial conditions\ny0 = 20.0  # initial height\nv0 = 0.0   # initial velocity\n\n\n# Arrays to store results\nt = np.zeros(steps)\ny = np.zeros(steps)\nv = np.zeros(steps)\na = np.zeros(steps)\n\n# Initial values\ny[0] = y0\nv[0] = v0\na[0] = -g\n\n# Velocity Verlet integration\nfor i in range(1, steps):\n    t[i] = i * dt\n    y[i] = y[i-1] + v[i-1] * dt + 0.5 * a[i-1] * dt**2  # update position\n    a_new = -g                                          # new acceleration (assuming constant gravity)\n    v[i] = v[i-1] + 0.5 * (a[i-1] + a_new) * dt  # update velocity\n    a[i] = a_new  # store new acceleration\n\nplt.figure(figsize=get_size(8, 6), dpi=150)\nplt.plot(t, y)\nplt.xlabel('Time (s)')\nplt.ylabel('Height (m)')\nplt.title('Free Fall Motion')\nplt.grid(True)\nplt.show()"
+  },
+  {
+    "objectID": "seminars/seminar01/MDSimulation.html#class-for-an-atom",
+    "href": "seminars/seminar01/MDSimulation.html#class-for-an-atom",
+    "title": "Molecular Dynamics Simulations in EMPP 2024",
+    "section": "Class for an Atom",
+    "text": "Class for an Atom"
   },
   {
     "objectID": "seminars/seminar01/md1.html",
@@ -1003,32 +1038,40 @@
     "text": "Recap: Implicit Solution\nAccording to our above description, the Hamilton operator \\(\\hat{H}\\) contains two parts, a second derivative in the position, which represents the kinetic energy and the potential energy operator \\(V(x)\\), which is in the simplest case just a function of \\(x\\).\n\\[\\begin{equation}\n\\left ( \\frac{-\\hbar^2 }{2m}\\frac{\\partial^2}{\\partial x^2}+V(x) \\right ) \\Psi(x)=E\\Psi(x)\n\\end{equation}\\]\nSince we want to apply our implicit solution scheme (Cranck Nicolson), we want to represent both parts as matrices.\n\nKinetic energy\nWe remember that we can write the second derivative of our wavefunction \\(\\Psi(x)\\) in the finite difference approximation as\n\\[\\begin{equation}\n\\Psi^{''}(x)=\\frac{\\Psi(x+\\delta x)-2\\Psi(x)+\\Psi(x-\\delta x)}{\\delta x^{2}}\n\\end{equation}\\]\nIf we want to evaluate the wavefunction at certain positions \\(x_{i}\\), then this second derivative translates into\n\\(T\\Psi=\\frac{d^2}{dx^2}\\Psi=\\frac{1}{\\delta x^2}\n\\begin{bmatrix}\n-2 & 1  & 0 & 0 & 0 & 0\\\\\n1 & -2 & 1 & 0 & 0 & 0\\\\\n0 & 1  & -2 & 1 & 0 & 0\\\\\n0 & 0  & 1  & -2 & 1 & 0\\\\\n0 & 0  & 0  &  1 & -2 & 1\\\\\n0 & 0  & 0  &  0 &  1 & -2\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\Psi(x_{1})\\\\\n\\Psi(x_{2})\\\\\n\\Psi(x_{3})\\\\\n\\Psi(x_{4})\\\\\n\\Psi(x_{5})\\\\\n\\Psi(x_{6})\n\\end{bmatrix}\\)\nif we just use 6 positions. Please remember, that in the version above, we have imposed already boundary conditions in the first and the last row, which are \\(\\Psi(x_{0})=0\\) and \\(\\Psi(x_{7})=0\\). If we multiply this matrix by \\(-\\hbar^{2}/2m\\), we obtain the kinetic energy for an object of mass \\(m\\).\n\n\nPotential energy\nThe potential energy values are just values at the diagonal of the matrix\n\\(V\\Psi=\n\\begin{bmatrix}\nV(x_{1}) & 0  & 0 & 0 & 0 & 0\\\\\n0 & V(x_{2}) & 0 & 0 & 0 & 0\\\\\n0 & 0  & V(x_{3}) & 0 & 0 & 0\\\\\n0 & 0  & 0  & V(x_{4}) & 0 & 0\\\\\n0 & 0  & 0  &  0 & V(x_{5}) & 0\\\\\n0 & 0  & 0  &  0 &  0 & V(x_{6})\\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\Psi(x_{1})\\\\\n\\Psi(x_{2})\\\\\n\\Psi(x_{3})\\\\\n\\Psi(x_{4})\\\\\n\\Psi(x_{5})\\\\\n\\Psi(x_{6})\n\\end{bmatrix}\\)\nan you may insert the specific potential energy values for your particular problem here.\nOur final problem \\(\\hat{H}\\Psi=E\\Psi\\) will thus have the following shape\n\\[\\begin{equation}\n\\begin{bmatrix}\n-2+V(x_{1}) & 1  & 0 & 0 & 0 & 0\\\\\n1 & -2+V(x_{2}) & 1 & 0 & 0 & 0\\\\\n0 & 1 & -2+V(x_{3})  & 1 & 0 & 0 \\\\\n0 &0 & 1  & -2+V(x_{4})  & 1 & 0 \\\\\n0 & 0 & 0  & 1  &  -2+V(x_{5}) & 1 \\\\\n0 & 0 & 0  & 0  &  1 &  -2+V(x_{6}) \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\Psi(x_{1})\\\\\n\\Psi(x_{2})\\\\\n\\Psi(x_{3})\\\\\n\\Psi(x_{4})\\\\\n\\Psi(x_{5})\\\\\n\\Psi(x_{6})\n\\end{bmatrix}=E\n\\begin{bmatrix}\n\\Psi(x_{1})\\\\\n\\Psi(x_{2})\\\\\n\\Psi(x_{3})\\\\\n\\Psi(x_{4})\\\\\n\\Psi(x_{5})\\\\\n\\Psi(x_{6})\n\\end{bmatrix}\n\\end{equation}\\]\nwhere I skipped the prefactor \\(-\\hbar^2/2m\\), to fit the matrices on one line. Yet I did not succeed. This is the final system of coupled equations which we can supply to any matrix solver. We will use a solver from the scipy.linalg module. In case we have special boundary conditions, we need to take them into account and replace the first and the last line for example with the particular boundary conditions."
   },
   {
-    "objectID": "lectures/lecture04/1_classes.html",
-    "href": "lectures/lecture04/1_classes.html",
+    "objectID": "lectures/lecture04/1_classes.html#object-oriented-programming",
+    "href": "lectures/lecture04/1_classes.html#object-oriented-programming",
     "title": "Classes and Objects",
-    "section": "",
-    "text": "File as PDF\nA very useful programming concept of modern programming is object oriented programming. In all the programs we wrote till now, we have designed our program around functions i.e. blocks of statements which manipulate data. This is called the procedure-oriented way of programming.\nThere is another way of organizing your program which is to combine data and functionality and wrap it inside something called an object. This is called the object oriented programming paradigm, which will be useful especially for larger programs.\nClasses and objects are the two main aspects of object oriented programming. * A class creates a new type where objects are instances of the class."
-  },
-  {
-    "objectID": "lectures/lecture04/1_classes.html#definition-of-classes",
-    "href": "lectures/lecture04/1_classes.html#definition-of-classes",
-    "title": "Classes and Objects",
-    "section": "Definition of Classes",
-    "text": "Definition of Classes\nWe create a new class using the class statement and the name of the class and a colon :. This is followed by an indented block of statements which form the body of the class.\nclass Classname:\n    statements ###\nIn the following example, we have an empty block which is indicated using the pass statement.\n\n\n\n\n\n\nYou can then create a new object of the class Colloid by The print command will just inform you about the memory address at which the object is stored."
+    "section": "Object oriented programming",
+    "text": "Object oriented programming\nA very useful programming concept of programming is object oriented programming. In all the programs we wrote till now, we have designed our program around functions i.e. blocks of statements which manipulate data. This is called the procedure-oriented way of programming.\nThere is another way of organizing your program which is to combine data and functionality and wrap it inside something called an object. This is called the object oriented programming paradigm, which will be useful especially for larger programs.\n\nClasses and Objects\nObject-oriented programming is built upon two fundamental concepts: classes and objects.\n\nA class is a blueprint or template that defines a new type of object. Think of it as a mold that creates objects with specific characteristics and behaviors.\nObjects are specific instances of a class. They have two main components:\n\nProperties (also called attributes or fields): Variables that store data within the object\nMethods: Functions that define what the object can do\n\nProperties come in two varieties:\n\nInstance variables: Unique to each object instance (each object has its own copy)\nClass variables: Shared among all instances of the class (one copy for the entire class)\n\n\nFor example, if you had a Car class: - Instance variables might include color and mileage (unique to each car) - Class variables might include number_of_wheels (same for all cars) - Methods might include start_engine() or brake()\n\n\nCreating Classes\nTo define a class in Python, we use this basic syntax:\nclass ClassName:\n    # Class content goes here\nThe definition starts with the class keyword, followed by the class name, and a colon. The class content is indented and contains all properties and methods of the class.\nHere’s a minimal example:\n\n\n\n\n\n\nTo create an object (an instance) of this class:",
+    "crumbs": [
+      "Python Basics",
+      "Lecture 4",
+      "Classes & Objects"
+    ]
   },
   {
     "objectID": "lectures/lecture04/1_classes.html#class-methods",
     "href": "lectures/lecture04/1_classes.html#class-methods",
     "title": "Classes and Objects",
     "section": "Class Methods",
-    "text": "Class Methods\nMethods are functions that belong to a class.\n\nNote: The self parameter\nClass methods have an extra first parameter at beginning of the parameter list, but you do not give a value for this parameter when you call the method, Python will provide it. This particular variable refers to the object itself, and by convention, it is given the name self. Thus, even a method without arguments has a single argument:\nclass Colloid:\n    def type(self):\n        print('I am a plastic colloid')\n\n\n\n\n\n\n\n\n\nThe __init__ method\nThe __init__ method is run as soon as an object of a class is instantiated (i.e. created). The method is useful to do any initialization (i.e. passing initial values to your object) you want to do with your object. Notice the double underscores both at the beginning and at the end of the name.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBesides the __init__method, which is commonly called constructor, there is also the __del__ method, which is called b´when an object is deleted. We will use that further down.\n\n\nThe __str__ method\nThe __str__ method that is invoked when a simple string representation of the class is needed, as for example when printed."
+    "text": "Class Methods\nMethods are functions that belong to a class. They define the behavior of the class and can operate on the class’s properties.\n\n\n\n\n\n\nUnderstanding self in Python Classes\n\n\n\nEvery method in a Python class automatically receives a special first parameter, conventionally named self. This parameter refers to the specific instance of the class that calls the method.\nKey points about self: - It’s automatically passed by Python when you call a method - It gives the method access to the instance’s properties - By convention, we name it self (though technically you could use any valid name) - You don’t include it when calling the method\nExample:\nclass Colloid:\n    def type(self):  # self is automatically provided\n        print('I am a plastic colloid')\n\n# Usage:\nparticle = Colloid()\nparticle.type()  # Notice: no argument needed for self\nIn this example, even though type() appears to take no arguments when called, it actually receives the particle object as self.\n\n\n\n\n\n\n\n\n\nThe Constructor Method: __init__\nThe __init__ method (called the constructor) is a special method that initializes a new object when it’s created. It allows you to: - Set up initial values for the object’s properties - Perform any setup the object needs when it’s created\nThe name has double underscores (dunders) at both ends: __init__\nHere’s an example:\n\n\n\n\n\n\nUsing the class:\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nPython also provides a __del__ method (destructor) that’s called when an object is deleted. We’ll see this in action later.\n\n\n\n\nThe String Representation: __str__ Method\nThe __str__ method defines how an object should be represented as a string. Python automatically calls this method when: - You use print(object) - You convert the object to a string using str(object)\nHere’s an example:\n\n\n\n\n\n\nLet’s see it in action:\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe .1f format specification means the radius will be displayed with one decimal place. You can customize this string representation to show whatever information about your object is most relevant.",
+    "crumbs": [
+      "Python Basics",
+      "Lecture 4",
+      "Classes & Objects"
+    ]
   },
   {
-    "objectID": "lectures/lecture04/1_classes.html#class-and-object-variables",
-    "href": "lectures/lecture04/1_classes.html#class-and-object-variables",
+    "objectID": "lectures/lecture04/1_classes.html#understanding-class-and-instance-variables",
+    "href": "lectures/lecture04/1_classes.html#understanding-class-and-instance-variables",
     "title": "Classes and Objects",
-    "section": "Class and object variables",
-    "text": "Class and object variables\nThe data part, i.e. properties, are ordinary variables that are bound to the namespaces of the classes and objects. This means that these names are valid within the context of these classes and objects only.\nThere are two types of fields - class variables and object variables which are classified depending on whether the class or the object owns the variables respectively.\n\nClass variables are shared - they can be accessed by all instances of that class. There is only one copy of the class variable and when any one object makes a change to a class variable, that change will be seen by all the other instances.\nObject variables are owned by each individual object/instance of the class. In this case, each object has its own copy of the field i.e. they are not shared and are not related in any way to the field by the same name in a different instance.\n\nHere is an example:"
+    "section": "Understanding Class and Instance Variables",
+    "text": "Understanding Class and Instance Variables\nIn Python classes, we can have two types of variables that store data:\n\n1. Class Variables (Shared Data)\n\nShared among all instances of a class\nDefined inside the class but outside any method\nAll objects share the same copy of these variables\nChanges affect all instances\nUseful for tracking data common to all instances\n\n\n\n2. Instance Variables (Individual Data)\n\nUnique to each instance/object\nUsually defined in __init__\nEach object has its own copy\nChanges only affect that specific instance\nUseful for object-specific properties\n\nHere’s a practical example:\n\n\n\n\n\n\nLet’s see how it works:\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nCommon uses for class variables:\n\nCounters (like tracking total instances)\nConstants shared by all instances\nConfiguration values for all objects",
+    "crumbs": [
+      "Python Basics",
+      "Lecture 4",
+      "Classes & Objects"
+    ]
   },
   {
     "objectID": "lectures/lecture03/1_numpy.html",
@@ -1038,7 +1081,7 @@
     "text": "Numpy is the core library for scientific computing in Python. It provides a high-performance multidimensional array object and tools for working with these arrays. The NumPy array, formally called ndarray in NumPy documentation, is the real workhorse of data structures for scientific and engineering applications. The NumPy array is similar to a list but where all the elements of the list are of the same type. The elements of a NumPy array are usually numbers, but can also be booleans, strings, or other objects. When the elements are numbers, they must all be of the same type.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Numpy Module"
     ]
   },
@@ -1050,7 +1093,7 @@
     "text": "Creating Numpy Arrays\nThere are a number of ways to initialize new numpy arrays, for example from\n\na Python list or tuples\nusing functions that are dedicated to generating numpy arrays, such as arange, linspace, etc.\nreading data from files which will be covered in the files section\n\n\nFrom lists\nFor example, to create new vector and matrix arrays from Python lists we can use the numpy.array function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing array-generating functions\nFor larger arrays it is inpractical to initialize the data manually, using explicit python lists. Instead we can use one of the many functions in numpy that generate arrays of different forms. Some of the more common are:\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinspace and logspace\nThe linspace function creates an array of N evenly spaced points between a starting point and an ending point. The form of the function is linspace(start, stop, N).If the third argument N is omitted,then N=50.\n\n\n\n\n\n\nlogspace is doing equivelent things with logaritmic spacing. Other types of array creation techniques are listed below. Try around with these commands to get a feeling what they do.\n\n\n\n\n\n\n\n\nmgrid\nmgrid generates a multi-dimensional matrix with increasing value entries, for example in columns and rows:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndiag\ndiag generates a diagonal matrix with the list supplied to it. The values can be also offset from the main diagonal.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nzeros and ones\nzeros and ones creates a matrix with the dimensions given in the argument and filled with 0 or 1.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Numpy Module"
     ]
   },
@@ -1062,7 +1105,7 @@
     "text": "Manipulating NumPy arrays\n\nSlicing\nSlicing is the name for extracting part of an array by the syntax M[lower:upper:step]\n\n\n\n\n\n\n\n\n\n\n\n\nAny of the three parameters in M[lower:upper:step] can be ommited.\n\n\n\n\n\n\n\n\n\n\n\n\nNegative indices counts from the end of the array (positive index from the begining):\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIndex slicing works exactly the same way for multidimensional arrays:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDifferences\n\n\n\nSlicing can be effectively used to calculate differences for example for the calculation of derivatives. Here the position \\(y_i\\) of an object has been measured at times \\(t_i\\) and stored in an array each. We wish to calculate the average velocity at the times \\(t_{i}\\) from the arrays by\n\\[\\begin{equation}\nv_{i}=\\frac{y_i-y_{i-1}}{t_{i}-t_{i-1}}\n\\end{equation}\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReshaping\nArrays can be reshaped into any form, which contains the same number of elements.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAdding a new dimension: newaxis\nWith newaxis, we can insert new dimensions in an array, for example converting a vector to a column or row matrix.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStacking and repeating arrays\nUsing function repeat, tile, vstack, hstack, and concatenate we can create larger vectors and matrices from smaller ones. Please try the individual functions yourself in your notebook. We wont discuss them in detail.\n\nTile and repeat\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConcatenate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHstack and vstack",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Numpy Module"
     ]
   },
@@ -1074,7 +1117,7 @@
     "text": "Applying mathematical functions\nAll kinds of mathematica operations can be carried out on arrays. Typically these operation act element wise as seen from the examples below.\n\nOperation involving one array\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOperations involving multiple arrays\nOperation between multiple vectors allow in particular very quick operations. The operations address then elements of the same index. These operations are called vector operations since the concern the whole array at the same time. The product between two vectors results therefore not in a dot product, which gives one number but in an array of multiplied elements.",
     "crumbs": [
       "Python Basics",
-      "Lecture 3",
+      "Lecture 4",
       "Numpy Module"
     ]
   },
