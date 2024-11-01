@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Matplotlib Cheat Sheet – Einführung in die Modellierung Physikalischer Prozesse</title>
+<title>Assignment 1 – Einführung in die Modellierung Physikalischer Prozesse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Matplotlib Cheat Sheet</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Assignment 1</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -409,31 +409,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#matplotlib-cheat-sheet" id="toc-matplotlib-cheat-sheet" class="nav-link active" data-scroll-target="#matplotlib-cheat-sheet">Matplotlib Cheat Sheet</a>
-  <ul class="collapse">
-  <li><a href="#basic-plot-setup" id="toc-basic-plot-setup" class="nav-link" data-scroll-target="#basic-plot-setup">Basic Plot Setup</a></li>
-  <li><a href="#common-plot-types" id="toc-common-plot-types" class="nav-link" data-scroll-target="#common-plot-types">Common Plot Types</a></li>
-  <li><a href="#customization" id="toc-customization" class="nav-link" data-scroll-target="#customization">Customization</a></li>
-  <li><a href="#multiple-plots" id="toc-multiple-plots" class="nav-link" data-scroll-target="#multiple-plots">Multiple Plots</a></li>
-  <li><a href="#saving-plots" id="toc-saving-plots" class="nav-link" data-scroll-target="#saving-plots">Saving Plots</a></li>
-  <li><a href="#advanced-plots" id="toc-advanced-plots" class="nav-link" data-scroll-target="#advanced-plots">Advanced Plots</a></li>
-  <li><a href="#useful-settings" id="toc-useful-settings" class="nav-link" data-scroll-target="#useful-settings">Useful Settings</a></li>
-  <li><a href="#common-parameters" id="toc-common-parameters" class="nav-link" data-scroll-target="#common-parameters">Common Parameters</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Matplotlib Cheat Sheet</h1>
+<h1 class="title">Assignment 1</h1>
 </div>
 
 
@@ -450,90 +434,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="matplotlib-cheat-sheet" class="level1">
-<h1>Matplotlib Cheat Sheet</h1>
-<section id="basic-plot-setup" class="level2">
-<h2 class="anchored" data-anchor-id="basic-plot-setup">Basic Plot Setup</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new figure</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(width, height))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'bo-'</span>)  <span class="co"># Blue line with circle markers</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Set labels and title</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X-axis label'</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y-axis label'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Plot Title'</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Label'</span>], loc<span class="op">=</span><span class="st">'best'</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="common-plot-types" class="level2">
-<h2 class="anchored" data-anchor-id="common-plot-types">Common Plot Types</h2>
-<ul>
-<li>Line plot: <code>plt.plot(x, y)</code></li>
-<li>Scatter plot: <code>plt.scatter(x, y)</code></li>
-<li>Bar plot: <code>plt.bar(x, height)</code></li>
-<li>Histogram: <code>plt.hist(data, bins=10)</code></li>
-<li>Box plot: <code>plt.boxplot(data)</code></li>
-<li>Errorbar plot: <code>plt.errorbar(x, y, yerr=error)</code></li>
-</ul>
-</section>
-<section id="customization" class="level2">
-<h2 class="anchored" data-anchor-id="customization">Customization</h2>
-<ul>
-<li>Set axis limits: <code>plt.xlim(xmin, xmax)</code>, <code>plt.ylim(ymin, ymax)</code></li>
-<li>Set axis scales: <code>plt.xscale('log')</code>, <code>plt.yscale('log')</code></li>
-<li>Set tick marks: <code>plt.xticks(ticks, labels)</code>, <code>plt.yticks(ticks, labels)</code></li>
-<li>Add a grid: <code>plt.grid(True)</code></li>
-<li>Change line style: <code>plt.plot(x, y, linestyle='--', color='r', linewidth=2)</code></li>
-<li>Change marker style: <code>plt.plot(x, y, marker='o', markersize=5)</code></li>
-</ul>
-</section>
-<section id="multiple-plots" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-plots">Multiple Plots</h2>
-<ul>
-<li>Subplots: <code>fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))</code></li>
-<li>Plot on specific axes: <code>ax1.plot(x, y)</code></li>
-</ul>
-</section>
-<section id="saving-plots" class="level2">
-<h2 class="anchored" data-anchor-id="saving-plots">Saving Plots</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'filename.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="advanced-plots" class="level2">
-<h2 class="anchored" data-anchor-id="advanced-plots">Advanced Plots</h2>
-<ul>
-<li><p>Contour plot: <code>plt.contour(X, Y, Z)</code></p></li>
-<li><p>3D plot:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax.plot_surface(X, Y, Z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-</section>
-<section id="useful-settings" class="level2">
-<h2 class="anchored" data-anchor-id="useful-settings">Useful Settings</h2>
-<ul>
-<li>Adjust layout: <code>plt.tight_layout()</code></li>
-<li>Set style: <code>plt.style.use('ggplot')</code></li>
-<li>Colormap: <code>plt.imshow(data, cmap='viridis')</code></li>
-</ul>
-</section>
-<section id="common-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="common-parameters">Common Parameters</h2>
-<ul>
-<li>Colors: ‘b’ (blue), ‘g’ (green), ‘r’ (red), ‘c’ (cyan), ‘m’ (magenta), ‘y’ (yellow), ‘k’ (black), ‘w’ (white)</li>
-<li>Markers: ‘.’ (point), ‘o’ (circle), ‘s’ (square), ‘^’ (triangle up), ‘v’ (triangle down)</li>
-<li>Linestyles: ‘-’ (solid), ‘–’ (dashed), ‘:’ (dotted), ‘-.’ (dash-dot)</li>
-</ul>
-<p>Remember to always check the Matplotlib documentation for the most up-to-date and detailed information!</p>
+<div id="cell-2" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">11</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mean<span class="op">=</span><span class="bu">sum</span>(n)<span class="op">/</span><span class="bu">len</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> y, x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> length <span class="op">*</span> width</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>perimeter <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (length <span class="op">+</span> width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>temp1_in_C <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>temp1_in_F <span class="op">=</span> (temp1_in_C <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span> <span class="dv">32</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>temp2_in_F <span class="op">=</span> <span class="dv">86</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>temp2_in_C <span class="op">=</span> (temp2_in_F <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_string <span class="op">=</span> <span class="st">"Hello, World!"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>concatenated_string <span class="op">=</span> my_string <span class="op">+</span> <span class="st">" How are you?"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sliced_string <span class="op">=</span> my_string[<span class="dv">7</span>:<span class="dv">12</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>upper_case_string <span class="op">=</span> my_string.upper()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>lower_case_string <span class="op">=</span> my_string.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -550,8 +482,6 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
@@ -559,7 +489,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lectures/lecture02";
+window._ojs.paths.runtimeToDoc = "../../seminars/Assignment 1";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "../..";
 window._ojs.selfContained = false;

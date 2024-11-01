@@ -374,6 +374,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">MD Simulation Part 2</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/fcichos/EMPP24/blob/e18cbfb3b8778a835f556e664e5c5aadc6fb82cd/seminars/seminar02/MD%20Simulation.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter Notebook</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -389,12 +395,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../seminars/seminar03/md3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">MD Simulation Part 3</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="https://github.com/fcichos/EMPP24/blob/0a72930701cb672ff404d6b93048c898a132bcbe/docs/seminars/seminar01/MDSimulation.ipynb" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Jupyter Notebook</span></a>
   </div>
 </li>
       </ul>
@@ -753,7 +753,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/EMPP24\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
