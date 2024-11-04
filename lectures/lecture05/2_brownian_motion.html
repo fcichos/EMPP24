@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture05/1_classes.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +173,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Brownian Motion</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/1_classes.html">Lecture 5</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/2_brownian_motion.html">Brownian Motion</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -316,7 +351,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture05/2_brownian_motion.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture05/2_brownian_motion.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Brownian Motion</span></a>
   </div>
 </li>
@@ -409,8 +444,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#physics" id="toc-physics" class="nav-link active" data-scroll-target="#physics">Physics</a></li>
-  <li><a href="#class-planning" id="toc-class-planning" class="nav-link" data-scroll-target="#class-planning">Class Planning</a></li>
+  <li><a href="#physics" id="toc-physics" class="nav-link active" data-scroll-target="#physics">Physics</a>
+  <ul class="collapse">
+  <li><a href="#brownian-motion" id="toc-brownian-motion" class="nav-link" data-scroll-target="#brownian-motion">Brownian Motion</a></li>
+  </ul></li>
+  <li><a href="#class-planning" id="toc-class-planning" class="nav-link" data-scroll-target="#class-planning">Class Planning</a>
+  <ul class="collapse">
+  <li><a href="#why-use-a-class" id="toc-why-use-a-class" class="nav-link" data-scroll-target="#why-use-a-class">Why Use a Class?</a></li>
+  <li><a href="#class-design" id="toc-class-design" class="nav-link" data-scroll-target="#class-design">Class Design</a></li>
+  </ul></li>
   <li><a href="#simulating" id="toc-simulating" class="nav-link" data-scroll-target="#simulating">Simulating</a></li>
   <li><a href="#plotting-the-trajectories" id="toc-plotting-the-trajectories" class="nav-link" data-scroll-target="#plotting-the-trajectories">Plotting the trajectories</a></li>
   <li><a href="#characterizing-the-brownian-motion" id="toc-characterizing-the-brownian-motion" class="nav-link" data-scroll-target="#characterizing-the-brownian-motion">Characterizing the Brownian motion</a>
@@ -424,7 +466,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture05/1_classes.html">Lecture 5</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture05/2_brownian_motion.html">Brownian Motion</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Brownian Motion</h1>
 </div>
@@ -443,70 +485,166 @@ window.Quarto = {
 </header>
 
 
-<p><a href="https://github.com/fcichos/EMPP/blob/f47d69ca3218c5039fcb4b9f87b331fcc6f3a2cc/source/notebooks/L4/2_brownian_motion.pdf">File as PDF</a></p>
-<p>We will use our newly gained knowledge about classes for the simulation of Brownian motion. This actually perfectly fits to the object oriented programming topic, as each Brownian particle (or colloid) can be seen as an object instanciated from the same class, but perhaps with different properties. Some particles might be larger and some smaller for example. We know already some part of that, as we have covered it in earlier lectures.</p>
+<p>We will apply our newly acquired knowledge about classes to simulate Brownian motion. This task aligns perfectly with the principles of object-oriented programming, as each Brownian particle (or colloid) can be represented as an object instantiated from the same class, albeit with different properties. For instance, some particles might be larger while others are smaller. We have already touched on some aspects of this in previous lectures.</p>
 <div>
 <div id="pyodide-1">
 
 </div>
 <script type="pyodide-1-contents">
-eyJjb2RlIjoiXG5pbXBvcnQgbnVtcHkgYXMgbnBcbmltcG9ydCBtYXRwbG90bGliLnB5cGxvdCBhcyBwbHRcbmltcG9ydCBwYW5kYXMgYXMgcGRcblxucGx0LnJjUGFyYW1zLnVwZGF0ZSh7J2ZvbnQuc2l6ZSc6IDEyLFxuICAgICAgICAgICAgICAgICAgICAgJ2F4ZXMudGl0bGVzaXplJzogMTgsXG4gICAgICAgICAgICAgICAgICAgICAnYXhlcy5sYWJlbHNpemUnOiAxNixcbiAgICAgICAgICAgICAgICAgICAgICdheGVzLmxhYmVscGFkJzogMTQsXG4gICAgICAgICAgICAgICAgICAgICAnbGluZXMubGluZXdpZHRoJzogMSxcbiAgICAgICAgICAgICAgICAgICAgICdsaW5lcy5tYXJrZXJzaXplJzogMTAsXG4gICAgICAgICAgICAgICAgICAgICAneHRpY2subGFiZWxzaXplJyA6IDE2LFxuICAgICAgICAgICAgICAgICAgICAgJ3l0aWNrLmxhYmVsc2l6ZScgOiAxNixcbiAgICAgICAgICAgICAgICAgICAgICd4dGljay50b3AnIDogVHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgICd4dGljay5kaXJlY3Rpb24nIDogJ2luJyxcbiAgICAgICAgICAgICAgICAgICAgICd5dGljay5yaWdodCcgOiBUcnVlLFxuICAgICAgICAgICAgICAgICAgICAgJ3l0aWNrLmRpcmVjdGlvbicgOiAnaW4nLH0pIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+eyJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5pbXBvcnQgcGFuZGFzIGFzIHBkXG5cbnBsdC5yY1BhcmFtcy51cGRhdGUoeydmb250LnNpemUnOiAxMixcbiAgICAgICAgICAgICAgICAgICAgICdsaW5lcy5saW5ld2lkdGgnOiAxLFxuICAgICAgICAgICAgICAgICAgICAgJ2xpbmVzLm1hcmtlcnNpemUnOiAxMCxcbiAgICAgICAgICAgICAgICAgICAgICdheGVzLmxhYmVsc2l6ZSc6IDExLFxuICAgICAgICAgICAgICAgICAgICAgJ3h0aWNrLmxhYmVsc2l6ZScgOiAxMCxcbiAgICAgICAgICAgICAgICAgICAgICd5dGljay5sYWJlbHNpemUnIDogMTAsXG4gICAgICAgICAgICAgICAgICAgICAneHRpY2sudG9wJyA6IFRydWUsXG4gICAgICAgICAgICAgICAgICAgICAneHRpY2suZGlyZWN0aW9uJyA6ICdpbicsXG4gICAgICAgICAgICAgICAgICAgICAneXRpY2sucmlnaHQnIDogVHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgICd5dGljay5kaXJlY3Rpb24nIDogJ2luJyx9KSIsImF0dHIiOnsiZWRpdCI6ZmFsc2UsImF1dG9ydW4iOnRydWUsImV2YWwiOnRydWUsImVjaG8iOmZhbHNlfX0=
 </script>
 </div>
 <section id="physics" class="level2">
 <h2 class="anchored" data-anchor-id="physics">Physics</h2>
-<p>The Brownian motion of a colloidal particle (called solute) results from the collisions with the surrounding solvent molecules. Due to these collisions, the particle has in equilibrium a mean kinetic energy defined by the temperature. With this kinetic energy it would travel a mean distance <span class="math inline">\(l\)</span> before it takes another random direction and go another step length <span class="math inline">\(l\)</span>. This mean distance the particle travels is very short in liquids. It is on the other of picometers. It has been shown by <strong>Lindenberg and Lévy</strong> that a sequence of many such infinitesimal small random steps leads to a total effect, which can be approximated by a normal distribution. This important theorem is called the <strong>central limit theorem</strong>.</p>
-<p>For our Brownian motion the sequence of tiny steps leads after a time <span class="math inline">\(t\)</span> to the following probability distribution to find the particle at a position <span class="math inline">\(x\)</span> if it initially started at <span class="math inline">\(x=0\)</span>:</p>
-<p><span class="math display">\[\begin{equation}
+<section id="brownian-motion" class="level3">
+<h3 class="anchored" data-anchor-id="brownian-motion">Brownian Motion</h3>
+<section id="what-is-brownian-motion" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-brownian-motion">What is Brownian Motion?</h4>
+<p>Imagine a dust particle floating in water. If you look at it under a microscope, you’ll see it moving in a random, zigzag pattern. This is Brownian motion!</p>
+</section>
+<section id="why-does-this-happen" class="level4">
+<h4 class="anchored" data-anchor-id="why-does-this-happen">Why Does This Happen?</h4>
+<p>When we observe Brownian motion, we’re seeing the effects of countless molecular collisions. Water isn’t just a smooth, continuous fluid - it’s made up of countless tiny molecules that are in constant motion. These water molecules are continuously colliding with our particle from all directions. Each individual collision causes the particle to move just a tiny bit, barely noticeable on its own. However, when millions of these tiny collisions happen every second from random directions, they create the distinctive zigzag motion we observe.</p>
+</section>
+<section id="the-simplified-math-behind-it" class="level4">
+<h4 class="anchored" data-anchor-id="the-simplified-math-behind-it">The Simplified Math Behind It</h4>
+<p>When our particle moves:</p>
+<ol type="1">
+<li>Each step is random in direction</li>
+<li>The size of each step depends on:
+<ul>
+<li>Temperature (warmer = more movement)</li>
+<li>Time between steps</li>
+<li>A property called the “diffusion coefficient” (D)</li>
+</ul></li>
+</ol>
+</section>
+<section id="how-we-can-simulate-this" class="level4">
+<h4 class="anchored" data-anchor-id="how-we-can-simulate-this">How We Can Simulate This</h4>
+<p>In Python, we can simulate these random steps using:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>step_size <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> D <span class="op">*</span> time_step)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> random_number <span class="op">*</span> step_size  <span class="co"># Random step in x direction</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> random_number <span class="op">*</span> step_size  <span class="co"># Random step in y direction</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>new_x <span class="op">=</span> old_x <span class="op">+</span> dx</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>new_y <span class="op">=</span> old_y <span class="op">+</span> dy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where:</p>
+<ul>
+<li><code>D</code> is how easily the particle moves (diffusion coefficient)</li>
+<li><code>time_step</code> is how often we update the position</li>
+<li><code>random_number</code> is chosen from a special “normal distribution”</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When simulating Brownian motion, we use <code>np.random.normal</code> to generate random steps following this distribution. The standard deviation <span class="math inline">\(\sigma=\sqrt{2D \Delta t}\)</span> determines the typical step size.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Advanced Mathematical Details
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Brownian motion of a colloidal particle results from collisions with surrounding solvent molecules. These collisions lead to a probability distribution described by:</p>
+<p><span class="math display">\[
 p(x,\Delta t)=\frac{1}{\sqrt{4\pi D \Delta t}}e^{-\frac{x^2}{4D \Delta t}}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(D\)</span> is the diffusion coefficient. Thus each step of our Brownian motion simulation for a timestep of <span class="math inline">\(\Delta t\)</span> is taken from a Gaussian distribution with a varaince of <span class="math inline">\(\sigma^2=2D \Delta t\)</span>.</p>
-<p>For our simulation that means that we can draw numbers from a normal distribution with <code>np.random.normal</code> with the standard deviation <span class="math inline">\(\sigma=\sqrt{2D \Delta t}\)</span> as a parameter. This has to be done for the x-coordinate and the y-coordinate.</p>
-<p>The code for our Brownian motion therefore is</p>
-<pre><code>sigma=np.sqrt(2*D*dt)
-dx,dy=[(np.random.normal(0.0, sigma),np.random.normal(0.0, sigma)]
-x=x+dx
-y=y+dy</code></pre>
-<p>which gives a whole 2d trajectory. With the help of this, we would like to write a colloidal particle class. So lets make a plan how this could work out.</p>
+\]</span></p>
+<p>where: - <span class="math inline">\(D\)</span> is the diffusion coefficient - <span class="math inline">\(\Delta t\)</span> is the time step - The variance is <span class="math inline">\(\sigma^2=2D \Delta t\)</span></p>
+<p>This distribution emerges from the <strong>central limit theorem</strong>, as shown by Lindenberg and Lévy, when considering many infinitesimally small random steps.</p>
+</div>
+</div>
+</div>
+<p>Would you like me to show how we can build this into a Python class?</p>
+</section>
+</section>
 </section>
 <section id="class-planning" class="level2">
 <h2 class="anchored" data-anchor-id="class-planning">Class Planning</h2>
-<div class="alert alert-info">
-<p><strong>Physics project</strong> Colloidal particle class</p>
-<p>We will define a class for a colloidal particle, which we may use later for our projects as well. This makes sense, as we can have different colloidal particles of different radius for example, which do start to carry out Brownian motion from different positions. A colloidal particle is and object, which has properties very much in the same way as classes intend that. The whole definition requires some planning, especially on what the class should keep track of and what the object.</p>
-<p>The particle class shall keep track of</p>
-<pre><code>* the total number of colloidal particles
-* the value of k_B T/(6 pi eta) = 2.2e-19</code></pre>
-<p>The class shall provide the class specific methods</p>
-<pre><code>* how_many() which returns the total number of colloids
-* __str__ which returns a string with radius and position of the particle</code></pre>
-</div>
-<div class="alert alert-info">
-<p><strong>Physics interlude:</strong> Colloidal particle class</p>
-<p>Each object shall then contain the following properties</p>
-<pre><code>* the particle radius, R
-* a list of all x position, x
-* a list of all y position, y
-* the index of the colloid, index
-* the diffusion coefficient given by k_B T/(6 pi eta R), D</code></pre>
-<p>The object shall provide the following methods</p>
-<pre><code>* sim_trajectory() simulate a whole trajectory at once
-* update(dt) do one step of Brownian motion with a time step dt as argument, return the current position
-* get_trajectory() return the trajectory as a pandas DataFrame with the columns x and y
-* get_D() return the diffusion coefficient</code></pre>
-</div>
+<p>Let’s design a Python class to simulate colloidal particles undergoing Brownian motion. This object-oriented approach will help us manage multiple particles with different properties and behaviors.</p>
+<section id="why-use-a-class" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-a-class">Why Use a Class?</h3>
+<p>A class is perfect for this physics simulation because each colloidal particle:</p>
+<ul>
+<li>Has specific properties (like size and position)</li>
+<li>Follows certain behaviors (like Brownian motion)</li>
+<li>Can exist alongside other particles</li>
+<li>Needs to track its state over time</li>
+</ul>
+</section>
+<section id="class-design" class="level3">
+<h3 class="anchored" data-anchor-id="class-design">Class Design</h3>
+<section id="class-level-properties" class="level4">
+<h4 class="anchored" data-anchor-id="class-level-properties">Class-Level Properties</h4>
+<p>The <code>Colloid</code> class will maintain information shared by all particles:</p>
+<ol type="1">
+<li>A counter for the total number of particles</li>
+<li>The physical constant kB*T/(6πη) = 2.2×10⁻¹⁹ (combining temperature and fluid properties)</li>
+</ol>
+</section>
+<section id="class-methods" class="level4">
+<h4 class="anchored" data-anchor-id="class-methods">Class Methods</h4>
+<p>The class will provide these shared functions:</p>
+<ol type="1">
+<li><code>how_many()</code>: Reports the total number of particles</li>
+<li><code>__str__</code>: Creates a readable description of a particle’s properties</li>
+</ol>
+</section>
+<section id="instance-properties" class="level4">
+<h4 class="anchored" data-anchor-id="instance-properties">Instance Properties</h4>
+<p>Each individual particle object will have:</p>
+<ol type="1">
+<li>Radius (R)</li>
+<li>Position history (x and y coordinates)</li>
+<li>Unique identifier (index)</li>
+<li>Diffusion coefficient (D = kB*T/(6πηR))</li>
+</ol>
+</section>
+<section id="instance-methods" class="level4">
+<h4 class="anchored" data-anchor-id="instance-methods">Instance Methods</h4>
+<p>Each particle will be able to:</p>
+<ol type="1">
+<li><code>sim_trajectory()</code>: Generate a complete motion path</li>
+<li><code>update(dt)</code>: Calculate one step of Brownian motion</li>
+<li><code>get_trajectory()</code>: Return its movement history</li>
+<li><code>get_D()</code>: Provide its diffusion coefficient</li>
+</ol>
 <div>
 <div id="pyodide-2">
 
 </div>
 <script type="pyodide-2-contents">
-eyJjb2RlIjoiIyBDbGFzcyBkZWZpbml0aW9uXG5jbGFzcyBDb2xsb2lkOlxuXG4gICAgIyBBIGNsYXNzIHZhcmlhYmxlLCBjb3VudGluZyB0aGUgbnVtYmVyIG9mIENvbGxvaWRzXG4gICAgbnVtYmVyID0gMFxuICAgIGYgPSAyLjJlLTE5ICMgdGhpcyBpcyBrX0IgVC8oNiBwaSBldGEpIGluIG1eMy9zXG5cbiAgICAjIGNvbnN0cnVjdG9yXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsUiwgeDA9MCwgeTA9MCk6XG4gICAgICAgICMgYWRkIGluaXRpYWxpc2F0aW9uIGNvZGUgaGVyZVxuICAgICAgICBzZWxmLlI9UlxuICAgICAgICBzZWxmLng9W3gwXVxuICAgICAgICBzZWxmLnk9W3kwXVxuICAgICAgICBDb2xsb2lkLm51bWJlcj1Db2xsb2lkLm51bWJlcisxXG4gICAgICAgIHNlbGYuaW5kZXg9Q29sbG9pZC5udW1iZXJcbiAgICAgICAgc2VsZi5EPUNvbGxvaWQuZi9zZWxmLlJcblxuICAgIGRlZiBnZXRfRChzZWxmKTpcbiAgICAgICAgcmV0dXJuKHNlbGYuRClcblxuICAgIGRlZiBzaW1fdHJhamVjdG9yeShzZWxmLE4sZHQpOlxuICAgICAgICBmb3IgaSBpbiByYW5nZShOKTpcbiAgICAgICAgICAgIHNlbGYudXBkYXRlKGR0KVxuXG4gICAgZGVmIHVwZGF0ZShzZWxmLGR0KTpcbiAgICAgICAgc2VsZi54LmFwcGVuZChzZWxmLnhbLTFdK25wLnJhbmRvbS5ub3JtYWwoMC4wLCBucC5zcXJ0KDIqc2VsZi5EKmR0KSkpXG4gICAgICAgIHNlbGYueS5hcHBlbmQoc2VsZi55Wy0xXStucC5yYW5kb20ubm9ybWFsKDAuMCwgbnAuc3FydCgyKnNlbGYuRCpkdCkpKVxuICAgICAgICByZXR1cm4oc2VsZi54Wy0xXSxzZWxmLnlbLTFdKVxuXG4gICAgZGVmIGdldF90cmFqZWN0b3J5KHNlbGYpOlxuICAgICAgICByZXR1cm4ocGQuRGF0YUZyYW1lKHsneCc6c2VsZi54LCd5JzpzZWxmLnl9KSlcblxuICAgICMgY2xhc3MgbWV0aG9kIGFjY2Vzc2luZyBhIGNsYXNzIHZhcmlhYmxlXG4gICAgQGNsYXNzbWV0aG9kXG4gICAgZGVmIGhvd19tYW55KGNscyk6XG4gICAgICAgIHJldHVybihDb2xsb2lkLm51bWJlcilcblxuICAgICMgaW5zZXJ0IHNvbWV0aGluZyB0aGF0IHByaW50cyB0aGUgcGFydGljbGUgcG9zaXRpb24gaW4gYSBmb3JtYXR0ZWQgd2F5IHdoZW4gcHJpbnRpbmdcbiAgICBkZWYgX19zdHJfXyhzZWxmKTpcbiAgICAgICAgcmV0dXJuKFwiSSdtIGEgcGFydGljbGUgd2l0aCByYWRpdXMgUj17MDowLjNlfSBhdCB4PXsxOjAuM2V9LHk9ezI6MC4zZX0uXCIuZm9ybWF0KHNlbGYuUiwgc2VsZi54Wy0xXSwgc2VsZi55Wy0xXSkpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJzbGlkZXNob3ciOnsic2xpZGVfdHlwZSI6InN1YnNsaWRlIn0sImVkaXQiOnRydWUsIkV4ZWN1dGVUaW1lIjp7InN0YXJ0X3RpbWUiOiIyMDE4LTA3LTAzVDA5OjMyOjIyLjg2MjIwNVoiLCJlbmRfdGltZSI6IjIwMTgtMDctMDNUMDk6MzI6MjIuODY2OTU4WiJ9fX0=
+eyJjb2RlIjoiIyBDbGFzcyBkZWZpbml0aW9uXG5jbGFzcyBDb2xsb2lkOlxuXG4gICAgIyBBIGNsYXNzIHZhcmlhYmxlLCBjb3VudGluZyB0aGUgbnVtYmVyIG9mIENvbGxvaWRzXG4gICAgbnVtYmVyID0gMFxuICAgIGYgPSAyLjJlLTE5ICMgdGhpcyBpcyBrX0IgVC8oNiBwaSBldGEpIGluIG1eMy9zXG5cbiAgICAjIGNvbnN0cnVjdG9yXG4gICAgZGVmIF9faW5pdF9fKHNlbGYsUiwgeDA9MCwgeTA9MCk6XG4gICAgICAgICMgYWRkIGluaXRpYWxpc2F0aW9uIGNvZGUgaGVyZVxuICAgICAgICBzZWxmLlI9UlxuICAgICAgICBzZWxmLng9W3gwXVxuICAgICAgICBzZWxmLnk9W3kwXVxuICAgICAgICBDb2xsb2lkLm51bWJlcj1Db2xsb2lkLm51bWJlcisxXG4gICAgICAgIHNlbGYuaW5kZXg9Q29sbG9pZC5udW1iZXJcbiAgICAgICAgc2VsZi5EPUNvbGxvaWQuZi9zZWxmLlJcblxuICAgIGRlZiBnZXRfRChzZWxmKTpcbiAgICAgICAgcmV0dXJuKHNlbGYuRClcblxuICAgIGRlZiBzaW1fdHJhamVjdG9yeShzZWxmLE4sZHQpOlxuICAgICAgICBmb3IgaSBpbiByYW5nZShOKTpcbiAgICAgICAgICAgIHNlbGYudXBkYXRlKGR0KVxuXG4gICAgZGVmIHVwZGF0ZShzZWxmLGR0KTpcbiAgICAgICAgc2VsZi54LmFwcGVuZChzZWxmLnhbLTFdK25wLnJhbmRvbS5ub3JtYWwoMC4wLCBucC5zcXJ0KDIqc2VsZi5EKmR0KSkpXG4gICAgICAgIHNlbGYueS5hcHBlbmQoc2VsZi55Wy0xXStucC5yYW5kb20ubm9ybWFsKDAuMCwgbnAuc3FydCgyKnNlbGYuRCpkdCkpKVxuICAgICAgICByZXR1cm4oc2VsZi54Wy0xXSxzZWxmLnlbLTFdKVxuXG4gICAgZGVmIGdldF90cmFqZWN0b3J5KHNlbGYpOlxuICAgICAgICByZXR1cm4ocGQuRGF0YUZyYW1lKHsneCc6c2VsZi54LCd5JzpzZWxmLnl9KSlcblxuICAgICMgY2xhc3MgbWV0aG9kIGFjY2Vzc2luZyBhIGNsYXNzIHZhcmlhYmxlXG4gICAgQGNsYXNzbWV0aG9kXG4gICAgZGVmIGhvd19tYW55KGNscyk6XG4gICAgICAgIHJldHVybihDb2xsb2lkLm51bWJlcilcblxuICAgICMgaW5zZXJ0IHNvbWV0aGluZyB0aGF0IHByaW50cyB0aGUgcGFydGljbGUgcG9zaXRpb24gaW4gYSBmb3JtYXR0ZWQgd2F5IHdoZW4gcHJpbnRpbmdcbiAgICBkZWYgX19zdHJfXyhzZWxmKTpcbiAgICAgICAgcmV0dXJuKFwiSSdtIGEgcGFydGljbGUgd2l0aCByYWRpdXMgUj17MDowLjNlfSBhdCB4PXsxOjAuM2V9LHk9ezI6MC4zZX0uXCIuZm9ybWF0KHNlbGYuUiwgc2VsZi54Wy0xXSwgc2VsZi55Wy0xXSkpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
 </script>
 </div>
-<div class="alert alert-info">
-<p><strong>Note:</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Note that the function <code>sim_trajectory</code> is actually calling the function <code>update</code> of the same object to generate the whole trajectory at once.</p>
 </div>
+</div>
+</section>
+</section>
 </section>
 <section id="simulating" class="level2">
 <h2 class="anchored" data-anchor-id="simulating">Simulating</h2>
@@ -522,7 +660,7 @@ eyJjb2RlIjoiIyBDbGFzcyBkZWZpbml0aW9uXG5jbGFzcyBDb2xsb2lkOlxuXG4gICAgIyBBIGNsYXNz
 
 </div>
 <script type="pyodide-3-contents">
-eyJjb2RlIjoiTj0yMDAgIyB0aGUgbnVtYmVyIG9mIHRyYWplY3RvcnkgcG9pbnRzXG5uPTIwMCAjIHRoZSBudW1iZXIgb2YgcGFydGljbGVzXG5cbnBfbGlzdD1bXVxuZHQ9MC4wNVxuXG4jIGNyZWF0aW5nIGFsbCBvYmplY3RzXG5mb3IgaSBpbiByYW5nZShuKTpcbiAgICBwX2xpc3QuYXBwZW5kKENvbGxvaWQoMWUtNikpXG5cblxuZm9yIChpbmRleCxwKSBpbiBlbnVtZXJhdGUocF9saXN0KTpcbiAgICBwLnNpbV90cmFqZWN0b3J5KE4sZHQpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJzbGlkZXNob3ciOnsic2xpZGVfdHlwZSI6InN1YnNsaWRlIn0sImVkaXQiOnRydWV9fQ==
+eyJjb2RlIjoiTj0yMDAgIyB0aGUgbnVtYmVyIG9mIHRyYWplY3RvcnkgcG9pbnRzXG5uPTIwMCAjIHRoZSBudW1iZXIgb2YgcGFydGljbGVzXG5cbnBfbGlzdD1bXVxuZHQ9MC4wNVxuXG4jIGNyZWF0aW5nIGFsbCBvYmplY3RzXG5mb3IgaSBpbiByYW5nZShuKTpcbiAgICBwX2xpc3QuYXBwZW5kKENvbGxvaWQoMWUtNikpXG5cblxuZm9yIChpbmRleCxwKSBpbiBlbnVtZXJhdGUocF9saXN0KTpcbiAgICBwLnNpbV90cmFqZWN0b3J5KE4sZHQpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
 </script>
 </div>
 <div>
@@ -530,7 +668,7 @@ eyJjb2RlIjoiTj0yMDAgIyB0aGUgbnVtYmVyIG9mIHRyYWplY3RvcnkgcG9pbnRzXG5uPTIwMCAjIHRo
 
 </div>
 <script type="pyodide-4-contents">
-eyJjb2RlIjoicHJpbnQocF9saXN0WzQyXSkiLCJhdHRyIjp7ImV2YWwiOnRydWUsInNsaWRlc2hvdyI6eyJzbGlkZV90eXBlIjoic3Vic2xpZGUifSwiZWRpdCI6dHJ1ZX19
+eyJjb2RlIjoicHJpbnQocF9saXN0WzQyXSkiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
 </script>
 </div>
 </section>
@@ -542,7 +680,7 @@ eyJjb2RlIjoicHJpbnQocF9saXN0WzQyXSkiLCJhdHRyIjp7ImV2YWwiOnRydWUsInNsaWRlc2hvdyI6
 
 </div>
 <script type="pyodide-5-contents">
-eyJjb2RlIjoiIyB3ZSB0YWtlIHJlYWwgd29ybGQgZGlmZnVzaW9uIGNvZWZmaWNpZW50cyBzbyBzY2FsZSB1cCB0aGUgZGF0YSB0byBhdm9pZCBuYXN0eSBleHBvbmVudGlhbHNcbnNjYWxlPTFlNlxuXG5wbHQuZmlndXJlKGZpZ3NpemU9KDYsNikpXG5cbltwbHQucGxvdChucC5hcnJheShwLnhbOl0pKnNjYWxlLG5wLmFycmF5KHAueVs6XSkqc2NhbGUsJ2stJyxhbHBoYT0wLjEsbHc9MSkgZm9yIHAgaW4gcF9saXN0XVxucGx0LnhsaW0oLTEwLDEwKVxucGx0LnlsaW0oLTEwLDEwKVxucGx0LnhsYWJlbCgneCBbwrVtXScpXG5wbHQueWxhYmVsKCd5IFvCtW1dJylcbnBsdC5zaG93KCkiLCJhdHRyIjp7ImV2YWwiOnRydWUsInNsaWRlc2hvdyI6eyJzbGlkZV90eXBlIjoiZnJhZ21lbnQifSwiZWRpdCI6dHJ1ZX19
+eyJjb2RlIjoiIyB3ZSB0YWtlIHJlYWwgd29ybGQgZGlmZnVzaW9uIGNvZWZmaWNpZW50cyBzbyBzY2FsZSB1cCB0aGUgZGF0YSB0byBhdm9pZCBuYXN0eSBleHBvbmVudGlhbHNcbnNjYWxlPTFlNlxuXG5wbHQuZmlndXJlKGZpZ3NpemU9KDQsNCkpXG5cbltwbHQucGxvdChucC5hcnJheShwLnhbOl0pKnNjYWxlLG5wLmFycmF5KHAueVs6XSkqc2NhbGUsJ2stJyxhbHBoYT0wLjEsbHc9MSkgZm9yIHAgaW4gcF9saXN0XVxucGx0LnhsaW0oLTEwLDEwKVxucGx0LnlsaW0oLTEwLDEwKVxucGx0LnhsYWJlbCgneCBbwrVtXScpXG5wbHQueWxhYmVsKCd5IFvCtW1dJylcbnBsdC50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSIsImF0dHIiOnsiZWRpdCI6dHJ1ZSwiYXV0b3J1biI6ZmFsc2UsImV2YWwiOnRydWV9fQ==
 </script>
 </div>
 </section>
@@ -556,19 +694,13 @@ eyJjb2RlIjoiIyB3ZSB0YWtlIHJlYWwgd29ybGQgZGlmZnVzaW9uIGNvZWZmaWNpZW50cyBzbyBzY2Fs
 v(n dt) = \frac{&lt;\sqrt{(x_{i+n}-x_{i})^2+(y_{i+n}-y_{i})^2}&gt;}{n\,dt}
 \end{equation}\]</span></p>
 <p>The angular brackets on the top take care of the fact that we can measure the distance traveled within a certain time <span class="math inline">\(n\, dt\)</span> several times along a trajectory.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/msd.png" class="img-fluid figure-img"></p>
-<figcaption>msd</figcaption>
-</figure>
-</div>
 <p>These values can be used to calculate a mean speed. Note that there is not an equal amount of data pairs for all separations available. For <span class="math inline">\(n=1\)</span> there are 5 distances available. For <span class="math inline">\(n=5\)</span>, however, only 1. This changes the statistical accuracy of the mean.</p>
 <div>
 <div id="pyodide-6">
 
 </div>
 <script type="pyodide-6-contents">
-eyJjb2RlIjoidGltZT1ucC5hcnJheShyYW5nZSgxLE4pKSpkdFxuXG5mb3IgaiBpbiByYW5nZSgxMDApOlxuICAgIHQ9cF9saXN0W2pdLmdldF90cmFqZWN0b3J5KClcbiAgICBtZD1bbnAubWVhbihucC5zcXJ0KHQueC5kaWZmKGkpKioyK3QueS5kaWZmKGkpKioyKSkgZm9yIGkgaW4gcmFuZ2UoMSxOKV1cbiAgICBtZD1tZC90aW1lXG4gICAgcGx0LnBsb3QodGltZSxtZCxhbHBoYT0wLjQpXG5cbnBsdC55bGFiZWwoJ3NwZWVkIFttL3NdJylcbnBsdC54bGFiZWwoJ3RpbWUgW3NdJylcbnBsdC5zaG93KCkiLCJhdHRyIjp7ImV2YWwiOnRydWUsInNsaWRlc2hvdyI6eyJzbGlkZV90eXBlIjoic3Vic2xpZGUifSwiZWRpdCI6dHJ1ZX19
+eyJjb2RlIjoidGltZT1ucC5hcnJheShyYW5nZSgxLE4pKSpkdFxuXG5wbHQuZmlndXJlKGZpZ3NpemU9KDQsNCkpXG5mb3IgaiBpbiByYW5nZSgxMDApOlxuICAgIHQ9cF9saXN0W2pdLmdldF90cmFqZWN0b3J5KClcbiAgICBtZD1bbnAubWVhbihucC5zcXJ0KHQueC5kaWZmKGkpKioyK3QueS5kaWZmKGkpKioyKSkgZm9yIGkgaW4gcmFuZ2UoMSxOKV1cbiAgICBtZD1tZC90aW1lXG4gICAgcGx0LnBsb3QodGltZSxtZCxhbHBoYT0wLjQpXG5cbnBsdC55bGFiZWwoJ3NwZWVkIFttL3NdJylcbnBsdC54bGFiZWwoJ3RpbWUgW3NdJylcbnBsdC50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSIsImF0dHIiOnsiZWRpdCI6dHJ1ZSwiYXV0b3J1biI6ZmFsc2UsImV2YWwiOnRydWV9fQ==
 </script>
 </div>
 <p>The result of this analysis shows, that each particle has an apparent speed which seems to increase with decreasing time of observation or which decreases with increasing time. This would mean that there is some friction at work, which slows down the particle in time, but this is apparently not true. Also an infinite speed at zero time appears to be unphysical. The correct answer is just that the speed is no good measure to characterize the motion of a Brownian particle.</p>
@@ -585,22 +717,31 @@ eyJjb2RlIjoidGltZT1ucC5hcnJheShyYW5nZSgxLE4pKSpkdFxuXG5mb3IgaiBpbiByYW5nZSgxMDAp
 
 </div>
 <script type="pyodide-7-contents">
-eyJjb2RlIjoidGltZT1ucC5hcnJheShyYW5nZSgxLE4pKSpkdFxuZm9yIGogaW4gcmFuZ2UoMTAwKTpcbiAgICB0PXBfbGlzdFtqXS5nZXRfdHJhamVjdG9yeSgpXG4gICAgbXNkPVtucC5tZWFuKHQueC5kaWZmKGkpLmRyb3BuYSgpKioyK3QueS5kaWZmKGkpLmRyb3BuYSgpKioyKSBmb3IgaSBpbiByYW5nZSgxLE4pXVxuICAgIHBsdC5wbG90KHRpbWUsbXNkLGFscGhhPTAuNClcblxucGx0LnBsb3QodGltZSwgNCpwX2xpc3RbMF0uRCp0aW1lLCdrLS0nLGx3PTIsbGFiZWw9J3RoZW9yeScpXG5wbHQubGVnZW5kKClcbnBsdC54bGFiZWwoJ3RpbWUgW3NdJylcbnBsdC55bGFiZWwoJ21zZCAkW21eMi9zXSQnKVxucGx0LnNob3coKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwic2xpZGVzaG93Ijp7InNsaWRlX3R5cGUiOiJzdWJzbGlkZSJ9LCJlZGl0Ijp0cnVlfX0=
+eyJjb2RlIjoidGltZT1ucC5hcnJheShyYW5nZSgxLE4pKSpkdFxuXG5wbHQuZmlndXJlKGZpZ3NpemU9KDQsNCkpXG5mb3IgaiBpbiByYW5nZSgxMDApOlxuICAgIHQ9cF9saXN0W2pdLmdldF90cmFqZWN0b3J5KClcbiAgICBtc2Q9W25wLm1lYW4odC54LmRpZmYoaSkuZHJvcG5hKCkqKjIrdC55LmRpZmYoaSkuZHJvcG5hKCkqKjIpIGZvciBpIGluIHJhbmdlKDEsTildXG4gICAgcGx0LnBsb3QodGltZSxtc2QsYWxwaGE9MC40KVxuXG5cbnBsdC5wbG90KHRpbWUsIDQqcF9saXN0WzBdLkQqdGltZSwnay0tJyxsdz0yLGxhYmVsPSd0aGVvcnknKVxucGx0LmxlZ2VuZCgpXG5wbHQueGxhYmVsKCd0aW1lIFtzXScpXG5wbHQueWxhYmVsKCdtc2QgJFttXjIvc10kJylcbnBsdC50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSIsImF0dHIiOnsiZWRpdCI6dHJ1ZSwiYXV0b3J1biI6ZmFsc2UsImV2YWwiOnRydWV9fQ==
 </script>
 </div>
 <p>The results show that the mean squared displacement of the individual particles follows <em>on average</em> the theoretical predictions of a linear growth in time. That means, we are able to read the diffusion coefficient from the slope of the MSD of the individual particles if recorded in a simulation or an experiment.</p>
 <p>Yet, each individual MSD is deviating strongly from the theoretical prediction especially at large times. This is due to the fact mentioned earlier that our simulation (or experimental) data only has a limited number of data points, while the theoretical prediction is made for the limit of infinite data points.</p>
-<div class="alert alert-warning">
-<p><strong>Warning:</strong> Analysis of MSD data</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning: Analysis of MSD data
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Single particle tracking, either in the experiment or in numerical simulations can therefore only deliver an estimate of the diffusion coefficient and care should be taken when using the whole MSD to obtain the diffusion coefficient. One typically uses only a short fraction of the whole MSD data at short times.</p>
+</div>
 </div>
 
 
 <script type="pyodide-data">
-eyJvcHRpb25zIjp7ImluZGV4VVJMIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L3B5b2RpZGUvdjAuMjYuMS9mdWxsLyJ9LCJwYWNrYWdlcyI6eyJwa2dzIjpbInB5b2RpZGVfaHR0cCIsIm1pY3JvcGlwIiwiaXB5dGhvbiIsIm51bXB5IiwibWF0cGxvdGxpYiJdfX0=
+eyJwYWNrYWdlcyI6eyJwa2dzIjpbInB5b2RpZGVfaHR0cCIsIm1pY3JvcGlwIiwiaXB5dGhvbiIsIm51bXB5IiwibWF0cGxvdGxpYiJdfSwib3B0aW9ucyI6eyJpbmRleFVSTCI6Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9weW9kaWRlL3YwLjI2LjEvZnVsbC8ifX0=
 </script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIFB5b2RpZGUgc3VwcGxlbWVudGFsIGRhdGEgYW5kIG9wdGlvbnNcbiAgY29uc3QgZGF0YUNvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS1kYXRhXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZGF0YSA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGRhdGFDb250ZW50KSk7XG5cbiAgLy8gR3JhYiBsaXN0IG9mIHJlc291cmNlcyB0byBiZSBkb3dubG9hZGVkXG4gIGNvbnN0IGZpbGVzQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ2ZnMtZmlsZVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGZpbGVzID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZmlsZXNDb250ZW50KSk7XG5cbiAgbGV0IHB5b2RpZGVQcm9taXNlID0gKGFzeW5jICgpID0+IHtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIFB5b2RpZGVgO1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBzdGFydFB5b2RpZGVXb3JrZXIoZGF0YS5vcHRpb25zKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcGFja2FnZTogbWljcm9waXBgO1xuICAgIGF3YWl0IHB5b2RpZGUubG9hZFBhY2thZ2UoXCJtaWNyb3BpcFwiKTtcbiAgICBjb25zdCBtaWNyb3BpcCA9IGF3YWl0IHB5b2RpZGUucHlpbXBvcnQoXCJtaWNyb3BpcFwiKTtcbiAgICBhd2FpdCBkYXRhLnBhY2thZ2VzLnBrZ3MubWFwKChwa2cpID0+ICgpID0+IHtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcGFja2FnZTogJHtwa2d9YDtcbiAgICAgIHJldHVybiBtaWNyb3BpcC5pbnN0YWxsKHBrZyk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG4gICAgYXdhaXQgbWljcm9waXAuZGVzdHJveSgpO1xuXG4gICAgLy8gRG93bmxvYWQgYW5kIGluc3RhbGwgcmVzb3VyY2VzXG4gICAgYXdhaXQgZmlsZXMubWFwKChmaWxlKSA9PiBhc3luYyAoKSA9PiB7XG4gICAgICBjb25zdCBuYW1lID0gZmlsZS5zdWJzdHJpbmcoZmlsZS5sYXN0SW5kZXhPZignLycpICsgMSk7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHJlc291cmNlOiAke25hbWV9YDtcbiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goZmlsZSk7XG4gICAgICBpZiAoIXJlc3BvbnNlLm9rKSB7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgQ2FuJ3QgZG93bmxvYWQgXFxgJHtmaWxlfVxcYC4gRXJyb3IgJHtyZXNwb25zZS5zdGF0dXN9OiBcIiR7cmVzcG9uc2Uuc3RhdHVzVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICAgIGNvbnN0IGRhdGEgPSBhd2FpdCByZXNwb25zZS5hcnJheUJ1ZmZlcigpO1xuXG4gICAgICAvLyBTdG9yZSBVUkxzIGluIHRoZSBjd2Qgd2l0aG91dCBhbnkgc3ViZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgaWYgKGZpbGUuaW5jbHVkZXMoXCI6Ly9cIikpIHtcbiAgICAgICAgZmlsZSA9IG5hbWU7XG4gICAgICB9XG5cbiAgICAgIC8vIENvbGxhcHNlIGhpZ2hlciBkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBmaWxlID0gY29sbGFwc2VQYXRoKGZpbGUpO1xuXG4gICAgICAvLyBDcmVhdGUgZGlyZWN0b3J5IHRyZWUsIGlnbm9yaW5nIFwiZGlyZWN0b3J5IGV4aXN0c1wiIFZGUyBlcnJvcnNcbiAgICAgIGNvbnN0IHBhcnRzID0gZmlsZS5zcGxpdCgnLycpLnNsaWNlKDAsIC0xKTtcbiAgICAgIGxldCBwYXRoID0gJyc7XG4gICAgICB3aGlsZSAocGFydHMubGVuZ3RoID4gMCkge1xuICAgICAgICBwYXRoICs9IHBhcnRzLnNoaWZ0KCkgKyAnLyc7XG4gICAgICAgIHRyeSB7XG4gICAgICAgICAgYXdhaXQgcHlvZGlkZS5GUy5ta2RpcihwYXRoKTtcbiAgICAgICAgfSBjYXRjaCAoZSkge1xuICAgICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICAgIGlmIChlLmVycm5vICE9PSAyMCkge1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0UHRyID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLl9zdHJlcnJvcihlLmVycm5vKTtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICB9XG5cbiAgICAgIC8vIFdyaXRlIHRoaXMgZmlsZSB0byB0aGUgVkZTXG4gICAgICB0cnkge1xuICAgICAgICByZXR1cm4gYXdhaXQgcHlvZGlkZS5GUy53cml0ZUZpbGUoZmlsZSwgbmV3IFVpbnQ4QXJyYXkoZGF0YSkpO1xuICAgICAgfSBjYXRjaCAoZSkge1xuICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgY29uc3QgZXJyb3JUZXh0UHRyID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLl9zdHJlcnJvcihlLmVycm5vKTtcbiAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgfVxuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBQeW9kaWRlIGVudmlyb25tZW50IHNldHVwYDtcbiAgICBhd2FpdCBzZXR1cFB5dGhvbihweW9kaWRlKTtcblxuICAgIHN0YXR1c1RleHQucmVtb3ZlKCk7XG4gICAgaWYgKHN0YXR1c0NvbnRhaW5lci5jaGlsZHJlbi5sZW5ndGggPT0gMCkge1xuICAgICAgc3RhdHVzQ29udGFpbmVyLnBhcmVudE5vZGUucmVtb3ZlKCk7XG4gICAgfVxuICAgIHJldHVybiBweW9kaWRlO1xuICB9KSgpLmNhdGNoKChlcnIpID0+IHtcbiAgICBzdGF0dXNUZXh0LnN0eWxlLmNvbG9yID0gXCJ2YXIoLS1leGVyY2lzZS1lZGl0b3ItaGwtZXIsICNBRDAwMDApXCI7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGVyci5tZXNzYWdlO1xuICAgIC8vaW5kaWNhdG9yQ29udGFpbmVyLnF1ZXJ5U2VsZWN0b3IoXCIuc3Bpbm5lci1ncm93XCIpLmNsYXNzTGlzdC5hZGQoXCJkLW5vbmVcIik7XG4gICAgdGhyb3cgZXJyO1xuICB9KTtcblxuICAvLyBLZWVwIHRyYWNrIG9mIGluaXRpYWwgT0pTIGJsb2NrIHJlbmRlclxuICBjb25zdCByZW5kZXJlZE9qcyA9IHt9O1xuXG4gIGNvbnN0IHByb2Nlc3MgPSBhc3luYyAoY29udGV4dCwgaW5wdXRzKSA9PiB7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHB5b2RpZGVQcm9taXNlO1xuICAgIGNvbnN0IGV2YWx1YXRvciA9IG5ldyBQeW9kaWRlRXZhbHVhdG9yKHB5b2RpZGUsIGNvbnRleHQpO1xuICAgIGF3YWl0IGV2YWx1YXRvci5wcm9jZXNzKGlucHV0cyk7XG4gICAgcmV0dXJuIGV2YWx1YXRvci5jb250YWluZXI7XG4gIH1cblxuICByZXR1cm4ge1xuICAgIHB5b2RpZGVQcm9taXNlLFxuICAgIHJlbmRlcmVkT2pzLFxuICAgIHByb2Nlc3MsXG4gIH07XG59XG4ifV19
+eyJjb250ZW50cyI6W3siaW5saW5lIjpmYWxzZSwiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTctY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS03LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNywge30pO1xuIiwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsiaW5saW5lIjpmYWxzZSwiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTYtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS02LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNiwge30pO1xuIiwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsiaW5saW5lIjpmYWxzZSwiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTUtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS01LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNSwge30pO1xuIiwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsiaW5saW5lIjpmYWxzZSwiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS00LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfNCwge30pO1xuIiwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsiaW5saW5lIjpmYWxzZSwiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0zLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMywge30pO1xuIiwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsiaW5saW5lIjpmYWxzZSwiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0yLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMiwge30pO1xuIiwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsiaW5saW5lIjpmYWxzZSwiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJzb3VyY2UiOiJfcHlvZGlkZV92YWx1ZV8xID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFB5dGhvbiwgYjY0RGVjb2RlfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV2YWx1YXRpb24gY29uZmlndXJhdGlvblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7XG4gICAgaWQ6IFwicHlvZGlkZS0xLWNvbnRlbnRzXCIsXG4gICAgZWNobzogdHJ1ZSxcbiAgICBvdXRwdXQ6IHRydWVcbiAgfSwgYmxvY2suYXR0cik7XG5cbiAgLy8gRXZhbHVhdGUgdGhlIHByb3ZpZGVkIFB5dGhvbiBjb2RlXG4gIGNvbnN0IHJlc3VsdCA9IHB5b2RpZGVPanMucHJvY2Vzcyh7Y29kZTogYmxvY2suY29kZSwgb3B0aW9uc30sIHt9KTtcblxuICAvLyBFYXJseSB5aWVsZCB3aGlsZSB3ZSB3YWl0IGZvciB0aGUgZmlyc3QgZXZhbHVhdGlvbiBhbmQgcmVuZGVyXG4gIGlmIChvcHRpb25zLm91dHB1dCAmJiAhKFwiMVwiIGluIHB5b2RpZGVPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSBweXRob25cIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoaGlnaGxpZ2h0UHl0aG9uKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgcHlvZGlkZU9qcy5yZW5kZXJlZE9qc1tcIjFcIl0gPSB0cnVlO1xuICB5aWVsZCBhd2FpdCByZXN1bHQ7XG59XG4iLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0In0seyJpbmxpbmUiOmZhbHNlLCJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiIsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -622,7 +763,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lectures/lecture04";
+window._ojs.paths.runtimeToDoc = "../../lectures/lecture05";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "../..";
 window._ojs.selfContained = false;
@@ -1048,6 +1189,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture05/1_classes.html" class="pagination-link" aria-label="Classes &amp; Objects">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Classes &amp; Objects</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

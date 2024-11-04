@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Frank Cichos">
 
-<title>Step-by-Step Development of a Molecular Dynamics Simulation – Einführung in die Modellierung Physikalischer Prozesse</title>
+<title>md2 – Einführung in die Modellierung Physikalischer Prozesse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -74,6 +39,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,11 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -139,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Step-by-Step Development of a Molecular Dynamics Simulation</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -294,12 +264,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture04/1_classes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Classes &amp; Objects</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="https://forms.gle/2Mt4EvvFyQxnDJj78" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Short Course Feedback</span></a>
   </div>
@@ -317,8 +281,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture04/2_brownian_motion.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture05/1_classes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classes &amp; Objects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/lecture05/2_brownian_motion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Brownian Motion</span></a>
   </div>
 </li>
       </ul>
@@ -358,6 +328,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Seminar02</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../seminars/seminar02/md2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MD Simulation Part 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/fcichos/EMPP24/blob/e18cbfb3b8778a835f556e664e5c5aadc6fb82cd/seminars/seminar02/MD%20Simulation.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter Notebook</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Seminar03</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../seminars/seminar03/md3.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MD Simulation Part 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -365,290 +375,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Step-by-Step Development of a Molecular Dynamics Simulation</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Frank Cichos </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
 
 
-</header>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
 
-
-<section id="implementation---what-do-we-need" class="level2">
-<h2 class="anchored" data-anchor-id="implementation---what-do-we-need">Implementation - What do we need?</h2>
-<section id="boundary-conditions" class="level3">
-<h3 class="anchored" data-anchor-id="boundary-conditions">Boundary Conditions</h3>
-<p>In the previous example, we have assumed that the particle is in free fall. That means eventually it would bounce against the floor. In a real simulation, we need to consider boundary conditions as well. For example, if the particle hits the ground we could implement a simple reflection rule. This is called <em>reflecting boundary conditions</em> and would introduce some additional effects to the simulation. On the other side, one could make the system “kind of” infinitely large by introducing <em>periodic boundary conditions</em>. This means that if a particle leaves the simulation box on one side, it re-enters on the opposite side. This is a common approach in molecular dynamics simulations.</p>
-<section id="the-minimum-image-convention-in-molecular-dynamics" class="level4 callout-info" data-collapse="true">
-<h4 class="anchored" data-anchor-id="the-minimum-image-convention-in-molecular-dynamics">The Minimum Image Convention in Molecular Dynamics</h4>
-<p>When we simulate many particles in a box, we often use periodic boundary conditions - imagine the simulation box is repeated infinitely in all directions, like tiles on a floor. However, this creates a problem: each particle now has many copies (images) of itself and other particles to interact with. Should a particle interact with all these copies? That would be unphysical!</p>
-<p>The minimum image convention solves this by ensuring that each particle only interacts with the closest version of another particle. Think of it like choosing friends: if you had identical twins spread across different rooms, you’d probably talk to the twin who’s closest to you, not the one far away. Similarly, in our simulation, particles only “see” and interact with the nearest copy of their neighbors, making the simulation more realistic and computationally efficient.</p>
-</section>
-</section>
-<section id="how-to-represent-atoms" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-represent-atoms">How to represent atoms</h3>
-<p>The question we have to think about now is how to implement these formulas in a numerical simulation. The goal is to simulate the motion of many atoms in a box. Each atom is different and has its own position, velocity, and force. Consequently we need to store these quantities for each atom, though the structure in which we store them is the same for each atom. All atoms with their properties actually belong to the same class of objects. We can therefore use a very suitable concept of <em>object-oriented programming</em>, the class.</p>
-</section>
-<section id="how-to-represent-forces" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-represent-forces">How to represent forces</h3>
-<p>We also have a set of forces, that is acting between the atoms. These forces are calculated based on the positions of the atoms. The force fields are all the same for the atoms only the parameters are different. We can represent the force field as a class as well.</p>
-</section>
-<section id="controller-class" class="level3">
-<h3 class="anchored" data-anchor-id="controller-class">Controller class</h3>
-<p>Finally, we need a class that controls the simulation. This class will contain the main loop of the simulation, where the integration algorithm is called in each time step. It will also contain the methods to calculate the forces between the atoms.</p>
-</section>
-<section id="how-do-we-introduce-temperature" class="level3">
-<h3 class="anchored" data-anchor-id="how-do-we-introduce-temperature">How do we introduce temperature</h3>
-<p>In the previous example, we have started with a particle at rest. In a real simulation, we would like to start with a certain temperature. This means that the particles have a certain velocity distribution. We can introduce this by assigning random velocities to the particles. The velocities should be drawn from a Maxwell-Boltzmann distribution. This is a distribution that describes the velocity distribution of particles in a gas at a certain temperature.</p>
-</section>
-<section id="classes-in-object-oriented-programming" class="level3">
-<h3 class="anchored" data-anchor-id="classes-in-object-oriented-programming">Classes in Object-Oriented Programming</h3>
-<p>A class in object-oriented programming is a blueprint for creating objects (a particular data structure), providing initial values for state (member variables or attributes), and implementations of behavior (member functions or methods). The class is a template for objects, and an object is an instance of a class. The class defines the properties and behavior common to all objects of the class. The objects are the instances of the class that contain the actual data.</p>
-</section>
-<section id="the-atom-class" class="level3">
-<h3 class="anchored" data-anchor-id="the-atom-class">The Atom Class</h3>
-<p>We define a class <code>Atom</code> that contains the properties of an atom. The class <code>Atom</code> has the following attributes:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Atom:</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    dimension <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, atom_id, atom_type, position, velocity<span class="op">=</span><span class="va">None</span>, mass<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">id</span> <span class="op">=</span> atom_id</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">type</span> <span class="op">=</span> atom_type</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.position <span class="op">=</span> position</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.velocity <span class="op">=</span> velocity <span class="cf">if</span> velocity <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> np.zeros(dimension)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mass <span class="op">=</span> mass</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force <span class="op">=</span> np.zeros(dimension)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The class <code>Atom</code> has the following attributes:</p>
-<ul>
-<li><code>id</code>: The unique identifier of the atom</li>
-<li><code>type</code>: The type of the atom (hydrogen or oxygen or …)</li>
-<li><code>position</code>: The position of the atom in 3D space (x, y, z)</li>
-<li><code>velocity</code>: The velocity of the atom in 3D space (vx, vy, vz)</li>
-<li><code>mass</code>: The mass of the atom</li>
-<li><code>force</code>: The force acting on the atom in 3D space (fx, fy, fz)</li>
-</ul>
-<p>In addition, we will need some information on the other atoms that are bound to the atom. We will store this information later in a list of atoms called <code>boundto</code>. Since we start with a monoatomic gas, we will not need this information for now. Note that position, velocity, and force are 3D vectors and we store them in numpy arrays. This is a very convenient way to handle vectors and matrices in Python.</p>
-<p>The class <code>Atom</code> should further implement a number of functions, called methods in object-oriented programming, that allow us to interact with the atom. The following methods are implemented in the <code>Atom</code> class:</p>
-<section id="add_forceforce-adds-a-force-acting-on-the-atom" class="level4">
-<h4 class="anchored" data-anchor-id="add_forceforce-adds-a-force-acting-on-the-atom"><code>add_force(force)</code>: Adds a force acting on the atom</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_force(<span class="va">self</span>, force):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Add force contribution to total force on atom"""</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.force <span class="op">+=</span> force</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="reset_force-resets-the-force-acting-on-the-atom" class="level4">
-<h4 class="anchored" data-anchor-id="reset_force-resets-the-force-acting-on-the-atom"><code>reset_force()</code>: Resets the force acting on the atom</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reset_force(<span class="va">self</span>):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Reset force to zero at start of each step"""</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.force <span class="op">=</span> np.zeros(dimension)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="update_positiondt-updates-the-position-of-the-atom" class="level4">
-<h4 class="anchored" data-anchor-id="update_positiondt-updates-the-position-of-the-atom"><code>update_position(dt)</code>: Updates the position of the atom</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_position(<span class="va">self</span>, dt):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""First step of velocity Verlet: update position"""</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.position <span class="op">+=</span> <span class="va">self</span>.velocity <span class="op">*</span> dt <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> (<span class="va">self</span>.force<span class="op">/</span><span class="va">self</span>.mass) <span class="op">*</span> dt<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="update_velocitydt-updates-the-velocity-of-the-atom" class="level4">
-<h4 class="anchored" data-anchor-id="update_velocitydt-updates-the-velocity-of-the-atom"><code>update_velocity(dt)</code>: Updates the velocity of the atom</h4>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_velocity(<span class="va">self</span>, dt, new_force):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Second step of velocity Verlet: update velocity using average force"""</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.velocity <span class="op">+=</span> <span class="fl">0.5</span> <span class="op">*</span> (new_force <span class="op">+</span> <span class="va">self</span>.force)<span class="op">/</span><span class="va">self</span>.mass <span class="op">*</span> dt</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.force <span class="op">=</span> new_force</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="apply_periodic_boundariesbox_size-applies-periodic-boundary-conditions-to-the-atom" class="level4">
-<h4 class="anchored" data-anchor-id="apply_periodic_boundariesbox_size-applies-periodic-boundary-conditions-to-the-atom"><code>apply_periodic_boundaries(box_size)</code>: Applies periodic boundary conditions to the atom</h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_periodic_boundaries(<span class="va">self</span>, box_size):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Apply periodic boundary conditions"""</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.position <span class="op">=</span> <span class="va">self</span>.position <span class="op">%</span> box_size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Complete Atom class
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Atom:</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, atom_id, atom_type, position, velocity<span class="op">=</span><span class="va">None</span>, mass<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">id</span> <span class="op">=</span> atom_id</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">type</span> <span class="op">=</span> atom_type</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.position <span class="op">=</span> position</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.velocity <span class="op">=</span> velocity <span class="cf">if</span> velocity <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> np.random.randn(<span class="dv">2</span>)<span class="op">*</span><span class="dv">20</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mass <span class="op">=</span> mass</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force <span class="op">=</span> np.zeros(<span class="dv">2</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_force(<span class="va">self</span>, force):</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Add force contribution to total force on atom"""</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force <span class="op">+=</span> force</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reset_force(<span class="va">self</span>):</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Reset force to zero at start of each step"""</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force <span class="op">=</span> np.zeros(<span class="dv">2</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_position(<span class="va">self</span>, dt):</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""First step of velocity Verlet: update position"""</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.position <span class="op">+=</span> <span class="va">self</span>.velocity <span class="op">*</span> dt <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> (<span class="va">self</span>.force<span class="op">/</span><span class="va">self</span>.mass) <span class="op">*</span> dt<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_velocity(<span class="va">self</span>, dt, new_force):</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Second step of velocity Verlet: update velocity using average force"""</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.velocity <span class="op">+=</span> <span class="fl">0.5</span> <span class="op">*</span> (new_force <span class="op">+</span> <span class="va">self</span>.force)<span class="op">/</span><span class="va">self</span>.mass <span class="op">*</span> dt</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force <span class="op">=</span> new_force</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> apply_periodic_boundaries(<span class="va">self</span>, box_size):</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""Apply periodic boundary conditions"""</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.position <span class="op">=</span> <span class="va">self</span>.position <span class="op">%</span> box_size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="the-forcefield-class" class="level3">
-<h3 class="anchored" data-anchor-id="the-forcefield-class">The ForceField Class</h3>
-<p>The force field is a class that contains the parameters of the force field and the methods to calculate the forces between the atoms. The class <code>ForceField</code> has the following attributes:</p>
-<ul>
-<li><code>sigma</code>: The parameter sigma of the Lennard-Jones potential</li>
-<li><code>epsilon</code>: The parameter epsilon of the Lennard-Jones potential</li>
-</ul>
-<p>These parameters are specific for each atom type. We will store these parameters in a dictionary where the keys are the atom types and the values are dictionaries containing the parameters sigma and epsilon. The class <code>ForceField</code> also contains the box size of the simulation. This is needed to apply periodic boundary conditions.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ForceField:</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.parameters <span class="op">=</span> {</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">'C'</span>: {<span class="st">'epsilon'</span>: <span class="fl">1.0</span>, <span class="st">'sigma'</span>: <span class="fl">3.4</span>},</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">'H'</span>: {<span class="st">'epsilon'</span>: <span class="dv">1</span>, <span class="st">'sigma'</span>: <span class="dv">1</span>},</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">'O'</span>: {<span class="st">'epsilon'</span>: <span class="fl">0.8</span>, <span class="st">'sigma'</span>: <span class="fl">3.0</span>},</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.box_size <span class="op">=</span> <span class="va">None</span>  <span class="co"># Will be set when initializing the simulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="get_pair_parameters-apply-mixing-rules-when-needed" class="level4">
-<h4 class="anchored" data-anchor-id="get_pair_parameters-apply-mixing-rules-when-needed"><code>get_pair_parameters</code>: Apply mixing rules when needed</h4>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_pair_parameters(<span class="va">self</span>, type1, type2):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply mixing rules when needed</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    eps1 <span class="op">=</span> <span class="va">self</span>.parameters[type1][<span class="st">'epsilon'</span>]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    eps2 <span class="op">=</span> <span class="va">self</span>.parameters[type2][<span class="st">'epsilon'</span>]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    sig1 <span class="op">=</span> <span class="va">self</span>.parameters[type1][<span class="st">'sigma'</span>]</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    sig2 <span class="op">=</span> <span class="va">self</span>.parameters[type2][<span class="st">'sigma'</span>]</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lorentz-Berthelot mixing rules</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    epsilon <span class="op">=</span> np.sqrt(eps1 <span class="op">*</span> eps2)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> (sig1 <span class="op">+</span> sig2) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> epsilon, sigma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="minimum_image_distance-apply-minimum-image-convention" class="level4">
-<h4 class="anchored" data-anchor-id="minimum_image_distance-apply-minimum-image-convention"><code>minimum_image_distance</code>: Apply minimum image convention</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> minimum_image_distance(<span class="va">self</span>, pos1, pos2):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate minimum image distance between two positions"""</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> pos1 <span class="op">-</span> pos2</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply minimum image convention</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> delta <span class="op">-</span> <span class="va">self</span>.box_size <span class="op">*</span> np.<span class="bu">round</span>(delta <span class="op">/</span> <span class="va">self</span>.box_size)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="calculate_lj_force-calculate-the-lennard-jones-force-between-two-atoms" class="level4">
-<h4 class="anchored" data-anchor-id="calculate_lj_force-calculate-the-lennard-jones-force-between-two-atoms"><code>calculate_lj_force</code>: Calculate the Lennard-Jones force between two atoms</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_lj_force(<span class="va">self</span>, atom1, atom2):</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    epsilon, sigma <span class="op">=</span> <span class="va">self</span>.get_pair_parameters(atom1.<span class="bu">type</span>, atom2.<span class="bu">type</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> <span class="va">self</span>.minimum_image_distance(atom1.position, atom2.position)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    r_mag <span class="op">=</span> np.linalg.norm(r)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add cutoff distance for stability</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> r_mag <span class="op">&gt;</span> <span class="fl">2.5</span><span class="op">*</span>sigma:</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.zeros(<span class="dv">2</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    force_mag <span class="op">=</span> <span class="dv">24</span> <span class="op">*</span> epsilon <span class="op">*</span> (</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="op">*</span> (sigma<span class="op">/</span>r_mag)<span class="op">**</span><span class="dv">13</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> (sigma<span class="op">/</span>r_mag)<span class="op">**</span><span class="dv">7</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    force <span class="op">=</span> force_mag <span class="op">*</span> r<span class="op">/</span>r_mag</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> force</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Complete ForceField class
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ForceField:</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.parameters <span class="op">=</span> {</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">'C'</span>: {<span class="st">'epsilon'</span>: <span class="fl">1.0</span>, <span class="st">'sigma'</span>: <span class="fl">3.4</span>},</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">'H'</span>: {<span class="st">'epsilon'</span>: <span class="dv">1</span>, <span class="st">'sigma'</span>: <span class="dv">1</span>},</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">'O'</span>: {<span class="st">'epsilon'</span>: <span class="fl">0.8</span>, <span class="st">'sigma'</span>: <span class="fl">3.0</span>},</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.box_size <span class="op">=</span> <span class="va">None</span>  <span class="co"># Will be set when initializing the simulation</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_pair_parameters(<span class="va">self</span>, type1, type2):</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply mixing rules when needed</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        eps1 <span class="op">=</span> <span class="va">self</span>.parameters[type1][<span class="st">'epsilon'</span>]</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        eps2 <span class="op">=</span> <span class="va">self</span>.parameters[type2][<span class="st">'epsilon'</span>]</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        sig1 <span class="op">=</span> <span class="va">self</span>.parameters[type1][<span class="st">'sigma'</span>]</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        sig2 <span class="op">=</span> <span class="va">self</span>.parameters[type2][<span class="st">'sigma'</span>]</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Lorentz-Berthelot mixing rules</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        epsilon <span class="op">=</span> np.sqrt(eps1 <span class="op">*</span> eps2)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        sigma <span class="op">=</span> (sig1 <span class="op">+</span> sig2) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> epsilon, sigma</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> minimum_image_distance(<span class="va">self</span>, pos1, pos2):</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Calculate minimum image distance between two positions"""</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        delta <span class="op">=</span> pos1 <span class="op">-</span> pos2</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply minimum image convention</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        delta <span class="op">=</span> delta <span class="op">-</span> <span class="va">self</span>.box_size <span class="op">*</span> np.<span class="bu">round</span>(delta <span class="op">/</span> <span class="va">self</span>.box_size)</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> delta</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calculate_lj_force(<span class="va">self</span>, atom1, atom2):</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        epsilon, sigma <span class="op">=</span> <span class="va">self</span>.get_pair_parameters(atom1.<span class="bu">type</span>, atom2.<span class="bu">type</span>)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> <span class="va">self</span>.minimum_image_distance(atom1.position, atom2.position)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>        r_mag <span class="op">=</span> np.linalg.norm(r)</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add cutoff distance for stability</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> r_mag <span class="op">&gt;</span> <span class="fl">2.5</span><span class="op">*</span>sigma:</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> np.zeros(<span class="dv">2</span>)</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>        force_mag <span class="op">=</span> <span class="dv">24</span> <span class="op">*</span> epsilon <span class="op">*</span> (</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>            <span class="dv">2</span> <span class="op">*</span> (sigma<span class="op">/</span>r_mag)<span class="op">**</span><span class="dv">13</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span> (sigma<span class="op">/</span>r_mag)<span class="op">**</span><span class="dv">7</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>        force <span class="op">=</span> force_mag <span class="op">*</span> r<span class="op">/</span>r_mag</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> force</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="spinner-grow spinner-grow-sm">
 
 </div>
 </div>
-</div>
-</section>
-</section>
-</section>
+<script type="vfs-file">
+W10=
+</script>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../seminars/seminar01";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -741,7 +505,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/fcichos\.github\.io\/EMPP24\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
