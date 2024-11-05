@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -110,6 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -292,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture02/04-plotting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture04/04-plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plotting</span></a>
   </div>
 </li>
@@ -443,15 +446,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In diesem kurzen Text werde ich versuchen, einige Hinweise zu geben, wie man Plots in einer angemessenen Größe erzeugt, so dass Sie die Beispiele sofort in Ihrem Jupyter-Notebook oder eine Semesterarbeit verwenden können.</p>
-<p>Sie möchten Ihre Abbildungen in einem Manuskript aus Plots zusammenstellen, die Sie als PDF-Dateien erzeugen, d.h. sie enthalten Vektorgrafiken. Das hat den Vorteil, dass Sie sie anschließend auf die passende Größe skalieren können, um sie in ein- oder zweispaltige Abbildungen zu quetschen. Das ist zwar verlockend, birgt aber die Gefahr, dass man jedes Diagramm unterschiedlich skaliert und dann alle Diagramme unterschiedliche Achsenbeschriftungsgrößen und Tickgrößen haben, was letztlich ein Durcheinander erzeugt.</p>
-<p>Um das zu verhindern, könnte man die Diagramme in der entsprechenden Größe der einspaltigen oder zweispaltigen Verwendung mit den gleichen Achsen- und Ticklabelgrößen erstellen. Hier sind einige Hacks, mit denen Sie produktionsreife Plots direkt aus Ihren Jupyter-Notizbüchern erstellen und speichern können.</p>
+<p>Optimale Plotgrößen für wissenschaftliche Arbeiten</p>
+<p>In diesem Leitfaden zeige ich Ihnen, wie Sie Plots in einer standardisierten, publikationstauglichen Größe erstellen können. Die Hinweise sind sowohl für Jupyter-Notebooks als auch für wissenschaftliche Arbeiten wie Semesterarbeiten geeignet.</p>
+<p>Beim Export von Plots als PDF-Dateien werden Vektorgrafiken erzeugt, die sich nachträglich verlustfrei skalieren lassen. Dies ermöglicht zwar eine flexible Anpassung an ein- oder zweispaltige Layoutformate, kann aber zu Inkonsistenzen führen: Unterschiedliche Skalierungsfaktoren resultieren oft in verschiedenen Größen von Achsenbeschriftungen und Markierungen, was das Gesamtbild der Arbeit beeinträchtigt.</p>
+<p>Die bessere Strategie ist es, von Anfang an einheitliche Plotgrößen zu verwenden: - Definieren Sie Standards für ein- und zweispaltige Abbildungen - Legen Sie einheitliche Größen für Achsenbeschriftungen und Markierungen fest - Erstellen Sie alle Plots direkt in der finalen Größe</p>
+<p>Im Folgenden stelle ich praktische Techniken vor, mit denen Sie direkt aus Jupyter-Notebooks publikationsreife Plots erstellen und speichern können.</p>
 <section id="erstellen-eines-diagramms-mit-einer-bestimmten-größe-des-begrenzungsrahmens" class="level2">
 <h2 class="anchored" data-anchor-id="erstellen-eines-diagramms-mit-einer-bestimmten-größe-des-begrenzungsrahmens">Erstellen eines Diagramms mit einer bestimmten Größe des Begrenzungsrahmens</h2>
-<p>If you create a plot in matplotlib you can specify a size with the parameter <em>figsize</em>, e.g.</p>
+<p>Wenn Sie einen Plot in matplotlib erstellen, können Sie eine Größe mit dem Parameter <em>figsize</em> festlegen, z.B.</p>
 <pre><code>plt.figure(figsize=(3,2))</code></pre>
-<p>for a figure of a width of 3 <em>inches</em> or 7.62 <em>cm</em> and a height of 2 <em>inches</em> (5.08 <em>cm</em>). If you do not use this parameter or if you even do not use the <code>plt.figure()</code> command, matplotlib will use the default size, which is often 8 <em>inches</em> times 6 <em>inches</em>. The default size is way to big as the figure would be then just a whole A4 page wide. A proper size of a plot for a single column in a two column paper would be the above 3 <em>inches</em> times 2 <em>inches</em> as a the whole paper width is 21 <em>cm</em> minus a marging of about 3 <em>cm</em> on each side gives a column width of about (21-6)/2=7.5 <em>cm</em>.</p>
-<p>The Plot shown in <a href="#fig-1" class="quarto-xref">Figure&nbsp;1</a> is created with the following commands</p>
+<p>für eine Abbildung mit einer Breite von 3 <em>inches</em> bzw. 7,62 <em>cm</em> und einer Höhe von 2 <em>inches</em> (5,08 <em>cm</em>). Wenn Sie diesen Parameter nicht verwenden oder sogar den Befehl <code>plt.figure()</code> nicht nutzen, verwendet matplotlib die Standardgröße, die häufig 8 <em>inches</em> mal 6 <em>inches</em> beträgt. Diese Standardgröße ist viel zu groß, da die Abbildung dann fast eine ganze A4-Seite breit wäre. Eine angemessene Größe für einen Plot in einer einzelnen Spalte eines zweispaltigen Dokuments wären die oben genannten 3 <em>inches</em> mal 2 <em>inches</em>, da die gesamte Seitenbreite 21 <em>cm</em> minus einem Rand von etwa 3 <em>cm</em> auf jeder Seite eine Spaltenbreite von ungefähr (21-6)/2=7,5 <em>cm</em> ergibt.</p>
+<p>Der in <a href="#fig-1" class="quarto-xref">Figure&nbsp;1</a> gezeigte Plot wurde mit den folgenden Befehlen erstellt</p>
 <pre><code>plt.figure(figsize=(3,2), dpi=150)
 x=np.linspace(0,np.pi*4,200)
 plt.plot(x,np.sin(x),color='k')
@@ -468,15 +473,16 @@ plt.show()</code></pre>
 <li><p>Sie werden auch feststellen, dass die Arbeit mit dieser Abbildungsgröße in einem Jupyter-Notebook nicht gut ist. Das hat damit zu tun, wie Jupyter die Ausgabe in eine PNG-Datei übersetzt, die inline angezeigt wird. Eine Möglichkeit, den Plot im Jupyter-Notebook zu vergrößern, aber die PDF-Größe beizubehalten, besteht darin, den Parameter <strong>dpi</strong> im Befehl <code>plt.figure(figsize=(3,2), dpi=150)</code> zu erhöhen. Normalerweise ist er auf dpi=75 eingestellt, was jetzt viel zu klein ist. Eine Einstellung von dpi=150 scheint ein vernünftiger Kompromiss zwischen Bildschirm- und Druckgröße zu sein. Wenn Sie völlig unabhängig sein wollen</p></li>
 <li><p>Der Befehl <code>plt.savefig</code> verwendet einen zusätzlichen <code>bbox_inches = 'tight'</code> Parameter, der sicherstellt, dass die Boundingbox auch wirklich alle Komponenten des Plots genau umschließt.</p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| edit: false</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| execute: true</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> font_manager</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.display <span class="im">import</span> HTML</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> directory_tree <span class="im">import</span> display_tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>,</span>
+<div id="cb416423" class="cell" data-edit="false" data-execute="true" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.font_manager <span class="im">as</span> font_manager</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.display <span class="im">import</span> HTML</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> directory_tree <span class="im">import</span> display_tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4592ef92" class="cell" data-autorun="false" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.linewidth'</span>: <span class="dv">1</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.markersize'</span>: <span class="dv">10</span>,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelsize'</span>: <span class="dv">11</span>,</span>
@@ -487,33 +493,28 @@ plt.show()</code></pre>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.right'</span> : <span class="va">True</span>,</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.direction'</span> : <span class="st">'in'</span>,</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'figure.dpi'</span>: <span class="dv">150</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: []</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w,h):</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>((w<span class="op">/</span><span class="fl">2.54</span>,h<span class="op">/</span><span class="fl">2.54</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: []</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">7</span>,<span class="dv">6</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.pi<span class="op">*</span><span class="dv">4</span>,<span class="dv">200</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,np.sin(x),color<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"angle $\theta$ in [rad]"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$\sin(\theta)$"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figure_example3.pdf"</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<button onclick="openFullscreen()">Full Screen</button>
-<iframe id="myIframe" src="https://jupyterlite.github.io/demo/" width="100%" height="600px" allowfullscreen=""></iframe>
-
-<script>
-function openFullscreen() {
-  var iframe = document.getElementById("myIframe");
-  if (iframe.requestFullscreen) {
-    iframe.requestFullscreen();
-  } else if (iframe.webkitRequestFullscreen) { /* Safari */
-    iframe.webkitRequestFullscreen();
-  } else if (iframe.msRequestFullscreen) { /* IE11 */
-    iframe.msRequestFullscreen();
-  }
-}
-</script>
+</div>
+<div id="ec79c0a9" class="cell" data-autorun="false" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w,h):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>((w<span class="op">/</span><span class="fl">2.54</span>,h<span class="op">/</span><span class="fl">2.54</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6a765d3d" class="cell" data-autorun="false" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">7</span>,<span class="dv">6</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.pi<span class="op">*</span><span class="dv">4</span>,<span class="dv">200</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,np.sin(x),color<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"angle $\theta$ in [rad]"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$\sin(\theta)$"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figure_example3.pdf"</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="25_publication_ready_figures_files/figure-html/cell-5-output-1.png" width="387" height="328" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Wenn Sie dieses Bild in eine beliebige Software laden, erhalten Sie ein Bild mit einer Größe, die der eingestellten Breite entspricht.</p>
 <div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -540,89 +541,459 @@ Figure&nbsp;1
     figh = float(h)/(t-b)
     ax.figure.set_size_inches(figw, figh)</code></pre>
 <p>wobei Sie die gewünschte Breite und Höhe (in Zoll) der aktuellen Achse <em>ax</em> angeben müssen. Die Funktion gibt nichts zurück, sondern legt direkt die Größe fest.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: []</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> set_size(w,h, ax<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" w, h: width, height in inches """</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ax: ax<span class="op">=</span>plt.gca()</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> ax.figure.subplotpars.left</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> ax.figure.subplotpars.right</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> ax.figure.subplotpars.top</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> ax.figure.subplotpars.bottom</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    figw <span class="op">=</span> <span class="bu">float</span>(w)<span class="op">/</span>(r<span class="op">-</span>l)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    figh <span class="op">=</span> <span class="bu">float</span>(h)<span class="op">/</span>(t<span class="op">-</span>b)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    ax.figure.set_size_inches(figw, figh)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span>plt.figure(dpi<span class="op">=</span><span class="dv">150</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>plt.axes()</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ax.plot(x,np.sin(x),color<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"angle $\theta$ in [rad]"</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r"$\sin(\theta)$"</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>set_size(<span class="dv">3</span>,<span class="dv">2</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figure_example2.pdf"</span>,bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5911fd9c" class="cell" data-autorun="false" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> set_size(w,h, ax<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" w, h: width, height in inches """</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ax: ax<span class="op">=</span>plt.gca()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> ax.figure.subplotpars.left</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> ax.figure.subplotpars.right</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> ax.figure.subplotpars.top</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> ax.figure.subplotpars.bottom</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    figw <span class="op">=</span> <span class="bu">float</span>(w)<span class="op">/</span>(r<span class="op">-</span>l)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    figh <span class="op">=</span> <span class="bu">float</span>(h)<span class="op">/</span>(t<span class="op">-</span>b)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ax.figure.set_size_inches(figw, figh)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span>plt.figure(dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>plt.axes()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax.plot(x,np.sin(x),color<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"angle $\theta$ in [rad]"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r"$\sin(\theta)$"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>set_size(<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figure_example2.pdf"</span>,bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="25_publication_ready_figures_files/figure-html/cell-6-output-1.png" width="568" height="391" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Wenn Sie diese Abbildung in ein Grafikprogramm oder eine Textverarbeitungssoftware laden, sollte das Abbildungsfeld eine Größe von 7,62 cm mal 5,08 cm haben, ohne dass eine Neuskalierung erfolgt:</p>
 <p><img src="img/box_size.png" class="img-fluid"></p>
 </section>
 <section id="auswahl-der-schriftarten" class="level2">
 <h2 class="anchored" data-anchor-id="auswahl-der-schriftarten">Auswahl der Schriftarten</h2>
 <p>Matplotlib kann auf eine Reihe von verschiedenen Schriftarten zugreifen. Es kann schwierig sein, die passende Schriftart für den Formelstil Ihres Dokuments oder Ihrer Publikation zu finden. Eine Liste der Schriftarten, die Matplotlib zur Verfügung stehen, kann mit dem folgenden Codeschnipsel abgerufen werden, den ich <a href="https://jonathansoma.com/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/">hier</a> gefunden habe.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: []</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML, display</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_html(fontname):</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"&lt;p&gt;</span><span class="sc">{font}</span><span class="st">: &lt;span style='font-family:</span><span class="sc">{font}</span><span class="st">; font-size: 24px;'&gt;</span><span class="sc">{font}</span><span class="st">&lt;/p&gt;"</span>.<span class="bu">format</span>(font<span class="op">=</span>fontname)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join([make_html(font) <span class="cf">for</span> font <span class="kw">in</span> <span class="bu">sorted</span>(<span class="bu">set</span>([f.name <span class="cf">for</span> f <span class="kw">in</span> font_manager.fontManager.ttflist]))])</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">"&lt;div style='column-count: 2;'&gt;</span><span class="sc">{}</span><span class="st">&lt;/div&gt;"</span>.<span class="bu">format</span>(code)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cbd300e1" class="cell" data-autorun="false" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML, display</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_html(fontname):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"&lt;p&gt;</span><span class="sc">{font}</span><span class="st">: &lt;span style='font-family:</span><span class="sc">{font}</span><span class="st">; font-size: 24px;'&gt;</span><span class="sc">{font}</span><span class="st">&lt;/p&gt;"</span>.<span class="bu">format</span>(font<span class="op">=</span>fontname)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join([make_html(font) <span class="cf">for</span> font <span class="kw">in</span> <span class="bu">sorted</span>(<span class="bu">set</span>([f.name <span class="cf">for</span> f <span class="kw">in</span> font_manager.fontManager.ttflist]))])</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">"&lt;div style='column-count: 2;'&gt;</span><span class="sc">{}</span><span class="st">&lt;/div&gt;"</span>.<span class="bu">format</span>(code)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div style="column-count: 2;"><p>.Aqua Kana: <span style="font-family:.Aqua Kana; font-size: 24px;">.Aqua Kana</span></p>
+<p>.CJK Symbols Fallback HK: <span style="font-family:.CJK Symbols Fallback HK; font-size: 24px;">.CJK Symbols Fallback HK</span></p>
+<p>.Keyboard: <span style="font-family:.Keyboard; font-size: 24px;">.Keyboard</span></p>
+<p>.New York: <span style="font-family:.New York; font-size: 24px;">.New York</span></p>
+<p>.SF Arabic: <span style="font-family:.SF Arabic; font-size: 24px;">.SF Arabic</span></p>
+<p>.SF Arabic Rounded: <span style="font-family:.SF Arabic Rounded; font-size: 24px;">.SF Arabic Rounded</span></p>
+<p>.SF Armenian: <span style="font-family:.SF Armenian; font-size: 24px;">.SF Armenian</span></p>
+<p>.SF Armenian Rounded: <span style="font-family:.SF Armenian Rounded; font-size: 24px;">.SF Armenian Rounded</span></p>
+<p>.SF Camera: <span style="font-family:.SF Camera; font-size: 24px;">.SF Camera</span></p>
+<p>.SF Compact: <span style="font-family:.SF Compact; font-size: 24px;">.SF Compact</span></p>
+<p>.SF Compact Rounded: <span style="font-family:.SF Compact Rounded; font-size: 24px;">.SF Compact Rounded</span></p>
+<p>.SF Georgian: <span style="font-family:.SF Georgian; font-size: 24px;">.SF Georgian</span></p>
+<p>.SF Georgian Rounded: <span style="font-family:.SF Georgian Rounded; font-size: 24px;">.SF Georgian Rounded</span></p>
+<p>.SF Hebrew: <span style="font-family:.SF Hebrew; font-size: 24px;">.SF Hebrew</span></p>
+<p>.SF Hebrew Rounded: <span style="font-family:.SF Hebrew Rounded; font-size: 24px;">.SF Hebrew Rounded</span></p>
+<p>.SF NS Mono: <span style="font-family:.SF NS Mono; font-size: 24px;">.SF NS Mono</span></p>
+<p>.SF NS Rounded: <span style="font-family:.SF NS Rounded; font-size: 24px;">.SF NS Rounded</span></p>
+<p>.SF Soft Numeric: <span style="font-family:.SF Soft Numeric; font-size: 24px;">.SF Soft Numeric</span></p>
+<p>.ThonburiUI: <span style="font-family:.ThonburiUI; font-size: 24px;">.ThonburiUI</span></p>
+<p>Academy Engraved LET: <span style="font-family:Academy Engraved LET; font-size: 24px;">Academy Engraved LET</span></p>
+<p>Agency FB: <span style="font-family:Agency FB; font-size: 24px;">Agency FB</span></p>
+<p>Al Bayan: <span style="font-family:Al Bayan; font-size: 24px;">Al Bayan</span></p>
+<p>Al Nile: <span style="font-family:Al Nile; font-size: 24px;">Al Nile</span></p>
+<p>Al Tarikh: <span style="font-family:Al Tarikh; font-size: 24px;">Al Tarikh</span></p>
+<p>American Typewriter: <span style="font-family:American Typewriter; font-size: 24px;">American Typewriter</span></p>
+<p>Andale Mono: <span style="font-family:Andale Mono; font-size: 24px;">Andale Mono</span></p>
+<p>Apple Braille: <span style="font-family:Apple Braille; font-size: 24px;">Apple Braille</span></p>
+<p>Apple Chancery: <span style="font-family:Apple Chancery; font-size: 24px;">Apple Chancery</span></p>
+<p>Apple SD Gothic Neo: <span style="font-family:Apple SD Gothic Neo; font-size: 24px;">Apple SD Gothic Neo</span></p>
+<p>Apple Symbols: <span style="font-family:Apple Symbols; font-size: 24px;">Apple Symbols</span></p>
+<p>AppleGothic: <span style="font-family:AppleGothic; font-size: 24px;">AppleGothic</span></p>
+<p>AppleMyungjo: <span style="font-family:AppleMyungjo; font-size: 24px;">AppleMyungjo</span></p>
+<p>Arial: <span style="font-family:Arial; font-size: 24px;">Arial</span></p>
+<p>Arial Black: <span style="font-family:Arial Black; font-size: 24px;">Arial Black</span></p>
+<p>Arial Hebrew: <span style="font-family:Arial Hebrew; font-size: 24px;">Arial Hebrew</span></p>
+<p>Arial Narrow: <span style="font-family:Arial Narrow; font-size: 24px;">Arial Narrow</span></p>
+<p>Arial Rounded MT Bold: <span style="font-family:Arial Rounded MT Bold; font-size: 24px;">Arial Rounded MT Bold</span></p>
+<p>Arial Unicode MS: <span style="font-family:Arial Unicode MS; font-size: 24px;">Arial Unicode MS</span></p>
+<p>Artifakt Element: <span style="font-family:Artifakt Element; font-size: 24px;">Artifakt Element</span></p>
+<p>Athelas: <span style="font-family:Athelas; font-size: 24px;">Athelas</span></p>
+<p>Avenir: <span style="font-family:Avenir; font-size: 24px;">Avenir</span></p>
+<p>Avenir Next: <span style="font-family:Avenir Next; font-size: 24px;">Avenir Next</span></p>
+<p>Avenir Next Condensed: <span style="font-family:Avenir Next Condensed; font-size: 24px;">Avenir Next Condensed</span></p>
+<p>Ayuthaya: <span style="font-family:Ayuthaya; font-size: 24px;">Ayuthaya</span></p>
+<p>Baghdad: <span style="font-family:Baghdad; font-size: 24px;">Baghdad</span></p>
+<p>Bangla MN: <span style="font-family:Bangla MN; font-size: 24px;">Bangla MN</span></p>
+<p>Bangla Sangam MN: <span style="font-family:Bangla Sangam MN; font-size: 24px;">Bangla Sangam MN</span></p>
+<p>Baskerville: <span style="font-family:Baskerville; font-size: 24px;">Baskerville</span></p>
+<p>Beirut: <span style="font-family:Beirut; font-size: 24px;">Beirut</span></p>
+<p>Big Caslon: <span style="font-family:Big Caslon; font-size: 24px;">Big Caslon</span></p>
+<p>Bodoni 72: <span style="font-family:Bodoni 72; font-size: 24px;">Bodoni 72</span></p>
+<p>Bodoni 72 Oldstyle: <span style="font-family:Bodoni 72 Oldstyle; font-size: 24px;">Bodoni 72 Oldstyle</span></p>
+<p>Bodoni 72 Smallcaps: <span style="font-family:Bodoni 72 Smallcaps; font-size: 24px;">Bodoni 72 Smallcaps</span></p>
+<p>Bodoni Ornaments: <span style="font-family:Bodoni Ornaments; font-size: 24px;">Bodoni Ornaments</span></p>
+<p>Bradley Hand: <span style="font-family:Bradley Hand; font-size: 24px;">Bradley Hand</span></p>
+<p>Brush Script MT: <span style="font-family:Brush Script MT; font-size: 24px;">Brush Script MT</span></p>
+<p>Chalkboard: <span style="font-family:Chalkboard; font-size: 24px;">Chalkboard</span></p>
+<p>Chalkboard SE: <span style="font-family:Chalkboard SE; font-size: 24px;">Chalkboard SE</span></p>
+<p>Chalkduster: <span style="font-family:Chalkduster; font-size: 24px;">Chalkduster</span></p>
+<p>Charter: <span style="font-family:Charter; font-size: 24px;">Charter</span></p>
+<p>Cochin: <span style="font-family:Cochin; font-size: 24px;">Cochin</span></p>
+<p>Comic Sans MS: <span style="font-family:Comic Sans MS; font-size: 24px;">Comic Sans MS</span></p>
+<p>Copperplate: <span style="font-family:Copperplate; font-size: 24px;">Copperplate</span></p>
+<p>Corsiva Hebrew: <span style="font-family:Corsiva Hebrew; font-size: 24px;">Corsiva Hebrew</span></p>
+<p>Courier: <span style="font-family:Courier; font-size: 24px;">Courier</span></p>
+<p>Courier New: <span style="font-family:Courier New; font-size: 24px;">Courier New</span></p>
+<p>DIN Alternate: <span style="font-family:DIN Alternate; font-size: 24px;">DIN Alternate</span></p>
+<p>DIN Condensed: <span style="font-family:DIN Condensed; font-size: 24px;">DIN Condensed</span></p>
+<p>Damascus: <span style="font-family:Damascus; font-size: 24px;">Damascus</span></p>
+<p>DecoType Naskh: <span style="font-family:DecoType Naskh; font-size: 24px;">DecoType Naskh</span></p>
+<p>DejaVu Sans: <span style="font-family:DejaVu Sans; font-size: 24px;">DejaVu Sans</span></p>
+<p>DejaVu Sans Display: <span style="font-family:DejaVu Sans Display; font-size: 24px;">DejaVu Sans Display</span></p>
+<p>DejaVu Sans Mono: <span style="font-family:DejaVu Sans Mono; font-size: 24px;">DejaVu Sans Mono</span></p>
+<p>DejaVu Serif: <span style="font-family:DejaVu Serif; font-size: 24px;">DejaVu Serif</span></p>
+<p>DejaVu Serif Display: <span style="font-family:DejaVu Serif Display; font-size: 24px;">DejaVu Serif Display</span></p>
+<p>Devanagari MT: <span style="font-family:Devanagari MT; font-size: 24px;">Devanagari MT</span></p>
+<p>Devanagari Sangam MN: <span style="font-family:Devanagari Sangam MN; font-size: 24px;">Devanagari Sangam MN</span></p>
+<p>Didot: <span style="font-family:Didot; font-size: 24px;">Didot</span></p>
+<p>Diwan Kufi: <span style="font-family:Diwan Kufi; font-size: 24px;">Diwan Kufi</span></p>
+<p>Diwan Thuluth: <span style="font-family:Diwan Thuluth; font-size: 24px;">Diwan Thuluth</span></p>
+<p>Euphemia UCAS: <span style="font-family:Euphemia UCAS; font-size: 24px;">Euphemia UCAS</span></p>
+<p>Farah: <span style="font-family:Farah; font-size: 24px;">Farah</span></p>
+<p>Farisi: <span style="font-family:Farisi; font-size: 24px;">Farisi</span></p>
+<p>Futura: <span style="font-family:Futura; font-size: 24px;">Futura</span></p>
+<p>Galvji: <span style="font-family:Galvji; font-size: 24px;">Galvji</span></p>
+<p>Geeza Pro: <span style="font-family:Geeza Pro; font-size: 24px;">Geeza Pro</span></p>
+<p>Geneva: <span style="font-family:Geneva; font-size: 24px;">Geneva</span></p>
+<p>Georgia: <span style="font-family:Georgia; font-size: 24px;">Georgia</span></p>
+<p>Gill Sans: <span style="font-family:Gill Sans; font-size: 24px;">Gill Sans</span></p>
+<p>Gujarati MT: <span style="font-family:Gujarati MT; font-size: 24px;">Gujarati MT</span></p>
+<p>Gujarati Sangam MN: <span style="font-family:Gujarati Sangam MN; font-size: 24px;">Gujarati Sangam MN</span></p>
+<p>Gurmukhi MN: <span style="font-family:Gurmukhi MN; font-size: 24px;">Gurmukhi MN</span></p>
+<p>Gurmukhi MT: <span style="font-family:Gurmukhi MT; font-size: 24px;">Gurmukhi MT</span></p>
+<p>Gurmukhi Sangam MN: <span style="font-family:Gurmukhi Sangam MN; font-size: 24px;">Gurmukhi Sangam MN</span></p>
+<p>Heiti TC: <span style="font-family:Heiti TC; font-size: 24px;">Heiti TC</span></p>
+<p>Helvetica: <span style="font-family:Helvetica; font-size: 24px;">Helvetica</span></p>
+<p>Helvetica Neue: <span style="font-family:Helvetica Neue; font-size: 24px;">Helvetica Neue</span></p>
+<p>Herculanum: <span style="font-family:Herculanum; font-size: 24px;">Herculanum</span></p>
+<p>Hiragino Maru Gothic Pro: <span style="font-family:Hiragino Maru Gothic Pro; font-size: 24px;">Hiragino Maru Gothic Pro</span></p>
+<p>Hiragino Mincho ProN: <span style="font-family:Hiragino Mincho ProN; font-size: 24px;">Hiragino Mincho ProN</span></p>
+<p>Hiragino Sans: <span style="font-family:Hiragino Sans; font-size: 24px;">Hiragino Sans</span></p>
+<p>Hiragino Sans GB: <span style="font-family:Hiragino Sans GB; font-size: 24px;">Hiragino Sans GB</span></p>
+<p>Hoefler Text: <span style="font-family:Hoefler Text; font-size: 24px;">Hoefler Text</span></p>
+<p>ITF Devanagari: <span style="font-family:ITF Devanagari; font-size: 24px;">ITF Devanagari</span></p>
+<p>Impact: <span style="font-family:Impact; font-size: 24px;">Impact</span></p>
+<p>InaiMathi: <span style="font-family:InaiMathi; font-size: 24px;">InaiMathi</span></p>
+<p>Iowan Old Style: <span style="font-family:Iowan Old Style; font-size: 24px;">Iowan Old Style</span></p>
+<p>Kailasa: <span style="font-family:Kailasa; font-size: 24px;">Kailasa</span></p>
+<p>Kannada MN: <span style="font-family:Kannada MN; font-size: 24px;">Kannada MN</span></p>
+<p>Kannada Sangam MN: <span style="font-family:Kannada Sangam MN; font-size: 24px;">Kannada Sangam MN</span></p>
+<p>Kefa: <span style="font-family:Kefa; font-size: 24px;">Kefa</span></p>
+<p>Khmer MN: <span style="font-family:Khmer MN; font-size: 24px;">Khmer MN</span></p>
+<p>Khmer Sangam MN: <span style="font-family:Khmer Sangam MN; font-size: 24px;">Khmer Sangam MN</span></p>
+<p>Kohinoor Bangla: <span style="font-family:Kohinoor Bangla; font-size: 24px;">Kohinoor Bangla</span></p>
+<p>Kohinoor Devanagari: <span style="font-family:Kohinoor Devanagari; font-size: 24px;">Kohinoor Devanagari</span></p>
+<p>Kohinoor Gujarati: <span style="font-family:Kohinoor Gujarati; font-size: 24px;">Kohinoor Gujarati</span></p>
+<p>Kohinoor Telugu: <span style="font-family:Kohinoor Telugu; font-size: 24px;">Kohinoor Telugu</span></p>
+<p>Kokonor: <span style="font-family:Kokonor; font-size: 24px;">Kokonor</span></p>
+<p>Krungthep: <span style="font-family:Krungthep; font-size: 24px;">Krungthep</span></p>
+<p>KufiStandardGK: <span style="font-family:KufiStandardGK; font-size: 24px;">KufiStandardGK</span></p>
+<p>Lao MN: <span style="font-family:Lao MN; font-size: 24px;">Lao MN</span></p>
+<p>Lao Sangam MN: <span style="font-family:Lao Sangam MN; font-size: 24px;">Lao Sangam MN</span></p>
+<p>Lucida Grande: <span style="font-family:Lucida Grande; font-size: 24px;">Lucida Grande</span></p>
+<p>Luminari: <span style="font-family:Luminari; font-size: 24px;">Luminari</span></p>
+<p>Malayalam MN: <span style="font-family:Malayalam MN; font-size: 24px;">Malayalam MN</span></p>
+<p>Malayalam Sangam MN: <span style="font-family:Malayalam Sangam MN; font-size: 24px;">Malayalam Sangam MN</span></p>
+<p>Marion: <span style="font-family:Marion; font-size: 24px;">Marion</span></p>
+<p>Marker Felt: <span style="font-family:Marker Felt; font-size: 24px;">Marker Felt</span></p>
+<p>Menlo: <span style="font-family:Menlo; font-size: 24px;">Menlo</span></p>
+<p>Microsoft Sans Serif: <span style="font-family:Microsoft Sans Serif; font-size: 24px;">Microsoft Sans Serif</span></p>
+<p>Mishafi: <span style="font-family:Mishafi; font-size: 24px;">Mishafi</span></p>
+<p>Mishafi Gold: <span style="font-family:Mishafi Gold; font-size: 24px;">Mishafi Gold</span></p>
+<p>Monaco: <span style="font-family:Monaco; font-size: 24px;">Monaco</span></p>
+<p>Mshtakan: <span style="font-family:Mshtakan; font-size: 24px;">Mshtakan</span></p>
+<p>Mukta Mahee: <span style="font-family:Mukta Mahee; font-size: 24px;">Mukta Mahee</span></p>
+<p>Muna: <span style="font-family:Muna; font-size: 24px;">Muna</span></p>
+<p>Myanmar MN: <span style="font-family:Myanmar MN; font-size: 24px;">Myanmar MN</span></p>
+<p>Myanmar Sangam MN: <span style="font-family:Myanmar Sangam MN; font-size: 24px;">Myanmar Sangam MN</span></p>
+<p>Nadeem: <span style="font-family:Nadeem; font-size: 24px;">Nadeem</span></p>
+<p>New Peninim MT: <span style="font-family:New Peninim MT; font-size: 24px;">New Peninim MT</span></p>
+<p>Noteworthy: <span style="font-family:Noteworthy; font-size: 24px;">Noteworthy</span></p>
+<p>Noto Nastaliq Urdu: <span style="font-family:Noto Nastaliq Urdu; font-size: 24px;">Noto Nastaliq Urdu</span></p>
+<p>Noto Sans Adlam: <span style="font-family:Noto Sans Adlam; font-size: 24px;">Noto Sans Adlam</span></p>
+<p>Noto Sans Armenian: <span style="font-family:Noto Sans Armenian; font-size: 24px;">Noto Sans Armenian</span></p>
+<p>Noto Sans Avestan: <span style="font-family:Noto Sans Avestan; font-size: 24px;">Noto Sans Avestan</span></p>
+<p>Noto Sans Bamum: <span style="font-family:Noto Sans Bamum; font-size: 24px;">Noto Sans Bamum</span></p>
+<p>Noto Sans Bassa Vah: <span style="font-family:Noto Sans Bassa Vah; font-size: 24px;">Noto Sans Bassa Vah</span></p>
+<p>Noto Sans Batak: <span style="font-family:Noto Sans Batak; font-size: 24px;">Noto Sans Batak</span></p>
+<p>Noto Sans Bhaiksuki: <span style="font-family:Noto Sans Bhaiksuki; font-size: 24px;">Noto Sans Bhaiksuki</span></p>
+<p>Noto Sans Brahmi: <span style="font-family:Noto Sans Brahmi; font-size: 24px;">Noto Sans Brahmi</span></p>
+<p>Noto Sans Buginese: <span style="font-family:Noto Sans Buginese; font-size: 24px;">Noto Sans Buginese</span></p>
+<p>Noto Sans Buhid: <span style="font-family:Noto Sans Buhid; font-size: 24px;">Noto Sans Buhid</span></p>
+<p>Noto Sans Canadian Aboriginal: <span style="font-family:Noto Sans Canadian Aboriginal; font-size: 24px;">Noto Sans Canadian Aboriginal</span></p>
+<p>Noto Sans Carian: <span style="font-family:Noto Sans Carian; font-size: 24px;">Noto Sans Carian</span></p>
+<p>Noto Sans Caucasian Albanian: <span style="font-family:Noto Sans Caucasian Albanian; font-size: 24px;">Noto Sans Caucasian Albanian</span></p>
+<p>Noto Sans Chakma: <span style="font-family:Noto Sans Chakma; font-size: 24px;">Noto Sans Chakma</span></p>
+<p>Noto Sans Cham: <span style="font-family:Noto Sans Cham; font-size: 24px;">Noto Sans Cham</span></p>
+<p>Noto Sans Coptic: <span style="font-family:Noto Sans Coptic; font-size: 24px;">Noto Sans Coptic</span></p>
+<p>Noto Sans Cuneiform: <span style="font-family:Noto Sans Cuneiform; font-size: 24px;">Noto Sans Cuneiform</span></p>
+<p>Noto Sans Cypriot: <span style="font-family:Noto Sans Cypriot; font-size: 24px;">Noto Sans Cypriot</span></p>
+<p>Noto Sans Duployan: <span style="font-family:Noto Sans Duployan; font-size: 24px;">Noto Sans Duployan</span></p>
+<p>Noto Sans Egyptian Hieroglyphs: <span style="font-family:Noto Sans Egyptian Hieroglyphs; font-size: 24px;">Noto Sans Egyptian Hieroglyphs</span></p>
+<p>Noto Sans Elbasan: <span style="font-family:Noto Sans Elbasan; font-size: 24px;">Noto Sans Elbasan</span></p>
+<p>Noto Sans Glagolitic: <span style="font-family:Noto Sans Glagolitic; font-size: 24px;">Noto Sans Glagolitic</span></p>
+<p>Noto Sans Gothic: <span style="font-family:Noto Sans Gothic; font-size: 24px;">Noto Sans Gothic</span></p>
+<p>Noto Sans Gunjala Gondi: <span style="font-family:Noto Sans Gunjala Gondi; font-size: 24px;">Noto Sans Gunjala Gondi</span></p>
+<p>Noto Sans Hanifi Rohingya: <span style="font-family:Noto Sans Hanifi Rohingya; font-size: 24px;">Noto Sans Hanifi Rohingya</span></p>
+<p>Noto Sans Hanunoo: <span style="font-family:Noto Sans Hanunoo; font-size: 24px;">Noto Sans Hanunoo</span></p>
+<p>Noto Sans Hatran: <span style="font-family:Noto Sans Hatran; font-size: 24px;">Noto Sans Hatran</span></p>
+<p>Noto Sans Imperial Aramaic: <span style="font-family:Noto Sans Imperial Aramaic; font-size: 24px;">Noto Sans Imperial Aramaic</span></p>
+<p>Noto Sans Inscriptional Pahlavi: <span style="font-family:Noto Sans Inscriptional Pahlavi; font-size: 24px;">Noto Sans Inscriptional Pahlavi</span></p>
+<p>Noto Sans Inscriptional Parthian: <span style="font-family:Noto Sans Inscriptional Parthian; font-size: 24px;">Noto Sans Inscriptional Parthian</span></p>
+<p>Noto Sans Javanese: <span style="font-family:Noto Sans Javanese; font-size: 24px;">Noto Sans Javanese</span></p>
+<p>Noto Sans Kaithi: <span style="font-family:Noto Sans Kaithi; font-size: 24px;">Noto Sans Kaithi</span></p>
+<p>Noto Sans Kannada: <span style="font-family:Noto Sans Kannada; font-size: 24px;">Noto Sans Kannada</span></p>
+<p>Noto Sans Kayah Li: <span style="font-family:Noto Sans Kayah Li; font-size: 24px;">Noto Sans Kayah Li</span></p>
+<p>Noto Sans Kharoshthi: <span style="font-family:Noto Sans Kharoshthi; font-size: 24px;">Noto Sans Kharoshthi</span></p>
+<p>Noto Sans Khojki: <span style="font-family:Noto Sans Khojki; font-size: 24px;">Noto Sans Khojki</span></p>
+<p>Noto Sans Khudawadi: <span style="font-family:Noto Sans Khudawadi; font-size: 24px;">Noto Sans Khudawadi</span></p>
+<p>Noto Sans Lepcha: <span style="font-family:Noto Sans Lepcha; font-size: 24px;">Noto Sans Lepcha</span></p>
+<p>Noto Sans Limbu: <span style="font-family:Noto Sans Limbu; font-size: 24px;">Noto Sans Limbu</span></p>
+<p>Noto Sans Linear A: <span style="font-family:Noto Sans Linear A; font-size: 24px;">Noto Sans Linear A</span></p>
+<p>Noto Sans Linear B: <span style="font-family:Noto Sans Linear B; font-size: 24px;">Noto Sans Linear B</span></p>
+<p>Noto Sans Lisu: <span style="font-family:Noto Sans Lisu; font-size: 24px;">Noto Sans Lisu</span></p>
+<p>Noto Sans Lycian: <span style="font-family:Noto Sans Lycian; font-size: 24px;">Noto Sans Lycian</span></p>
+<p>Noto Sans Lydian: <span style="font-family:Noto Sans Lydian; font-size: 24px;">Noto Sans Lydian</span></p>
+<p>Noto Sans Mahajani: <span style="font-family:Noto Sans Mahajani; font-size: 24px;">Noto Sans Mahajani</span></p>
+<p>Noto Sans Mandaic: <span style="font-family:Noto Sans Mandaic; font-size: 24px;">Noto Sans Mandaic</span></p>
+<p>Noto Sans Manichaean: <span style="font-family:Noto Sans Manichaean; font-size: 24px;">Noto Sans Manichaean</span></p>
+<p>Noto Sans Marchen: <span style="font-family:Noto Sans Marchen; font-size: 24px;">Noto Sans Marchen</span></p>
+<p>Noto Sans Masaram Gondi: <span style="font-family:Noto Sans Masaram Gondi; font-size: 24px;">Noto Sans Masaram Gondi</span></p>
+<p>Noto Sans Meetei Mayek: <span style="font-family:Noto Sans Meetei Mayek; font-size: 24px;">Noto Sans Meetei Mayek</span></p>
+<p>Noto Sans Mende Kikakui: <span style="font-family:Noto Sans Mende Kikakui; font-size: 24px;">Noto Sans Mende Kikakui</span></p>
+<p>Noto Sans Meroitic: <span style="font-family:Noto Sans Meroitic; font-size: 24px;">Noto Sans Meroitic</span></p>
+<p>Noto Sans Miao: <span style="font-family:Noto Sans Miao; font-size: 24px;">Noto Sans Miao</span></p>
+<p>Noto Sans Modi: <span style="font-family:Noto Sans Modi; font-size: 24px;">Noto Sans Modi</span></p>
+<p>Noto Sans Mongolian: <span style="font-family:Noto Sans Mongolian; font-size: 24px;">Noto Sans Mongolian</span></p>
+<p>Noto Sans Mro: <span style="font-family:Noto Sans Mro; font-size: 24px;">Noto Sans Mro</span></p>
+<p>Noto Sans Multani: <span style="font-family:Noto Sans Multani; font-size: 24px;">Noto Sans Multani</span></p>
+<p>Noto Sans Myanmar: <span style="font-family:Noto Sans Myanmar; font-size: 24px;">Noto Sans Myanmar</span></p>
+<p>Noto Sans NKo: <span style="font-family:Noto Sans NKo; font-size: 24px;">Noto Sans NKo</span></p>
+<p>Noto Sans Nabataean: <span style="font-family:Noto Sans Nabataean; font-size: 24px;">Noto Sans Nabataean</span></p>
+<p>Noto Sans New Tai Lue: <span style="font-family:Noto Sans New Tai Lue; font-size: 24px;">Noto Sans New Tai Lue</span></p>
+<p>Noto Sans Newa: <span style="font-family:Noto Sans Newa; font-size: 24px;">Noto Sans Newa</span></p>
+<p>Noto Sans Ol Chiki: <span style="font-family:Noto Sans Ol Chiki; font-size: 24px;">Noto Sans Ol Chiki</span></p>
+<p>Noto Sans Old Hungarian: <span style="font-family:Noto Sans Old Hungarian; font-size: 24px;">Noto Sans Old Hungarian</span></p>
+<p>Noto Sans Old Italic: <span style="font-family:Noto Sans Old Italic; font-size: 24px;">Noto Sans Old Italic</span></p>
+<p>Noto Sans Old North Arabian: <span style="font-family:Noto Sans Old North Arabian; font-size: 24px;">Noto Sans Old North Arabian</span></p>
+<p>Noto Sans Old Permic: <span style="font-family:Noto Sans Old Permic; font-size: 24px;">Noto Sans Old Permic</span></p>
+<p>Noto Sans Old Persian: <span style="font-family:Noto Sans Old Persian; font-size: 24px;">Noto Sans Old Persian</span></p>
+<p>Noto Sans Old South Arabian: <span style="font-family:Noto Sans Old South Arabian; font-size: 24px;">Noto Sans Old South Arabian</span></p>
+<p>Noto Sans Old Turkic: <span style="font-family:Noto Sans Old Turkic; font-size: 24px;">Noto Sans Old Turkic</span></p>
+<p>Noto Sans Oriya: <span style="font-family:Noto Sans Oriya; font-size: 24px;">Noto Sans Oriya</span></p>
+<p>Noto Sans Osage: <span style="font-family:Noto Sans Osage; font-size: 24px;">Noto Sans Osage</span></p>
+<p>Noto Sans Osmanya: <span style="font-family:Noto Sans Osmanya; font-size: 24px;">Noto Sans Osmanya</span></p>
+<p>Noto Sans Pahawh Hmong: <span style="font-family:Noto Sans Pahawh Hmong; font-size: 24px;">Noto Sans Pahawh Hmong</span></p>
+<p>Noto Sans Palmyrene: <span style="font-family:Noto Sans Palmyrene; font-size: 24px;">Noto Sans Palmyrene</span></p>
+<p>Noto Sans Pau Cin Hau: <span style="font-family:Noto Sans Pau Cin Hau; font-size: 24px;">Noto Sans Pau Cin Hau</span></p>
+<p>Noto Sans PhagsPa: <span style="font-family:Noto Sans PhagsPa; font-size: 24px;">Noto Sans PhagsPa</span></p>
+<p>Noto Sans Phoenician: <span style="font-family:Noto Sans Phoenician; font-size: 24px;">Noto Sans Phoenician</span></p>
+<p>Noto Sans Psalter Pahlavi: <span style="font-family:Noto Sans Psalter Pahlavi; font-size: 24px;">Noto Sans Psalter Pahlavi</span></p>
+<p>Noto Sans Rejang: <span style="font-family:Noto Sans Rejang; font-size: 24px;">Noto Sans Rejang</span></p>
+<p>Noto Sans Samaritan: <span style="font-family:Noto Sans Samaritan; font-size: 24px;">Noto Sans Samaritan</span></p>
+<p>Noto Sans Saurashtra: <span style="font-family:Noto Sans Saurashtra; font-size: 24px;">Noto Sans Saurashtra</span></p>
+<p>Noto Sans Sharada: <span style="font-family:Noto Sans Sharada; font-size: 24px;">Noto Sans Sharada</span></p>
+<p>Noto Sans Siddham: <span style="font-family:Noto Sans Siddham; font-size: 24px;">Noto Sans Siddham</span></p>
+<p>Noto Sans Sora Sompeng: <span style="font-family:Noto Sans Sora Sompeng; font-size: 24px;">Noto Sans Sora Sompeng</span></p>
+<p>Noto Sans Sundanese: <span style="font-family:Noto Sans Sundanese; font-size: 24px;">Noto Sans Sundanese</span></p>
+<p>Noto Sans Syloti Nagri: <span style="font-family:Noto Sans Syloti Nagri; font-size: 24px;">Noto Sans Syloti Nagri</span></p>
+<p>Noto Sans Syriac: <span style="font-family:Noto Sans Syriac; font-size: 24px;">Noto Sans Syriac</span></p>
+<p>Noto Sans Tagalog: <span style="font-family:Noto Sans Tagalog; font-size: 24px;">Noto Sans Tagalog</span></p>
+<p>Noto Sans Tagbanwa: <span style="font-family:Noto Sans Tagbanwa; font-size: 24px;">Noto Sans Tagbanwa</span></p>
+<p>Noto Sans Tai Le: <span style="font-family:Noto Sans Tai Le; font-size: 24px;">Noto Sans Tai Le</span></p>
+<p>Noto Sans Tai Tham: <span style="font-family:Noto Sans Tai Tham; font-size: 24px;">Noto Sans Tai Tham</span></p>
+<p>Noto Sans Tai Viet: <span style="font-family:Noto Sans Tai Viet; font-size: 24px;">Noto Sans Tai Viet</span></p>
+<p>Noto Sans Takri: <span style="font-family:Noto Sans Takri; font-size: 24px;">Noto Sans Takri</span></p>
+<p>Noto Sans Thaana: <span style="font-family:Noto Sans Thaana; font-size: 24px;">Noto Sans Thaana</span></p>
+<p>Noto Sans Tifinagh: <span style="font-family:Noto Sans Tifinagh; font-size: 24px;">Noto Sans Tifinagh</span></p>
+<p>Noto Sans Tirhuta: <span style="font-family:Noto Sans Tirhuta; font-size: 24px;">Noto Sans Tirhuta</span></p>
+<p>Noto Sans Ugaritic: <span style="font-family:Noto Sans Ugaritic; font-size: 24px;">Noto Sans Ugaritic</span></p>
+<p>Noto Sans Vai: <span style="font-family:Noto Sans Vai; font-size: 24px;">Noto Sans Vai</span></p>
+<p>Noto Sans Wancho: <span style="font-family:Noto Sans Wancho; font-size: 24px;">Noto Sans Wancho</span></p>
+<p>Noto Sans Warang Citi: <span style="font-family:Noto Sans Warang Citi; font-size: 24px;">Noto Sans Warang Citi</span></p>
+<p>Noto Sans Yi: <span style="font-family:Noto Sans Yi; font-size: 24px;">Noto Sans Yi</span></p>
+<p>Noto Serif Ahom: <span style="font-family:Noto Serif Ahom; font-size: 24px;">Noto Serif Ahom</span></p>
+<p>Noto Serif Balinese: <span style="font-family:Noto Serif Balinese; font-size: 24px;">Noto Serif Balinese</span></p>
+<p>Noto Serif Hmong Nyiakeng: <span style="font-family:Noto Serif Hmong Nyiakeng; font-size: 24px;">Noto Serif Hmong Nyiakeng</span></p>
+<p>Noto Serif Myanmar: <span style="font-family:Noto Serif Myanmar; font-size: 24px;">Noto Serif Myanmar</span></p>
+<p>Noto Serif Yezidi: <span style="font-family:Noto Serif Yezidi; font-size: 24px;">Noto Serif Yezidi</span></p>
+<p>Optima: <span style="font-family:Optima; font-size: 24px;">Optima</span></p>
+<p>Oriya MN: <span style="font-family:Oriya MN; font-size: 24px;">Oriya MN</span></p>
+<p>Oriya Sangam MN: <span style="font-family:Oriya Sangam MN; font-size: 24px;">Oriya Sangam MN</span></p>
+<p>PT Mono: <span style="font-family:PT Mono; font-size: 24px;">PT Mono</span></p>
+<p>PT Sans: <span style="font-family:PT Sans; font-size: 24px;">PT Sans</span></p>
+<p>PT Serif: <span style="font-family:PT Serif; font-size: 24px;">PT Serif</span></p>
+<p>PT Serif Caption: <span style="font-family:PT Serif Caption; font-size: 24px;">PT Serif Caption</span></p>
+<p>Palatino: <span style="font-family:Palatino; font-size: 24px;">Palatino</span></p>
+<p>Papyrus: <span style="font-family:Papyrus; font-size: 24px;">Papyrus</span></p>
+<p>Party LET: <span style="font-family:Party LET; font-size: 24px;">Party LET</span></p>
+<p>Phosphate: <span style="font-family:Phosphate; font-size: 24px;">Phosphate</span></p>
+<p>Plantagenet Cherokee: <span style="font-family:Plantagenet Cherokee; font-size: 24px;">Plantagenet Cherokee</span></p>
+<p>Raanana: <span style="font-family:Raanana; font-size: 24px;">Raanana</span></p>
+<p>Rockwell: <span style="font-family:Rockwell; font-size: 24px;">Rockwell</span></p>
+<p>SF Grandezza: <span style="font-family:SF Grandezza; font-size: 24px;">SF Grandezza</span></p>
+<p>STIX Two Math: <span style="font-family:STIX Two Math; font-size: 24px;">STIX Two Math</span></p>
+<p>STIX Two Text: <span style="font-family:STIX Two Text; font-size: 24px;">STIX Two Text</span></p>
+<p>STIXGeneral: <span style="font-family:STIXGeneral; font-size: 24px;">STIXGeneral</span></p>
+<p>STIXIntegralsD: <span style="font-family:STIXIntegralsD; font-size: 24px;">STIXIntegralsD</span></p>
+<p>STIXIntegralsSm: <span style="font-family:STIXIntegralsSm; font-size: 24px;">STIXIntegralsSm</span></p>
+<p>STIXIntegralsUp: <span style="font-family:STIXIntegralsUp; font-size: 24px;">STIXIntegralsUp</span></p>
+<p>STIXIntegralsUpD: <span style="font-family:STIXIntegralsUpD; font-size: 24px;">STIXIntegralsUpD</span></p>
+<p>STIXIntegralsUpSm: <span style="font-family:STIXIntegralsUpSm; font-size: 24px;">STIXIntegralsUpSm</span></p>
+<p>STIXNonUnicode: <span style="font-family:STIXNonUnicode; font-size: 24px;">STIXNonUnicode</span></p>
+<p>STIXSizeFiveSym: <span style="font-family:STIXSizeFiveSym; font-size: 24px;">STIXSizeFiveSym</span></p>
+<p>STIXSizeFourSym: <span style="font-family:STIXSizeFourSym; font-size: 24px;">STIXSizeFourSym</span></p>
+<p>STIXSizeOneSym: <span style="font-family:STIXSizeOneSym; font-size: 24px;">STIXSizeOneSym</span></p>
+<p>STIXSizeThreeSym: <span style="font-family:STIXSizeThreeSym; font-size: 24px;">STIXSizeThreeSym</span></p>
+<p>STIXSizeTwoSym: <span style="font-family:STIXSizeTwoSym; font-size: 24px;">STIXSizeTwoSym</span></p>
+<p>STIXVariants: <span style="font-family:STIXVariants; font-size: 24px;">STIXVariants</span></p>
+<p>Sana: <span style="font-family:Sana; font-size: 24px;">Sana</span></p>
+<p>Sathu: <span style="font-family:Sathu; font-size: 24px;">Sathu</span></p>
+<p>Savoye LET: <span style="font-family:Savoye LET; font-size: 24px;">Savoye LET</span></p>
+<p>Seravek: <span style="font-family:Seravek; font-size: 24px;">Seravek</span></p>
+<p>Shree Devanagari 714: <span style="font-family:Shree Devanagari 714; font-size: 24px;">Shree Devanagari 714</span></p>
+<p>SignPainter: <span style="font-family:SignPainter; font-size: 24px;">SignPainter</span></p>
+<p>Silom: <span style="font-family:Silom; font-size: 24px;">Silom</span></p>
+<p>Sinhala MN: <span style="font-family:Sinhala MN; font-size: 24px;">Sinhala MN</span></p>
+<p>Sinhala Sangam MN: <span style="font-family:Sinhala Sangam MN; font-size: 24px;">Sinhala Sangam MN</span></p>
+<p>Skia: <span style="font-family:Skia; font-size: 24px;">Skia</span></p>
+<p>Snell Roundhand: <span style="font-family:Snell Roundhand; font-size: 24px;">Snell Roundhand</span></p>
+<p>Songti SC: <span style="font-family:Songti SC; font-size: 24px;">Songti SC</span></p>
+<p>Sukhumvit Set: <span style="font-family:Sukhumvit Set; font-size: 24px;">Sukhumvit Set</span></p>
+<p>Superclarendon: <span style="font-family:Superclarendon; font-size: 24px;">Superclarendon</span></p>
+<p>Symbol: <span style="font-family:Symbol; font-size: 24px;">Symbol</span></p>
+<p>System Font: <span style="font-family:System Font; font-size: 24px;">System Font</span></p>
+<p>Tahoma: <span style="font-family:Tahoma; font-size: 24px;">Tahoma</span></p>
+<p>Tamil MN: <span style="font-family:Tamil MN; font-size: 24px;">Tamil MN</span></p>
+<p>Tamil Sangam MN: <span style="font-family:Tamil Sangam MN; font-size: 24px;">Tamil Sangam MN</span></p>
+<p>Telugu MN: <span style="font-family:Telugu MN; font-size: 24px;">Telugu MN</span></p>
+<p>Telugu Sangam MN: <span style="font-family:Telugu Sangam MN; font-size: 24px;">Telugu Sangam MN</span></p>
+<p>Thonburi: <span style="font-family:Thonburi; font-size: 24px;">Thonburi</span></p>
+<p>Times: <span style="font-family:Times; font-size: 24px;">Times</span></p>
+<p>Times New Roman: <span style="font-family:Times New Roman; font-size: 24px;">Times New Roman</span></p>
+<p>Trattatello: <span style="font-family:Trattatello; font-size: 24px;">Trattatello</span></p>
+<p>Trebuchet MS: <span style="font-family:Trebuchet MS; font-size: 24px;">Trebuchet MS</span></p>
+<p>Verdana: <span style="font-family:Verdana; font-size: 24px;">Verdana</span></p>
+<p>Waseem: <span style="font-family:Waseem; font-size: 24px;">Waseem</span></p>
+<p>Webdings: <span style="font-family:Webdings; font-size: 24px;">Webdings</span></p>
+<p>Wingdings: <span style="font-family:Wingdings; font-size: 24px;">Wingdings</span></p>
+<p>Wingdings 2: <span style="font-family:Wingdings 2; font-size: 24px;">Wingdings 2</span></p>
+<p>Wingdings 3: <span style="font-family:Wingdings 3; font-size: 24px;">Wingdings 3</span></p>
+<p>Zapf Dingbats: <span style="font-family:Zapf Dingbats; font-size: 24px;">Zapf Dingbats</span></p>
+<p>Zapfino: <span style="font-family:Zapfino; font-size: 24px;">Zapfino</span></p>
+<p>cmb10: <span style="font-family:cmb10; font-size: 24px;">cmb10</span></p>
+<p>cmex10: <span style="font-family:cmex10; font-size: 24px;">cmex10</span></p>
+<p>cmmi10: <span style="font-family:cmmi10; font-size: 24px;">cmmi10</span></p>
+<p>cmr10: <span style="font-family:cmr10; font-size: 24px;">cmr10</span></p>
+<p>cmss10: <span style="font-family:cmss10; font-size: 24px;">cmss10</span></p>
+<p>cmsy10: <span style="font-family:cmsy10; font-size: 24px;">cmsy10</span></p>
+<p>cmtt10: <span style="font-family:cmtt10; font-size: 24px;">cmtt10</span></p></div>
+</div>
+</div>
 <p>Falls Sie Ihr Dokument in <em>LaTeX</em> schreiben, könnten die <strong>cmXXXX</strong>-Schriften für Sie von Interesse sein, da sie den in <em>LaTeX</em>-Dokumenten verwendeten Schriften entsprechen. Hier ist ein Beispiel:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: []</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cmfont <span class="op">=</span> font_manager.FontProperties(fname<span class="op">=</span>mpl.get_data_path() <span class="op">+</span> <span class="st">'/fonts/ttf/cmr10.ttf'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.titlesize'</span>: <span class="dv">12</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelsize'</span>: <span class="dv">12</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelpad'</span>: <span class="dv">12</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.linewidth'</span>: <span class="dv">1</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.markersize'</span>: <span class="dv">10</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.labelsize'</span> : <span class="dv">10</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.labelsize'</span> : <span class="dv">10</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.top'</span> : <span class="va">True</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.direction'</span> : <span class="st">'in'</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.right'</span> : <span class="va">True</span>,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.direction'</span> : <span class="st">'in'</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'font.family'</span> : <span class="st">'serif'</span>,</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'font.serif'</span> : cmfont.get_name(),</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"axes.formatter.use_mathtext"</span>: <span class="va">True</span>,</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'text.usetex'</span>: <span class="va">True</span>,</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'mathtext.fontset'</span> : <span class="st">'cm'</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: []</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.pi,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| tags: []</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">6</span>,<span class="dv">5</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x,np.sin(x))</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"velocity $v$"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"position $r$"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a7848332" class="cell" data-autorun="false" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cmfont <span class="op">=</span> font_manager.FontProperties(fname<span class="op">=</span>mpl.get_data_path() <span class="op">+</span> <span class="st">'/fonts/ttf/cmr10.ttf'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.titlesize'</span>: <span class="dv">12</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelsize'</span>: <span class="dv">12</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelpad'</span>: <span class="dv">12</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.linewidth'</span>: <span class="dv">1</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.markersize'</span>: <span class="dv">10</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.labelsize'</span> : <span class="dv">10</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.labelsize'</span> : <span class="dv">10</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.top'</span> : <span class="va">True</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.direction'</span> : <span class="st">'in'</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.right'</span> : <span class="va">True</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.direction'</span> : <span class="st">'in'</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'font.family'</span> : <span class="st">'serif'</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'font.serif'</span> : cmfont.get_name(),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"axes.formatter.use_mathtext"</span>: <span class="va">True</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'text.usetex'</span>: <span class="va">True</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'mathtext.fontset'</span> : <span class="st">'cm'</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="10b38491" class="cell" data-autorun="false" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="dv">0</span>,np.pi,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b9e9fbaf" class="cell" data-autorun="false" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">6</span>,<span class="dv">5</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x,np.sin(x))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"velocity $v$"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"position $r$"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="25_publication_ready_figures_files/figure-html/cell-10-output-1.png" width="395" height="330" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="ein-dokument-vorbereiten" class="level2">
 <h2 class="anchored" data-anchor-id="ein-dokument-vorbereiten">Ein Dokument vorbereiten</h2>
 <p>Wenn man ein Dokument (Bachelorarbeit z.B.) erstellt, ist es nützlich, seine Daten und Texte geschickt zur organisieren, um sich Arbeit zu ersparen. Hier ist ein Beipiel,</p>
-<div>
-<div id="pyodide-1">
-
+<div id="d6baf2dd" class="cell" data-autorun="false" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>display_tree(<span class="st">"Report"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Report/
+├── Figures/
+│   ├── Figure1/
+│   │   └── Figure1.ipynb
+│   ├── figure1.pdf
+│   ├── Figure2/
+│   │   └── Figure2.ipynb
+│   └── figure2.pdf
+└── Text/
+    ├── article.aux
+    ├── article.fdb_latexmk
+    ├── article.fls
+    ├── article.log
+    ├── article.pdf
+    ├── article.synctex.gz
+    ├── article.tex
+    ├── content/
+    │   ├── 01_introduction.tex
+    │   ├── 02_theory.tex
+    │   ├── 03_results.tex
+    │   └── 04_conclusions.tex
+    ├── paper.aux
+    ├── paper.bbl
+    ├── paper.blg
+    ├── paper.fdb_latexmk
+    ├── paper.fls
+    ├── paper.log
+    ├── paper.pdf
+    ├── paper.synctex.gz
+    ├── paper.tex
+    └── paperNotes.bib</code></pre>
 </div>
-<script type="pyodide-1-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGlzcGxheV90cmVlKFwiUmVwb3J0XCIpIn0=
-</script>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/6n/52yj404d5ld29901s85pd6sh0000gn/T/ipykernel_12473/929351223.py:1: DeprecationWarning: The `display_tree` Function is Deprecated and will be Removed in a Future Release. Please use `DirectoryTree` Instead. End of Life Date is "31st December 2024".
+  display_tree("Report")</code></pre>
+</div>
 </div>
 
 
-<script type="pyodide-data">
-eyJvcHRpb25zIjp7ImluZGV4VVJMIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L3B5b2RpZGUvdjAuMjYuMS9mdWxsLyJ9LCJwYWNrYWdlcyI6eyJwa2dzIjpbInB5b2RpZGVfaHR0cCIsIm1pY3JvcGlwIiwiaXB5dGhvbiIsIm1hdHBsb3RsaWIiLCJudW1weSIsInNjaXB5IiwiZGlyZWN0b3J5X3RyZWUiXX19
-</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoicHlvZGlkZS0xIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0IiwiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIFB5b2RpZGUgc3VwcGxlbWVudGFsIGRhdGEgYW5kIG9wdGlvbnNcbiAgY29uc3QgZGF0YUNvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS1kYXRhXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZGF0YSA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGRhdGFDb250ZW50KSk7XG5cbiAgLy8gR3JhYiBsaXN0IG9mIHJlc291cmNlcyB0byBiZSBkb3dubG9hZGVkXG4gIGNvbnN0IGZpbGVzQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ2ZnMtZmlsZVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGZpbGVzID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZmlsZXNDb250ZW50KSk7XG5cbiAgbGV0IHB5b2RpZGVQcm9taXNlID0gKGFzeW5jICgpID0+IHtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIFB5b2RpZGVgO1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBzdGFydFB5b2RpZGVXb3JrZXIoZGF0YS5vcHRpb25zKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcGFja2FnZTogbWljcm9waXBgO1xuICAgIGF3YWl0IHB5b2RpZGUubG9hZFBhY2thZ2UoXCJtaWNyb3BpcFwiKTtcbiAgICBjb25zdCBtaWNyb3BpcCA9IGF3YWl0IHB5b2RpZGUucHlpbXBvcnQoXCJtaWNyb3BpcFwiKTtcbiAgICBhd2FpdCBkYXRhLnBhY2thZ2VzLnBrZ3MubWFwKChwa2cpID0+ICgpID0+IHtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcGFja2FnZTogJHtwa2d9YDtcbiAgICAgIHJldHVybiBtaWNyb3BpcC5pbnN0YWxsKHBrZyk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG4gICAgYXdhaXQgbWljcm9waXAuZGVzdHJveSgpO1xuXG4gICAgLy8gRG93bmxvYWQgYW5kIGluc3RhbGwgcmVzb3VyY2VzXG4gICAgYXdhaXQgZmlsZXMubWFwKChmaWxlKSA9PiBhc3luYyAoKSA9PiB7XG4gICAgICBjb25zdCBuYW1lID0gZmlsZS5zdWJzdHJpbmcoZmlsZS5sYXN0SW5kZXhPZignLycpICsgMSk7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHJlc291cmNlOiAke25hbWV9YDtcbiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goZmlsZSk7XG4gICAgICBpZiAoIXJlc3BvbnNlLm9rKSB7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgQ2FuJ3QgZG93bmxvYWQgXFxgJHtmaWxlfVxcYC4gRXJyb3IgJHtyZXNwb25zZS5zdGF0dXN9OiBcIiR7cmVzcG9uc2Uuc3RhdHVzVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICAgIGNvbnN0IGRhdGEgPSBhd2FpdCByZXNwb25zZS5hcnJheUJ1ZmZlcigpO1xuXG4gICAgICAvLyBTdG9yZSBVUkxzIGluIHRoZSBjd2Qgd2l0aG91dCBhbnkgc3ViZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgaWYgKGZpbGUuaW5jbHVkZXMoXCI6Ly9cIikpIHtcbiAgICAgICAgZmlsZSA9IG5hbWU7XG4gICAgICB9XG5cbiAgICAgIC8vIENvbGxhcHNlIGhpZ2hlciBkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBmaWxlID0gY29sbGFwc2VQYXRoKGZpbGUpO1xuXG4gICAgICAvLyBDcmVhdGUgZGlyZWN0b3J5IHRyZWUsIGlnbm9yaW5nIFwiZGlyZWN0b3J5IGV4aXN0c1wiIFZGUyBlcnJvcnNcbiAgICAgIGNvbnN0IHBhcnRzID0gZmlsZS5zcGxpdCgnLycpLnNsaWNlKDAsIC0xKTtcbiAgICAgIGxldCBwYXRoID0gJyc7XG4gICAgICB3aGlsZSAocGFydHMubGVuZ3RoID4gMCkge1xuICAgICAgICBwYXRoICs9IHBhcnRzLnNoaWZ0KCkgKyAnLyc7XG4gICAgICAgIHRyeSB7XG4gICAgICAgICAgYXdhaXQgcHlvZGlkZS5GUy5ta2RpcihwYXRoKTtcbiAgICAgICAgfSBjYXRjaCAoZSkge1xuICAgICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICAgIGlmIChlLmVycm5vICE9PSAyMCkge1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0UHRyID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLl9zdHJlcnJvcihlLmVycm5vKTtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICB9XG5cbiAgICAgIC8vIFdyaXRlIHRoaXMgZmlsZSB0byB0aGUgVkZTXG4gICAgICB0cnkge1xuICAgICAgICByZXR1cm4gYXdhaXQgcHlvZGlkZS5GUy53cml0ZUZpbGUoZmlsZSwgbmV3IFVpbnQ4QXJyYXkoZGF0YSkpO1xuICAgICAgfSBjYXRjaCAoZSkge1xuICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgY29uc3QgZXJyb3JUZXh0UHRyID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLl9zdHJlcnJvcihlLmVycm5vKTtcbiAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgfVxuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBQeW9kaWRlIGVudmlyb25tZW50IHNldHVwYDtcbiAgICBhd2FpdCBzZXR1cFB5dGhvbihweW9kaWRlKTtcblxuICAgIHN0YXR1c1RleHQucmVtb3ZlKCk7XG4gICAgaWYgKHN0YXR1c0NvbnRhaW5lci5jaGlsZHJlbi5sZW5ndGggPT0gMCkge1xuICAgICAgc3RhdHVzQ29udGFpbmVyLnBhcmVudE5vZGUucmVtb3ZlKCk7XG4gICAgfVxuICAgIHJldHVybiBweW9kaWRlO1xuICB9KSgpLmNhdGNoKChlcnIpID0+IHtcbiAgICBzdGF0dXNUZXh0LnN0eWxlLmNvbG9yID0gXCJ2YXIoLS1leGVyY2lzZS1lZGl0b3ItaGwtZXIsICNBRDAwMDApXCI7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGVyci5tZXNzYWdlO1xuICAgIC8vaW5kaWNhdG9yQ29udGFpbmVyLnF1ZXJ5U2VsZWN0b3IoXCIuc3Bpbm5lci1ncm93XCIpLmNsYXNzTGlzdC5hZGQoXCJkLW5vbmVcIik7XG4gICAgdGhyb3cgZXJyO1xuICB9KTtcblxuICAvLyBLZWVwIHRyYWNrIG9mIGluaXRpYWwgT0pTIGJsb2NrIHJlbmRlclxuICBjb25zdCByZW5kZXJlZE9qcyA9IHt9O1xuXG4gIGNvbnN0IHByb2Nlc3MgPSBhc3luYyAoY29udGV4dCwgaW5wdXRzKSA9PiB7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHB5b2RpZGVQcm9taXNlO1xuICAgIGNvbnN0IGV2YWx1YXRvciA9IG5ldyBQeW9kaWRlRXZhbHVhdG9yKHB5b2RpZGUsIGNvbnRleHQpO1xuICAgIGF3YWl0IGV2YWx1YXRvci5wcm9jZXNzKGlucHV0cyk7XG4gICAgcmV0dXJuIGV2YWx1YXRvci5jb250YWluZXI7XG4gIH1cblxuICByZXR1cm4ge1xuICAgIHB5b2RpZGVQcm9taXNlLFxuICAgIHJlbmRlcmVkT2pzLFxuICAgIHByb2Nlc3MsXG4gIH07XG59XG4ifV19
+eyJjb250ZW50cyI6W119
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
