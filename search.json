@@ -99,43 +99,7 @@
     "href": "lectures/lecture06/1_input_output.html",
     "title": "Input and output",
     "section": "",
-    "text": "Full Screen",
-    "crumbs": [
-      "Python Basics",
-      "Lecture 6",
-      "Input Output"
-    ]
-  },
-  {
-    "objectID": "lectures/lecture06/1_input_output.html#keyboard-input",
-    "href": "lectures/lecture06/1_input_output.html#keyboard-input",
-    "title": "Input and output",
-    "section": "Keyboard input",
-    "text": "Keyboard input\nPython has a function called input for getting input from the user and assigning it a variable name.\nvalue=input(\"Tell me a number: \")\ntype(value)\nThe value contains the keyboard input as expected, but it is a string. We want to use a number and not a string, so we need to convert it from a string to a number.\nv = eval(value)\ntype(v)",
-    "crumbs": [
-      "Python Basics",
-      "Lecture 6",
-      "Input Output"
-    ]
-  },
-  {
-    "objectID": "lectures/lecture06/1_input_output.html#screen-output",
-    "href": "lectures/lecture06/1_input_output.html#screen-output",
-    "title": "Input and output",
-    "section": "Screen output",
-    "text": "Screen output\nScreen output is possible by using the print command. The argument of the print function can be of different type.\n\nstr.format() Formatting\nYou can format your output by modifying the string given to the print function by str.format(), The str contains text that is written to be the screen, as well as certain format specifiers contained in curly braces {}. The format function contains the list of variables that are to be printed.\n\n\n\n\n\n\n\n\n%-Formatting\nA very similar formatting can be achieved with the %operator.\n\n\n\n\n\n\n\n\nf-Strings\nFormatted string literals are the string literals that start with an f at the beginning and use curly braces {} to enclose the expressions that will be replaced with other values.",
-    "crumbs": [
-      "Python Basics",
-      "Lecture 6",
-      "Input Output"
-    ]
-  },
-  {
-    "objectID": "lectures/lecture06/1_input_output.html#file-inputoutput",
-    "href": "lectures/lecture06/1_input_output.html#file-inputoutput",
-    "title": "Input and output",
-    "section": "File input/output",
-    "text": "File input/output\nFile input and output is one of the most important features. We will have a look at reading and writing of text files with numpy and pandas. Python itself also allows you to open files and the file object provides the methods read, write and close.\n\nFile I/O with NumPy\nMost of the time we want import numbers from text files. So direct connection to NumPy seems useful and we will study that first.\n\n\n\n\n\n\n\nReading data from a text file\nOften you would like to analyze data that you have stored in a text file. Consider, for example, the data file below for an experiment measuring the free fall of a mass.\nData for falling mass experiment\nDate: 16-Aug-2013\nData taken by Frank and Ralf\ndata point  time (sec)  height (mm) uncertainty (mm)\n0       0.0     180     3.5\n1       0.5     182     4.5\n2       1.0     178     4.0\n3       1.5     165     5.5\n4       2.0     160     2.5\n5       2.5     148     3.0\n6       3.0     136     2.5\nSuppose that the name of the text file is MyData.txt. Then we can read the data into four different arrays with the following NumPy statement:\n\n\n\n\n\n\nIf you don’t want to read in all the columns of data, you can specify which columns to read in using the usecols key word. For example, the call\n\n\n\n\n\n\nreads in only columns 1 and 2; columns 0 and 3 are skipped.\n\n\nWriting data to a text file\nThere are plenty of ways to write data to a data file in Python. We will stick to one very simple one that’s suitable for writing data files in text format. It uses the NumPy savetxt routine, which is the counterpart of the loadtxt routine introduced in the previous section. The general form of the routine is\nsavetxt(filename, array, fmt=\"%0.18e\", delimiter=\" \", newline=\"\\n\", header=\"\", footer=\"\", comments=\"# \")\nWe illustrate savetext below with a script that first creates four arrays by reading in the data file MyData.txt, as discussed in the previous section, and then writes that same data set to another file MyDataOut.txt.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFile I/O with Pandas\nPandas is a software library written for the Python programming language. It is used for data manipulation and analysis. It provides special data structures and operations for the manipulation of numerical tables and time series and builds on top of numpy.\n\nEasy handling of missing data\nIntelligent label-based slicing, fancy indexing, and subsetting of large data sets\n\nThe data formats provided by the pandas module are used by several other modules, such as the trackpy which is a moduly for feature tracking and analysis in image series.\n\nShort intro to Pandas\n\n\n\n\n\n\nPandas provides two data structures\n\nSeries\nData Frames\n\nA Series is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.). The axis labels are collectively referred to as the index.\n\n\n\n\n\n\n\n\n\n\n\n\nThere is a whole lot of functionality built into pandas data types. You may of course also obtain the same functionality using numpy commands, but you may find the pandas abbrevations very useful.\n\n\n\n\n\n\nA DataFrame is a two-dimensional size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). The example below shows how such a DataFrame can be generated from the scratch. In addition to the data supplied to the DataFrame method, an index column is generated when creating a DataFrame. As in the case of Series there is a whole lot of functionality integrated into the DataFrame data type which you may explore on the website.\n\n\n\n\n\n\n\n\n\n\n\n\nDue to the labelling of the columns, each column may be accessed by its column label. Labeling by names improves readability considerably.\n\n\n\n\n\n\nIf you don’t like this format, you can always return to a simple numpy array with the as_matrix() method.\n\n\n\n\n\n\n\n\nReading CSV data with Pandas\nDataFrames may also be populated by text files such as comma separated value files (short .csv). These files contain data in text format but also a column label, which can be read by the pandas method read_csv(). You can find an example below, which reads the data from the dust sensor on my balcony from April, 11th. You see the different columns, where P1 and P2 correspond to the PM10 and PM2.5 dust values in \\(\\mu g/m^3\\).",
+    "text": "To try out all of the functions of todays notebook, we will need to use the embedded JupyterLite notebook. To use the notebook, click ob File -&gt; Open from URL and paste the following link into the input field:\nhttps://raw.githubusercontent.com/fcichos/EMPP24/gh-pages/lectures/lecture06/1_input_output.ipynb\nTo download the data files, click ob File -&gt; Open from URL and paste the following links into the input field:\nhttps://raw.githubusercontent.com/fcichos/EMPP24/gh-pages/lectures/lecture06/MyData.txt\nhttps://raw.githubusercontent.com/fcichos/EMPP24/gh-pages/lectures/lecture06/2018-04-11_sds011_sensor_12253.csv\nhttps://raw.githubusercontent.com/fcichos/EMPP24/gh-pages/lectures/lecture06/2018-04-12_sds011_sensor_12253.csv\nYou should then have 3 data files and one notebook. You can then go into fullscreen mode.\nFull Screen",
     "crumbs": [
       "Python Basics",
       "Lecture 6",
@@ -147,11 +111,11 @@
     "href": "lectures/lecture06/1_curve_fitting.html",
     "title": "Curve fitting",
     "section": "",
-    "text": "Let’s take a break from physics-related topics and explore another crucial area: curve fitting. We’ll focus on demonstrating how to apply the least-squares method to fit a quadratic function with three parameters to experimental data. It’s worth noting that this approach can be applied to more complex functions or even simpler linear models.\nBefore diving into the fitting process, it’s essential to consider how to best estimate your model parameters. In some cases, you may be able to derive explicit estimators for the parameters, which can simplify the fitting procedure. Therefore, it’s advisable to carefully consider your approach before beginning the actual fitting process.\nFor those who want to delve deeper into this subject, you might find it interesting to explore concepts like maximum likelihood estimation. This method offers an alternative approach to parameter estimation and can provide valuable insights in certain scenarios.\n#| edit: false #| echo: false #| execute: true\nimport numpy as np import io import pandas as pd import matplotlib.pyplot as plt from scipy.optimize import curve_fit plt.rcParams.update({‘font.size’: 18}) from ipywidgets import interact, interactive, fixed, interact_manual import ipywidgets as widgets",
+    "text": "Let’s take a break from physics-related topics and explore another crucial area: curve fitting. We’ll focus on demonstrating how to apply the least-squares method to fit a quadratic function with three parameters to experimental data. It’s worth noting that this approach can be applied to more complex functions or even simpler linear models.\nBefore diving into the fitting process, it’s essential to consider how to best estimate your model parameters. In some cases, you may be able to derive explicit estimators for the parameters, which can simplify the fitting procedure. Therefore, it’s advisable to carefully consider your approach before beginning the actual fitting process.\nFor those who want to delve deeper into this subject, you might find it interesting to explore concepts like maximum likelihood estimation. This method offers an alternative approach to parameter estimation and can provide valuable insights in certain scenarios.",
     "crumbs": [
       "Python Basics",
       "Lecture 6",
-      "Input Output"
+      "Curve Fitting"
     ]
   },
   {
@@ -163,7 +127,7 @@
     "crumbs": [
       "Python Basics",
       "Lecture 6",
-      "Input Output"
+      "Curve Fitting"
     ]
   },
   {
@@ -175,7 +139,7 @@
     "crumbs": [
       "Python Basics",
       "Lecture 6",
-      "Input Output"
+      "Curve Fitting"
     ]
   },
   {
@@ -187,7 +151,7 @@
     "crumbs": [
       "Python Basics",
       "Lecture 6",
-      "Input Output"
+      "Curve Fitting"
     ]
   },
   {
@@ -199,7 +163,7 @@
     "crumbs": [
       "Python Basics",
       "Lecture 6",
-      "Input Output"
+      "Curve Fitting"
     ]
   },
   {
@@ -207,11 +171,11 @@
     "href": "lectures/lecture06/1_curve_fitting.html#covariance-matrix",
     "title": "Curve fitting",
     "section": "Covariance matrix",
-    "text": "Covariance matrix\nLet’s now take a closer look at the individual measurements that have yielded the error bars in the above plot. If we take each of those measurements and calculate a fit for each dataset, we get a whole set of fit functions and parameters. The uncertainties in the parameters of the fit function are the result of the measurement uncertainty.\n\n\n\n\n\n\n\n\n\n\n\n\nWe may want to characterize how much the individual parameters vary with each other. In other words, we want to know whether the fit parameters are independent or not, which is a good quality measure of our model. For this purpose, we use a generalization of the variance definition:\n\\[\\begin{equation}\n\\sigma^{2} = \\frac{1}{N} \\sum_{i=1}^{N} (y_{i} - \\langle y \\rangle)^2\n\\end{equation}\\]\nThis equation represents the mean squared deviation of the individual values from their mean. This is a special case of the so-called covariance:\n\\[\\begin{equation}\n{\\rm cov}(x, y) = \\frac{1}{N} \\sum_{i=1}^{N} (x_{i} - \\langle x \\rangle)(y_{i} - \\langle y \\rangle)\n\\end{equation}\\]\nThe covariance measures how much a variation of \\(x_{i}\\) from the mean is also connected to a variation of \\(y_{i}\\) from the mean. The variance itself is just \\({\\rm cov}(x, x)\\).\nThe curve_fit function delivers a covariance matrix, which measures how much the individual fit parameters vary with each other. If we fit our data with a model containing three parameters \\((a, b, c)\\), then the covariance matrix of the parameters \\(p_{i}\\) and \\(p_{j}\\) with \\(i = \\{a, b, c\\}\\) and \\(j = \\{a, b, c\\}\\) is a \\(3 \\times 3\\) matrix:\n\\[\\begin{equation}\n{\\rm cov}(p_{i}, p_{j}) =\n\\begin{bmatrix}\n\\sigma_{aa}^{2} & \\sigma_{ab}^{2} & \\sigma_{ac}^{2} \\\\\n\\sigma_{ba}^{2} & \\sigma_{bb}^{2} & \\sigma_{bc}^{2} \\\\\n\\sigma_{ca}^{2} & \\sigma_{cb}^{2} & \\sigma_{cc}^{2}\n\\end{bmatrix}\n\\end{equation}\\]\nThe diagonal elements provide the squared errors of the fit parameters (their variances). The off-diagonal elements describe how much the individual parameters are related to each other.\n\n\n\n\n\n\nThe matrix above is our covariance matrix of the parameters. You can see from the off-diagonal elements that some parameters are highly related to each other. An even better view can be obtained by the so-called correlation matrix \\(R\\), where the matrix elements are:\n\\[\\begin{equation}\nR_{p_{i}, p_{j}} = \\frac{{\\rm cov}(p_{i}, p_{j})}{\\sqrt{\\sigma_{i}^2 \\sigma_{j}^2}}\n\\end{equation}\\]\nThe entries of the covariance matrix are normalized by the variances of the parameters themselves, i.e., by the diagonal elements.\n\n\n\n\n\n\n\n\n\n\n\n\nThe correlation matrix reveals that the parameters are highly related to each other. The curve_fit function calculates the corresponding covariance entries using the specified uncertainties. We can better understand their meaning by looking at our synthetic data.\n\n\n\n\n\n\nIf we generate 100 different measurements and fit them accordingly, we can assess the possible correlation of the parameters as suggested by the correlation matrix.\n\n\n\n\n\n\nIf we now plot the parameter \\(a\\) against the parameter \\(b\\), we indeed obtain a very strong correlation, which has a negative slope as suggested by the correlation matrix.\n\n\n\n\n\n\nThis correlation of parameters means that the parameter \\(b\\) is not independent of \\(a\\) but rather strongly linearly dependent on it. We might want to find a better model containing more independent parameters. We may write down a different model:\n\\[\\begin{equation}\ny = a(x - b)^2 + c\n\\end{equation}\\]\nThis model also contains three parameters, but the parameter \\(b\\) directly refers to the maximum of our parabola, while the parameter \\(a\\) denotes its curvature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe see from the covariance matrix that the new model has a smaller correlation of the parameters with each other.\n\n\n\n\n\n\nThis is also expressed by our correlation matrix.\n#| autorun: false print(R) ```",
+    "text": "Covariance matrix\nLet’s now take a closer look at the individual measurements that have yielded the error bars in the above plot. If we take each of those measurements and calculate a fit for each dataset, we get a whole set of fit functions and parameters. The uncertainties in the parameters of the fit function are the result of the measurement uncertainty.\n\n\n\n\n\n\n\n\n\n\n\n\nWe may want to characterize how much the individual parameters vary with each other. In other words, we want to know whether the fit parameters are independent or not, which is a good quality measure of our model. For this purpose, we use a generalization of the variance definition:\n\\[\\begin{equation}\n\\sigma^{2} = \\frac{1}{N} \\sum_{i=1}^{N} (y_{i} - \\langle y \\rangle)^2\n\\end{equation}\\]\nThis equation represents the mean squared deviation of the individual values from their mean. This is a special case of the so-called covariance:\n\\[\\begin{equation}\n{\\rm cov}(x, y) = \\frac{1}{N} \\sum_{i=1}^{N} (x_{i} - \\langle x \\rangle)(y_{i} - \\langle y \\rangle)\n\\end{equation}\\]\nThe covariance measures how much a variation of \\(x_{i}\\) from the mean is also connected to a variation of \\(y_{i}\\) from the mean. The variance itself is just \\({\\rm cov}(x, x)\\).\nThe curve_fit function delivers a covariance matrix, which measures how much the individual fit parameters vary with each other. If we fit our data with a model containing three parameters \\((a, b, c)\\), then the covariance matrix of the parameters \\(p_{i}\\) and \\(p_{j}\\) with \\(i = \\{a, b, c\\}\\) and \\(j = \\{a, b, c\\}\\) is a \\(3 \\times 3\\) matrix:\n\\[\\begin{equation}\n{\\rm cov}(p_{i}, p_{j}) =\n\\begin{bmatrix}\n\\sigma_{aa}^{2} & \\sigma_{ab}^{2} & \\sigma_{ac}^{2} \\\\\n\\sigma_{ba}^{2} & \\sigma_{bb}^{2} & \\sigma_{bc}^{2} \\\\\n\\sigma_{ca}^{2} & \\sigma_{cb}^{2} & \\sigma_{cc}^{2}\n\\end{bmatrix}\n\\end{equation}\\]\nThe diagonal elements provide the squared errors of the fit parameters (their variances). The off-diagonal elements describe how much the individual parameters are related to each other.\n\n\n\n\n\n\nThe matrix above is our covariance matrix of the parameters. You can see from the off-diagonal elements that some parameters are highly related to each other. An even better view can be obtained by the so-called correlation matrix \\(R\\), where the matrix elements are:\n\\[\\begin{equation}\nR_{p_{i}, p_{j}} = \\frac{{\\rm cov}(p_{i}, p_{j})}{\\sqrt{\\sigma_{i}^2 \\sigma_{j}^2}}\n\\end{equation}\\]\nThe entries of the covariance matrix are normalized by the variances of the parameters themselves, i.e., by the diagonal elements.\n\n\n\n\n\n\n\n\n\n\n\n\nThe correlation matrix reveals that the parameters are highly related to each other. The curve_fit function calculates the corresponding covariance entries using the specified uncertainties. We can better understand their meaning by looking at our synthetic data.\n\n\n\n\n\n\nIf we generate 100 different measurements and fit them accordingly, we can assess the possible correlation of the parameters as suggested by the correlation matrix.\n\n\n\n\n\n\nIf we now plot the parameter \\(a\\) against the parameter \\(b\\), we indeed obtain a very strong correlation, which has a negative slope as suggested by the correlation matrix.\n\n\n\n\n\n\nThis correlation of parameters means that the parameter \\(b\\) is not independent of \\(a\\) but rather strongly linearly dependent on it. We might want to find a better model containing more independent parameters. We may write down a different model:\n\\[\\begin{equation}\ny = a(x - b)^2 + c\n\\end{equation}\\]\nThis model also contains three parameters, but the parameter \\(b\\) directly refers to the maximum of our parabola, while the parameter \\(a\\) denotes its curvature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe see from the covariance matrix that the new model has a smaller correlation of the parameters with each other.\n\n\n\n\n\n\nThis is also expressed by our correlation matrix.",
     "crumbs": [
       "Python Basics",
       "Lecture 6",
-      "Input Output"
+      "Curve Fitting"
     ]
   },
   {
@@ -1080,7 +1044,7 @@
     "href": "seminars/seminar04/25_publication_ready_figures.html#ein-dokument-vorbereiten",
     "title": "Zusatz: Erstellung veröffentlichungsreifer Diagramme",
     "section": "Ein Dokument vorbereiten",
-    "text": "Ein Dokument vorbereiten\nWenn man ein Dokument (Bachelorarbeit z.B.) erstellt, ist es nützlich, seine Daten und Texte geschickt zur organisieren, um sich Arbeit zu ersparen. Hier ist ein Beipiel,\n\ndisplay_tree(\"Report\")\n\nReport/\n├── Figures/\n│   ├── Figure1/\n│   │   └── Figure1.ipynb\n│   ├── figure1.pdf\n│   ├── Figure2/\n│   │   └── Figure2.ipynb\n│   └── figure2.pdf\n└── Text/\n    ├── article.aux\n    ├── article.fdb_latexmk\n    ├── article.fls\n    ├── article.log\n    ├── article.pdf\n    ├── article.synctex.gz\n    ├── article.tex\n    ├── content/\n    │   ├── 01_introduction.tex\n    │   ├── 02_theory.tex\n    │   ├── 03_results.tex\n    │   └── 04_conclusions.tex\n    ├── paper.aux\n    ├── paper.bbl\n    ├── paper.blg\n    ├── paper.fdb_latexmk\n    ├── paper.fls\n    ├── paper.log\n    ├── paper.pdf\n    ├── paper.synctex.gz\n    ├── paper.tex\n    └── paperNotes.bib\n\n\n/var/folders/6n/52yj404d5ld29901s85pd6sh0000gn/T/ipykernel_54829/929351223.py:1: DeprecationWarning: The `display_tree` Function is Deprecated and will be Removed in a Future Release. Please use `DirectoryTree` Instead. End of Life Date is \"31st December 2024\".\n  display_tree(\"Report\")"
+    "text": "Ein Dokument vorbereiten\nWenn man ein Dokument (Bachelorarbeit z.B.) erstellt, ist es nützlich, seine Daten und Texte geschickt zur organisieren, um sich Arbeit zu ersparen. Hier ist ein Beipiel,\n\ndisplay_tree(\"Report\")\n\nReport/\n├── Figures/\n│   ├── Figure1/\n│   │   └── Figure1.ipynb\n│   ├── figure1.pdf\n│   ├── Figure2/\n│   │   └── Figure2.ipynb\n│   └── figure2.pdf\n└── Text/\n    ├── article.aux\n    ├── article.fdb_latexmk\n    ├── article.fls\n    ├── article.log\n    ├── article.pdf\n    ├── article.synctex.gz\n    ├── article.tex\n    ├── content/\n    │   ├── 01_introduction.tex\n    │   ├── 02_theory.tex\n    │   ├── 03_results.tex\n    │   └── 04_conclusions.tex\n    ├── paper.aux\n    ├── paper.bbl\n    ├── paper.blg\n    ├── paper.fdb_latexmk\n    ├── paper.fls\n    ├── paper.log\n    ├── paper.pdf\n    ├── paper.synctex.gz\n    ├── paper.tex\n    └── paperNotes.bib\n\n\n/var/folders/6n/52yj404d5ld29901s85pd6sh0000gn/T/ipykernel_58557/929351223.py:1: DeprecationWarning: The `display_tree` Function is Deprecated and will be Removed in a Future Release. Please use `DirectoryTree` Instead. End of Life Date is \"31st December 2024\".\n  display_tree(\"Report\")"
   },
   {
     "objectID": "seminars/seminar04/Report/Figures/Figure1/Figure1.html",
