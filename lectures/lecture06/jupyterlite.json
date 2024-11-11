@@ -9,7 +9,7 @@
           "notebook:example_notebook.ipynb": {
             "path": "https://raw.githubusercontent.com/fcichos/EMPP24/gh-pages/lectures/lecture06/1_input_output.ipynb"
           },
-          "file:MyDataD.txt": {
+          "file:MyData.txt": {
             "path": "https://raw.githubusercontent.com/fcichos/EMPP24/gh-pages/lectures/lecture06/MyData.txt"
           }
         }
