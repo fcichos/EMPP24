@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Frank Cichos">
 
-<title>Molecular Dynamics Simulations in EMPP 2024 – Einführung in die Modellierung Physikalischer Prozesse</title>
+<title>Step-by-Step Development of a Molecular Dynamics Simulation – Einführung in die Modellierung Physikalischer Prozesse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../seminars/seminar05/mdsim.html" rel="next">
+<link href="../../seminars/seminar04/md4.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -111,6 +114,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -143,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Molecular Dynamics Simulations in EMPP 2024</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Seminars</li><li class="breadcrumb-item"><a href="../../seminars/seminar05/md5.html">Seminar05</a></li><li class="breadcrumb-item"><a href="../../seminars/seminar05/md5.html">MD Simulation Part 5</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -476,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../seminars/seminar05/md5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../seminars/seminar05/md5.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">MD Simulation Part 5</span></a>
   </div>
 </li>
@@ -500,25 +532,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lenard-jones-potential" id="toc-lenard-jones-potential" class="nav-link active" data-scroll-target="#lenard-jones-potential">Lenard-Jones Potential</a></li>
-  <li><a href="#taylor-expansion" id="toc-taylor-expansion" class="nav-link" data-scroll-target="#taylor-expansion">Taylor Expansion</a></li>
-  <li><a href="#velocity-verlet" id="toc-velocity-verlet" class="nav-link" data-scroll-target="#velocity-verlet">Velocity Verlet</a></li>
-  <li><a href="#class-for-an-atom" id="toc-class-for-an-atom" class="nav-link" data-scroll-target="#class-for-an-atom">Class for an Atom</a></li>
+  <li><a href="#temperature-and-velocity-initialization" id="toc-temperature-and-velocity-initialization" class="nav-link active" data-scroll-target="#temperature-and-velocity-initialization">Temperature and Velocity Initialization</a>
+  <ul class="collapse">
+  <li><a href="#the-distribution" id="toc-the-distribution" class="nav-link" data-scroll-target="#the-distribution">The Distribution</a></li>
+  <li><a href="#interactive-visualization" id="toc-interactive-visualization" class="nav-link" data-scroll-target="#interactive-visualization">Interactive Visualization</a></li>
+  <li><a href="#application-in-md-simulations" id="toc-application-in-md-simulations" class="nav-link" data-scroll-target="#application-in-md-simulations">Application in MD Simulations</a></li>
+  <li><a href="#implementation-in-practice" id="toc-implementation-in-practice" class="nav-link" data-scroll-target="#implementation-in-practice">Implementation in Practice</a></li>
+  </ul></li>
+  <li><a href="#simulation-setup-and-initialization" id="toc-simulation-setup-and-initialization" class="nav-link" data-scroll-target="#simulation-setup-and-initialization">Simulation Setup and Initialization</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Seminars</li><li class="breadcrumb-item"><a href="../../seminars/seminar05/md5.html">Seminar05</a></li><li class="breadcrumb-item"><a href="../../seminars/seminar05/md5.html">MD Simulation Part 5</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Molecular Dynamics Simulations in EMPP 2024</h1>
+<h1 class="title">Step-by-Step Development of a Molecular Dynamics Simulation</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Frank Cichos </p>
+          </div>
+  </div>
     
   
     
@@ -529,131 +571,237 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cell-2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">8</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.linewidth'</span>: <span class="dv">1</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.markersize'</span>: <span class="dv">10</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelsize'</span>: <span class="dv">10</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.titlesize'</span>: <span class="dv">10</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.labelsize'</span> : <span class="dv">10</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.labelsize'</span> : <span class="dv">10</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.top'</span> : <span class="va">True</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.direction'</span> : <span class="st">'in'</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.right'</span> : <span class="va">True</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.direction'</span> : <span class="st">'in'</span>,})</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_size(w,h):</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>((w<span class="op">/</span><span class="fl">2.54</span>,h<span class="op">/</span><span class="fl">2.54</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="lenard-jones-potential" class="level2">
-<h2 class="anchored" data-anchor-id="lenard-jones-potential">Lenard-Jones Potential</h2>
-<div id="cell-4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lennard_jones(r, epsilon<span class="op">=</span><span class="dv">1</span>, sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span> <span class="op">*</span> epsilon <span class="op">*</span> ((sigma<span class="op">/</span>r)<span class="op">**</span><span class="dv">12</span> <span class="op">-</span> (sigma<span class="op">/</span>r)<span class="op">**</span><span class="dv">6</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.linspace(<span class="fl">0.8</span>, <span class="dv">3</span>, <span class="dv">1000</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> lennard_jones(r)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.plot(r, V, <span class="st">'b-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'r/σ'</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'V/ε'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Lennard-Jones Potential'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="temperature-and-velocity-initialization" class="level2">
+<h2 class="anchored" data-anchor-id="temperature-and-velocity-initialization">Temperature and Velocity Initialization</h2>
+<p>Previously we wrote our simulation with classes for the atoms, the force-field and the MD simulation.Now we want to implement the velocity initialization. We will use the Maxwell-Boltzmann distribution to generate random velocities for the particles in our system. This ensures that our system starts in a state of thermal equilibrium, reflecting the physical reality of molecular motion.</p>
+<p>The Maxwell-Boltzmann distribution stands as a cornerstone principle in molecular dynamics (MD) simulations, providing us with a statistical description of particle velocities in a system at thermal equilibrium. This distribution emerged from the kinetic theory of gases and proves invaluable in understanding how molecules move and interact at various temperatures.</p>
+<section id="the-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="the-distribution">The Distribution</h3>
+<p>At its heart, the Maxwell-Boltzmann distribution tells us the probability of finding a particle moving at a particular velocity in a system at thermal equilibrium. The mathematical expression for this probability density <span class="math inline">\(f(v)\)</span> is:</p>
+<p><span class="math display">\[f(v) = \sqrt{\left(\frac{m}{2\pi k_B T}\right)^3} 4\pi v^2 \exp\left(-\frac{mv^2}{2k_B T}\right)\]</span></p>
+<p>Here, <span class="math inline">\(m\)</span> represents the particle mass, <span class="math inline">\(k_B\)</span> is Boltzmann’s constant, <span class="math inline">\(T\)</span> denotes the temperature in Kelvin, and <span class="math inline">\(v\)</span> is the velocity magnitude. We can also write down the Maxwell-Boltzmann distribution in terms of the velocity components <span class="math inline">\(v_x\)</span>, <span class="math inline">\(v_y\)</span>, and <span class="math inline">\(v_z\)</span>. For each of these components, the distribution is given by</p>
+<p><span class="math display">\[
+f(v_x) = \sqrt{\frac{m}{2\pi k_B T}} \exp\left(-\frac{m v_x^2}{2 k_B T}\right)
+\]</span></p>
+<p>The Maxwell-Boltzmann distribution has the following properties</p>
+<p>The mean velocity of the particles is of course zero as the system as a whole does not move. The mean magnitude of the velocity can be calculated from</p>
+<p><span class="math display">\[
+\bar{v}=\int_0^{\infty} v p(v) \mathrm{d} v
+\]</span></p>
+<p>which results in</p>
+<p><span class="math display">\[
+\bar{v}=\sqrt{\frac{8 k_{\mathrm{B}} T}{\pi m}}
+\]</span></p>
+<p>What is also important is the mean squared velocity which can be calculated by</p>
+<p><span class="math display">\[
+\overline{v^2}=\int_0^{\infty} v^2 p(v) d v
+\]</span></p>
+<p>since this will provide the mean kinetic energy of the particles. This results in</p>
+<p><span class="math display">\[
+\overline{v^2}=\frac{3 k_{\mathrm{B}} T}{m}
+\]</span></p>
+<p>This is consisten with a kinetic energy of <span class="math inline">\(1/2 k_{\mathrm{B}} T\)</span> per degree of freedom.</p>
+<p>Since we use in MD simulations with Lennard-Jones atoms reduced units, we can also express the Maxwell-Boltzmann distribution in reduced units. The reduced temperature is defined as <span class="math inline">\(T^{*}=k_{\mathrm{B}} T / \varepsilon\)</span> and the reduced velocity as <span class="math inline">\(v^{*}=v / \sqrt{\varepsilon / m}\)</span>. The reduced Maxwell-Boltzmann distribution is then</p>
+<p><span class="math display">\[
+f(v^{*}) = \sqrt{\left(\frac{1}{2\pi T^{*}}\right)^3} 4\pi v^{*2} \exp\left(-\frac{v^{2}}{2T^{*}}\right)
+\]</span></p>
+<p>Our goal is to generate random velocities for particles in our MD simulations that follow this distribution. This ensures that our system starts in a state of thermal equilibrium, reflecting the physical reality of molecular motion.</p>
+</section>
+<section id="interactive-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-visualization">Interactive Visualization</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="79" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 78;"><span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>viewof reducedTemp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Reduced Temperature (T*)"</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="co">// Generate distribution data in reduced units</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">generateReducedData</span>() {</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Generate points for reduced velocities from 0 to 5</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> v <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> v <span class="op">&lt;=</span> <span class="dv">5</span><span class="op">;</span> v <span class="op">+=</span> <span class="fl">0.05</span>) {</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> term1 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>((<span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> reducedTemp)) <span class="op">**</span> <span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> term2 <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> v <span class="op">*</span> v<span class="op">;</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> term3 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>((<span class="op">-</span>v <span class="op">*</span> v) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> reducedTemp))<span class="op">;</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>      <span class="dt">velocity</span><span class="op">:</span> v<span class="op">,</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>      <span class="dt">probability</span><span class="op">:</span> term1 <span class="op">*</span> term2 <span class="op">*</span> term3</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">margin</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Reduced Velocity (v*)"</span><span class="op">,</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Probability Density"</span><span class="op">,</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(<span class="fu">generateReducedData</span>()<span class="op">,</span> {</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"velocity"</span><span class="op">,</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"probability"</span><span class="op">,</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="MDSimulation_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
 </div>
 </div>
 </div>
-</section>
-<section id="taylor-expansion" class="level2">
-<h2 class="anchored" data-anchor-id="taylor-expansion">Taylor Expansion</h2>
-<div id="cell-6" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">1000</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y_taylor <span class="op">=</span> x <span class="op">-</span> <span class="dv">1</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y_taylor1 <span class="op">=</span> x <span class="op">-</span> <span class="dv">1</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span><span class="op">+</span>x<span class="op">**</span><span class="dv">5</span><span class="op">/</span><span class="dv">120</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>),dpi<span class="op">=</span><span class="dv">150</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'b-'</span>, label<span class="op">=</span><span class="st">'sin(x)'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_taylor, <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">'O(5)'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_taylor1, <span class="st">'g--'</span>, label<span class="op">=</span><span class="st">'O(7)'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">1.3</span>,<span class="fl">1.3</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Taylor Expansion of sin(x)'</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="MDSimulation_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
 </div>
 </div>
 </div>
-</section>
-<section id="velocity-verlet" class="level2">
-<h2 class="anchored" data-anchor-id="velocity-verlet">Velocity Verlet</h2>
-<div id="cell-8" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="fl">9.81</span>  <span class="co"># m/s^2</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.01</span>  <span class="co"># time step</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>t_max <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># total simulation time</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="bu">int</span>(t_max<span class="op">/</span>dt)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial conditions</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> <span class="fl">20.0</span>  <span class="co"># initial height</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> <span class="fl">0.0</span>   <span class="co"># initial velocity</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrays to store results</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.zeros(steps)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.zeros(steps)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.zeros(steps)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.zeros(steps)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial values</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> y0</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>v[<span class="dv">0</span>] <span class="op">=</span> v0</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">0</span>] <span class="op">=</span> <span class="op">-</span>g</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Velocity Verlet integration</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps):</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    t[i] <span class="op">=</span> i <span class="op">*</span> dt</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="op">=</span> y[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> v[i<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> dt <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> a[i<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> dt<span class="op">**</span><span class="dv">2</span>  <span class="co"># update position</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    a_new <span class="op">=</span> <span class="op">-</span>g                                          <span class="co"># new acceleration (assuming constant gravity)</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    v[i] <span class="op">=</span> v[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> (a[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> a_new) <span class="op">*</span> dt  <span class="co"># update velocity</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    a[i] <span class="op">=</span> a_new  <span class="co"># store new acceleration</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>get_size(<span class="dv">8</span>, <span class="dv">6</span>), dpi<span class="op">=</span><span class="dv">150</span>)</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>plt.plot(t, y)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (s)'</span>)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Height (m)'</span>)</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Free Fall Motion'</span>)</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="MDSimulation_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div id="ojs-cell-1-3" data-nodetype="expression">
+
 </div>
 </div>
 </div>
+</div>
+<p>The interactive plot above demonstrates how the Maxwell-Boltzmann distribution changes with temperature and molecular mass. Try adjusting the sliders to see how:</p>
+<ol type="1">
+<li>Increasing temperature broadens the distribution and shifts the peak to higher velocities</li>
+<li>Increasing molecular mass narrows the distribution and shifts the peak to lower velocities</li>
+</ol>
 </section>
-<section id="class-for-an-atom" class="level2">
-<h2 class="anchored" data-anchor-id="class-for-an-atom">Class for an Atom</h2>
+<section id="application-in-md-simulations" class="level3">
+<h3 class="anchored" data-anchor-id="application-in-md-simulations">Application in MD Simulations</h3>
+<p>When we begin an MD simulation, one of our first tasks is to assign initial velocities to all particles in our system. The Maxwell-Boltzmann distribution guides this process, ensuring that our initial configuration reflects physical reality. We typically generate random velocities following this distribution while ensuring that the total momentum of the system remains zero – a condition that prevents our system from drifting as a whole.</p>
+</section>
+<section id="implementation-in-practice" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-in-practice">Implementation in Practice</h3>
+<p>Here’s how we can implement velocity initialization following the Maxwell-Boltzmann distribution:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_velocities(atoms, temperature, seed<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> seed <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        np.random.seed(seed)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(atoms)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    dim <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    velocities <span class="op">=</span> np.random.normal(<span class="dv">0</span>, np.sqrt(temperature), size<span class="op">=</span>(N, dim))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    total_momentum <span class="op">=</span> np.<span class="bu">sum</span>([atom.mass <span class="op">*</span> velocities[i] <span class="cf">for</span> i, atom <span class="kw">in</span> <span class="bu">enumerate</span>(atoms)], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    total_mass <span class="op">=</span> np.<span class="bu">sum</span>([atom.mass <span class="cf">for</span> atom <span class="kw">in</span> atoms])</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    cm_velocity <span class="op">=</span> total_momentum <span class="op">/</span> total_mass</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, atom <span class="kw">in</span> <span class="bu">enumerate</span>(atoms):</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        atom.velocity <span class="op">=</span> velocities[i] <span class="op">-</span> cm_velocity</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    set_temperature(atoms, temperature)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> atoms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In molecular dynamics simulations, it is crucial to control the temperature of the system to ensure that it reflects the desired physical conditions. The temperature of a system in MD simulations is directly related to the kinetic energy of the particles. If the initial velocities of the particles do not correspond to the target temperature, the system will not accurately represent the intended thermodynamic state.</p>
+<p>Scaling the velocities of the particles is a common technique to adjust the temperature of the system. By scaling the velocities, we can ensure that the kinetic energy—and hence the temperature—matches the target value. This process is essential for initializing the system correctly and for maintaining the desired temperature during the simulation.</p>
+<p>The provided code scales the velocities of the atoms to achieve the target temperature. Here’s a step-by-step explanation of the code:</p>
+<div id="759da11a" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> set_temperature(atoms, target_temperature):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(atoms)      <span class="co"># number of atoms</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Nf <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> N         <span class="co"># degrees of freedom in 2D</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate current kinetic energy</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    current_ke <span class="op">=</span> <span class="bu">sum</span>(<span class="fl">0.5</span> <span class="op">*</span> atom.mass <span class="op">*</span> np.<span class="bu">sum</span>(atom.velocity<span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> atom <span class="kw">in</span> atoms)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    current_temperature <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> current_ke <span class="op">/</span> Nf  <span class="co"># kb = 1 in reduced units</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate scaling factor</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    scale_factor <span class="op">=</span> np.sqrt(target_temperature <span class="op">/</span> current_temperature)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scale velocities</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> atom <span class="kw">in</span> atoms:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        atom.velocity <span class="op">*=</span> scale_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code snippet sets the temperature of the system to the target temperature by scaling the velocities of the atoms. Here’s a breakdown of the key steps:</p>
+<ol type="1">
+<li><p><strong>Number of Atoms and Degrees of Freedom:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(atoms)      <span class="co"># number of atoms</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Nf <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> N         <span class="co"># degrees of freedom in 2D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>N</code> is the number of atoms in the system.</li>
+<li><code>Nf</code> is the number of degrees of freedom. In a 2D system, each atom has 2 degrees of freedom (one for each spatial dimension), so <code>Nf = 2 * N</code>.</li>
+</ul></li>
+<li><p><strong>Calculate Current Kinetic Energy:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>current_ke <span class="op">=</span> <span class="bu">sum</span>(<span class="fl">0.5</span> <span class="op">*</span> atom.mass <span class="op">*</span> np.<span class="bu">sum</span>(atom.velocity<span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> atom <span class="kw">in</span> atoms)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>current_temperature <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> current_ke <span class="op">/</span> Nf  <span class="co"># kb = 1 in reduced units</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The current kinetic energy (<code>current_ke</code>) is calculated by summing the kinetic energy of each atom. The kinetic energy of an atom is given by ( m v^2 ), where <code>m</code> is the mass and <code>v</code> is the velocity.</li>
+<li>The current temperature (<code>current_temperature</code>) is then calculated using the relation ( T = ). Here, the Boltzmann constant ( k_B ) is assumed to be 1 in reduced units.</li>
+</ul></li>
+<li><p><strong>Calculate Scaling Factor:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scale_factor <span class="op">=</span> np.sqrt(target_temperature <span class="op">/</span> current_temperature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The scaling factor is calculated as the square root of the ratio of the target temperature to the current temperature. This factor will be used to scale the velocities of the atoms.</li>
+</ul></li>
+<li><p><strong>Scale Velocities:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> atom <span class="kw">in</span> atoms:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    atom.velocity <span class="op">*=</span> scale_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The velocities of all atoms are scaled by the calculated scaling factor. This adjustment ensures that the kinetic energy—and thus the temperature—of the system matches the target temperature.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="simulation-setup-and-initialization" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-setup-and-initialization">Simulation Setup and Initialization</h2>
+<p>This now completes our initial code for the MD simulation and we can put it all together to run a simulation.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>box_size <span class="op">=</span> np.array([<span class="fl">50.0</span>, <span class="fl">50.0</span>])  <span class="co"># Box dimensions</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>num_atoms <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">5</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create atoms and set initial velocities</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>atoms <span class="op">=</span> create_grid_atoms(num_atoms, box_size, <span class="bu">type</span><span class="op">=</span><span class="st">"H"</span>,mass<span class="op">=</span><span class="fl">1.0</span>, random_offset<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>atoms <span class="op">=</span> initialize_velocities(atoms, temperature<span class="op">=</span>T)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create force field</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ff <span class="op">=</span> ForceField()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create simulation with periodic boundaries</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>sim <span class="op">=</span> MDSimulation(atoms, ff, dt, box_size)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">6</span>))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    clear_output(wait<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    set_temperature(atoms, target_temperature<span class="op">=</span>T)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    sim.update_positions_and_velocities()</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    positions <span class="op">=</span> [atom.position <span class="cf">for</span> atom <span class="kw">in</span> sim.atoms]</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    x_coords <span class="op">=</span> [pos[<span class="dv">0</span>] <span class="cf">for</span> pos <span class="kw">in</span> positions]</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    y_coords <span class="op">=</span> [pos[<span class="dv">1</span>] <span class="cf">for</span> pos <span class="kw">in</span> positions]</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">=</span>patches.Circle((x_coords[<span class="dv">0</span>],y_coords[<span class="dv">0</span>]),ff.parameters[atoms[<span class="dv">0</span>].<span class="bu">type</span>][<span class="st">"sigma"</span>],edgecolor<span class="op">=</span><span class="st">"white"</span>,fill<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    ax.add_patch(circle)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    ax.scatter(x_coords, y_coords,color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, box_size[<span class="dv">0</span>])</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="dv">0</span>, box_size[<span class="dv">1</span>])</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    display(fig)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 <script type="ojs-module-contents">
@@ -674,11 +822,11 @@ W10=
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiByZWR1Y2VkVGVtcCA9IElucHV0cy5yYW5nZShbMC4xLCA1XSwge1xuICBzdGVwOiAwLjEsXG4gIHZhbHVlOiAxLjAsXG4gIGxhYmVsOiBcIlJlZHVjZWQgVGVtcGVyYXR1cmUgKFQqKVwiXG59KVxuXG4vLyBHZW5lcmF0ZSBkaXN0cmlidXRpb24gZGF0YSBpbiByZWR1Y2VkIHVuaXRzXG5mdW5jdGlvbiBnZW5lcmF0ZVJlZHVjZWREYXRhKCkge1xuICBjb25zdCBkYXRhID0gW107XG4gIC8vIEdlbmVyYXRlIHBvaW50cyBmb3IgcmVkdWNlZCB2ZWxvY2l0aWVzIGZyb20gMCB0byA1XG4gIGZvciAobGV0IHYgPSAwOyB2IDw9IDU7IHYgKz0gMC4wNSkge1xuICAgIGNvbnN0IHRlcm0xID0gTWF0aC5zcXJ0KCgxIC8gKDIgKiBNYXRoLlBJICogcmVkdWNlZFRlbXApKSAqKiAzKTtcbiAgICBjb25zdCB0ZXJtMiA9IDQgKiBNYXRoLlBJICogdiAqIHY7XG4gICAgY29uc3QgdGVybTMgPSBNYXRoLmV4cCgoLXYgKiB2KSAvICgyICogcmVkdWNlZFRlbXApKTtcbiAgICBkYXRhLnB1c2goe1xuICAgICAgdmVsb2NpdHk6IHYsXG4gICAgICBwcm9iYWJpbGl0eTogdGVybTEgKiB0ZXJtMiAqIHRlcm0zXG4gICAgfSk7XG4gIH1cbiAgcmV0dXJuIGRhdGE7XG59XG5cblBsb3QucGxvdCh7XG4gIHdpZHRoOiA0MDAsXG4gIGhlaWdodDogNDAwLFxuICBtYXJnaW46IDUwLFxuICBncmlkOiB0cnVlLFxuICBzdHlsZToge1xuICAgIGZvbnRTaXplOiAxNlxuICB9LFxuICB4OiB7XG4gICAgbGFiZWw6IFwiUmVkdWNlZCBWZWxvY2l0eSAodiopXCIsXG4gICAgZG9tYWluOiBbMCwgNV0sXG4gIH0sXG4gIHk6IHtcbiAgICBsYWJlbDogXCJQcm9iYWJpbGl0eSBEZW5zaXR5XCIsXG4gIH0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKGdlbmVyYXRlUmVkdWNlZERhdGEoKSwge1xuICAgICAgeDogXCJ2ZWxvY2l0eVwiLFxuICAgICAgeTogXCJwcm9iYWJpbGl0eVwiLFxuICAgICAgc3Ryb2tlOiBcImJsdWVcIlxuICAgIH0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3JlZHVjZWRUZW1wJykifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../seminars/seminar01";
+window._ojs.paths.runtimeToDoc = "../../seminars/seminar05";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "../..";
 window._ojs.selfContained = false;
@@ -1104,6 +1252,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../seminars/seminar04/md4.html" class="pagination-link" aria-label="MD Simulation Part 4">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MD Simulation Part 4</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../seminars/seminar05/mdsim.html" class="pagination-link" aria-label="MD Simulation Code">
+        <span class="nav-page-text">MD Simulation Code</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
