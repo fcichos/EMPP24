@@ -5,31 +5,31 @@
     <lastmod>2024-11-22T13:58:14.113Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/references.html</loc>
-    <lastmod>2024-08-14T18:38:01.000Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture12/01-lecture12.html</loc>
+    <lastmod>2024-08-25T15:59:07.095Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/02-lecture01.html</loc>
-    <lastmod>2024-10-15T09:04:48.000Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/01-lecture01.html</loc>
+    <lastmod>2024-10-15T20:26:28.894Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/02-summary01.html</loc>
-    <lastmod>2024-10-06T20:35:27.000Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/3_datatypes.html</loc>
+    <lastmod>2024-10-15T20:22:30.000Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/01-lecture06.html</loc>
-    <lastmod>2024-08-25T15:59:07.094Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/1_input_output.html</loc>
+    <lastmod>2024-11-24T15:37:02.000Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/test.html</loc>
-    <lastmod>2024-10-12T11:38:56.914Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/1_curve_fitting.html</loc>
+    <lastmod>2024-11-11T22:50:49.000Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture08/01-lecture08.html</loc>
-    <lastmod>2024-08-25T15:59:07.094Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture08/2_integration.html</loc>
+    <lastmod>2024-11-26T09:44:56.531Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture07/01-lecture07.html</loc>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture09/01-lecture09.html</loc>
     <lastmod>2024-08-25T15:59:07.094Z</lastmod>
   </url>
   <url>
@@ -102,51 +102,47 @@
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/seminars/seminar05/md5.html</loc>
-    <lastmod>2024-11-22T12:11:17.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/tt.html</loc>
-    <lastmod>2024-08-23T01:18:13.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/index.html</loc>
-    <lastmod>2024-10-15T19:58:30.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/course-info/exam.html</loc>
-    <lastmod>2024-10-15T07:46:21.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/course-info/website.html</loc>
-    <lastmod>2024-10-08T19:31:58.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/course-info/assignments.html</loc>
-    <lastmod>2024-10-10T10:23:38.629Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/course-info/intructors.html</loc>
-    <lastmod>2024-10-08T20:50:09.001Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/course-info/how_to_quiz.html</loc>
-    <lastmod>2024-10-08T20:50:16.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/course-info/resources.html</loc>
-    <lastmod>2024-10-28T20:58:40.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/course-info/schedule.html</loc>
-    <lastmod>2024-10-15T08:55:31.000Z</lastmod>
+    <lastmod>2024-11-22T12:11:09.000Z</lastmod>
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/summary.html</loc>
     <lastmod>2024-08-14T18:38:01.000Z</lastmod>
   </url>
   <url>
+    <loc>https://fcichos.github.io/EMPP24/course-info/schedule.html</loc>
+    <lastmod>2024-10-15T08:55:31.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/course-info/resources.html</loc>
+    <lastmod>2024-10-28T20:58:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/course-info/how_to_quiz.html</loc>
+    <lastmod>2024-10-08T20:50:16.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/course-info/intructors.html</loc>
+    <lastmod>2024-10-08T20:50:09.001Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/course-info/assignments.html</loc>
+    <lastmod>2024-11-25T15:44:43.456Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/course-info/website.html</loc>
+    <lastmod>2024-10-08T19:31:58.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/course-info/exam.html</loc>
+    <lastmod>2024-10-15T07:46:21.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/index.html</loc>
+    <lastmod>2024-10-15T19:58:30.000Z</lastmod>
+  </url>
+  <url>
     <loc>https://fcichos.github.io/EMPP24/seminars/seminar05/mdsim.html</loc>
-    <lastmod>2024-11-22T12:07:11.786Z</lastmod>
+    <lastmod>2024-11-25T15:29:34.130Z</lastmod>
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/seminars/seminar02/MD Simulation.html</loc>
@@ -162,7 +158,7 @@
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/seminars/seminar04/md4.html</loc>
-    <lastmod>2024-11-22T12:08:01.970Z</lastmod>
+    <lastmod>2024-11-15T12:00:17.000Z</lastmod>
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/seminars/seminar04/Report/Figures/Figure1/Figure1.html</loc>
@@ -222,34 +218,34 @@
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/lectures/lecture07/1_differentiation.html</loc>
-    <lastmod>2024-11-18T19:52:05.000Z</lastmod>
+    <lastmod>2024-11-26T09:45:04.819Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture09/01-lecture09.html</loc>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture08/4_solving_ODEs.html</loc>
+    <lastmod>2024-11-25T20:29:08.513Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture08/3_solving_ODEs.html</loc>
+    <lastmod>2024-11-26T09:49:49.305Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/test.html</loc>
+    <lastmod>2024-10-12T11:38:56.914Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/01-lecture06.html</loc>
     <lastmod>2024-08-25T15:59:07.094Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/1_curve_fitting.html</loc>
-    <lastmod>2024-11-11T22:50:49.000Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/02-summary01.html</loc>
+    <lastmod>2024-10-06T20:35:27.000Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/1_input_output.html</loc>
-    <lastmod>2024-11-24T15:37:35.020Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/02-lecture01.html</loc>
+    <lastmod>2024-10-15T09:04:48.000Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/3_datatypes.html</loc>
-    <lastmod>2024-10-15T20:22:30.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture01/01-lecture01.html</loc>
-    <lastmod>2024-10-15T20:26:28.894Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture12/01-lecture12.html</loc>
-    <lastmod>2024-08-25T15:59:07.095Z</lastmod>
-  </url>
-  <url>
-    <loc>https://fcichos.github.io/EMPP24/test.html</loc>
-    <lastmod>2024-10-21T18:42:08.000Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/references.html</loc>
+    <lastmod>2024-08-14T18:38:01.000Z</lastmod>
   </url>
 </urlset>
