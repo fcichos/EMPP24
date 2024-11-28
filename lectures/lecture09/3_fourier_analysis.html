@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Quantum Mechanics – Einführung in die Modellierung Physikalischer Prozesse</title>
+<title>Fourier Analysis – Einführung in die Modellierung Physikalischer Prozesse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,6 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lectures/lecture09/2_coupled_pendula.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -166,7 +133,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Quantum Mechanics</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture09/2_coupled_pendula.html">Lecture 9</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture09/3_fourier_analysis.html">Fourier Analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -436,7 +403,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lectures/lecture09/3_fourier_analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lectures/lecture09/3_fourier_analysis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Fourier Analysis</span></a>
   </div>
 </li>
@@ -569,25 +536,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quantum-mechanics-in-a-nutshell" id="toc-quantum-mechanics-in-a-nutshell" class="nav-link active" data-scroll-target="#quantum-mechanics-in-a-nutshell">Quantum Mechanics in a Nutshell</a>
-  <ul class="collapse">
-  <li><a href="#time-dependent-schrödinger-equation" id="toc-time-dependent-schrödinger-equation" class="nav-link" data-scroll-target="#time-dependent-schrödinger-equation">Time dependent Schrödinger equation</a></li>
-  <li><a href="#stationary-schrödinger-equation" id="toc-stationary-schrödinger-equation" class="nav-link" data-scroll-target="#stationary-schrödinger-equation">Stationary Schrödinger equation</a></li>
-  </ul></li>
-  <li><a href="#recap-implicit-solution" id="toc-recap-implicit-solution" class="nav-link" data-scroll-target="#recap-implicit-solution">Recap: Implicit Solution</a>
-  <ul class="collapse">
-  <li><a href="#kinetic-energy" id="toc-kinetic-energy" class="nav-link" data-scroll-target="#kinetic-energy">Kinetic energy</a></li>
-  <li><a href="#potential-energy" id="toc-potential-energy" class="nav-link" data-scroll-target="#potential-energy">Potential energy</a></li>
-  </ul></li>
+  <li><a href="#fourier-series" id="toc-fourier-series" class="nav-link active" data-scroll-target="#fourier-series">Fourier series</a></li>
+  <li><a href="#fourier-transform" id="toc-fourier-transform" class="nav-link" data-scroll-target="#fourier-transform">Fourier transform</a></li>
+  <li><a href="#frequency-analysis-of-our-coupled-pendula" id="toc-frequency-analysis-of-our-coupled-pendula" class="nav-link" data-scroll-target="#frequency-analysis-of-our-coupled-pendula">Frequency analysis of our coupled pendula</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Python Basics</li><li class="breadcrumb-item"><a href="../../lectures/lecture09/2_coupled_pendula.html">Lecture 9</a></li><li class="breadcrumb-item"><a href="../../lectures/lecture09/3_fourier_analysis.html">Fourier Analysis</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Quantum Mechanics</h1>
+<h1 class="title">Fourier Analysis</h1>
 </div>
 
 
@@ -604,141 +564,129 @@ window.Quarto = {
 </header>
 
 
-<p>In the last lecture, we have modeled electromagnetic waves not by solving the wave equation, but by taking the solutions of wave equations like a plane wave or a spherical wave. Today we will solve a wave equation, but not for electromagnetic waves, but for matter waves. We will solve the stationary Schrödinger equation with the implicit solution scheme, which we have already applied for the diffusion equation. With the help of that we will tackle the particle in a box, the harmonic oscillator and the periodic potential. All of these problems have also analytical solutions, thus we do not need the numerical solution in principle. But it will give us some practice on how to tackle such problems. As not all of you might be familiar with the physical description of quantum mechanics, we will give a short introduction into this field first.</p>
-<div id="b50f429e" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2018-07-03T11:07:44.101075Z&quot;,&quot;start_time&quot;:&quot;2018-07-03T11:07:44.085892Z&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> diags</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> eigsh</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># default values for plotting</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.titlesize'</span>: <span class="dv">18</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelsize'</span>: <span class="dv">16</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'axes.labelpad'</span>: <span class="dv">14</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.linewidth'</span>: <span class="dv">1</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'lines.markersize'</span>: <span class="dv">10</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.labelsize'</span> : <span class="dv">16</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.labelsize'</span> : <span class="dv">16</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.top'</span> : <span class="va">True</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xtick.direction'</span> : <span class="st">'in'</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.right'</span> : <span class="va">True</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'ytick.direction'</span> : <span class="st">'in'</span>,}) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Fourier analysis, or the description of functions as a series of sine and cosine functions, serves as a powerful tool in both numerical data analysis and the solution of differential equations. In experimental physics, Fourier transforms find widespread applications. For instance, optical tweezers utilize frequency spectra to characterize positional fluctuations, while Lock-In detection employs Fourier analysis for specific frequency signals. Additionally, many optical phenomena can be understood through the lens of Fourier transforms.</p>
+<p>Fourier analysis extends far beyond these examples, finding applications across numerous fields of physics and engineering. In this lecture, we will examine Fourier Series and Fourier transforms from a mathematical perspective. We will apply these concepts to analyze the frequency spectrum of oscillations in coupled pendula, and later revisit them when simulating the motion of a Gaussian wavepacket in quantum mechanics.</p>
+<div>
+<div id="pyodide-1">
+
 </div>
-<section id="quantum-mechanics-in-a-nutshell" class="level2">
-<h2 class="anchored" data-anchor-id="quantum-mechanics-in-a-nutshell">Quantum Mechanics in a Nutshell</h2>
-<p>Quantum Mechanics assumes that all particles propagate as waves. They are described by a wavefunction <span class="math inline">\(\Psi(x,t)\)</span>. A quantum mechanical object thus posseses an amplitude and a phase which propagate in space and time. One could see the wavefunction in analogy to the electric field <span class="math inline">\(\vec{E}(x)\)</span> of an electromagnetic wave. As the square of the electric field describes the propagation of energy of a wave, the square magnitude of the wavefunction, i.e.&nbsp;<span class="math inline">\(|\Psi(x,t)|^2\)</span>, describes the propagation of probability density of the quantum mechanical wave. The wavefunction itself is thus just the probability amplitude.</p>
-<section id="time-dependent-schrödinger-equation" class="level3">
-<h3 class="anchored" data-anchor-id="time-dependent-schrödinger-equation">Time dependent Schrödinger equation</h3>
-<p>The dynamics of a quantum mechanical wave is described,for example, by the time dependent Schrödinger equation</p>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImV4ZWN1dGUiOnRydWUsImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZX0sImNvZGUiOiJcbmltcG9ydCBudW1weSBhcyBucFxuaW1wb3J0IG1hdHBsb3RsaWIucHlwbG90IGFzIHBsdFxuZnJvbSBzY2lweS5pbnRlZ3JhdGUgaW1wb3J0IG9kZWludFxuXG4jIFNldCBkZWZhdWx0IHBsb3R0aW5nIHBhcmFtZXRlcnNcbnBsdC5yY1BhcmFtcy51cGRhdGUoe1xuICAgICdmb250LnNpemUnOiAxMixcbiAgICAnbGluZXMubGluZXdpZHRoJzogMSxcbiAgICAnbGluZXMubWFya2Vyc2l6ZSc6IDUsXG4gICAgJ2F4ZXMubGFiZWxzaXplJzogMTEsXG4gICAgJ3h0aWNrLmxhYmVsc2l6ZSc6IDEwLFxuICAgICd5dGljay5sYWJlbHNpemUnOiAxMCxcbiAgICAneHRpY2sudG9wJzogVHJ1ZSxcbiAgICAneHRpY2suZGlyZWN0aW9uJzogJ2luJyxcbiAgICAneXRpY2sucmlnaHQnOiBUcnVlLFxuICAgICd5dGljay5kaXJlY3Rpb24nOiAnaW4nLFxufSlcblxuZGVmIGdldF9zaXplKHcsIGgpOlxuICAgIHJldHVybiAody8yLjU0LCBoLzIuNTQpIn0=
+</script>
+</div>
+<section id="fourier-series" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-series">Fourier series</h2>
+<p>A Fourier series represents a periodic function <span class="math inline">\(f(t)\)</span> with period <span class="math inline">\(2\pi\)</span> or, more generally, any arbitrary interval <span class="math inline">\(T\)</span> as a sum of sine and cosine functions:</p>
+<p><span id="eq-fourier_sum"><span class="math display">\[
+f(t)=\frac{A_{0}}{2}+\sum_{k=1}^{\infty}\left ( A_{k}\cos\left (\omega_k t\right) + B_{k}\sin\left (\omega_k t\right)\right )
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(\omega_k=\frac{2\pi k}{T}\)</span>. Here, <span class="math inline">\(T\)</span> represents the period of the cosine and sine functions, with their amplitudes defined by the coefficients <span class="math inline">\(A_k\)</span> and <span class="math inline">\(B_k\)</span>. The term <span class="math inline">\(A_0\)</span> represents a constant offset added to the oscillating functions. <a href="#eq-fourier_sum" class="quarto-xref">Equation&nbsp;1</a> expresses an arbitrary periodic function <span class="math inline">\(f(t)\)</span> on an interval T as a sum of oscillating sine and cosine functions with discrete frequencies (<span class="math inline">\(\omega_k\)</span>):</p>
+<p><span class="math display">\[\begin{equation*}
+\omega_k= 0, \frac{2\pi}{T}, \frac{4\pi}{T}, \frac{6\pi}{T}, ... , \frac{n\pi}{T}
+\end{equation*}\]</span></p>
+<p>and varying amplitudes. We can demonstrate that the cosine and sine functions in the sum (<a href="#eq-fourier_sum" class="quarto-xref">Equation&nbsp;1</a>) are orthogonal using the trigonometric identity:</p>
 <p><span class="math display">\[\begin{equation}
--i\hbar\frac{\partial \Psi(x,t)}{\partial t} = \left ( \frac{-\hbar^2 }{2m}\frac{\partial^2}{\partial x^2}+V(x,t) \right ) \Psi(x,t)
+\sin(\omega_{i} t)\sin(\omega_{k}t )=\frac{1}{2}\lbrace\cos((\omega_{i}-\omega_{k})t)- \cos((\omega_{i}+\omega_{k})t\rbrace
 \end{equation}\]</span></p>
-<p>whis is written here for one dimension only.</p>
-<p>The bracket on the right side of the above equation contains the so-called Hamilton operator <span class="math inline">\(\hat{H}\)</span>. The Hamilton operator <span class="math inline">\(\hat{H}\)</span> contains the energy operators for the kinetic and potential energies and represents the total energy of the system.</p>
+<p>This leads to the integral:</p>
 <p><span class="math display">\[\begin{equation}
-\hat{H}=\left ( \frac{-\hbar^2 }{2m}\frac{\partial^2}{\partial x^2}+V(x,t) \right )
+\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}}  \sin(\omega_{i}t)\sin (\omega_k t) dt
+\end{equation}\]</span></p>
+<p>which splits into two integrals over cosine functions with sum <span class="math inline">\((\omega_{1}+\omega_{2})\)</span> and difference frequency <span class="math inline">\((\omega_{1}-\omega_{2})\)</span>. With <span class="math inline">\(\omega_k=k 2\pi/T\)</span>, <span class="math inline">\((k \in \mathbb{Z}^+ )\)</span>, this evaluates to:</p>
+<p><span class="math display">\[\begin{equation}
+\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}}  \sin(\omega_{i}t)\sin (\omega_k t) dt  =\begin{cases}
+0 &amp;\text{for }  i\neq k, \\
+T/2 &amp;\text{for }  i=k
+\end{cases}
+\end{equation}\]</span></p>
+<p>A similar result holds for cosine functions:</p>
+<p><span class="math display">\[\begin{equation}
+\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}}  \cos(\omega_{i}t)\cos (\omega_k t) dt  =\begin{cases}
+0 &amp;\text{for }  i\neq k, \\
+T/2 &amp;\text{for }  i=k
+\end{cases}
+\end{equation}\]</span></p>
+<p>The coefficients <span class="math inline">\(A_k\)</span> and <span class="math inline">\(B_k\)</span> are determined by projecting the function <span class="math inline">\(f(t)\)</span> onto these basis functions:</p>
+<p><span class="math display">\[\begin{align}
+\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} &amp; \cos (\omega_k t) dt  =\begin{cases}
+0 &amp;\text{for }  k\neq0, \\
+T &amp;\text{for }  k=0
+\end{cases} \\
+\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} &amp; \sin(\omega_k t) dt=0  \text{ for all }k
+\end{align}\]</span></p>
+<p>For the cosine coefficients:</p>
+<p><span class="math display">\[\begin{equation}\label{A_k}
+A_k=\frac{2}{T}\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} f(t)\cos(\omega_k t) dt  \text{ for } k \neq 0
+\end{equation}\]</span></p>
+<p>and the constant term:</p>
+<p><span class="math display">\[\begin{equation}
+A_0= \frac{1}{T}\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} f(t) dt
+\end{equation}\]</span></p>
+<p>Finally, for the sine coefficients:</p>
+<p><span class="math display">\[\begin{equation}\label{B_k}
+B_k=\frac{2}{T}\int\limits_{-\frac{T}{2}}^{+\frac{T}{2}} f(t) \sin(\omega_k t) dt,\,  \forall k
 \end{equation}\]</span></p>
 </section>
-<section id="stationary-schrödinger-equation" class="level3">
-<h3 class="anchored" data-anchor-id="stationary-schrödinger-equation">Stationary Schrödinger equation</h3>
-<p>Our first problems will be stationary problems. We will not ask for the temporal development of the quantum object. We will rather ask, what solutions without time dependence are possible. In general this is much like the question asking what kind of standing waves are possible on a string or in an optical resonator. In quantum mechanics the boundaries, which define the standing waves are formed by the potential energy <span class="math inline">\(V(x)\)</span>.</p>
-<p>We therefore also need the stationary Schrödinger equation, where the left side of the time dependent Schrödinger equation does not depend on time, hence is constant in time. This stationary (time-independent) Schrödinger equation is</p>
-<p><span class="math display">\[\begin{equation}
-\hat{H}\Psi(x)=E\Psi(x)
+<section id="fourier-transform" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-transform">Fourier transform</h2>
+<p>The Fourier transform extends the concept of Fourier series by representing arbitrary non-periodic functions <span class="math inline">\(f(t)\)</span> through a continuous spectrum of complex functions <span class="math inline">\(\exp(i\omega t)\)</span>. Known as the continuous Fourier transform, this approach replaces the discrete frequency sum of sine and cosine functions found in Fourier series with an integral over complex exponential functions <span class="math inline">\(\exp(i\omega t)\)</span> spanning continuous frequency values <span class="math inline">\(\omega\)</span>.</p>
+<p>The Fourier transform of a function <span class="math inline">\(f(t)\)</span> is defined as:</p>
+<p><span id="eq-fourier_transform"><span class="math display">\[
+F(\omega)=\int\limits_{-\infty}^{+\infty}f(t)e^{-i\omega t}dt
+\tag{2}\]</span></span></p>
+<p>where <span class="math inline">\(F(\omega)\)</span> represents the spectrum of frequencies present in <span class="math inline">\(f(t)\)</span>. The inverse Fourier transform recovers the original function <span class="math inline">\(f(t)\)</span> from its frequency spectrum (<a href="#eq-fourier_transform" class="quarto-xref">Equation&nbsp;2</a>):</p>
+<p><span class="math display">\[\begin{equation}\label{eq:inverse_FT}
+f(t)=\frac{1}{2\pi}\int\limits_{-\infty}^{+\infty}F(\omega)e^{+i\omega t}dt
 \end{equation}\]</span></p>
-<p>The Hamilton operator <span class="math inline">\(\hat{H}\)</span> gives a recipe how to calculate the energies for a given wavefunction <span class="math inline">\(\Psi(x)\)</span> in terms of derivates or multiplications by functions. If this recipe reduces to a multiplication of the wave function with a number <span class="math inline">\(E\)</span>, then these wavefunctions are eigenfunction of the Hamilton operator and the values of <span class="math inline">\(E\)</span> are the eigenvalues of the problem, i.e.&nbsp;the time-independent solutions of this differential equation.</p>
+<p>The Fourier transform <span class="math inline">\(F(\omega)\)</span> yields a complex number, encoding both phase and amplitude information of the oscillations. The phase of oscillation at frequency <span class="math inline">\(\omega\)</span> is given by:</p>
+<p><span class="math display">\[\begin{equation}
+\phi=\tan^{-1}\left(\frac{Im(F(\omega))}{Re(F(\omega))}\right)
+\end{equation}\]</span></p>
+<p>while the amplitude at frequency <span class="math inline">\(\omega\)</span> is:</p>
+<p><span class="math display">\[\begin{equation}
+x_{0}^{\rm theo}=|F(\omega)|
+\end{equation}\]</span></p>
+<p>Modern computing offers efficient algorithms for Fourier transformation, particularly the Fast Fourier Transform (FFT) implemented in libraries like NumPy. We’ll use these algorithms to identify oscillation patterns in our signals. Here’s an example of using NumPy’s FFT functions to compute the transform and generate the corresponding frequency axis:</p>
+<pre><code>f=np.fft.fft(alpha)
+freq = np.fft.fftfreq(t.shape[-1],time/t.shape[-1])</code></pre>
 </section>
-</section>
-<section id="recap-implicit-solution" class="level2">
-<h2 class="anchored" data-anchor-id="recap-implicit-solution">Recap: Implicit Solution</h2>
-<p>According to our above description, the Hamilton operator <span class="math inline">\(\hat{H}\)</span> contains two parts, a second derivative in the position, which represents the kinetic energy and the potential energy operator <span class="math inline">\(V(x)\)</span>, which is in the simplest case just a function of <span class="math inline">\(x\)</span>.</p>
-<p><span class="math display">\[\begin{equation}
-\left ( \frac{-\hbar^2 }{2m}\frac{\partial^2}{\partial x^2}+V(x) \right ) \Psi(x)=E\Psi(x)
-\end{equation}\]</span></p>
-<p>Since we want to apply our implicit solution scheme (Cranck Nicolson), we want to represent both parts as matrices.</p>
-<section id="kinetic-energy" class="level3">
-<h3 class="anchored" data-anchor-id="kinetic-energy">Kinetic energy</h3>
-<p>We remember that we can write the second derivative of our wavefunction <span class="math inline">\(\Psi(x)\)</span> in the finite difference approximation as</p>
-<p><span class="math display">\[\begin{equation}
-\Psi^{''}(x)=\frac{\Psi(x+\delta x)-2\Psi(x)+\Psi(x-\delta x)}{\delta x^{2}}
-\end{equation}\]</span></p>
-<p>If we want to evaluate the wavefunction at certain positions <span class="math inline">\(x_{i}\)</span>, then this second derivative translates into</p>
-<p><span class="math inline">\(T\Psi=\frac{d^2}{dx^2}\Psi=\frac{1}{\delta x^2}
-\begin{bmatrix}
--2 &amp; 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 1  &amp; -2 &amp; 1 &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; 1  &amp; -2 &amp; 1 &amp; 0\\
-0 &amp; 0  &amp; 0  &amp;  1 &amp; -2 &amp; 1\\
-0 &amp; 0  &amp; 0  &amp;  0 &amp;  1 &amp; -2\\
-\end{bmatrix}
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}\)</span></p>
-<p>if we just use 6 positions. Please remember, that in the version above, we have imposed already boundary conditions in the first and the last row, which are <span class="math inline">\(\Psi(x_{0})=0\)</span> and <span class="math inline">\(\Psi(x_{7})=0\)</span>. If we multiply this matrix by <span class="math inline">\(-\hbar^{2}/2m\)</span>, we obtain the kinetic energy for an object of mass <span class="math inline">\(m\)</span>.</p>
-</section>
-<section id="potential-energy" class="level3">
-<h3 class="anchored" data-anchor-id="potential-energy">Potential energy</h3>
-<p>The potential energy values are just values at the diagonal of the matrix</p>
-<p><span class="math inline">\(V\Psi=
-\begin{bmatrix}
-V(x_{1}) &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; V(x_{2}) &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; V(x_{3}) &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; 0  &amp; V(x_{4}) &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; 0  &amp;  0 &amp; V(x_{5}) &amp; 0\\
-0 &amp; 0  &amp; 0  &amp;  0 &amp;  0 &amp; V(x_{6})\\
-\end{bmatrix}
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}\)</span></p>
-<p>an you may insert the specific potential energy values for your particular problem here.</p>
-<p>Our final problem <span class="math inline">\(\hat{H}\Psi=E\Psi\)</span> will thus have the following shape</p>
-<p><span class="math display">\[\begin{equation}
-\begin{bmatrix}
--2+V(x_{1}) &amp; 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-1 &amp; -2+V(x_{2}) &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; -2+V(x_{3})  &amp; 1 &amp; 0 &amp; 0 \\
-0 &amp;0 &amp; 1  &amp; -2+V(x_{4})  &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 0  &amp; 1  &amp;  -2+V(x_{5}) &amp; 1 \\
-0 &amp; 0 &amp; 0  &amp; 0  &amp;  1 &amp;  -2+V(x_{6}) \\
-\end{bmatrix}
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}=E
-\begin{bmatrix}
-\Psi(x_{1})\\
-\Psi(x_{2})\\
-\Psi(x_{3})\\
-\Psi(x_{4})\\
-\Psi(x_{5})\\
-\Psi(x_{6})
-\end{bmatrix}
-\end{equation}\]</span></p>
-<p>where I skipped the prefactor <span class="math inline">\(-\hbar^2/2m\)</span>, to fit the matrices on one line. Yet I did not succeed. This is the final system of coupled equations which we can supply to any matrix solver. We will use a solver from the <em>scipy.linalg</em> module. In case we have special boundary conditions, we need to take them into account and replace the first and the last line for example with the particular boundary conditions.</p>
+<section id="frequency-analysis-of-our-coupled-pendula" class="level2">
+<h2 class="anchored" data-anchor-id="frequency-analysis-of-our-coupled-pendula">Frequency analysis of our coupled pendula</h2>
+<p>Let us now apply Fourier analysis to examine the data from our previous simulation of coupled pendula, which includes both normal modes and beat mode oscillations of the harmonic oscillator.</p>
+<div>
+<div id="pyodide-2">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsInRhZ3MiOltdfSwiY29kZSI6Im5tMT1ucC5sb2FkdHh0KCdubTEudHh0JyxkZWxpbWl0ZXI9JywnKVxubm0yPW5wLmxvYWR0eHQoJ25tMi50eHQnLGRlbGltaXRlcj0nLCcpXG5iZWF0cz1ucC5sb2FkdHh0KCdiZWF0cy50eHQnLGRlbGltaXRlcj0nLCcpIn0=
+</script>
+</div>
+<p>First, we extract the time series data and angular displacements into separate arrays for clearer analysis:</p>
+<div>
+<div id="pyodide-3">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsInRhZ3MiOltdfSwiY29kZSI6InQ9bm0xWzosMF1cbnRoZXRhMV9ubTE9bm0xWzosMV1cbnRoZXRhMV9ubTI9bm0yWzosMV1cbnRoZXRhMV9iZWF0cz1iZWF0c1s6LDFdIn0=
+</script>
+</div>
+<p>Next, we perform the Fourier transform of our signals and visualize their frequency spectra:</p>
+<div>
+<div id="pyodide-4">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7IkV4ZWN1dGVUaW1lIjp7InN0YXJ0X3RpbWUiOiIyMDE4LTA1LTI5VDExOjAxOjU1LjQxNTk4NVoiLCJlbmRfdGltZSI6IjIwMTgtMDUtMjlUMTE6MDE6NTUuNDIwNTg1WiJ9LCJlZGl0Ijp0cnVlLCJ0YWdzIjpbXSwiZXZhbCI6dHJ1ZX0sImNvZGUiOiIjIGNhbGN1bGF0ZSB0aGUgZnJlcXVlbmN5IHNwZWN0cnVtIG9mIHRoZSBvc2NpbGxhdGlvbnMgZm9yIGRpZmZlcmVudCBpbml0aWFsIGNvbmRpdGlvbnNcbnBsdC5maWd1cmUoMSxmaWdzaXplPSg2LDUpKVxucGx0LnhsYWJlbCgnZnJlcXVlbmN5IFtIel0nLCBmb250c2l6ZT0xNilcbnBsdC55bGFiZWwoJ0FtcGxpdHVkZScsZm9udHNpemU9MTYpXG5wbHQudGlja19wYXJhbXMobGFiZWxzaXplPTE0KVxuZnQxPW5wLmZmdC5mZnQodGhldGExX25tMSlcbmZyZXEgPSBucC5mZnQuZmZ0ZnJlcSh0LnNoYXBlWy0xXSx0Wy0xXS90LnNoYXBlWy0xXSlcbnBsdC5wbG90KGZyZXFbOjEwMDBdLG5wLmFicyhmdDEpWzoxMDAwXSxsYWJlbD0nbm9ybWFsIG1vZGUgMScpXG5cbmZ0MT1ucC5mZnQuZmZ0KHRoZXRhMV9ubTIpXG5mcmVxID0gbnAuZmZ0LmZmdGZyZXEodC5zaGFwZVstMV0sdFstMV0vdC5zaGFwZVstMV0pXG5wbHQucGxvdChmcmVxWzoxMDAwXSxucC5hYnMoZnQxKVs6MTAwMF0sbGFiZWw9J25vcm1hbCBtb2RlIDInKVxuXG5mdDE9bnAuZmZ0LmZmdCh0aGV0YTFfYmVhdHMpXG5mcmVxID0gbnAuZmZ0LmZmdGZyZXEodC5zaGFwZVstMV0sdFstMV0vdC5zaGFwZVstMV0pXG5wbHQucGxvdChmcmVxWzoxMDAwXSxucC5hYnMoZnQxKVs6MTAwMF0sJ2stLScsbHc9MSxsYWJlbD0nYmVhdCBtb2RlJylcblxucGx0LmxlZ2VuZCgpXG5wbHQueGxpbSgwLjIsMC40KVxucGx0LnNob3coKSJ9
+</script>
+</div>
+<p>Our analysis reveals that the beat mode represents a superposition of the system’s two normal modes. This demonstrates a fundamental principle: any possible state of a coupled oscillator system can be constructed from a superposition of its normal modes with specific amplitudes.</p>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImluZGV4VVJMIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L3B5b2RpZGUvdjAuMjYuMS9mdWxsLyJ9LCJwYWNrYWdlcyI6eyJwa2dzIjpbInB5b2RpZGVfaHR0cCIsIm1pY3JvcGlwIiwiaXB5dGhvbiIsIm1hdHBsb3RsaWIiLCJudW1weSIsInNjaXB5Il19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoicHlvZGlkZS00Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiIsImlubGluZSI6ZmFsc2V9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoicHlvZGlkZS0zIiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiIsImlubGluZSI6ZmFsc2V9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoicHlvZGlkZS0yIiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiIsImlubGluZSI6ZmFsc2V9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoicHlvZGlkZS0xIiwic291cmNlIjoiX3B5b2RpZGVfdmFsdWVfMSA9IHtcbiAgY29uc3QgeyBoaWdobGlnaHRQeXRob24sIGI2NERlY29kZX0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMS1jb250ZW50c1wiLFxuICAgIGVjaG86IHRydWUsXG4gICAgb3V0cHV0OiB0cnVlXG4gIH0sIGJsb2NrLmF0dHIpO1xuXG4gIC8vIEV2YWx1YXRlIHRoZSBwcm92aWRlZCBQeXRob24gY29kZVxuICBjb25zdCByZXN1bHQgPSBweW9kaWRlT2pzLnByb2Nlc3Moe2NvZGU6IGJsb2NrLmNvZGUsIG9wdGlvbnN9LCB7fSk7XG5cbiAgLy8gRWFybHkgeWllbGQgd2hpbGUgd2Ugd2FpdCBmb3IgdGhlIGZpcnN0IGV2YWx1YXRpb24gYW5kIHJlbmRlclxuICBpZiAob3B0aW9ucy5vdXRwdXQgJiYgIShcIjFcIiBpbiBweW9kaWRlT2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgcHl0aG9uXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFB5dGhvbihibG9jay5jb2RlKSk7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ncm93IHNwaW5uZXItZ3Jvdy1zbSBtLTIgcG9zaXRpb24tYWJzb2x1dGUgdG9wLTAgZW5kLTBcIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQocHJlRWxlbSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWJvcmRlciBzcGlubmVyLWJvcmRlci1zbVwiO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgIH1cblxuICAgIHlpZWxkIGNvbnRhaW5lcjtcbiAgfVxuXG4gIHB5b2RpZGVPanMucmVuZGVyZWRPanNbXCIxXCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIiwiaW5saW5lIjpmYWxzZX0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiIsImlubGluZSI6ZmFsc2V9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -752,7 +700,6 @@ eyJjb250ZW50cyI6W119
 W10=
 </script>
 </section>
-</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
@@ -760,7 +707,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lectures/lecture04";
+window._ojs.paths.runtimeToDoc = "../../lectures/lecture09";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "../..";
 window._ojs.selfContained = false;
@@ -1186,6 +1133,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lectures/lecture09/2_coupled_pendula.html" class="pagination-link" aria-label="Solving ODEs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Solving ODEs</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

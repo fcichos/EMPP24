@@ -26,11 +26,15 @@
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/lectures/lecture08/2_integration.html</loc>
-    <lastmod>2024-11-26T10:11:21.313Z</lastmod>
+    <lastmod>2024-11-28T16:12:56.894Z</lastmod>
   </url>
   <url>
-    <loc>https://fcichos.github.io/EMPP24/lectures/lecture09/01-lecture09.html</loc>
-    <lastmod>2024-08-25T15:59:07.094Z</lastmod>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture09/2_coupled_pendula.html</loc>
+    <lastmod>2024-11-28T16:40:15.319Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture09/DampedOscillation.html</loc>
+    <lastmod>2024-11-28T16:18:19.397Z</lastmod>
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/lectures/lecture07/1_curve_fitting.html</loc>
@@ -221,12 +225,16 @@
     <lastmod>2024-11-26T10:06:24.759Z</lastmod>
   </url>
   <url>
+    <loc>https://fcichos.github.io/EMPP24/lectures/lecture09/3_fourier_analysis.html</loc>
+    <lastmod>2024-11-28T16:32:35.807Z</lastmod>
+  </url>
+  <url>
     <loc>https://fcichos.github.io/EMPP24/lectures/lecture08/4_solving_ODEs.html</loc>
     <lastmod>2024-11-25T20:29:08.513Z</lastmod>
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/lectures/lecture08/3_solving_ODEs.html</loc>
-    <lastmod>2024-11-26T09:54:31.735Z</lastmod>
+    <lastmod>2024-11-26T18:51:57.260Z</lastmod>
   </url>
   <url>
     <loc>https://fcichos.github.io/EMPP24/lectures/lecture06/test.html</loc>
